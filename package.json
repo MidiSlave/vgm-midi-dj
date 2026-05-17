@@ -1,0 +1,12 @@
+{
+  "name": "vgm-midi-dj",
+  "version": "0.1.0",
+  "description": "Video game MIDI DJ for live synth performance",
+  "type": "module",
+  "scripts": {
+    "analyze": "node tools/analyze.js",
+    "manifest": "node tools/build-manifest.js",
+    "serve": "npx http-server public -p 8080 --cors -S -C cert.pem -K key.pem",
+    "serve-local": "npx http-server public -p 8080 --cors"
+  }
+}
