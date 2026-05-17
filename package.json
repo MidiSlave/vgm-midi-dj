@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "node tools/analyze.js",
     "manifest": "node tools/build-manifest.js",
-    "serve": "npx http-server public -p 8080 --cors -S -C cert.pem -K key.pem",
-    "serve-local": "npx http-server public -p 8080 --cors"
+    "serve": "npx http-server docs -p 8080 --cors -S -C cert.pem -K key.pem",
+    "serve-local": "npx http-server docs -p 8080 --cors"
   }
 }

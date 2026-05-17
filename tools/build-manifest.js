@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
-const MIDI_DIR = join(ROOT, 'midi-files');
-const OUT = join(ROOT, 'public', 'tracks.json');
+const MIDI_DIR = join(ROOT, 'docs', 'midi-files');
+const OUT = join(ROOT, 'docs', 'tracks.json');
 
 const KEY_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 

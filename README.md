@@ -59,7 +59,7 @@ Drums get remapped from GM kit note numbers to the TR-08 layout automatically.
 ## Quick start
 
 ```sh
-npm run manifest         # rebuild public/tracks.json from midi-files/
+npm run manifest         # rebuild docs/tracks.json from docs/midi-files/
 npm run serve-local      # plain HTTP at localhost:8080
 npm run serve            # HTTPS at localhost:8080 (needs cert.pem/key.pem; iPad needs HTTPS for Web MIDI)
 ```
@@ -70,20 +70,19 @@ Open `http://localhost:8080`. Toggle **preview** in the header for in-browser GM
 
 ```
 midi-dj/
-├── public/
-│   ├── index.html         # webapp shell
-│   ├── app.js             # everything — playback, UI, piano roll, master clock
-│   ├── style.css          # dark minimal theme
-│   ├── tracks.json        # generated manifest (gitignored)
-│   └── midi-files          → ../midi-files (symlink so the server can fetch them)
+├── docs/                       # GitHub Pages root
+│   ├── index.html
+│   ├── app.js                  # everything — playback, UI, piano roll, master clock
+│   ├── midi-worker.js          # MIDI parsing off-thread
+│   ├── style.css
+│   ├── tracks.json             # generated manifest (committed for Pages)
+│   └── midi-files/             # the library, organised by game
 ├── tools/
-│   ├── build-manifest.js  # walks midi-files/, parses each MIDI, writes tracks.json
-│   └── analyze.js         # CLI: inspect one MIDI file's channels/programs
-├── midi-files/            # the library, organised by game
-├── src/
-│   └── midi-map.js        # (unused — channel/note maps live in app.js now)
+│   ├── build-manifest.js       # walks docs/midi-files/, writes docs/tracks.json
+│   └── analyze.js              # CLI: inspect one MIDI file's channels/programs
 ├── package.json
-└── README.md
+├── README.md
+└── CLAUDE.md
 ```
 
 ## MIDI library
@@ -107,7 +106,7 @@ midi-dj/
 | Contra | 11 |
 | Doom | 8 |
 
-Drop new `.mid`/`.midi` files into `midi-files/<game>/`, then `npm run manifest` to rebuild the index.
+Drop new `.mid`/`.midi` files into `docs/midi-files/<game>/`, then `npm run manifest` to rebuild the index.
 
 ## TR-08 drum note map
 
@@ -134,7 +133,7 @@ For SNES games not yet in the library (e.g. Link to the Past):
 2. Open [VGMTrans](https://github.com/vgmtrans/vgmtrans)
 3. Drag the `.spc` in → it auto-detects the N-SPC sequence
 4. Right-click the collection → Convert → MIDI
-5. Drop the `.mid` into `midi-files/<game>/`
+5. Drop the `.mid` into `docs/midi-files/<game>/`
 6. Run `npm run manifest`
 7. Optional: `node tools/analyze.js <file.mid>` to inspect channel layout
 
