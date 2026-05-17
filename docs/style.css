@@ -186,6 +186,35 @@ header h1 {
 
 #browser-count { font-size: 0.7rem; min-width: 5em; text-align: right; align-self: center; }
 
+.browser-games {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.game-chip {
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  font-family: inherit;
+  cursor: pointer;
+}
+.game-chip:hover { border-color: var(--surface-3); color: var(--text); }
+.game-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.game-chip.all {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.62rem;
+}
+
 #browser-list {
   flex: 1;
   overflow-y: auto;

@@ -206,6 +206,8 @@ function makeDeckState(id) {
     outputMute: new Set(),  // output channel indices currently muted
     dropTimer: null,
     dropPending: false,
+    seekTimer: null,
+    seekPending: null, // tick the playhead will jump to at the next bar of this deck
     // playback transport (live state for visualisation)
     currentTick: 0,
     currentBPM: 120,
@@ -260,7 +262,7 @@ function msUntilNextDownbeat() {
 }
 
 function setMasterBpm(bpm) {
-  bpm = Math.max(40, Math.min(240, Math.round(bpm)));
+  bpm = Math.max(20, Math.min(240, Math.round(bpm)));
   if (bpm === master.bpm) return;
   // Keep current beat-1 anchor where it should be at the new tempo so the visual
   // doesn't jump: re-anchor based on current beat position.
@@ -300,7 +302,7 @@ function masterTapTempo() {
     }
     const avgMs = intervals.reduce((a, b) => a + b, 0) / intervals.length;
     const newBpm = Math.round(60000 / avgMs);
-    if (newBpm >= 40 && newBpm <= 240) {
+    if (newBpm >= 20 && newBpm <= 240) {
       setMasterBpm(newBpm);
       // Anchor beat 1 onto this tap so the visual aligns with what the user is feeling
       master.beatOneAt = now;
@@ -528,90 +530,40 @@ function silenceAll() {
 }
 
 // ──────────────────────────────────────────────────────────────
-// MIDI file parsing
+// MIDI parsing — runs in a Web Worker so loading a track on one deck
+// can't stall the playing deck's setTimeout-driven scheduler.
 // ──────────────────────────────────────────────────────────────
-function parseMidiFile(arrayBuffer) {
-  const data = new Uint8Array(arrayBuffer);
-  const view = new DataView(arrayBuffer);
-  let pos = 0;
+let midiWorker = null;
+let nextWorkerReqId = 0;
+const workerRequests = new Map();
 
-  function readVarLen() {
-    let val = 0, byte;
-    do { byte = data[pos++]; val = (val << 7) | (byte & 0x7f); } while (byte & 0x80);
-    return val;
-  }
-
-  const header = String.fromCharCode(...data.slice(0, 4));
-  if (header !== 'MThd') throw new Error('Not a MIDI file');
-  pos = 4;
-  view.getUint32(pos); pos += 4;
-  const format = view.getUint16(pos); pos += 2;
-  const numTracks = view.getUint16(pos); pos += 2;
-  const ticksPerBeat = view.getUint16(pos); pos += 2;
-
-  const events = [];
-
-  for (let t = 0; t < numTracks; t++) {
-    pos += 4; // 'MTrk'
-    const trackLen = view.getUint32(pos); pos += 4;
-    const trackEnd = pos + trackLen;
-    let tick = 0;
-    let runningStatus = 0;
-
-    while (pos < trackEnd) {
-      const delta = readVarLen();
-      tick += delta;
-      let status = data[pos];
-      if (status < 0x80) status = runningStatus;
-      else { pos++; if (status < 0xf0) runningStatus = status; }
-
-      const type = status & 0xf0;
-      const channel = status & 0x0f;
-
-      if (status === 0xff) {
-        const metaType = data[pos++];
-        const len = readVarLen();
-        if (metaType === 0x51) {
-          const tempo = (data[pos] << 16) | (data[pos + 1] << 8) | data[pos + 2];
-          events.push({ tick, type: 'tempo', bpm: Math.round(60000000 / tempo) });
-        }
-        pos += len;
-      } else if (status === 0xf0 || status === 0xf7) {
-        pos += readVarLen();
-      } else if (type === 0x90) {
-        const note = data[pos++], vel = data[pos++];
-        events.push({ tick, type: vel > 0 ? 'noteOn' : 'noteOff', channel, note, velocity: vel });
-      } else if (type === 0x80) {
-        const note = data[pos++]; pos++;
-        events.push({ tick, type: 'noteOff', channel, note, velocity: 0 });
-      } else if (type === 0xc0) { pos++; }
-      else if (type === 0xb0 || type === 0xe0 || type === 0xa0) { pos += 2; }
-      else if (type === 0xd0) { pos++; }
-      else { pos = trackEnd; }
-    }
-    pos = trackEnd;
-  }
-
-  events.sort((a, b) => a.tick - b.tick);
-
-  // Pair noteOns with their noteOffs so playback knows the note's natural end tick.
-  // This lets us let notes ring out across loop boundaries.
-  const open = new Map();
-  for (let i = 0; i < events.length; i++) {
-    const ev = events[i];
-    if (ev.type === 'noteOn') {
-      open.set(`${ev.channel}:${ev.note}`, i);
-    } else if (ev.type === 'noteOff') {
-      const onIdx = open.get(`${ev.channel}:${ev.note}`);
-      if (onIdx != null) {
-        events[onIdx].endTick = ev.tick;
-        open.delete(`${ev.channel}:${ev.note}`);
-      }
-    }
-  }
-
-  return { events, ticksPerBeat, format };
+function getMidiWorker() {
+  if (midiWorker) return midiWorker;
+  midiWorker = new Worker('midi-worker.js');
+  midiWorker.onmessage = (e) => {
+    const { id, midi, rollData, error } = e.data;
+    const req = workerRequests.get(id);
+    if (!req) return;
+    workerRequests.delete(id);
+    if (error) req.reject(new Error(error));
+    else req.resolve({ midi, rollData });
+  };
+  midiWorker.onerror = (err) => {
+    console.error('midi worker error', err);
+  };
+  return midiWorker;
 }
+
+function parseInWorker(buffer) {
+  const worker = getMidiWorker();
+  const id = ++nextWorkerReqId;
+  return new Promise((resolve, reject) => {
+    workerRequests.set(id, { resolve, reject });
+    worker.postMessage({ id, buffer }, [buffer]);
+  });
+}
+
+const yieldToMain = () => new Promise(r => setTimeout(r, 0));
 
 function getChannelsUsed(midi) {
   const channels = new Set();
@@ -845,6 +797,7 @@ function stopDeck(deckId) {
   const deck = decks[deckId];
   deck.playing = false;
   if (deck.timer) { clearTimeout(deck.timer); deck.timer = null; }
+  cancelPendingSeek(deckId);
   silenceDeck(deckId);
   const btn = document.querySelector(`.btn-play[data-deck="${deckId}"]`);
   if (btn) { btn.classList.remove('playing'); btn.textContent = '▶'; }
@@ -854,54 +807,71 @@ function stopDeck(deckId) {
   paintRoll(deckId);
 }
 
+function msUntilNextDeckBar(deck) {
+  if (!deck.playing) return 0;
+  const tpb = getDeckTicksPerBeat(deck);
+  const meterNum = parseMeterNum(deck.meta?.meter) || 4;
+  const ticksPerBar = tpb * meterNum;
+  const liveTick = getLivePlaybackTick(deck);
+  const nextBarTick = Math.ceil((liveTick + 1) / ticksPerBar) * ticksPerBar;
+  const msPer = deck.currentMsPerTick || 4;
+  return Math.max(0, (nextBarTick - liveTick) * msPer);
+}
+
+function cancelPendingSeek(deckId) {
+  const deck = decks[deckId];
+  if (deck.seekTimer) clearTimeout(deck.seekTimer);
+  deck.seekTimer = null;
+  deck.seekPending = null;
+}
+
 function seekDeck(deckId, tick) {
   const deck = decks[deckId];
   if (!deck.midi) return;
-  if (deck.playing) {
-    playDeck(deckId, tick); // playDeck handles the in-place seek
-  } else {
+  if (!deck.playing) {
+    cancelPendingSeek(deckId);
     deck.currentTick = tick;
     updatePosition(deckId, tick, deck.midi.ticksPerBeat, deck.currentBPM);
     paintRoll(deckId);
+    return;
   }
+  // Playing — queue the seek for the next bar of THIS deck so it lands musically
+  if (deck.seekTimer) clearTimeout(deck.seekTimer);
+  deck.seekPending = tick;
+  const ms = msUntilNextDeckBar(deck);
+  deck.seekTimer = setTimeout(() => {
+    const t = deck.seekPending;
+    deck.seekTimer = null;
+    deck.seekPending = null;
+    if (t != null) playDeck(deckId, t);
+  }, ms);
+  paintRoll(deckId);
 }
 
 // ──────────────────────────────────────────────────────────────
 // Piano roll — compile, render, animate
 // ──────────────────────────────────────────────────────────────
-function compileNotes(midi) {
-  const notes = [];
-  const open = new Map();
-  let maxTick = 0;
-  for (const ev of midi.events) {
-    if (ev.tick > maxTick) maxTick = ev.tick;
-    if (ev.type === 'noteOn') {
-      open.set(`${ev.channel}:${ev.note}`, { tick: ev.tick, vel: ev.velocity });
-    } else if (ev.type === 'noteOff') {
-      const key = `${ev.channel}:${ev.note}`;
-      const start = open.get(key);
-      if (start) {
-        notes.push({ channel: ev.channel, note: ev.note, startTick: start.tick, endTick: ev.tick, velocity: start.vel });
-        open.delete(key);
-      }
-    }
-  }
-  for (const [key, start] of open) {
-    const [ch, note] = key.split(':').map(Number);
-    notes.push({ channel: ch, note, startTick: start.tick, endTick: maxTick, velocity: start.vel });
-  }
-  const pitched = notes.filter(n => n.channel !== 9);
-  const minNote = pitched.length ? Math.min(...pitched.map(n => n.note)) - 2 : 48;
-  const maxNote = pitched.length ? Math.max(...pitched.map(n => n.note)) + 2 : 84;
-  return { notes, maxTick: Math.max(1, maxTick), minNote, maxNote };
-}
-
 function buildPianoRoll(deckId) {
-  const deck = decks[deckId];
-  if (!deck.midi) return;
-  deck.rollData = compileNotes(deck.midi);
+  if (!decks[deckId].rollData) return;
   renderRollOffscreen(deckId);
   paintRoll(deckId);
+}
+
+// Defer the heavy offscreen render to browser idle time so audio scheduling on
+// the OTHER playing deck doesn't get jittered by 5–15 ms of canvas fillRect calls.
+const _pendingRender = { a: null, b: null };
+function deferRollRender(deckId) {
+  if (_pendingRender[deckId]) {
+    if (window.cancelIdleCallback) cancelIdleCallback(_pendingRender[deckId]);
+    else clearTimeout(_pendingRender[deckId]);
+  }
+  const cb = () => {
+    _pendingRender[deckId] = null;
+    if (decks[deckId].rollData) buildPianoRoll(deckId);
+  };
+  _pendingRender[deckId] = window.requestIdleCallback
+    ? requestIdleCallback(cb, { timeout: 250 })
+    : setTimeout(cb, 80);
 }
 
 function parseMeterNum(meter) {
@@ -1056,6 +1026,17 @@ function paintRoll(deckId) {
     if (deck.loop.out != null) {
       ctx.beginPath(); ctx.moveTo(x2, 0); ctx.lineTo(x2, h); ctx.stroke();
     }
+  }
+
+  // Pending seek marker (dashed, deck colour) — where playhead will jump at next bar
+  if (deck.seekPending != null && deck.seekPending >= startTick && deck.seekPending <= endTick) {
+    const px = tickToX(deck.seekPending);
+    ctx.save();
+    ctx.setLineDash([4 * dpr, 4 * dpr]);
+    ctx.strokeStyle = deckId === 'a' ? 'rgba(92,224,208,0.7)' : 'rgba(255,122,138,0.7)';
+    ctx.lineWidth = 1.5 * dpr;
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, h); ctx.stroke();
+    ctx.restore();
   }
 
   // Playhead
@@ -1392,38 +1373,47 @@ async function loadTrackIntoDeck(deckId, track) {
     const res = await fetch(track.path);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buffer = await res.arrayBuffer();
-    const midi = parseMidiFile(buffer);
+
+    // Parsing happens off-thread; the playing deck's scheduler keeps ticking
+    const { midi, rollData } = await parseInWorker(buffer);
+
     stopDeck(deckId);
     decks[deckId].midi = midi;
     decks[deckId].meta = track;
     decks[deckId].currentTick = 0;
-    decks[deckId].loop = { in: null, out: null, active: false, beats: null };
+    decks[deckId].loop = { in: null, out: null, active: false, beats: null, pendingExit: false };
     decks[deckId].transpose = 0;
     decks[deckId].outputMute = new Set();
     decks[deckId].rollView = { zoom: 1, offset: 0 };
+    decks[deckId].rollData = rollData; // pre-computed in the worker
     cancelDrop(deckId);
+    cancelPendingSeek(deckId);
     const nameEl = document.querySelector(`#deck-${deckId} .track-name`);
     nameEl.textContent = `${track.title} · ${track.game}`;
     nameEl.classList.remove('muted');
     updateDeckStats(deckId, track);
-    // First-ever load anchors master to that track's tempo so it starts at native
     if (!master.autoSet && track.perceived_bpm) {
       setMasterBpm(track.perceived_bpm);
       if (masterBpmSlider) masterBpmSlider.setValue(master.bpm);
       master.autoSet = true;
     }
-    syncDeckToMaster(deckId); // warps this deck to the current master tempo
+    syncDeckToMaster(deckId);
     updateTransposeUI(deckId);
     buildRoutingUI(deckId, midi);
-    buildPianoRoll(deckId);
     updateLoopUI(deckId);
+    // Paint a placeholder (background + playhead) immediately so the deck looks responsive
+    paintRoll(deckId);
+    // Defer the heavy offscreen render until the browser is idle, so audio scheduling
+    // on the other deck gets priority. Falls back to a deferred setTimeout on browsers
+    // without requestIdleCallback.
+    deferRollRender(deckId);
   } catch (err) {
     console.error('Load failed', track.path, err);
     alert(`Failed to load: ${track.path}\n${err.message}`);
   }
 }
 
-let browserState = { search: '', game: '', sort: 'game', dir: 1 };
+let browserState = { search: '', games: new Set(), sort: 'game', dir: 1 };
 
 const COLUMNS = [
   { key: 'title', label: 'title' },
@@ -1457,10 +1447,10 @@ function setSort(key) {
 }
 
 function renderBrowser() {
-  const { search, game: gameFilter, sort: sortKey, dir } = browserState;
+  const { search, games: gameFilter, sort: sortKey, dir } = browserState;
 
   let filtered = trackLibrary.filter(t => {
-    if (gameFilter && t.game !== gameFilter) return false;
+    if (gameFilter.size > 0 && !gameFilter.has(t.game)) return false;
     if (!search) return true;
     return t.title.toLowerCase().includes(search) || t.game.toLowerCase().includes(search);
   });
@@ -1518,6 +1508,39 @@ function renderBrowser() {
   }
 }
 
+function renderGameChips() {
+  const root = document.getElementById('browser-games');
+  if (!root) return;
+  root.innerHTML = '';
+  const games = [...new Set(trackLibrary.map(t => t.game))].sort();
+
+  // "All" chip — clears the selection
+  const allChip = document.createElement('button');
+  allChip.className = 'game-chip all' + (browserState.games.size === 0 ? ' active' : '');
+  allChip.type = 'button';
+  allChip.textContent = 'all';
+  allChip.addEventListener('click', () => {
+    browserState.games.clear();
+    renderGameChips();
+    renderBrowser();
+  });
+  root.appendChild(allChip);
+
+  for (const g of games) {
+    const chip = document.createElement('button');
+    chip.className = 'game-chip' + (browserState.games.has(g) ? ' active' : '');
+    chip.type = 'button';
+    chip.textContent = g;
+    chip.addEventListener('click', () => {
+      if (browserState.games.has(g)) browserState.games.delete(g);
+      else browserState.games.add(g);
+      renderGameChips();
+      renderBrowser();
+    });
+    root.appendChild(chip);
+  }
+}
+
 async function initBrowser() {
   try {
     const res = await fetch('tracks.json');
@@ -1525,12 +1548,7 @@ async function initBrowser() {
     const data = await res.json();
     trackLibrary = data.tracks;
 
-    const games = [...new Set(trackLibrary.map(t => t.game))].sort();
-    mountDropdown(document.getElementById('browser-game-mount'), {
-      options: [{ value: '', label: 'all games' }, ...games.map(g => ({ value: g, label: g }))],
-      value: '',
-      onChange: (v) => { browserState.game = v; renderBrowser(); },
-    });
+    renderGameChips();
     const searchEl = document.getElementById('browser-search');
     const clearBtn = document.getElementById('browser-clear');
     searchEl.addEventListener('input', () => {
