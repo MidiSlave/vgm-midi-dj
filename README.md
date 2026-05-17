@@ -147,3 +147,9 @@ For SNES games not yet in the library (e.g. Link to the Past):
 ## Status
 
 Pre-show development. Run locally; iPad over WiFi works fine via HTTPS or via `chrome://flags/#unsafely-treat-insecure-origin-as-secure` for HTTP.
+
+## Notes
+
+- The MIDI files under `docs/midi-files/` are community transcriptions of video-game soundtracks, already publicly available across the usual archives (vgmusic.com, midishrine.com, zophar.net) and SPC-converted via VGMTrans. They're bundled here for convenience; original compositions remain the work of their respective composers and publishers. No affiliation is implied.
+- This is a personal performance tool — non-commercial, hobbyist.
+- The web app and tooling are MIT-licensed (see `LICENSE`).
