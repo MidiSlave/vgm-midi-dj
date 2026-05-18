@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VGM·DJ — Previewer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="previewer.css">
+</head>
+<body>
+  <div id="prev-app">
+    <header class="prev-header">
+      <h1>VGM·DJ <span class="muted">/ previewer</span></h1>
+      <div class="header-spacer"></div>
+      <a class="prev-link" href="index.html">← DJ</a>
+    </header>
+
+    <section class="prev-picker">
+      <div class="picker-row">
+        <label class="picker-label">Track</label>
+        <select id="prev-game" class="prev-select"></select>
+        <select id="prev-track" class="prev-select prev-track-select"></select>
+        <button class="prev-btn" id="prev-load">Load</button>
+        <span class="muted prev-load-status" id="prev-load-status"></span>
+      </div>
+      <div class="picker-row">
+        <label class="picker-label">Or file</label>
+        <input type="file" id="prev-file" accept=".mid,.midi">
+      </div>
+    </section>
+
+    <section class="prev-info" id="prev-info">
+      <div class="info-grid">
+        <div><label>Title</label><span id="info-title">—</span></div>
+        <div><label>Game</label><span id="info-game">—</span></div>
+        <div><label>BPM</label><span id="info-bpm">—</span></div>
+        <div><label>Duration</label><span id="info-duration">—</span></div>
+        <div><label>Channels</label><span id="info-channels">—</span></div>
+        <div><label>Tempo events</label><span id="info-tempos">—</span></div>
+      </div>
+    </section>
+
+    <section class="prev-transport">
+      <button class="prev-btn prev-btn-large" id="prev-play">▶ Play</button>
+      <button class="prev-btn prev-btn-large" id="prev-stop">■ Stop</button>
+      <div class="prev-time"><span id="prev-time-cur">0:00</span> / <span id="prev-time-end">0:00</span></div>
+      <div class="prev-progress"><div class="prev-progress-fill" id="prev-progress"></div></div>
+      <div class="prev-master-vol">
+        <label>Vol</label>
+        <input type="range" id="prev-volume" min="0" max="100" value="70">
+      </div>
+    </section>
+
+    <section class="prev-roll-wrap">
+      <canvas id="prev-roll" class="piano-roll"></canvas>
+      <div class="muted prev-roll-hint">click to seek · scroll to zoom · shift+drag to pan</div>
+    </section>
+
+    <section class="prev-channels">
+      <table class="prev-channel-table">
+        <thead>
+          <tr>
+            <th>Ch</th>
+            <th>Patch</th>
+            <th>Notes</th>
+            <th>Range</th>
+            <th>Avg pitch</th>
+            <th>Poly %</th>
+            <th>Max sim</th>
+            <th>Mono/Poly</th>
+            <th>Suggested role</th>
+            <th>Output</th>
+            <th>Solo</th>
+            <th>Mute</th>
+            <th>Activity</th>
+          </tr>
+        </thead>
+        <tbody id="prev-channel-body"></tbody>
+      </table>
+    </section>
+
+    <section class="prev-save">
+      <button class="prev-btn" id="prev-save">Save assignments (local)</button>
+      <button class="prev-btn" id="prev-download">Download overrides.json</button>
+      <button class="prev-btn" id="prev-clear-overrides">Clear all overrides</button>
+      <span class="muted" id="prev-save-status"></span>
+    </section>
+  </div>
+
+  <script type="module" src="previewer.js"></script>
+</body>
+</html>
