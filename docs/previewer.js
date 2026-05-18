@@ -123,7 +123,7 @@ const state = {
   schedulerInterval: null,
   scheduledUntilMs: 0,         // wall-clock ms watermark for what's already been scheduled
   eventIndex: 0,
-  activeNotes: new Map(),      // key 'ch:note' → { stop } so we can mute mid-flight
+  activeNotes: new Set(),      // 'ch:note' keys currently sounding (for stop)
   channelActivity: {},         // chId → last activity timestamp (for UI dot)
   masterVolume: 0.7,
   overrides: {},               // path → { routing: { srcCh: outCh } }
@@ -137,20 +137,40 @@ const state = {
   markBeat1Mode: false,        // armed: next roll click sets beat-1 offset
 };
 
-const ctx = new (window.AudioContext || window.webkitAudioContext)();
-const masterGain = ctx.createGain();
-masterGain.gain.value = state.masterVolume;
-masterGain.connect(ctx.destination);
+// WebAudioTinySynth provides GM-quality preview matching the main DJ app.
+// Loaded as a global from the CDN script in previewer.html.
+let tinySynth = null;
+let synthCtx = null;
 
-const channelGain = {}; // chId → GainNode (per-channel mixer)
+function getTinySynth() {
+  if (tinySynth) return tinySynth;
+  if (typeof WebAudioTinySynth === 'undefined') {
+    console.error('WebAudioTinySynth not loaded');
+    return null;
+  }
+  tinySynth = new WebAudioTinySynth({ quality: 1, useReverb: 1, voices: 64 });
+  try {
+    synthCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (typeof tinySynth.setAudioContext === 'function') {
+      tinySynth.setAudioContext(synthCtx, synthCtx.destination);
+    }
+  } catch (err) {
+    console.error('AudioContext init failed:', err);
+  }
+  if (typeof tinySynth.setMasterVol === 'function') tinySynth.setMasterVol(state.masterVolume);
+  return tinySynth;
+}
 
-function getChannelGain(chId) {
-  if (channelGain[chId]) return channelGain[chId];
-  const g = ctx.createGain();
-  g.gain.value = 0.8;
-  g.connect(masterGain);
-  channelGain[chId] = g;
-  return g;
+function programChannelsForCurrentTrack() {
+  const synth = getTinySynth();
+  if (!synth) return;
+  for (const [chId, c] of Object.entries(state.channels)) {
+    const ch = Number(chId);
+    if (ch === 9) continue; // GM drum kit auto on ch 9
+    const program = c.stats.first_program;
+    if (program != null) synth.send([0xc0 | ch, program]);
+    else synth.send([0xc0 | ch, 0]); // default to Acoustic Grand Piano
+  }
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -374,89 +394,7 @@ function detectDuplicates(midi) {
   return pairs; // chId → its partner chId (if any)
 }
 
-// ──────────────────────────────────────────────────────────────
-// Inline WebAudio GM-ish synth
-// Picks a waveform + envelope per patch category. Drums are short noise
-// bursts shaped per GM drum note. Good enough for AB-ing channels, not for
-// real performance — that's what the actual hardware rig is for.
-// ──────────────────────────────────────────────────────────────
-function noteToFreq(n) { return 440 * Math.pow(2, (n - 69) / 12); }
-
-function patchVoiceConfig(category) {
-  switch (category) {
-    case 'bass':       return { wave: 'sawtooth', attack: 0.005, release: 0.10, gain: 0.45, filterFreq: 1400 };
-    case 'synth-lead': return { wave: 'sawtooth', attack: 0.01,  release: 0.15, gain: 0.40, filterFreq: 2800, detune: 8 };
-    case 'piano':      return { wave: 'triangle', attack: 0.002, release: 0.30, gain: 0.45 };
-    case 'strings':
-    case 'ensemble':   return { wave: 'sawtooth', attack: 0.05,  release: 0.30, gain: 0.25, filterFreq: 2000 };
-    case 'brass':      return { wave: 'square',   attack: 0.02,  release: 0.18, gain: 0.30, filterFreq: 2400 };
-    case 'reed':
-    case 'pipe':       return { wave: 'triangle', attack: 0.03,  release: 0.20, gain: 0.35 };
-    case 'organ':      return { wave: 'square',   attack: 0.005, release: 0.05, gain: 0.30 };
-    case 'guitar':     return { wave: 'sawtooth', attack: 0.005, release: 0.20, gain: 0.30, filterFreq: 2200 };
-    case 'synth-pad':  return { wave: 'triangle', attack: 0.20,  release: 0.50, gain: 0.30 };
-    case 'chrom-perc': return { wave: 'sine',     attack: 0.002, release: 0.40, gain: 0.45 };
-    default:           return { wave: 'triangle', attack: 0.01,  release: 0.20, gain: 0.35 };
-  }
-}
-
-function playNote(chId, midiNote, velocity, startTime, durationSec) {
-  const isDrum = Number(chId) === 9;
-  const chGain = getChannelGain(chId);
-  const vel = velocity / 127;
-
-  if (isDrum) {
-    // Noise burst, frequency-shaped by drum note
-    const noise = ctx.createBufferSource();
-    const len = 0.18;
-    const buf = ctx.createBuffer(1, ctx.sampleRate * len, ctx.sampleRate);
-    const data = buf.getChannelData(0);
-    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
-    noise.buffer = buf;
-    const filter = ctx.createBiquadFilter();
-    // Kick-ish for low notes, hat-ish for high
-    if (midiNote <= 38)      { filter.type = 'lowpass';  filter.frequency.value = 120; }
-    else if (midiNote <= 45) { filter.type = 'bandpass'; filter.frequency.value = 200; }
-    else if (midiNote <= 50) { filter.type = 'bandpass'; filter.frequency.value = 400; }
-    else                     { filter.type = 'highpass'; filter.frequency.value = 4000; }
-    const gain = ctx.createGain();
-    gain.gain.value = 0;
-    gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(0.6 * vel, startTime + 0.002);
-    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.18);
-    noise.connect(filter).connect(gain).connect(chGain);
-    noise.start(startTime);
-    noise.stop(startTime + 0.2);
-    return { stop: (t) => { try { noise.stop(t); } catch(e){} } };
-  }
-
-  const stats = state.channels[chId]?.stats;
-  const cfg = patchVoiceConfig(stats?.first_program_category ?? 'other');
-  const osc = ctx.createOscillator();
-  osc.type = cfg.wave;
-  osc.frequency.value = noteToFreq(midiNote);
-  let endNode = osc;
-  if (cfg.filterFreq) {
-    const filt = ctx.createBiquadFilter();
-    filt.type = 'lowpass';
-    filt.frequency.value = cfg.filterFreq;
-    osc.connect(filt);
-    endNode = filt;
-  }
-  const gain = ctx.createGain();
-  gain.gain.value = 0;
-  const peak = cfg.gain * vel;
-  gain.gain.setValueAtTime(0, startTime);
-  gain.gain.linearRampToValueAtTime(peak, startTime + cfg.attack);
-  // Sustain
-  gain.gain.setValueAtTime(peak, startTime + Math.max(cfg.attack, durationSec - 0.005));
-  gain.gain.exponentialRampToValueAtTime(0.0001, startTime + durationSec + cfg.release);
-  endNode.connect(gain).connect(chGain);
-  osc.start(startTime);
-  const stopAt = startTime + durationSec + cfg.release + 0.05;
-  osc.stop(stopAt);
-  return { stop: (t) => { try { osc.stop(t); } catch(e){} } };
-}
+// All sound goes through WebAudioTinySynth — see getTinySynth() above.
 
 // ──────────────────────────────────────────────────────────────
 // Playback scheduler — converts MIDI ticks to absolute wall time and
@@ -497,8 +435,14 @@ function stopPlayback(resetToStart = true) {
     clearInterval(state.schedulerInterval);
     state.schedulerInterval = null;
   }
-  for (const [k, h] of state.activeNotes) {
-    h.stop(ctx.currentTime);
+  // Send noteOff for every active note + all-notes-off CC on every channel
+  const synth = getTinySynth();
+  if (synth) {
+    for (const key of state.activeNotes) {
+      const [ch, n] = key.split(':').map(Number);
+      synth.send([0x80 | ch, n, 0]);
+    }
+    for (let ch = 0; ch < 16; ch++) synth.send([0xb0 | ch, 123, 0]);
   }
   state.activeNotes.clear();
   document.getElementById('prev-play').classList.remove('playing');
@@ -512,7 +456,10 @@ function stopPlayback(resetToStart = true) {
 
 function startPlayback() {
   if (!state.midi) return;
-  if (ctx.state === 'suspended') ctx.resume();
+  const synth = getTinySynth();
+  if (!synth) return;
+  if (synthCtx?.state === 'suspended') synthCtx.resume();
+  programChannelsForCurrentTrack();
   state.playing = true;
   state.startWallTime = performance.now();
   // Find the first event at or past startOffsetMs (seek-aware)
@@ -540,50 +487,33 @@ function scheduleAhead() {
   const LOOKAHEAD_MS = 120;
   const nowMs = (performance.now() - state.startWallTime) + state.startOffsetMs;
   const upTo = nowMs + LOOKAHEAD_MS;
+  const synth = getTinySynth();
+  if (!synth) return;
 
   const evs = state.eventsWithTime;
-  const ctxNow = ctx.currentTime;
   while (state.eventIndex < evs.length && evs[state.eventIndex].ms <= upTo) {
     const ev = evs[state.eventIndex++];
     if (ev.type === 'tempo') continue;
     if (ev.channel === undefined) continue;
-    if (ev.type !== 'noteOn') continue;
-    if (ev.velocity === 0) continue;
-    const chId = ev.channel;
-    // Apply mute/solo
-    const channelState = state.channels[chId];
-    if (!channelState) continue;
-    if (channelState.mute) continue;
-    if (state.soloAny && !channelState.solo) continue;
-    // Schedule at audio context time = ctxNow + (ev.ms - nowMs) / 1000
-    const startTime = ctxNow + Math.max(0, (ev.ms - nowMs)) / 1000;
-    const durMs = (ev.endTick != null)
-      ? (state.eventsWithTime[lookupEventByTick(ev.endTick, chId, ev.note)]?.ms ?? ev.ms + 200) - ev.ms
-      : 200;
-    const handle = playNote(chId, ev.note, ev.velocity, startTime, Math.max(0.04, durMs / 1000));
-    const key = `${chId}:${ev.note}:${state.eventIndex}`;
-    state.activeNotes.set(key, handle);
-    state.channelActivity[chId] = performance.now();
-    // Auto-clear when the note's natural end has passed
-    const clearAt = startTime + Math.max(0.04, durMs / 1000) + 0.6;
-    setTimeout(() => state.activeNotes.delete(key), Math.max(0, (clearAt - ctxNow) * 1000));
-  }
-}
-
-// Helper: find the noteOff event for a given pending noteOn so we can compute
-// the natural duration. Linear scan from current index forward — cheap because
-// noteOff usually arrives within a handful of events.
-function lookupEventByTick(endTick, channel, note) {
-  const evs = state.eventsWithTime;
-  for (let i = state.eventIndex; i < evs.length; i++) {
-    const e = evs[i];
-    if (e.tick > endTick) return null;
-    if (e.tick === endTick && e.channel === channel && e.note === note &&
-        (e.type === 'noteOff' || (e.type === 'noteOn' && e.velocity === 0))) {
-      return i;
+    const ch = ev.channel;
+    const delayMs = Math.max(0, ev.ms - nowMs);
+    if (ev.type === 'noteOn' && ev.velocity > 0) {
+      const chState = state.channels[ch];
+      if (!chState) continue;
+      if (chState.mute) continue;
+      if (state.soloAny && !chState.solo) continue;
+      const key = `${ch}:${ev.note}`;
+      setTimeout(() => synth.send([0x90 | ch, ev.note, ev.velocity]), delayMs);
+      state.activeNotes.add(key);
+      state.channelActivity[ch] = performance.now() + delayMs;
+    } else if (ev.type === 'noteOff' || (ev.type === 'noteOn' && ev.velocity === 0)) {
+      const key = `${ch}:${ev.note}`;
+      setTimeout(() => {
+        synth.send([0x80 | ch, ev.note, 0]);
+        state.activeNotes.delete(key);
+      }, delayMs);
     }
   }
-  return null;
 }
 
 function currentPlayMs() {
@@ -1092,7 +1022,6 @@ function applyLoadedMidi(midi, rollData, displayInfo) {
       solo: false,
       dupeOf: dupes[id] ?? null,
     };
-    getChannelGain(id).gain.value = 1.0;
   }
 
   // Update info panel
@@ -1281,7 +1210,8 @@ function init() {
   bindRoll();
   document.getElementById('prev-volume').addEventListener('input', (e) => {
     state.masterVolume = e.target.value / 100;
-    masterGain.gain.value = state.masterVolume;
+    const synth = getTinySynth();
+    if (synth && typeof synth.setMasterVol === 'function') synth.setMasterVol(state.masterVolume);
   });
   document.getElementById('prev-save').addEventListener('click', saveCurrentOverride);
   document.getElementById('prev-download').addEventListener('click', downloadOverrides);
