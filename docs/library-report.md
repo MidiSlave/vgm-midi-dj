@@ -1,15 +1,15 @@
 # Library scan report
 
-Generated: 2026-05-18T06:12:58.769Z
+Generated: 2026-05-18T06:40:48.111Z
 
 ## Library summary
 
-- **Total tracks**: 831
-- **Total games**: 17
+- **Total tracks**: 818
+- **Total games**: 16
 - **Failed to parse**: 0
 - **Average channels per track**: 7.6
-- **Total monophonic channels**: 4085
-- **Total polyphonic channels**: 2098
+- **Total monophonic channels**: 3981
+- **Total polyphonic channels**: 2095
 - **Tracks with stereo duplicates detected**: 136
 - **Total stereo-duplicate pairs**: 229
 
@@ -19,20 +19,20 @@ Generated: 2026-05-18T06:12:58.769Z
 |---|---:|
 | Ensemble | 1116 |
 | Piano | 741 |
-| Brass | 595 |
-| Bass | 552 |
-| Strings | 532 |
-| Pipe | 384 |
-| Synth Lead | 383 |
-| Guitar | 332 |
-| Reed | 296 |
+| Brass | 592 |
+| Bass | 548 |
+| Strings | 512 |
+| Pipe | 376 |
+| Synth Lead | 368 |
+| Guitar | 328 |
+| Reed | 295 |
 | Chrom. Perc. | 254 |
-| Percussive | 210 |
-| Organ | 206 |
-| Unknown | 197 |
-| Synth Pad | 153 |
-| Synth FX | 117 |
-| Ethnic | 75 |
+| Percussive | 207 |
+| Organ | 202 |
+| Unknown | 186 |
+| Synth Pad | 126 |
+| Synth FX | 112 |
+| Ethnic | 73 |
 | SFX | 40 |
 
 ## Per-game patterns
@@ -80,20 +80,6 @@ For each game, the dominant channel-position layout (which source channels appea
 | 13 | 9/95 | 6 mono / 3 poly | Acoustic Grand Piano (Strings) | 68.9 |
 | 14 | 3/95 | 3 mono / 0 poly | Acoustic Grand Piano (Piano) | 81.2 |
 | 15 | 1/95 | 0 mono / 1 poly | Timpani (Strings) | 45.7 |
-
-### commander-keen — 13 tracks
-
-| Source ch | Present in | Mono / Poly | Dominant patch | Avg pitch |
-|---|---|---|---|---|
-| 1 | 13/13 | 13 mono / 0 poly | Pizzicato Strings (Strings) | 66 |
-| 2 | 13/13 | 13 mono / 0 poly | Pizzicato Strings (Strings) | 64.2 |
-| 3 | 13/13 | 13 mono / 0 poly | Pad 4 (choir) (Synth Pad) | 63.4 |
-| 4 | 13/13 | 13 mono / 0 poly | Pizzicato Strings (Pipe) | 67.6 |
-| 5 | 13/13 | 13 mono / 0 poly | Pad 4 (choir) (Synth Pad) | 59.8 |
-| 6 | 13/13 | 13 mono / 0 poly | Pad 4 (choir) (Synth Pad) | 73.5 |
-| 7 | 10/13 | 10 mono / 0 poly | Pad 4 (choir) (Synth Pad) | 70 |
-| 8 | 8/13 | 8 mono / 0 poly | Lead 2 (sawtooth) (Synth Lead) | 72.7 |
-| 9 | 11/13 | 8 mono / 3 poly | — (Unknown) | 48.2 |
 
 ### contra — 11 tracks
 
