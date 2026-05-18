@@ -164,9 +164,18 @@ function getTinySynth() {
 function programChannelsForCurrentTrack() {
   const synth = getTinySynth();
   if (!synth) return;
+  // Reset all 16 channels so state from a previous track can't leak (a
+  // lingering programChange on ch 9 from a prior session could otherwise
+  // leave the drum kit on a non-standard variant).
+  for (let ch = 0; ch < 16; ch++) {
+    synth.send([0xb0 | ch, 121, 0]); // reset all controllers
+    synth.send([0xb0 | ch, 123, 0]); // all notes off
+  }
+  // Drum channel: standard GM drum kit (program 0).
+  synth.send([0xc0 | 9, 0]);
   for (const [chId, c] of Object.entries(state.channels)) {
     const ch = Number(chId);
-    if (ch === 9) continue; // GM drum kit auto on ch 9
+    if (ch === 9) continue;
     const program = c.stats.first_program;
     if (program != null) synth.send([0xc0 | ch, program]);
     else synth.send([0xc0 | ch, 0]); // default to Acoustic Grand Piano
