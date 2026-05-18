@@ -18,6 +18,10 @@ const GM_PREVIEW_PATCH = {
   3: 80, // Square Lead   — Roland Keytar
 };
 
+// Hardware outputs that are physically monophonic — the dispatcher must
+// note-off any active note on these before sending a new note-on.
+const MONO_OUTPUTS = new Set([1, 2]); // SH-01A (lead), Bass Station 2
+
 const GM_TO_TR08 = {
   35: 36, 36: 36, 37: 37, 38: 38, 39: 39, 40: 38,
   41: 43, 42: 42, 43: 43, 44: 42, 45: 47, 46: 46,
@@ -511,6 +515,20 @@ function dispatchEvent(ev, deck) {
     // Cancel any pending tail noteOff for this key so it doesn't kill the new note
     const pending = deck.tailTimers.get(key);
     if (pending) { clearTimeout(pending); deck.tailTimers.delete(key); }
+    // Mono outputs (e.g. Bass Station 2): silence any other note already sounding
+    // on this output before triggering the new one, so the synth doesn't choke.
+    if (MONO_OUTPUTS.has(outCh)) {
+      const prefix = `${outCh}:`;
+      for (const activeKey of [...deck.activeNotes.keys()]) {
+        if (activeKey.startsWith(prefix) && activeKey !== key) {
+          const prevNote = Number(activeKey.slice(prefix.length));
+          sendRaw(0x80 | outCh, prevNote, 0);
+          deck.activeNotes.delete(activeKey);
+          const tail = deck.tailTimers.get(activeKey);
+          if (tail) { clearTimeout(tail); deck.tailTimers.delete(activeKey); }
+        }
+      }
+    }
     sendRaw(0x90 | outCh, note, vel);
     deck.activeNotes.set(key, ev.endTick ?? null);
     flashRoutingPill(deck.id, outCh);
