@@ -264,16 +264,19 @@ function msUntilNextDownbeat() {
 function setMasterBpm(bpm) {
   bpm = Math.max(20, Math.min(240, Math.round(bpm)));
   if (bpm === master.bpm) return;
-  // Keep current beat-1 anchor where it should be at the new tempo so the visual
-  // doesn't jump: re-anchor based on current beat position.
-  const pos = getMasterPosition();
-  master.beatOneAt = performance.now() - ((pos.beat - 1) + pos.phase) * (60000 / bpm);
   master.bpm = bpm;
-  // Warp every loaded deck so it plays at master tempo
-  for (const id of ['a', 'b']) {
-    syncDeckToMaster(id);
-  }
+  for (const id of ['a', 'b']) syncDeckToMaster(id);
   document.getElementById('master-bpm-value').textContent = bpm;
+  // Re-anchor beat-1 so it stays phase-locked: prefer the playing deck if there
+  // is one (alignment to musical content), otherwise preserve the visual phase
+  // so the master counter doesn't appear to jump.
+  const playingId = decks.a.playing ? 'a' : (decks.b.playing ? 'b' : null);
+  if (playingId) {
+    anchorMasterToDeck(playingId, getLivePlaybackTick(decks[playingId]));
+  } else {
+    const pos = getMasterPosition();
+    master.beatOneAt = performance.now() - ((pos.beat - 1) + pos.phase) * (60000 / bpm);
+  }
 }
 
 function syncDeckToMaster(deckId) {
@@ -289,6 +292,18 @@ function syncDeckToMaster(deckId) {
 function masterReset() {
   master.beatOneAt = performance.now();
   updateMasterBeatDots(true);
+}
+
+// Anchor master beat-1 to a specific deck's tick position so the beat counter
+// stays phase-locked to that deck's perceived beats. Called on play and drop.
+function anchorMasterToDeck(deckId, deckTick) {
+  const deck = decks[deckId];
+  if (!deck.midi) return;
+  const tpb = getDeckTicksPerBeat(deck);
+  const beatsIntoTrack = deckTick / tpb;
+  // At master tempo, those beats took this long in real time
+  const msIntoTrack = beatsIntoTrack * (60000 / master.bpm);
+  master.beatOneAt = performance.now() - msIntoTrack;
 }
 
 function masterTapTempo() {
@@ -746,11 +761,13 @@ function dropDeck(deckId) {
   deck.dropPending = true;
   updateDropUI(deckId);
   if (deck.dropTimer) clearTimeout(deck.dropTimer);
+  const startTick = deck.currentTick || 0; // respect any cue position the user has scrubbed to
   deck.dropTimer = setTimeout(() => {
     deck.dropPending = false;
     deck.dropTimer = null;
     updateDropUI(deckId);
-    playDeck(deckId, 0);
+    anchorMasterToDeck(deckId, startTick);
+    playDeck(deckId, startTick);
   }, Math.max(0, msUntil));
 }
 
@@ -1115,12 +1132,10 @@ function bindPianoRoll(deckId) {
   let dragMode = null;        // 'scrub' | 'pan' | 'pinch' | null
   let pinchStartDist = 0;
   let pinchStartZoom = 1;
-  let pinchStartOffset = 0;
-  let pinchCentreFrac = 0.5;
+  let pinchStartMidFrac = 0.5;  // midpoint as fraction of canvas at pinch start
+  let pinchStartWorldX = 0;     // world fraction (0..1) under the midpoint at pinch start
   let panStartX = 0;
   let panStartOffset = 0;
-  let pressTime = 0;
-  let pressX = 0;
 
   const xToTick = (x, snap = true) => {
     const deck = decks[deckId];
@@ -1141,24 +1156,26 @@ function bindPianoRoll(deckId) {
     canvas.setPointerCapture(e.pointerId);
 
     if (pointers.size === 2) {
-      // Begin pinch
+      // Two-finger gesture: combined pinch-zoom + pan
       const [p1, p2] = [...pointers.values()];
       pinchStartDist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
       pinchStartZoom = decks[deckId].rollView.zoom;
-      pinchStartOffset = decks[deckId].rollView.offset;
+      const startOffset = decks[deckId].rollView.offset;
       const rect = canvas.getBoundingClientRect();
-      pinchCentreFrac = (((p1.x + p2.x) / 2) - rect.left) / rect.width;
+      pinchStartMidFrac = (((p1.x + p2.x) / 2) - rect.left) / rect.width;
+      pinchStartWorldX = startOffset + pinchStartMidFrac / pinchStartZoom;
       dragMode = 'pinch';
       return;
     }
 
-    pressTime = performance.now();
-    pressX = e.clientX;
     panStartX = e.clientX;
     panStartOffset = decks[deckId].rollView.offset;
-    // Default to scrub on press; switch to pan if user drags meaningfully when zoomed
-    dragMode = 'scrub';
-    seekDeck(deckId, xToTick(e.clientX, !e.shiftKey));
+    if (e.shiftKey) {
+      dragMode = 'pan';
+    } else {
+      dragMode = 'scrub';
+      seekDeck(deckId, xToTick(e.clientX));
+    }
   });
 
   canvas.addEventListener('pointermove', (e) => {
@@ -1169,7 +1186,25 @@ function bindPianoRoll(deckId) {
       const [p1, p2] = [...pointers.values()];
       const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
       const ratio = dist / (pinchStartDist || 1);
-      setRollZoom(deckId, pinchStartZoom * ratio, pinchCentreFrac);
+      const newZoom = Math.max(1, Math.min(50, pinchStartZoom * ratio));
+      const rect = canvas.getBoundingClientRect();
+      const curMidFrac = (((p1.x + p2.x) / 2) - rect.left) / rect.width;
+      // Keep the world point that was originally under the midpoint under the (possibly moved) midpoint
+      const deck = decks[deckId];
+      const maxOffset = 1 - 1 / newZoom;
+      const newOffset = Math.max(0, Math.min(maxOffset, pinchStartWorldX - curMidFrac / newZoom));
+      deck.rollView.zoom = newZoom;
+      deck.rollView.offset = newOffset;
+      renderRollOffscreen(deckId);
+      paintRoll(deckId);
+      return;
+    }
+
+    if (dragMode === 'pan') {
+      const rect = canvas.getBoundingClientRect();
+      const dx = (e.clientX - panStartX) / rect.width;
+      const deck = decks[deckId];
+      setRollOffset(deckId, panStartOffset - dx / deck.rollView.zoom);
       return;
     }
 
@@ -1186,20 +1221,22 @@ function bindPianoRoll(deckId) {
   canvas.addEventListener('pointerup', endPointer);
   canvas.addEventListener('pointercancel', endPointer);
 
-  // Mouse wheel: scroll = pan (when zoomed), shift/ctrl+scroll OR pinch-zoom on trackpad = zoom
+  // Wheel: ctrl/cmd/shift = zoom (also covers macOS trackpad pinch, which Chrome
+  // dispatches as wheel with ctrlKey=true). Anything else = horizontal pan, with
+  // deltaX preferred (trackpad two-finger horizontal swipe) and deltaY as fallback
+  // (mouse wheel users on a deck they've zoomed in on).
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     const deck = decks[deckId];
     if (!deck.rollData) return;
     const rect = canvas.getBoundingClientRect();
     const anchorFrac = (e.clientX - rect.left) / rect.width;
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.deltaMode === 0 && Math.abs(e.deltaY) > Math.abs(e.deltaX) && e.deltaY % 1 !== 0) {
-      // Zoom (ctrl/cmd/shift+wheel, or trackpad pinch — deltaY fractional)
+    if (e.ctrlKey || e.metaKey || e.shiftKey) {
       const zoomFactor = Math.exp(-e.deltaY * 0.005);
       setRollZoom(deckId, deck.rollView.zoom * zoomFactor, anchorFrac);
     } else {
-      // Pan horizontally
-      const panAmount = (e.deltaX || e.deltaY) / 800;
+      const primary = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      const panAmount = primary / 600;
       setRollOffset(deckId, deck.rollView.offset + panAmount / deck.rollView.zoom);
     }
   }, { passive: false });
@@ -1610,8 +1647,13 @@ function init() {
     // Transport
     document.querySelector(`.btn-play[data-deck="${deckId}"]`).addEventListener('click', () => {
       if (decks[deckId].dropPending) cancelDrop(deckId);
-      if (decks[deckId].playing) stopDeck(deckId);
-      else playDeck(deckId, decks[deckId].currentTick || 0);
+      if (decks[deckId].playing) {
+        stopDeck(deckId);
+      } else {
+        const startTick = decks[deckId].currentTick || 0;
+        anchorMasterToDeck(deckId, startTick);
+        playDeck(deckId, startTick);
+      }
     });
     document.querySelector(`.btn-cue[data-deck="${deckId}"]`).addEventListener('click', () => {
       setCue(deckId, cuedDeck !== deckId);
