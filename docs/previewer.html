@@ -51,9 +51,38 @@
       </div>
     </section>
 
+    <section class="prev-overrides">
+      <div class="overrides-row">
+        <label class="overrides-label">Grid</label>
+        <div class="overrides-field">
+          <span class="overrides-sublabel">BPM</span>
+          <input type="number" id="ov-bpm" min="20" max="240" step="1" class="ov-input">
+          <span class="muted" id="ov-bpm-detected">—</span>
+        </div>
+        <div class="overrides-field">
+          <span class="overrides-sublabel">Meter</span>
+          <select id="ov-meter" class="prev-select">
+            <option value="">— detected —</option>
+            <option value="3/4">3/4</option>
+            <option value="4/4">4/4</option>
+            <option value="5/4">5/4</option>
+            <option value="6/8">6/8</option>
+            <option value="7/8">7/8</option>
+            <option value="12/8">12/8</option>
+          </select>
+        </div>
+        <div class="overrides-field">
+          <span class="overrides-sublabel">Beat 1 offset (ticks)</span>
+          <input type="number" id="ov-offset" step="1" value="0" class="ov-input">
+          <button class="prev-btn" id="ov-mark-beat1" title="Click on the piano roll to set beat 1">Mark on roll</button>
+        </div>
+        <button class="prev-btn" id="ov-reset">Reset</button>
+      </div>
+    </section>
+
     <section class="prev-roll-wrap">
       <canvas id="prev-roll" class="piano-roll"></canvas>
-      <div class="muted prev-roll-hint">click to seek · scroll to zoom · shift+drag to pan</div>
+      <div class="muted prev-roll-hint">click to seek · scroll to zoom · shift+drag to pan · grid override below</div>
     </section>
 
     <section class="prev-channels">

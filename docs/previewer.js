@@ -131,6 +131,10 @@ const state = {
   rollData: null,              // { notes, maxTick, minNote, maxNote }
   rollView: { zoom: 1, offset: 0 }, // visible window of the roll
   startOffsetMs: 0,            // playback offset into the track at startWallTime
+  detectedBpm: null,           // BPM as computed from the file
+  detectedMeter: '4/4',        // meter from file (currently always 4/4 — file meta not parsed)
+  override: { bpm: null, meter: null, beat_one_tick: 0 }, // active overrides for the loaded track
+  markBeat1Mode: false,        // armed: next roll click sets beat-1 offset
 };
 
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -614,6 +618,24 @@ function decayActivityDots() {
   }
 }
 
+// Meter parsing — turns a "num/denom" string into the felt beat math.
+// Compound times (denom 8, num divisible by 3) group as dotted-quarter beats
+// with 3 eighth-note subdivisions each. Simple times (denom 4) keep the
+// quarter as the beat. 7/8 and friends fall back to eighth-note beats.
+function parseMeter(meter) {
+  if (!meter || !meter.includes('/')) {
+    return { beatsPerBar: 4, ticksPerBeatMul: 1, subsPerBeat: 2 };
+  }
+  const [num, denom] = meter.split('/').map(Number);
+  if (denom === 4) return { beatsPerBar: num,     ticksPerBeatMul: 1,   subsPerBeat: 2 };
+  if (denom === 2) return { beatsPerBar: num,     ticksPerBeatMul: 2,   subsPerBeat: 2 };
+  if (denom === 8 && num % 3 === 0) {
+    return            { beatsPerBar: num / 3, ticksPerBeatMul: 1.5, subsPerBeat: 3 };
+  }
+  if (denom === 8)  return { beatsPerBar: num,     ticksPerBeatMul: 0.5, subsPerBeat: 2 };
+  return                { beatsPerBar: num,     ticksPerBeatMul: 1,   subsPerBeat: 2 };
+}
+
 // ──────────────────────────────────────────────────────────────
 // Piano roll — ported & simplified from app.js renderRollOffscreen/paintRoll.
 // Renders all notes from rollData, dims notes for muted/non-soloed channels,
@@ -670,24 +692,47 @@ function renderRoll() {
   c.strokeStyle = 'rgba(255,255,255,0.10)';
   c.beginPath(); c.moveTo(0, pitchedH); c.lineTo(w, pitchedH); c.stroke();
 
-  // Beat + downbeat grid using ticksPerBeat from the file. Meter assumed 4/4
-  // (previewer doesn't currently parse meter changes — easy to add later).
-  const tpb = state.midi?.ticksPerBeat || 480;
-  const meterNum = 4;
-  const ticksPerBar = tpb * meterNum;
+  // Beat + downbeat grid. Override BPM scales the felt-beat ticks-per-beat;
+  // override meter chooses the bar grouping; override beat_one_tick shifts
+  // the grid origin (anacrusis). Compound meters (6/8, 9/8, 12/8) get
+  // dotted-quarter beats with eighth-note subdivisions drawn underneath.
+  const fileTpb = state.midi?.ticksPerBeat || 480;
+  const effectiveBpm = state.override.bpm || state.detectedBpm || 120;
+  const detectedBpm = state.detectedBpm || effectiveBpm;
+  const quarterTpb = Math.round((detectedBpm / effectiveBpm) * fileTpb);
+  const meter = parseMeter(state.override.meter || state.detectedMeter);
+  const tpb = quarterTpb * meter.ticksPerBeatMul;
+  const ticksPerBar = tpb * meter.beatsPerBar;
+  const beatOneTick = state.override.beat_one_tick || 0;
 
-  const firstBeat = Math.ceil(startTick / tpb);
-  const lastBeat = Math.floor(endTick / tpb);
+  // Sub-beat subdivisions for compound meters — 3 per beat in compound, 2 in simple
+  const subsPerBeat = meter.subsPerBeat;
+  if (subsPerBeat > 1) {
+    c.strokeStyle = 'rgba(255,255,255,0.03)';
+    const subTick = tpb / subsPerBeat;
+    const firstSub = Math.ceil((startTick - beatOneTick) / subTick);
+    const lastSub = Math.floor((endTick - beatOneTick) / subTick);
+    for (let s = firstSub; s <= lastSub; s++) {
+      if (s % subsPerBeat === 0) continue; // beat lines drawn below
+      const x = tickToX(beatOneTick + s * subTick);
+      c.beginPath(); c.moveTo(x, pitchedH); c.lineTo(x, h); c.stroke();
+    }
+  }
+
+  // Beat lines (felt pulse)
   c.strokeStyle = 'rgba(255,255,255,0.06)';
-  for (let b = firstBeat; b <= lastBeat; b++) {
-    const x = tickToX(b * tpb);
+  const firstBeatN = Math.ceil((startTick - beatOneTick) / tpb);
+  const lastBeatN  = Math.floor((endTick - beatOneTick) / tpb);
+  for (let b = firstBeatN; b <= lastBeatN; b++) {
+    const x = tickToX(beatOneTick + b * tpb);
     c.beginPath(); c.moveTo(x, pitchedH); c.lineTo(x, h); c.stroke();
   }
-  c.strokeStyle = 'rgba(255,255,255,0.16)';
-  const firstBar = Math.ceil(startTick / ticksPerBar);
-  const lastBar = Math.floor(endTick / ticksPerBar);
-  for (let b = firstBar; b <= lastBar; b++) {
-    const x = tickToX(b * ticksPerBar);
+  // Bar lines (downbeats — full height)
+  c.strokeStyle = 'rgba(255,255,255,0.18)';
+  const firstBarN = Math.ceil((startTick - beatOneTick) / ticksPerBar);
+  const lastBarN  = Math.floor((endTick - beatOneTick) / ticksPerBar);
+  for (let b = firstBarN; b <= lastBarN; b++) {
+    const x = tickToX(beatOneTick + b * ticksPerBar);
     c.beginPath(); c.moveTo(x, 0); c.lineTo(x, h); c.stroke();
   }
 
@@ -801,6 +846,66 @@ function setRollOffset(newOffset) {
   renderRoll();
 }
 
+function updateOverrideUI() {
+  const bpmInput = document.getElementById('ov-bpm');
+  const meterSel = document.getElementById('ov-meter');
+  const offsetInp = document.getElementById('ov-offset');
+  bpmInput.value = state.override.bpm ?? state.detectedBpm ?? '';
+  bpmInput.placeholder = state.detectedBpm ?? '';
+  document.getElementById('ov-bpm-detected').textContent = state.detectedBpm ? `(detected ${state.detectedBpm})` : '';
+  meterSel.value = state.override.meter ?? '';
+  offsetInp.value = state.override.beat_one_tick ?? 0;
+}
+
+function persistOverrideForCurrentTrack() {
+  if (!state.currentTrack) return;
+  const path = state.currentTrack.path;
+  const existing = state.overrides[path] || {};
+  const merged = { ...existing };
+  // Only store fields that differ from defaults so the override stays minimal
+  if (state.override.bpm && state.override.bpm !== state.detectedBpm) merged.perceived_bpm = state.override.bpm;
+  else delete merged.perceived_bpm;
+  if (state.override.meter && state.override.meter !== state.detectedMeter) merged.meter = state.override.meter;
+  else delete merged.meter;
+  if (state.override.beat_one_tick) merged.beat_one_tick = state.override.beat_one_tick;
+  else delete merged.beat_one_tick;
+  // Keep existing routing override (set by the channel-row dropdowns)
+  if (Object.keys(merged).length === 0 && !merged.routing) delete state.overrides[path];
+  else state.overrides[path] = merged;
+  localStorage.setItem(OVERRIDES_KEY, JSON.stringify(state.overrides));
+}
+
+function bindOverrideControls() {
+  document.getElementById('ov-bpm').addEventListener('input', (e) => {
+    const v = parseInt(e.target.value, 10);
+    state.override.bpm = Number.isFinite(v) && v >= 20 && v <= 240 ? v : null;
+    persistOverrideForCurrentTrack();
+    renderRoll();
+  });
+  document.getElementById('ov-meter').addEventListener('change', (e) => {
+    state.override.meter = e.target.value || null;
+    persistOverrideForCurrentTrack();
+    renderRoll();
+  });
+  document.getElementById('ov-offset').addEventListener('input', (e) => {
+    const v = parseInt(e.target.value, 10);
+    state.override.beat_one_tick = Number.isFinite(v) ? v : 0;
+    persistOverrideForCurrentTrack();
+    renderRoll();
+  });
+  document.getElementById('ov-mark-beat1').addEventListener('click', (e) => {
+    state.markBeat1Mode = !state.markBeat1Mode;
+    e.target.classList.toggle('armed', state.markBeat1Mode);
+    e.target.textContent = state.markBeat1Mode ? 'Click on roll…' : 'Mark on roll';
+  });
+  document.getElementById('ov-reset').addEventListener('click', () => {
+    state.override = { bpm: null, meter: null, beat_one_tick: 0 };
+    persistOverrideForCurrentTrack();
+    updateOverrideUI();
+    renderRoll();
+  });
+}
+
 function bindRoll() {
   const canvas = document.getElementById('prev-roll');
   if (!canvas) return;
@@ -810,12 +915,15 @@ function bindRoll() {
 
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
+    if (state.markBeat1Mode) {
+      markBeat1FromClientX(e.clientX);
+      return;
+    }
     if (e.shiftKey) {
       dragging = true;
       panStartX = e.clientX;
       panStartOffset = state.rollView.offset;
     } else {
-      // Click to seek
       seekToClientX(e.clientX);
     }
   });
@@ -846,6 +954,23 @@ function bindRoll() {
   // Repaint on resize so the roll fills the container
   const ro = new ResizeObserver(() => { if (state.rollData) renderRoll(); });
   ro.observe(canvas);
+}
+
+function markBeat1FromClientX(clientX) {
+  if (!state.rollData) return;
+  const canvas = document.getElementById('prev-roll');
+  const rect = canvas.getBoundingClientRect();
+  const frac = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  const { startTick, endTick } = getRollWindow();
+  const targetTick = Math.round(startTick + frac * (endTick - startTick));
+  state.override.beat_one_tick = targetTick;
+  document.getElementById('ov-offset').value = targetTick;
+  state.markBeat1Mode = false;
+  const btn = document.getElementById('ov-mark-beat1');
+  btn.classList.remove('armed');
+  btn.textContent = 'Mark on roll';
+  persistOverrideForCurrentTrack();
+  renderRoll();
 }
 
 function seekToClientX(clientX) {
@@ -975,6 +1100,19 @@ function applyLoadedMidi(midi, rollData, displayInfo) {
   document.getElementById('info-game').textContent = displayInfo.game ?? '—';
   const avgBpm = computeAvgBpm(midi, maxTick);
   document.getElementById('info-bpm').textContent = avgBpm;
+  state.detectedBpm = avgBpm;
+  // Detected meter: we don't currently parse meter meta events in the worker.
+  // Treat 4/4 as the default detected meter and let the user override.
+  state.detectedMeter = '4/4';
+
+  // Load any saved overrides for this track
+  const savedOverride = state.overrides[displayInfo.path] || {};
+  state.override = {
+    bpm: savedOverride.perceived_bpm ?? null,
+    meter: savedOverride.meter ?? null,
+    beat_one_tick: savedOverride.beat_one_tick ?? 0,
+  };
+  updateOverrideUI();
   document.getElementById('info-duration').textContent = fmtTime(durSec);
   document.getElementById('info-channels').textContent = Object.keys(summary).filter(k => summary[k].note_count > 0).length;
   document.getElementById('info-tempos').textContent = midi.events.filter(e => e.type === 'tempo').length;
@@ -1148,6 +1286,7 @@ function init() {
   document.getElementById('prev-save').addEventListener('click', saveCurrentOverride);
   document.getElementById('prev-download').addEventListener('click', downloadOverrides);
   document.getElementById('prev-clear-overrides').addEventListener('click', clearOverrides);
+  bindOverrideControls();
 }
 
 init();

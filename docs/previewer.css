@@ -109,6 +109,51 @@
 .prev-master-vol label { font-size: 11px; color: #888; }
 .prev-master-vol input { width: 80px; }
 
+.prev-overrides {
+  background: #161616;
+  border: 1px solid #232323;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.overrides-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.overrides-label {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 36px;
+}
+.overrides-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.overrides-sublabel {
+  font-size: 11px;
+  color: #888;
+}
+.ov-input {
+  background: #0e0e0e;
+  color: #e8e8e8;
+  border: 1px solid #2a2a2a;
+  padding: 4px 6px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 12px;
+  width: 76px;
+}
+.prev-btn.armed {
+  background: #4a3a1a;
+  border-color: #6a5a3a;
+  color: #eedd99;
+}
+
 .prev-roll-wrap {
   background: #0d0f14;
   border: 1px solid #232323;
