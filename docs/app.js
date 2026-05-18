@@ -1239,23 +1239,23 @@ function bindPianoRoll(deckId) {
   canvas.addEventListener('pointerup', endPointer);
   canvas.addEventListener('pointercancel', endPointer);
 
-  // Wheel: ctrl/cmd/shift = zoom (also covers macOS trackpad pinch, which Chrome
-  // dispatches as wheel with ctrlKey=true). Anything else = horizontal pan, with
-  // deltaX preferred (trackpad two-finger horizontal swipe) and deltaY as fallback
-  // (mouse wheel users on a deck they've zoomed in on).
+  // Wheel: vertical scroll = zoom (mouse wheel, trackpad pinch arriving as
+  // wheel+ctrlKey, cmd+wheel). Shift+wheel or a horizontal-dominant trackpad
+  // swipe = pan.
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     const deck = decks[deckId];
     if (!deck.rollData) return;
     const rect = canvas.getBoundingClientRect();
     const anchorFrac = (e.clientX - rect.left) / rect.width;
-    if (e.ctrlKey || e.metaKey || e.shiftKey) {
-      const zoomFactor = Math.exp(-e.deltaY * 0.005);
-      setRollZoom(deckId, deck.rollView.zoom * zoomFactor, anchorFrac);
-    } else {
-      const primary = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    const isHorizontalSwipe = !e.ctrlKey && !e.metaKey && Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    if (e.shiftKey || isHorizontalSwipe) {
+      const primary = e.deltaX || e.deltaY;
       const panAmount = primary / 600;
       setRollOffset(deckId, deck.rollView.offset + panAmount / deck.rollView.zoom);
+    } else {
+      const zoomFactor = Math.exp(-e.deltaY * 0.005);
+      setRollZoom(deckId, deck.rollView.zoom * zoomFactor, anchorFrac);
     }
   }, { passive: false });
 
