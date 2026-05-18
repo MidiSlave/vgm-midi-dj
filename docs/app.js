@@ -706,6 +706,15 @@ function playDeck(deckId, startTick = 0) {
   deck.currentTick = currentTick;
   deck.currentBPM = currentBPM;
 
+  // Absolute-time scheduling: every event targets a wall-clock time computed
+  // from startWallTime + cumulativeMs. The accumulator advances using the
+  // current msPerTick on each segment, so pitch changes and tempo events flow
+  // through naturally — but the lateness of any individual setTimeout fire
+  // can't propagate forward, because the *next* event's setTimeout duration
+  // is computed against an absolute target, not relative to the prior fire.
+  deck.startWallTime = performance.now();
+  let cumulativeMs = 0;
+
   const msPerTick = () => (60000 / (currentBPM * deck.pitch)) / ticksPerBeat;
 
   function step() {
@@ -737,7 +746,8 @@ function playDeck(deckId, startTick = 0) {
       isLoopJump = !deck.loop.pendingExit;
     }
 
-    const deltaMs = (nextTick - currentTick) * msPerTick();
+    cumulativeMs += (nextTick - currentTick) * msPerTick();
+    const targetWallTime = deck.startWallTime + cumulativeMs;
     deck.lastEventWallTime = performance.now();
     deck.lastEventTick = currentTick;
     deck.currentMsPerTick = msPerTick();
@@ -761,7 +771,7 @@ function playDeck(deckId, startTick = 0) {
       } while (eventIndex < events.length && events[eventIndex].tick === currentTick);
       updatePosition(deckId, currentTick, ticksPerBeat, currentBPM);
       step();
-    }, Math.max(0, deltaMs));
+    }, Math.max(0, targetWallTime - performance.now()));
   }
   startRollAnimation();
   step();
