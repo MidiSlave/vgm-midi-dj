@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-18T06:46:31.081Z",
+  "generated": "2026-05-18T09:45:07.300Z",
   "count": 818,
   "tracks": [
     {
@@ -108,7 +108,9 @@
       "note_count": 200,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 1493
     },
     {
@@ -143,7 +145,9 @@
       "note_count": 571,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5
+      ],
       "size": 5280
     },
     {
@@ -204,7 +208,10 @@
       "note_count": 62,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4,
+        5
+      ],
       "size": 788
     },
     {
@@ -232,7 +239,9 @@
       "note_count": 42,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 10976
     },
     {
@@ -265,7 +274,9 @@
       "note_count": 192,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 2327
     },
     {
@@ -296,7 +307,10 @@
       "note_count": 171,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2,
+        5
+      ],
       "size": 1551
     },
     {
@@ -380,7 +394,9 @@
       "note_count": 48,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        6
+      ],
       "size": 2124
     },
     {
@@ -410,7 +426,9 @@
       "note_count": 248,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 1959
     },
     {
@@ -474,7 +492,9 @@
       "note_count": 1129,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 45404
     },
     {
@@ -587,7 +607,11 @@
       "note_count": 2332,
       "has_drums": true,
       "tempo_changes": 19,
-      "drop_channels": [],
+      "drop_channels": [
+        3,
+        5,
+        10
+      ],
       "size": 22481
     },
     {
@@ -700,7 +724,9 @@
       "note_count": 1445,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 9754
     },
     {
@@ -857,7 +883,9 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        13
+        11,
+        13,
+        15
       ],
       "size": 37412
     },
@@ -896,7 +924,8 @@
       "tempo_changes": 1,
       "drop_channels": [
         2,
-        4
+        4,
+        11
       ],
       "size": 8418
     },
@@ -1531,7 +1560,10 @@
       "note_count": 7207,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4,
+        5
+      ],
       "size": 57624
     },
     {
@@ -1756,6 +1788,7 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
+        12,
         14
       ],
       "size": 48942
@@ -2203,7 +2236,9 @@
       "note_count": 1271,
       "has_drums": true,
       "tempo_changes": 1200,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 19352
     },
     {
@@ -2455,7 +2490,10 @@
       "note_count": 1148,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3,
+        6
+      ],
       "size": 10724
     },
     {
@@ -2500,7 +2538,9 @@
       "note_count": 541,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5
+      ],
       "size": 5037
     },
     {
@@ -2545,7 +2585,9 @@
       "note_count": 541,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5
+      ],
       "size": 5045
     },
     {
@@ -2577,7 +2619,10 @@
       "note_count": 1148,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3,
+        6
+      ],
       "size": 10724
     },
     {
@@ -2846,7 +2891,9 @@
       "note_count": 1322,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5
+      ],
       "size": 9831
     },
     {
@@ -3547,7 +3594,9 @@
       "note_count": 1643,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 10317
     },
     {
@@ -4654,7 +4703,8 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        7
+        7,
+        8
       ],
       "size": 74557
     },
@@ -4771,7 +4821,9 @@
       "note_count": 1694,
       "has_drums": true,
       "tempo_changes": 3,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 13719
     },
     {
@@ -5202,7 +5254,13 @@
       "note_count": 1911,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2,
+        4,
+        5,
+        13,
+        14
+      ],
       "size": 16656
     },
     {
@@ -5233,7 +5291,11 @@
       "note_count": 736,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2,
+        4,
+        5
+      ],
       "size": 5100
     },
     {
@@ -5276,7 +5338,10 @@
       "note_count": 1911,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        13,
+        14
+      ],
       "size": 23341
     },
     {
@@ -5309,7 +5374,12 @@
       "note_count": 301,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2,
+        3,
+        6,
+        7
+      ],
       "size": 2894
     },
     {
@@ -5341,6 +5411,7 @@
       "has_drums": false,
       "tempo_changes": 35,
       "drop_channels": [
+        2,
         6
       ],
       "size": 6646
@@ -5372,7 +5443,9 @@
       "note_count": 289,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4
+      ],
       "size": 2226
     },
     {
@@ -5400,7 +5473,10 @@
       "note_count": 444,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1,
+        2
+      ],
       "size": 2956
     },
     {
@@ -5596,7 +5672,10 @@
       "note_count": 2572,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3,
+        5
+      ],
       "size": 37752
     },
     {
@@ -5691,7 +5770,10 @@
       "note_count": 2572,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1,
+        3
+      ],
       "size": 21320
     },
     {
@@ -6277,7 +6359,9 @@
       "note_count": 2382,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4
+      ],
       "size": 63092
     },
     {
@@ -6892,7 +6976,9 @@
       "note_count": 1575,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        8
+      ],
       "size": 11637
     },
     {
@@ -7126,6 +7212,7 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
+        5,
         13
       ],
       "size": 31733
@@ -7169,7 +7256,9 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        1
+        1,
+        11,
+        13
       ],
       "size": 108731
     },
@@ -7285,6 +7374,7 @@
         5,
         7,
         8,
+        13,
         14,
         15
       ],
@@ -7407,7 +7497,11 @@
       "note_count": 3196,
       "has_drums": true,
       "tempo_changes": 68,
-      "drop_channels": [],
+      "drop_channels": [
+        12,
+        13,
+        15
+      ],
       "size": 105978
     },
     {
@@ -7448,7 +7542,10 @@
       "note_count": 6236,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1,
+        12
+      ],
       "size": 94850
     },
     {
@@ -7595,7 +7692,13 @@
       "note_count": 5748,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5,
+        7,
+        11,
+        12,
+        15
+      ],
       "size": 58656
     },
     {
@@ -7722,7 +7825,9 @@
       "note_count": 4322,
       "has_drums": true,
       "tempo_changes": 6,
-      "drop_channels": [],
+      "drop_channels": [
+        11
+      ],
       "size": 35755
     },
     {
@@ -7849,7 +7954,9 @@
       "note_count": 1365,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 14701
     },
     {
@@ -7901,7 +8008,9 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [
+        11,
         12,
+        13,
         15
       ],
       "size": 23823
@@ -8075,6 +8184,7 @@
       "tempo_changes": 2,
       "drop_channels": [
         2,
+        4,
         5
       ],
       "size": 882
@@ -8115,6 +8225,7 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
+        6,
         10,
         11,
         12
@@ -8158,7 +8269,11 @@
       "note_count": 1676,
       "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        3,
+        5,
+        14
+      ],
       "size": 11045
     },
     {
@@ -8200,6 +8315,9 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
+        6,
+        8,
+        12,
         13,
         14
       ],
@@ -8283,7 +8401,8 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        1
+        1,
+        11
       ],
       "size": 32197
     },
@@ -8326,7 +8445,8 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        1
+        1,
+        11
       ],
       "size": 31783
     },
@@ -8366,7 +8486,11 @@
       "note_count": 5174,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        6,
+        8,
+        11
+      ],
       "size": 53669
     },
     {
@@ -8406,7 +8530,8 @@
       "tempo_changes": 2,
       "drop_channels": [
         2,
-        5
+        5,
+        12
       ],
       "size": 73530
     },
@@ -9039,7 +9164,10 @@
       "note_count": 6318,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        5,
+        14
+      ],
       "size": 89378
     },
     {
@@ -9112,6 +9240,7 @@
       "drop_channels": [
         2,
         6,
+        8,
         10,
         12
       ],
@@ -9152,7 +9281,12 @@
       "note_count": 1191,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        7,
+        10,
+        11,
+        12
+      ],
       "size": 9942
     },
     {
@@ -9256,7 +9390,9 @@
       "note_count": 53,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 779
     },
     {
@@ -9649,7 +9785,10 @@
       "note_count": 2660,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        7,
+        12
+      ],
       "size": 22189
     },
     {
@@ -9690,6 +9829,8 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
+        8,
+        11,
         12,
         13,
         14
@@ -10096,7 +10237,9 @@
       "note_count": 2588,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 30364
     },
     {
@@ -10136,7 +10279,9 @@
       "note_count": 2588,
       "has_drums": true,
       "tempo_changes": 9,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 33919
     },
     {
@@ -10207,7 +10352,9 @@
       "note_count": 7740,
       "has_drums": true,
       "tempo_changes": 7,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 82415
     },
     {
@@ -10423,7 +10570,9 @@
       "note_count": 1629,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        12
+      ],
       "size": 51321
     },
     {
@@ -10464,7 +10613,11 @@
       "note_count": 7080,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        10,
+        12,
+        14
+      ],
       "size": 81812
     },
     {
@@ -11082,7 +11235,9 @@
       "note_count": 1295,
       "has_drums": true,
       "tempo_changes": 3,
-      "drop_channels": [],
+      "drop_channels": [
+        6
+      ],
       "size": 8862
     },
     {
@@ -11324,7 +11479,9 @@
       "note_count": 2096,
       "has_drums": true,
       "tempo_changes": 4,
-      "drop_channels": [],
+      "drop_channels": [
+        4
+      ],
       "size": 13526
     },
     {
@@ -12196,7 +12353,10 @@
       "note_count": 2821,
       "has_drums": false,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        12,
+        13
+      ],
       "size": 36337
     },
     {
@@ -12301,6 +12461,8 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [
+        1,
+        2,
         8
       ],
       "size": 32426
@@ -12993,6 +13155,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [
+        1,
+        2,
+        3,
+        4,
         5,
         6,
         7
@@ -13098,7 +13264,9 @@
       "note_count": 920,
       "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 20332
     },
     {
@@ -13146,7 +13314,9 @@
       "note_count": 4923,
       "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        12
+      ],
       "size": 35652
     },
     {
@@ -13191,7 +13361,9 @@
       "note_count": 751,
       "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 6960
     },
     {
@@ -13389,7 +13561,9 @@
       "note_count": 558,
       "has_drums": false,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 9559
     },
     {
@@ -14227,6 +14401,8 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [
+        1,
+        5,
         7
       ],
       "size": 20151
@@ -14417,6 +14593,7 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [
+        1,
         10
       ],
       "size": 7204
@@ -14513,6 +14690,7 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [
+        1,
         3
       ],
       "size": 11935
@@ -14565,6 +14743,7 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [
+        10,
         15
       ],
       "size": 14372
@@ -15124,7 +15303,9 @@
       "note_count": 674,
       "has_drums": false,
       "tempo_changes": 3,
-      "drop_channels": [],
+      "drop_channels": [
+        10
+      ],
       "size": 17675
     },
     {
@@ -15263,7 +15444,9 @@
       "note_count": 841,
       "has_drums": false,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 6701
     },
     {
@@ -15312,7 +15495,9 @@
       "note_count": 1219,
       "has_drums": false,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 31766
     },
     {
@@ -15362,7 +15547,10 @@
       "note_count": 1541,
       "has_drums": false,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        1,
+        11
+      ],
       "size": 16757
     },
     {
@@ -16217,7 +16405,9 @@
       "note_count": 4910,
       "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 40006
     },
     {
@@ -19805,7 +19995,10 @@
       "note_count": 16176,
       "has_drums": true,
       "tempo_changes": 62,
-      "drop_channels": [],
+      "drop_channels": [
+        13,
+        14
+      ],
       "size": 104170
     },
     {
@@ -20124,7 +20317,9 @@
       "note_count": 3307,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4
+      ],
       "size": 277670
     },
     {
@@ -20395,7 +20590,9 @@
       "tempo_changes": 1,
       "drop_channels": [
         7,
-        11
+        10,
+        11,
+        12
       ],
       "size": 41421
     },
@@ -21237,7 +21434,9 @@
       "note_count": 3208,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 46636
     },
     {
@@ -21526,7 +21725,9 @@
       "note_count": 8041,
       "has_drums": true,
       "tempo_changes": 35,
-      "drop_channels": [],
+      "drop_channels": [
+        12
+      ],
       "size": 56318
     },
     {
@@ -21623,7 +21824,9 @@
       "note_count": 5152,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        12
+      ],
       "size": 42319
     },
     {
@@ -22013,7 +22216,9 @@
       "note_count": 1834,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 29297
     },
     {
@@ -22975,7 +23180,9 @@
       "note_count": 3207,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 43877
     },
     {
@@ -23235,7 +23442,9 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [
-        3
+        3,
+        5,
+        6
       ],
       "size": 17476
     },
@@ -24861,7 +25070,9 @@
       "note_count": 1279,
       "has_drums": true,
       "tempo_changes": 51,
-      "drop_channels": [],
+      "drop_channels": [
+        12
+      ],
       "size": 11867
     },
     {
@@ -25160,7 +25371,10 @@
       "note_count": 1166,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2,
+        3
+      ],
       "size": 7474
     },
     {
@@ -25395,7 +25609,9 @@
       "note_count": 1626,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 13532
     },
     {
@@ -25977,7 +26193,9 @@
       "note_count": 1602,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        1
+      ],
       "size": 16707
     },
     {
@@ -26283,7 +26501,9 @@
       "note_count": 1528,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 9675
     },
     {
@@ -26787,7 +27007,9 @@
       "note_count": 1666,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        7
+      ],
       "size": 13258
     },
     {
@@ -26881,7 +27103,9 @@
       "note_count": 911,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 7663
     },
     {
@@ -26946,7 +27170,9 @@
       "note_count": 830,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        4
+      ],
       "size": 6697
     },
     {
@@ -26977,7 +27203,9 @@
       "note_count": 318,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 3712
     },
     {
@@ -27010,7 +27238,10 @@
       "note_count": 1082,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        6,
+        7
+      ],
       "size": 8527
     },
     {
@@ -27412,7 +27643,9 @@
       "note_count": 268,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 2573
     },
     {
@@ -27445,7 +27678,9 @@
       "note_count": 936,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 8568
     },
     {
@@ -27571,7 +27806,9 @@
       "note_count": 1328,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        2
+      ],
       "size": 11360
     },
     {
@@ -27636,7 +27873,9 @@
       "note_count": 446,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        6
+      ],
       "size": 4004
     },
     {
@@ -27825,7 +28064,9 @@
       "note_count": 1006,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        8
+      ],
       "size": 8652
     },
     {
@@ -27888,7 +28129,9 @@
       "note_count": 1006,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        8
+      ],
       "size": 8652
     },
     {
@@ -28044,7 +28287,9 @@
       "note_count": 1753,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 14511
     },
     {
@@ -28133,7 +28378,9 @@
       "note_count": 1512,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "size": 12564
     },
     {
@@ -28193,7 +28440,9 @@
       "note_count": 2246,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        6
+      ],
       "size": 18340
     },
     {
@@ -28854,7 +29103,9 @@
       "note_count": 3479,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        15
+      ],
       "size": 30467
     },
     {
@@ -29170,7 +29421,9 @@
       "note_count": 945,
       "has_drums": false,
       "tempo_changes": 1,
-      "drop_channels": [],
+      "drop_channels": [
+        13
+      ],
       "size": 8819
     },
     {

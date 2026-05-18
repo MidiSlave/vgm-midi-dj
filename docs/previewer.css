@@ -186,6 +186,7 @@
 .role-strings { background: #3a3a4a; color: #aaaaee; }
 .role-pad     { background: #4a2a4a; color: #ee99ee; }
 .role-piano   { background: #4a4a2a; color: #eeee99; }
+.role-other-mono { background: #3a3a3a; color: #bbbbbb; }
 .role-other   { background: #2a2a2a; color: #999999; }
 
 .activity-dot {

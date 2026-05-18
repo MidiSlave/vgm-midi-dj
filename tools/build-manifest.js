@@ -111,6 +111,32 @@ function detectDropChannels(channelNotes) {
       if (m / a.length >= 0.9) drop.add(channelIds[j]);
     }
   }
+
+  // Second pass: catch L/R copies that the tick-bucket scan misses (different
+  // velocities, slightly offset ticks). If two channels have identical note
+  // count, pitch range, and average pitch they're almost certainly duplicates.
+  const stats = {};
+  for (const id of channelIds) {
+    const notes = channelNotes[id];
+    let low = 127, high = 0, sum = 0;
+    for (const n of notes) {
+      if (n.pitch < low) low = n.pitch;
+      if (n.pitch > high) high = n.pitch;
+      sum += n.pitch;
+    }
+    stats[id] = { count: notes.length, low, high, avg: sum / notes.length };
+  }
+  for (let i = 0; i < channelIds.length; i++) {
+    if (drop.has(channelIds[i])) continue;
+    for (let j = i + 1; j < channelIds.length; j++) {
+      if (drop.has(channelIds[j])) continue;
+      const a = stats[channelIds[i]], b = stats[channelIds[j]];
+      if (a.count === b.count && a.low === b.low && a.high === b.high
+          && Math.abs(a.avg - b.avg) < 0.05) {
+        drop.add(channelIds[j]);
+      }
+    }
+  }
   return [...drop].sort((a, b) => a - b);
 }
 

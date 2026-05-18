@@ -254,34 +254,69 @@ function summariseChannels(midi) {
   return { summary, maxTick, durSec };
 }
 
-// Suggested role from the stats — informs the default output assignment
-function suggestRole(stats, allStats, chId) {
-  if (Number(chId) === 9) return 'drums';
-  if (stats.note_count === 0) return 'other';
-  const cat = stats.first_program_category;
-  if (cat === 'bass') return 'bass';
-  if (cat === 'synth-lead') return 'lead';
+// Global allocation — picks exactly one bass-mono channel, exactly one lead-
+// mono channel, then disperses everything else. Replaces per-channel
+// guessing which couldn't enforce uniqueness on the mono outputs.
+//
+// Output assignment policy (current 5-instrument rig):
+//   ch 9 (drums)               → TR-08
+//   lowest-avg-pitch mono      → Bass Stn 2 (if avg ≤ 55 or patch-tagged bass)
+//   highest-avg-pitch mono     → SH-01A     (if avg ≥ 60 or patch-tagged lead)
+//   remaining mono + all poly  → Juno (avg < 60) or Keytar (avg ≥ 60)
+//
+// Returns { chId → { role, output } }. Role is descriptive; output is what
+// the dropdown will be pre-set to.
+function allocateRoles(summary) {
+  const out = {};
+  const monoCandidates = [];
+  const polyCandidates = [];
+
+  for (const [id, s] of Object.entries(summary)) {
+    if (s.note_count === 0) { out[id] = { role: 'other', output: -1 }; continue; }
+    if (Number(id) === 9)   { out[id] = { role: 'drums', output: 9 }; continue; }
+    if (s.mono) monoCandidates.push({ id, ...s });
+    else        polyCandidates.push({ id, ...s });
+  }
+
+  // Pick bass: lowest-avg-pitch mono channel, if it's actually bass-y
+  let bassPick = null;
+  if (monoCandidates.length > 0) {
+    const sorted = [...monoCandidates].sort((a, b) => a.pitch_avg - b.pitch_avg);
+    const c = sorted[0];
+    if (c.pitch_avg <= 55 || c.first_program_category === 'bass') {
+      bassPick = c.id;
+      out[c.id] = { role: 'bass', output: 2 };
+    }
+  }
+  // Pick lead: highest-avg-pitch remaining mono, if it's actually lead-y
+  let leadPick = null;
+  const remainingMono = monoCandidates.filter(c => c.id !== bassPick);
+  if (remainingMono.length > 0) {
+    const sorted = [...remainingMono].sort((a, b) => b.pitch_avg - a.pitch_avg);
+    const c = sorted[0];
+    if (c.pitch_avg >= 60 || c.first_program_category === 'synth-lead') {
+      leadPick = c.id;
+      out[c.id] = { role: 'lead', output: 1 };
+    }
+  }
+  // Disperse the rest — split Juno vs Keytar by register so both synths get used
+  const disperse = (c) => {
+    if (out[c.id]) return;
+    const role = c.mono ? 'other-mono' : describePoly(c);
+    const output = c.pitch_avg >= 60 ? 3 : 0; // ≥60 → Keytar, else Juno
+    out[c.id] = { role, output };
+  };
+  for (const c of monoCandidates) disperse(c);
+  for (const c of polyCandidates) disperse(c);
+  return out;
+}
+
+function describePoly(c) {
+  const cat = c.first_program_category;
   if (cat === 'strings' || cat === 'ensemble') return 'strings';
   if (cat === 'synth-pad') return 'pad';
   if (cat === 'piano') return 'piano';
-
-  // Untagged mono with low avg pitch → likely bass
-  if (stats.mono && stats.pitch_avg <= 50) return 'bass';
-  // Untagged mono with high pitch → likely lead
-  if (stats.mono && stats.pitch_avg >= 72) return 'lead';
   return 'other';
-}
-
-function suggestOutput(role) {
-  switch (role) {
-    case 'bass':    return 2;   // Bass Stn 2
-    case 'lead':    return 1;   // SH-01A
-    case 'drums':   return 9;   // TR-08
-    case 'pad':     return 0;   // Juno
-    case 'strings': return 3;   // Keytar (placeholder — strings are the tricky case)
-    case 'piano':   return 0;   // Juno
-    default:        return 0;   // Juno fallback
-  }
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -913,25 +948,25 @@ function applyLoadedMidi(midi, rollData, displayInfo) {
   state.eventsWithTime = eventsWithTime;
   state.durationMs = totalMs;
 
-  // Build per-channel state
+  // Global role allocation — only one channel can claim the bass-mono and
+  // lead-mono output slots at a time
+  const allocation = allocateRoles(summary);
+
   state.channels = {};
   for (const [id, stats] of Object.entries(summary)) {
-    const role = suggestRole(stats, summary, id);
-    const autoOutput = suggestOutput(role);
-    // If there's a saved override for this track, use it
+    const alloc = allocation[id] || { role: 'other', output: 0 };
     const overrideOut = state.overrides[displayInfo.path]?.routing?.[id];
-    const finalOutput = overrideOut != null ? overrideOut : autoOutput;
+    const finalOutput = overrideOut != null ? overrideOut : alloc.output;
     state.channels[id] = {
       id,
       stats,
-      role,
+      role: alloc.role,
       output: finalOutput,
-      autoOutput,
+      autoOutput: alloc.output,
       mute: false,
       solo: false,
       dupeOf: dupes[id] ?? null,
     };
-    // Reset channel gain to 1.0
     getChannelGain(id).gain.value = 1.0;
   }
 
