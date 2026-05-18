@@ -587,12 +587,12 @@ function getMidiWorker() {
   return midiWorker;
 }
 
-function parseInWorker(buffer) {
+function parseInWorker(buffer, opts = {}) {
   const worker = getMidiWorker();
   const id = ++nextWorkerReqId;
   return new Promise((resolve, reject) => {
     workerRequests.set(id, { resolve, reject });
-    worker.postMessage({ id, buffer }, [buffer]);
+    worker.postMessage({ id, buffer, dropChannels: opts.dropChannels || [] }, [buffer]);
   });
 }
 
@@ -1430,7 +1430,7 @@ async function loadTrackIntoDeck(deckId, track) {
     const buffer = await res.arrayBuffer();
 
     // Parsing happens off-thread; the playing deck's scheduler keeps ticking
-    const { midi, rollData } = await parseInWorker(buffer);
+    const { midi, rollData } = await parseInWorker(buffer, { dropChannels: track.drop_channels });
 
     stopDeck(deckId);
     decks[deckId].midi = midi;

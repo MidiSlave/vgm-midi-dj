@@ -99,12 +99,12 @@ function getWorker() {
   return midiWorker;
 }
 
-function parseInWorker(buffer) {
+function parseInWorker(buffer, opts = {}) {
   const w = getWorker();
   const id = ++nextReqId;
   return new Promise((resolve, reject) => {
     pendingRequests.set(id, { resolve, reject });
-    w.postMessage({ id, buffer }, [buffer]);
+    w.postMessage({ id, buffer, dropChannels: opts.dropChannels || [] }, [buffer]);
   });
 }
 
@@ -875,8 +875,11 @@ async function loadTrackByPath(path, displayInfo) {
     const res = await fetch(path);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = await res.arrayBuffer();
-    const { midi, rollData } = await parseInWorker(buf);
-    applyLoadedMidi(midi, rollData, displayInfo);
+    // Look up the track in the manifest for drop_channels (skip dedup-loaded channels)
+    const manifestEntry = state.tracksManifest?.tracks?.find(t => t.path === path);
+    const dropChannels = manifestEntry?.drop_channels || [];
+    const { midi, rollData } = await parseInWorker(buf, { dropChannels });
+    applyLoadedMidi(midi, rollData, { ...displayInfo, drop_channels: dropChannels });
     document.getElementById('prev-load-status').textContent = `loaded (${displayInfo.title})`;
   } catch (err) {
     document.getElementById('prev-load-status').textContent = `error: ${err.message}`;

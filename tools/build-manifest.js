@@ -74,6 +74,46 @@ function detectPerceivedBpm(onsetTimes) {
   return Math.round(bpm);
 }
 
+// Detect L/R duplicate channel pairs by comparing each channel's (tick, pitch)
+// note set against every other channel's. When two channels have ≥90% overlap
+// within a small tick tolerance, the higher-numbered one is marked as a drop
+// candidate (the lower-numbered channel is kept as the "primary"). Returns a
+// sorted array of channel IDs to drop on parse.
+function detectDropChannels(channelNotes) {
+  const TICK_TOL = 5;
+  const channelIds = Object.keys(channelNotes)
+    .map(Number)
+    .filter(c => c !== 9 && channelNotes[c].length > 0)
+    .sort((a, b) => a - b);
+
+  const drop = new Set();
+  for (let i = 0; i < channelIds.length; i++) {
+    if (drop.has(channelIds[i])) continue;
+    for (let j = i + 1; j < channelIds.length; j++) {
+      if (drop.has(channelIds[j])) continue;
+      const a = channelNotes[channelIds[i]];
+      const b = channelNotes[channelIds[j]];
+      if (Math.min(a.length, b.length) / Math.max(a.length, b.length) < 0.85) continue;
+      const idx = new Map();
+      for (const n of b) {
+        const bucket = Math.round(n.tick / TICK_TOL);
+        if (!idx.has(bucket)) idx.set(bucket, new Set());
+        idx.get(bucket).add(n.pitch);
+      }
+      let m = 0;
+      for (const n of a) {
+        const bucket = Math.round(n.tick / TICK_TOL);
+        for (let off = -1; off <= 1; off++) {
+          const s = idx.get(bucket + off);
+          if (s && s.has(n.pitch)) { m++; break; }
+        }
+      }
+      if (m / a.length >= 0.9) drop.add(channelIds[j]);
+    }
+  }
+  return [...drop].sort((a, b) => a - b);
+}
+
 function parseMidi(buffer) {
   const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
   let pos = 0;
@@ -98,6 +138,7 @@ function parseMidi(buffer) {
   const channels = new Set();
   const pitchClasses = new Array(12).fill(0);
   const onsets = []; // {tick, channel}
+  const channelNotes = {}; // ch → [{tick, pitch}]  — for stereo-duplicate detection
   let totalNotes = 0;
   let maxTick = 0;
   let trackName = null;
@@ -149,6 +190,7 @@ function parseMidi(buffer) {
           if (channel !== 9) {
             pitchClasses[note % 12] += vel;
             onsets.push({ tick, channel });
+            (channelNotes[channel] ||= []).push({ tick, pitch: note });
           }
         }
       } else if (type === 0x80) {
@@ -213,8 +255,11 @@ function parseMidi(buffer) {
     ? Math.round((metaBpm / perceivedBpm) * ticksPerBeat)
     : ticksPerBeat;
 
+  const drop_channels = detectDropChannels(channelNotes);
+
   return {
     format, numTracks, ticksPerBeat,
+    drop_channels,
     bpm: Math.round(avgBpm),
     bpm_initial: Math.round(tempos[0].bpm),
     perceived_bpm: perceivedBpm,
@@ -292,6 +337,7 @@ async function main() {
         note_count: info.note_count,
         has_drums: info.has_drums,
         tempo_changes: info.tempo_changes,
+        drop_channels: info.drop_channels,
         size,
       });
     } catch (err) {

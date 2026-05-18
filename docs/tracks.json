@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-18T06:40:47.471Z",
+  "generated": "2026-05-18T06:46:31.081Z",
   "count": 818,
   "tracks": [
     {
@@ -26,6 +26,7 @@
       "note_count": 57,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 597
     },
     {
@@ -78,6 +79,7 @@
       "note_count": 4150,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 27338
     },
     {
@@ -106,6 +108,7 @@
       "note_count": 200,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1493
     },
     {
@@ -140,6 +143,7 @@
       "note_count": 571,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5280
     },
     {
@@ -169,6 +173,7 @@
       "note_count": 356,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3552
     },
     {
@@ -199,6 +204,7 @@
       "note_count": 62,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 788
     },
     {
@@ -226,6 +232,7 @@
       "note_count": 42,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10976
     },
     {
@@ -258,6 +265,7 @@
       "note_count": 192,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2327
     },
     {
@@ -288,6 +296,7 @@
       "note_count": 171,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1551
     },
     {
@@ -340,6 +349,7 @@
       "note_count": 4150,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 27338
     },
     {
@@ -370,6 +380,7 @@
       "note_count": 48,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2124
     },
     {
@@ -399,6 +410,7 @@
       "note_count": 248,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1959
     },
     {
@@ -427,6 +439,7 @@
       "note_count": 778,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5196
     },
     {
@@ -461,6 +474,7 @@
       "note_count": 1129,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 45404
     },
     {
@@ -573,6 +587,7 @@
       "note_count": 2332,
       "has_drums": true,
       "tempo_changes": 19,
+      "drop_channels": [],
       "size": 22481
     },
     {
@@ -603,6 +618,7 @@
       "note_count": 4171,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 35324
     },
     {
@@ -636,6 +652,7 @@
       "note_count": 2767,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 24271
     },
     {
@@ -683,6 +700,7 @@
       "note_count": 1445,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9754
     },
     {
@@ -713,6 +731,7 @@
       "note_count": 4171,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 35324
     },
     {
@@ -745,6 +764,7 @@
       "note_count": 6271,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 70225
     },
     {
@@ -795,6 +815,7 @@
       "note_count": 10376,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 90080
     },
     {
@@ -835,6 +856,9 @@
       "note_count": 4032,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        13
+      ],
       "size": 37412
     },
     {
@@ -870,6 +894,10 @@
       "note_count": 882,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        2,
+        4
+      ],
       "size": 8418
     },
     {
@@ -935,6 +963,7 @@
       "note_count": 8427,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 84534
     },
     {
@@ -966,6 +995,7 @@
       "note_count": 2181,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18051
     },
     {
@@ -994,6 +1024,9 @@
       "note_count": 481,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 4598
     },
     {
@@ -1029,6 +1062,7 @@
       "note_count": 5764,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 49232
     },
     {
@@ -1062,6 +1096,7 @@
       "note_count": 9242,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 85969
     },
     {
@@ -1093,6 +1128,7 @@
       "note_count": 4731,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 65131
     },
     {
@@ -1125,6 +1161,7 @@
       "note_count": 1798,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12236
     },
     {
@@ -1165,6 +1202,7 @@
       "note_count": 2296,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20843
     },
     {
@@ -1191,6 +1229,7 @@
       "note_count": 67,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 872
     },
     {
@@ -1223,6 +1262,7 @@
       "note_count": 4482,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29311
     },
     {
@@ -1260,6 +1300,7 @@
       "note_count": 4146,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 58256
     },
     {
@@ -1300,6 +1341,7 @@
       "note_count": 5556,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 74200
     },
     {
@@ -1349,6 +1391,9 @@
       "note_count": 15404,
       "has_drums": true,
       "tempo_changes": 15,
+      "drop_channels": [
+        14
+      ],
       "size": 124498
     },
     {
@@ -1397,6 +1442,9 @@
       "note_count": 15404,
       "has_drums": true,
       "tempo_changes": 15,
+      "drop_channels": [
+        14
+      ],
       "size": 159018
     },
     {
@@ -1445,6 +1493,7 @@
       "note_count": 1447,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 19656
     },
     {
@@ -1482,6 +1531,7 @@
       "note_count": 7207,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 57624
     },
     {
@@ -1510,6 +1560,7 @@
       "note_count": 617,
       "has_drums": false,
       "tempo_changes": 121,
+      "drop_channels": [],
       "size": 7398
     },
     {
@@ -1538,6 +1589,7 @@
       "note_count": 786,
       "has_drums": false,
       "tempo_changes": 13,
+      "drop_channels": [],
       "size": 6657
     },
     {
@@ -1573,6 +1625,10 @@
       "note_count": 1358,
       "has_drums": true,
       "tempo_changes": 27,
+      "drop_channels": [
+        5,
+        6
+      ],
       "size": 14169
     },
     {
@@ -1608,6 +1664,7 @@
       "note_count": 5051,
       "has_drums": false,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 43396
     },
     {
@@ -1644,6 +1701,7 @@
       "note_count": 2104,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 17886
     },
     {
@@ -1697,6 +1755,9 @@
       "note_count": 6034,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        14
+      ],
       "size": 48942
     },
     {
@@ -1750,6 +1811,7 @@
       "note_count": 23649,
       "has_drums": true,
       "tempo_changes": 12,
+      "drop_channels": [],
       "size": 148199
     },
     {
@@ -1846,6 +1908,7 @@
       "note_count": 15726,
       "has_drums": true,
       "tempo_changes": 16,
+      "drop_channels": [],
       "size": 214789
     },
     {
@@ -1953,6 +2016,7 @@
       "note_count": 8896,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 73810
     },
     {
@@ -1979,6 +2043,7 @@
       "note_count": 246,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1904
     },
     {
@@ -2011,6 +2076,7 @@
       "note_count": 2449,
       "has_drums": true,
       "tempo_changes": 20,
+      "drop_channels": [],
       "size": 17230
     },
     {
@@ -2042,6 +2108,7 @@
       "note_count": 4444,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 62703
     },
     {
@@ -2136,6 +2203,7 @@
       "note_count": 1271,
       "has_drums": true,
       "tempo_changes": 1200,
+      "drop_channels": [],
       "size": 19352
     },
     {
@@ -2171,6 +2239,7 @@
       "note_count": 1752,
       "has_drums": true,
       "tempo_changes": 192,
+      "drop_channels": [],
       "size": 18097
     },
     {
@@ -2196,6 +2265,7 @@
       "note_count": 256,
       "has_drums": false,
       "tempo_changes": 34,
+      "drop_channels": [],
       "size": 3408
     },
     {
@@ -2228,6 +2298,7 @@
       "note_count": 2449,
       "has_drums": true,
       "tempo_changes": 20,
+      "drop_channels": [],
       "size": 17230
     },
     {
@@ -2258,6 +2329,7 @@
       "note_count": 804,
       "has_drums": true,
       "tempo_changes": 72,
+      "drop_channels": [],
       "size": 8675
     },
     {
@@ -2288,6 +2360,7 @@
       "note_count": 804,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7840
     },
     {
@@ -2317,6 +2390,7 @@
       "note_count": 1335,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10377
     },
     {
@@ -2347,6 +2421,9 @@
       "note_count": 1135,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 11863
     },
     {
@@ -2378,6 +2455,7 @@
       "note_count": 1148,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10724
     },
     {
@@ -2422,6 +2500,7 @@
       "note_count": 541,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5037
     },
     {
@@ -2466,6 +2545,7 @@
       "note_count": 541,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5045
     },
     {
@@ -2497,6 +2577,7 @@
       "note_count": 1148,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10724
     },
     {
@@ -2526,6 +2607,7 @@
       "note_count": 1347,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13082
     },
     {
@@ -2555,6 +2637,7 @@
       "note_count": 401,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2805
     },
     {
@@ -2624,6 +2707,7 @@
       "note_count": 8428,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 81918
     },
     {
@@ -2686,6 +2770,7 @@
       "note_count": 3818,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 26440
     },
     {
@@ -2721,6 +2806,7 @@
       "note_count": 5519,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 35367
     },
     {
@@ -2760,6 +2846,7 @@
       "note_count": 1322,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9831
     },
     {
@@ -2794,6 +2881,7 @@
       "note_count": 6216,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 54532
     },
     {
@@ -2827,6 +2915,7 @@
       "note_count": 1779,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15247
     },
     {
@@ -2859,6 +2948,7 @@
       "note_count": 259,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3001
     },
     {
@@ -2887,6 +2977,7 @@
       "note_count": 634,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5717
     },
     {
@@ -2923,6 +3014,9 @@
       "note_count": 746,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 7370
     },
     {
@@ -2954,6 +3048,10 @@
       "note_count": 304,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        4,
+        8
+      ],
       "size": 2786
     },
     {
@@ -2989,6 +3087,11 @@
       "note_count": 641,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        3,
+        4
+      ],
       "size": 5850
     },
     {
@@ -3024,6 +3127,9 @@
       "note_count": 660,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 4983
     },
     {
@@ -3060,6 +3166,9 @@
       "note_count": 746,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 5948
     },
     {
@@ -3088,6 +3197,7 @@
       "note_count": 1530,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12966
     },
     {
@@ -3121,6 +3231,10 @@
       "note_count": 2296,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [
+        7,
+        8
+      ],
       "size": 26321
     },
     {
@@ -3150,6 +3264,7 @@
       "note_count": 1108,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 9966
     },
     {
@@ -3179,6 +3294,7 @@
       "note_count": 2421,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 45123
     },
     {
@@ -3208,6 +3324,7 @@
       "note_count": 4054,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34549
     },
     {
@@ -3239,6 +3356,7 @@
       "note_count": 3582,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 24758
     },
     {
@@ -3297,6 +3415,7 @@
       "note_count": 1805,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 11834
     },
     {
@@ -3325,6 +3444,7 @@
       "note_count": 1776,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 12751
     },
     {
@@ -3365,6 +3485,7 @@
       "note_count": 2532,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 16701
     },
     {
@@ -3396,6 +3517,7 @@
       "note_count": 56,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 999
     },
     {
@@ -3425,6 +3547,7 @@
       "note_count": 1643,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10317
     },
     {
@@ -3451,6 +3574,7 @@
       "note_count": 364,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2354
     },
     {
@@ -3484,6 +3608,9 @@
       "note_count": 2853,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        10
+      ],
       "size": 27287
     },
     {
@@ -3520,6 +3647,10 @@
       "note_count": 3427,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        5
+      ],
       "size": 22309
     },
     {
@@ -3564,6 +3695,9 @@
       "note_count": 2783,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        1
+      ],
       "size": 23666
     },
     {
@@ -3600,6 +3734,10 @@
       "note_count": 3427,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        5
+      ],
       "size": 29421
     },
     {
@@ -3637,6 +3775,7 @@
       "note_count": 3042,
       "has_drums": true,
       "tempo_changes": 28,
+      "drop_channels": [],
       "size": 22205
     },
     {
@@ -3684,6 +3823,7 @@
       "note_count": 4258,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 28679
     },
     {
@@ -3710,6 +3850,7 @@
       "note_count": 1918,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16691
     },
     {
@@ -3740,6 +3881,9 @@
       "note_count": 821,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [
+        1
+      ],
       "size": 7393
     },
     {
@@ -3769,6 +3913,7 @@
       "note_count": 191,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1396
     },
     {
@@ -3794,6 +3939,7 @@
       "note_count": 288,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2049
     },
     {
@@ -3824,6 +3970,7 @@
       "note_count": 1013,
       "has_drums": false,
       "tempo_changes": 122,
+      "drop_channels": [],
       "size": 7636
     },
     {
@@ -3856,6 +4003,10 @@
       "note_count": 1190,
       "has_drums": false,
       "tempo_changes": 122,
+      "drop_channels": [
+        6,
+        7
+      ],
       "size": 8675
     },
     {
@@ -3889,6 +4040,9 @@
       "note_count": 2542,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [
+        7
+      ],
       "size": 20186
     },
     {
@@ -3918,6 +4072,7 @@
       "note_count": 1705,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10670
     },
     {
@@ -3947,6 +4102,7 @@
       "note_count": 3099,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 19031
     },
     {
@@ -3977,6 +4133,7 @@
       "note_count": 3104,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 19358
     },
     {
@@ -4002,6 +4159,7 @@
       "note_count": 1740,
       "has_drums": false,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 11003
     },
     {
@@ -4046,6 +4204,7 @@
       "note_count": 3357,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34348
     },
     {
@@ -4076,6 +4235,7 @@
       "note_count": 2094,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20525
     },
     {
@@ -4106,6 +4266,7 @@
       "note_count": 2094,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20158
     },
     {
@@ -4137,6 +4298,7 @@
       "note_count": 1836,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11535
     },
     {
@@ -4166,6 +4328,7 @@
       "note_count": 1608,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13483
     },
     {
@@ -4195,6 +4358,7 @@
       "note_count": 612,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4547
     },
     {
@@ -4222,6 +4386,7 @@
       "note_count": 219,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1546
     },
     {
@@ -4252,6 +4417,7 @@
       "note_count": 895,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5936
     },
     {
@@ -4279,6 +4445,7 @@
       "note_count": 1301,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8128
     },
     {
@@ -4310,6 +4477,7 @@
       "note_count": 929,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11371
     },
     {
@@ -4347,6 +4515,7 @@
       "note_count": 9027,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 95177
     },
     {
@@ -4377,6 +4546,7 @@
       "note_count": 4163,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34453
     },
     {
@@ -4411,6 +4581,7 @@
       "note_count": 5533,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34432
     },
     {
@@ -4436,6 +4607,7 @@
       "note_count": 2614,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15952
     },
     {
@@ -4481,6 +4653,9 @@
       "note_count": 4174,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 74557
     },
     {
@@ -4531,6 +4706,7 @@
       "note_count": 5562,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 100788
     },
     {
@@ -4561,6 +4737,7 @@
       "note_count": 2575,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15932
     },
     {
@@ -4594,6 +4771,7 @@
       "note_count": 1694,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 13719
     },
     {
@@ -4624,6 +4802,7 @@
       "note_count": 1195,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7786
     },
     {
@@ -4654,6 +4833,7 @@
       "note_count": 1897,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12055
     },
     {
@@ -4765,6 +4945,7 @@
       "note_count": 2544,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 17971
     },
     {
@@ -4800,6 +4981,7 @@
       "note_count": 2692,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 19143
     },
     {
@@ -4831,6 +5013,7 @@
       "note_count": 2428,
       "has_drums": true,
       "tempo_changes": 7,
+      "drop_channels": [],
       "size": 20817
     },
     {
@@ -4865,6 +5048,7 @@
       "note_count": 4289,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 38194
     },
     {
@@ -4969,6 +5153,7 @@
       "note_count": 1036,
       "has_drums": false,
       "tempo_changes": 9,
+      "drop_channels": [],
       "size": 7045
     },
     {
@@ -5017,6 +5202,7 @@
       "note_count": 1911,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16656
     },
     {
@@ -5047,6 +5233,7 @@
       "note_count": 736,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5100
     },
     {
@@ -5089,6 +5276,7 @@
       "note_count": 1911,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 23341
     },
     {
@@ -5121,6 +5309,7 @@
       "note_count": 301,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2894
     },
     {
@@ -5151,6 +5340,9 @@
       "note_count": 359,
       "has_drums": false,
       "tempo_changes": 35,
+      "drop_channels": [
+        6
+      ],
       "size": 6646
     },
     {
@@ -5180,6 +5372,7 @@
       "note_count": 289,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2226
     },
     {
@@ -5207,6 +5400,7 @@
       "note_count": 444,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2956
     },
     {
@@ -5240,6 +5434,7 @@
       "note_count": 1208,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10526
     },
     {
@@ -5272,6 +5467,7 @@
       "note_count": 1068,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7117
     },
     {
@@ -5307,6 +5503,7 @@
       "note_count": 3512,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 43520
     },
     {
@@ -5336,6 +5533,7 @@
       "note_count": 456,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 3248
     },
     {
@@ -5365,6 +5563,7 @@
       "note_count": 1618,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11043
     },
     {
@@ -5397,6 +5596,7 @@
       "note_count": 2572,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 37752
     },
     {
@@ -5426,6 +5626,7 @@
       "note_count": 951,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8850
     },
     {
@@ -5457,6 +5658,7 @@
       "note_count": 1607,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10809
     },
     {
@@ -5489,6 +5691,7 @@
       "note_count": 2572,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 21320
     },
     {
@@ -5521,6 +5724,7 @@
       "note_count": 2140,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14259
     },
     {
@@ -5549,6 +5753,7 @@
       "note_count": 982,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14105
     },
     {
@@ -5579,6 +5784,7 @@
       "note_count": 2739,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22462
     },
     {
@@ -5663,6 +5869,7 @@
       "note_count": 516,
       "has_drums": true,
       "tempo_changes": 222,
+      "drop_channels": [],
       "size": 7316
     },
     {
@@ -5694,6 +5901,7 @@
       "note_count": 1411,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10676
     },
     {
@@ -5725,6 +5933,7 @@
       "note_count": 3819,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 50235
     },
     {
@@ -5755,6 +5964,7 @@
       "note_count": 3671,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30456
     },
     {
@@ -5780,6 +5990,7 @@
       "note_count": 1504,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9594
     },
     {
@@ -5816,6 +6027,10 @@
       "note_count": 1222,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        11,
+        12
+      ],
       "size": 11587
     },
     {
@@ -5855,6 +6070,7 @@
       "note_count": 1800,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14361
     },
     {
@@ -5904,6 +6120,7 @@
       "note_count": 2926,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22803
     },
     {
@@ -5932,6 +6149,7 @@
       "note_count": 2812,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25569
     },
     {
@@ -5962,6 +6180,10 @@
       "note_count": 1992,
       "has_drums": false,
       "tempo_changes": 52,
+      "drop_channels": [
+        4,
+        5
+      ],
       "size": 18721
     },
     {
@@ -5994,6 +6216,7 @@
       "note_count": 1393,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10160
     },
     {
@@ -6023,6 +6246,7 @@
       "note_count": 2754,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 35857
     },
     {
@@ -6053,6 +6277,7 @@
       "note_count": 2382,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 63092
     },
     {
@@ -6085,6 +6310,7 @@
       "note_count": 3136,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 67547
     },
     {
@@ -6116,6 +6342,7 @@
       "note_count": 1890,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13734
     },
     {
@@ -6149,6 +6376,7 @@
       "note_count": 2474,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 21562
     },
     {
@@ -6180,6 +6408,11 @@
       "note_count": 4989,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 42075
     },
     {
@@ -6245,6 +6478,11 @@
       "note_count": 3932,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 31959
     },
     {
@@ -6290,6 +6528,11 @@
       "note_count": 2297,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 19836
     },
     {
@@ -6318,6 +6561,7 @@
       "note_count": 102,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1465
     },
     {
@@ -6349,6 +6593,11 @@
       "note_count": 4989,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 42075
     },
     {
@@ -6379,6 +6628,7 @@
       "note_count": 1670,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 13985
     },
     {
@@ -6410,6 +6660,11 @@
       "note_count": 4095,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 34757
     },
     {
@@ -6441,6 +6696,11 @@
       "note_count": 2763,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 24394
     },
     {
@@ -6472,6 +6732,11 @@
       "note_count": 2162,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 19247
     },
     {
@@ -6552,6 +6817,11 @@
       "note_count": 2985,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 25701
     },
     {
@@ -6581,6 +6851,7 @@
       "note_count": 1618,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9900
     },
     {
@@ -6621,6 +6892,7 @@
       "note_count": 1575,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11637
     },
     {
@@ -6651,6 +6923,7 @@
       "note_count": 56,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 517
     },
     {
@@ -6700,6 +6973,7 @@
       "note_count": 2879,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18808
     },
     {
@@ -6765,6 +7039,9 @@
       "note_count": 2626,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 22000
     },
     {
@@ -6803,6 +7080,11 @@
       "note_count": 4777,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6,
+        7,
+        13
+      ],
       "size": 71612
     },
     {
@@ -6843,6 +7125,9 @@
       "note_count": 3778,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        13
+      ],
       "size": 31733
     },
     {
@@ -6883,6 +7168,9 @@
       "note_count": 8072,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 108731
     },
     {
@@ -6917,6 +7205,7 @@
       "note_count": 4049,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 53694
     },
     {
@@ -6951,6 +7240,7 @@
       "note_count": 2547,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 28000
     },
     {
@@ -6991,6 +7281,13 @@
       "note_count": 11381,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        7,
+        8,
+        14,
+        15
+      ],
       "size": 308796
     },
     {
@@ -7031,6 +7328,9 @@
       "note_count": 5789,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        15
+      ],
       "size": 54744
     },
     {
@@ -7067,6 +7367,7 @@
       "note_count": 1979,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13162
     },
     {
@@ -7106,6 +7407,7 @@
       "note_count": 3196,
       "has_drums": true,
       "tempo_changes": 68,
+      "drop_channels": [],
       "size": 105978
     },
     {
@@ -7146,6 +7448,7 @@
       "note_count": 6236,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 94850
     },
     {
@@ -7182,6 +7485,10 @@
       "note_count": 446,
       "has_drums": true,
       "tempo_changes": 281,
+      "drop_channels": [
+        13,
+        14
+      ],
       "size": 6233
     },
     {
@@ -7213,6 +7520,9 @@
       "note_count": 346,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
       "size": 2651
     },
     {
@@ -7244,6 +7554,7 @@
       "note_count": 222,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1890
     },
     {
@@ -7284,6 +7595,7 @@
       "note_count": 5748,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 58656
     },
     {
@@ -7327,6 +7639,7 @@
       "note_count": 6897,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 60410
     },
     {
@@ -7409,6 +7722,7 @@
       "note_count": 4322,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 35755
     },
     {
@@ -7449,6 +7763,10 @@
       "note_count": 5149,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        14,
+        15
+      ],
       "size": 52974
     },
     {
@@ -7489,6 +7807,10 @@
       "note_count": 4447,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        14,
+        15
+      ],
       "size": 47879
     },
     {
@@ -7527,6 +7849,7 @@
       "note_count": 1365,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14701
     },
     {
@@ -7577,6 +7900,10 @@
       "note_count": 2830,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [
+        12,
+        15
+      ],
       "size": 23823
     },
     {
@@ -7602,6 +7929,7 @@
       "note_count": 3563,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 24612
     },
     {
@@ -7713,6 +8041,7 @@
       "note_count": 2486,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 36243
     },
     {
@@ -7744,6 +8073,10 @@
       "note_count": 87,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        2,
+        5
+      ],
       "size": 882
     },
     {
@@ -7781,6 +8114,11 @@
       "note_count": 1660,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        10,
+        11,
+        12
+      ],
       "size": 15180
     },
     {
@@ -7820,6 +8158,7 @@
       "note_count": 1676,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11045
     },
     {
@@ -7860,6 +8199,10 @@
       "note_count": 4638,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        13,
+        14
+      ],
       "size": 43074
     },
     {
@@ -7896,6 +8239,9 @@
       "note_count": 2113,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 18605
     },
     {
@@ -7936,6 +8282,9 @@
       "note_count": 2570,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 32197
     },
     {
@@ -7976,6 +8325,9 @@
       "note_count": 2515,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 31783
     },
     {
@@ -8014,6 +8366,7 @@
       "note_count": 5174,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 53669
     },
     {
@@ -8051,6 +8404,10 @@
       "note_count": 5938,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        2,
+        5
+      ],
       "size": 73530
     },
     {
@@ -8084,6 +8441,9 @@
       "note_count": 3666,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 54605
     },
     {
@@ -8119,6 +8479,9 @@
       "note_count": 5364,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 61652
     },
     {
@@ -8159,6 +8522,7 @@
       "note_count": 5997,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 60990
     },
     {
@@ -8193,6 +8557,7 @@
       "note_count": 3615,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 43254
     },
     {
@@ -8231,6 +8596,7 @@
       "note_count": 15946,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 205485
     },
     {
@@ -8267,6 +8633,7 @@
       "note_count": 13862,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 94008
     },
     {
@@ -8299,6 +8666,7 @@
       "note_count": 1612,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22404
     },
     {
@@ -8330,6 +8698,7 @@
       "note_count": 1106,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10132
     },
     {
@@ -8361,6 +8730,9 @@
       "note_count": 64,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6
+      ],
       "size": 964
     },
     {
@@ -8398,6 +8770,7 @@
       "note_count": 2869,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 27255
     },
     {
@@ -8432,6 +8805,7 @@
       "note_count": 3867,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 43293
     },
     {
@@ -8665,6 +9039,7 @@
       "note_count": 6318,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 89378
     },
     {
@@ -8694,6 +9069,9 @@
       "note_count": 66,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        3
+      ],
       "size": 796
     },
     {
@@ -8731,6 +9109,12 @@
       "note_count": 6468,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [
+        2,
+        6,
+        10,
+        12
+      ],
       "size": 52864
     },
     {
@@ -8768,6 +9152,7 @@
       "note_count": 1191,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9942
     },
     {
@@ -8805,6 +9190,12 @@
       "note_count": 24355,
       "has_drums": true,
       "tempo_changes": 2193,
+      "drop_channels": [
+        3,
+        6,
+        8,
+        15
+      ],
       "size": 287422
     },
     {
@@ -8835,6 +9226,7 @@
       "note_count": 2363,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 14838
     },
     {
@@ -8864,6 +9256,7 @@
       "note_count": 53,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 779
     },
     {
@@ -8900,6 +9293,10 @@
       "note_count": 3630,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        7
+      ],
       "size": 32506
     },
     {
@@ -8953,6 +9350,7 @@
       "note_count": 3708,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30248
     },
     {
@@ -8999,6 +9397,7 @@
       "note_count": 4061,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 28741
     },
     {
@@ -9034,6 +9433,7 @@
       "note_count": 5215,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 43043
     },
     {
@@ -9065,6 +9465,7 @@
       "note_count": 724,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6236
     },
     {
@@ -9099,6 +9500,9 @@
       "note_count": 8660,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 70960
     },
     {
@@ -9138,6 +9542,7 @@
       "note_count": 1125,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 7280
     },
     {
@@ -9172,6 +9577,10 @@
       "note_count": 2736,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        8
+      ],
       "size": 27374
     },
     {
@@ -9203,6 +9612,7 @@
       "note_count": 3426,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29405
     },
     {
@@ -9239,6 +9649,7 @@
       "note_count": 2660,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22189
     },
     {
@@ -9278,6 +9689,11 @@
       "note_count": 2940,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        12,
+        13,
+        14
+      ],
       "size": 28602
     },
     {
@@ -9310,6 +9726,7 @@
       "note_count": 2108,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 85805
     },
     {
@@ -9342,6 +9759,7 @@
       "note_count": 1543,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 66210
     },
     {
@@ -9375,6 +9793,7 @@
       "note_count": 2946,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 152361
     },
     {
@@ -9403,6 +9822,7 @@
       "note_count": 291,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9544
     },
     {
@@ -9432,6 +9852,7 @@
       "note_count": 687,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 24440
     },
     {
@@ -9465,6 +9886,7 @@
       "note_count": 7878,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 411301
     },
     {
@@ -9495,6 +9917,7 @@
       "note_count": 221,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1965
     },
     {
@@ -9528,6 +9951,7 @@
       "note_count": 2003,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 108141
     },
     {
@@ -9560,6 +9984,7 @@
       "note_count": 4152,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 52686
     },
     {
@@ -9592,6 +10017,7 @@
       "note_count": 5009,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 242842
     },
     {
@@ -9630,6 +10056,7 @@
       "note_count": 2306,
       "has_drums": true,
       "tempo_changes": 17,
+      "drop_channels": [],
       "size": 59303
     },
     {
@@ -9669,6 +10096,7 @@
       "note_count": 2588,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30364
     },
     {
@@ -9708,6 +10136,7 @@
       "note_count": 2588,
       "has_drums": true,
       "tempo_changes": 9,
+      "drop_channels": [],
       "size": 33919
     },
     {
@@ -9737,6 +10166,7 @@
       "note_count": 1359,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8729
     },
     {
@@ -9777,6 +10207,7 @@
       "note_count": 7740,
       "has_drums": true,
       "tempo_changes": 7,
+      "drop_channels": [],
       "size": 82415
     },
     {
@@ -9814,6 +10245,10 @@
       "note_count": 3817,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        11,
+        12
+      ],
       "size": 44129
     },
     {
@@ -9850,6 +10285,10 @@
       "note_count": 5284,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        6
+      ],
       "size": 47563
     },
     {
@@ -9908,6 +10347,9 @@
       "note_count": 3467,
       "has_drums": true,
       "tempo_changes": 8,
+      "drop_channels": [
+        13
+      ],
       "size": 35977
     },
     {
@@ -9940,6 +10382,9 @@
       "note_count": 4575,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        8
+      ],
       "size": 39936
     },
     {
@@ -9978,6 +10423,7 @@
       "note_count": 1629,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 51321
     },
     {
@@ -10018,6 +10464,7 @@
       "note_count": 7080,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 81812
     },
     {
@@ -10050,6 +10497,7 @@
       "note_count": 3545,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29514
     },
     {
@@ -10086,6 +10534,10 @@
       "note_count": 5168,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        6
+      ],
       "size": 44324
     },
     {
@@ -10118,6 +10570,7 @@
       "note_count": 2919,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25309
     },
     {
@@ -10151,6 +10604,7 @@
       "note_count": 4776,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 104921
     },
     {
@@ -10184,6 +10638,7 @@
       "note_count": 2117,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 46009
     },
     {
@@ -10209,6 +10664,7 @@
       "note_count": 4705,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 172034
     },
     {
@@ -10241,6 +10697,7 @@
       "note_count": 1529,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 50003
     },
     {
@@ -10272,6 +10729,7 @@
       "note_count": 82,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3628
     },
     {
@@ -10301,6 +10759,7 @@
       "note_count": 764,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25063
     },
     {
@@ -10331,6 +10790,9 @@
       "note_count": 2036,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 43494
     },
     {
@@ -10358,6 +10820,7 @@
       "note_count": 3749,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30105
     },
     {
@@ -10389,6 +10852,7 @@
       "note_count": 3105,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25183
     },
     {
@@ -10421,6 +10885,7 @@
       "note_count": 1464,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13152
     },
     {
@@ -10454,6 +10919,7 @@
       "note_count": 1625,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13399
     },
     {
@@ -10489,6 +10955,7 @@
       "note_count": 1336,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11544
     },
     {
@@ -10521,6 +10988,7 @@
       "note_count": 877,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 72549
     },
     {
@@ -10556,6 +11024,7 @@
       "note_count": 3805,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 31133
     },
     {
@@ -10613,6 +11082,7 @@
       "note_count": 1295,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 8862
     },
     {
@@ -10641,6 +11111,7 @@
       "note_count": 4668,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30251
     },
     {
@@ -10672,6 +11143,7 @@
       "note_count": 1378,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12819
     },
     {
@@ -10703,6 +11175,7 @@
       "note_count": 6493,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 54064
     },
     {
@@ -10731,6 +11204,7 @@
       "note_count": 1315,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8397
     },
     {
@@ -10760,6 +11234,7 @@
       "note_count": 808,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5303
     },
     {
@@ -10789,6 +11264,7 @@
       "note_count": 1893,
       "has_drums": true,
       "tempo_changes": 80,
+      "drop_channels": [],
       "size": 12663
     },
     {
@@ -10817,6 +11293,7 @@
       "note_count": 281,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2089
     },
     {
@@ -10847,6 +11324,7 @@
       "note_count": 2096,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 13526
     },
     {
@@ -10879,6 +11357,7 @@
       "note_count": 1533,
       "has_drums": true,
       "tempo_changes": 23,
+      "drop_channels": [],
       "size": 10545
     },
     {
@@ -10904,6 +11383,7 @@
       "note_count": 337,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2915
     },
     {
@@ -10933,6 +11413,7 @@
       "note_count": 4559,
       "has_drums": true,
       "tempo_changes": 49,
+      "drop_channels": [],
       "size": 59517
     },
     {
@@ -10978,6 +11459,9 @@
       "note_count": 1030,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 9880
     },
     {
@@ -11009,6 +11493,7 @@
       "note_count": 421,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 3320
     },
     {
@@ -11034,6 +11519,7 @@
       "note_count": 244,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2350
     },
     {
@@ -11067,6 +11553,7 @@
       "note_count": 1335,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11796
     },
     {
@@ -11093,6 +11580,7 @@
       "note_count": 330,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3554
     },
     {
@@ -11157,6 +11645,7 @@
       "note_count": 419,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4276
     },
     {
@@ -11184,6 +11673,7 @@
       "note_count": 833,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7741
     },
     {
@@ -11213,6 +11703,7 @@
       "note_count": 893,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8243
     },
     {
@@ -11240,6 +11731,7 @@
       "note_count": 200,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1904
     },
     {
@@ -11267,6 +11759,7 @@
       "note_count": 527,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5382
     },
     {
@@ -11298,6 +11791,7 @@
       "note_count": 1212,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10661
     },
     {
@@ -11330,6 +11824,7 @@
       "note_count": 1390,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13107
     },
     {
@@ -11359,6 +11854,7 @@
       "note_count": 5016,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 47482
     },
     {
@@ -11438,6 +11934,7 @@
       "note_count": 3260,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 26950
     },
     {
@@ -11466,6 +11963,7 @@
       "note_count": 1399,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11507
     },
     {
@@ -11499,6 +11997,7 @@
       "note_count": 5340,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 33273
     },
     {
@@ -11595,6 +12094,7 @@
       "note_count": 366,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2886
     },
     {
@@ -11620,6 +12120,7 @@
       "note_count": 10,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 334
     },
     {
@@ -11647,6 +12148,7 @@
       "note_count": 833,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5586
     },
     {
@@ -11694,6 +12196,7 @@
       "note_count": 2821,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 36337
     },
     {
@@ -11744,6 +12247,9 @@
       "note_count": 5955,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [
+        11
+      ],
       "size": 40629
     },
     {
@@ -11794,6 +12300,9 @@
       "note_count": 2366,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        8
+      ],
       "size": 32426
     },
     {
@@ -11846,6 +12355,7 @@
       "note_count": 319,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 14147
     },
     {
@@ -11894,6 +12404,7 @@
       "note_count": 540,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 15866
     },
     {
@@ -11944,6 +12455,9 @@
       "note_count": 1278,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        11
+      ],
       "size": 12592
     },
     {
@@ -11993,6 +12507,9 @@
       "note_count": 2195,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        7
+      ],
       "size": 26500
     },
     {
@@ -12041,6 +12558,10 @@
       "note_count": 395,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        10,
+        11
+      ],
       "size": 11623
     },
     {
@@ -12089,6 +12610,10 @@
       "note_count": 1066,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6
+      ],
       "size": 12774
     },
     {
@@ -12138,6 +12663,7 @@
       "note_count": 3934,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 29793
     },
     {
@@ -12191,6 +12717,7 @@
       "note_count": 1007,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 8790
     },
     {
@@ -12233,6 +12760,7 @@
       "note_count": 806,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 12107
     },
     {
@@ -12276,6 +12804,9 @@
       "note_count": 1412,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        4
+      ],
       "size": 10556
     },
     {
@@ -12323,6 +12854,7 @@
       "note_count": 1374,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 9383
     },
     {
@@ -12366,6 +12898,7 @@
       "note_count": 1146,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 9421
     },
     {
@@ -12416,6 +12949,7 @@
       "note_count": 1381,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 10963
     },
     {
@@ -12458,6 +12992,11 @@
       "note_count": 768,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        5,
+        6,
+        7
+      ],
       "size": 6262
     },
     {
@@ -12515,6 +13054,7 @@
       "note_count": 402,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 5490
     },
     {
@@ -12558,6 +13098,7 @@
       "note_count": 920,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 20332
     },
     {
@@ -12605,6 +13146,7 @@
       "note_count": 4923,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 35652
     },
     {
@@ -12649,6 +13191,7 @@
       "note_count": 751,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 6960
     },
     {
@@ -12695,6 +13238,7 @@
       "note_count": 4673,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 33123
     },
     {
@@ -12744,6 +13288,7 @@
       "note_count": 564,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 13929
     },
     {
@@ -12794,6 +13339,7 @@
       "note_count": 2258,
       "has_drums": true,
       "tempo_changes": 93,
+      "drop_channels": [],
       "size": 47391
     },
     {
@@ -12843,6 +13389,7 @@
       "note_count": 558,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 9559
     },
     {
@@ -12896,6 +13443,7 @@
       "note_count": 52,
       "has_drums": false,
       "tempo_changes": 17,
+      "drop_channels": [],
       "size": 2146
     },
     {
@@ -12939,6 +13487,7 @@
       "note_count": 235,
       "has_drums": false,
       "tempo_changes": 257,
+      "drop_channels": [],
       "size": 20087
     },
     {
@@ -12982,6 +13531,7 @@
       "note_count": 957,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 10133
     },
     {
@@ -13030,6 +13580,7 @@
       "note_count": 418,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 4536
     },
     {
@@ -13076,6 +13627,7 @@
       "note_count": 3829,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 28333
     },
     {
@@ -13148,6 +13700,7 @@
       "note_count": 2422,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 21207
     },
     {
@@ -13197,6 +13750,9 @@
       "note_count": 1549,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        6
+      ],
       "size": 29074
     },
     {
@@ -13252,6 +13808,7 @@
       "note_count": 2467,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 19581
     },
     {
@@ -13295,6 +13852,7 @@
       "note_count": 1419,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 12524
     },
     {
@@ -13340,6 +13898,7 @@
       "note_count": 1213,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11657
     },
     {
@@ -13384,6 +13943,7 @@
       "note_count": 216,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 7031
     },
     {
@@ -13434,6 +13994,10 @@
       "note_count": 3441,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        7,
+        13
+      ],
       "size": 28115
     },
     {
@@ -13481,6 +14045,7 @@
       "note_count": 381,
       "has_drums": false,
       "tempo_changes": 23,
+      "drop_channels": [],
       "size": 7194
     },
     {
@@ -13523,6 +14088,7 @@
       "note_count": 1543,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11789
     },
     {
@@ -13569,6 +14135,7 @@
       "note_count": 489,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 5387
     },
     {
@@ -13613,6 +14180,7 @@
       "note_count": 402,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9347
     },
     {
@@ -13658,6 +14226,9 @@
       "note_count": 3010,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        7
+      ],
       "size": 20151
     },
     {
@@ -13700,6 +14271,7 @@
       "note_count": 1309,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11308
     },
     {
@@ -13749,6 +14321,7 @@
       "note_count": 970,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 20387
     },
     {
@@ -13798,6 +14371,7 @@
       "note_count": 1452,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 14862
     },
     {
@@ -13842,6 +14416,9 @@
       "note_count": 257,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        10
+      ],
       "size": 7204
     },
     {
@@ -13892,6 +14469,7 @@
       "note_count": 476,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 13703
     },
     {
@@ -13934,6 +14512,9 @@
       "note_count": 1286,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        3
+      ],
       "size": 11935
     },
     {
@@ -13983,6 +14564,9 @@
       "note_count": 560,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        15
+      ],
       "size": 14372
     },
     {
@@ -14020,6 +14604,7 @@
       "note_count": 359,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 5430
     },
     {
@@ -14067,6 +14652,7 @@
       "note_count": 1242,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 12543
     },
     {
@@ -14134,6 +14720,7 @@
       "note_count": 1714,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 18207
     },
     {
@@ -14181,6 +14768,7 @@
       "note_count": 997,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 29771
     },
     {
@@ -14224,6 +14812,9 @@
       "note_count": 310,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        7
+      ],
       "size": 2884
     },
     {
@@ -14265,6 +14856,7 @@
       "note_count": 1199,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 8993
     },
     {
@@ -14307,6 +14899,7 @@
       "note_count": 2342,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 15774
     },
     {
@@ -14347,6 +14940,7 @@
       "note_count": 168,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 1342
     },
     {
@@ -14389,6 +14983,7 @@
       "note_count": 366,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 3785
     },
     {
@@ -14429,6 +15024,7 @@
       "note_count": 594,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 4729
     },
     {
@@ -14475,6 +15071,7 @@
       "note_count": 475,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 10512
     },
     {
@@ -14527,6 +15124,7 @@
       "note_count": 674,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 17675
     },
     {
@@ -14574,6 +15172,7 @@
       "note_count": 567,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 19399
     },
     {
@@ -14621,6 +15220,7 @@
       "note_count": 531,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 7503
     },
     {
@@ -14663,6 +15263,7 @@
       "note_count": 841,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 6701
     },
     {
@@ -14711,6 +15312,7 @@
       "note_count": 1219,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 31766
     },
     {
@@ -14760,6 +15362,7 @@
       "note_count": 1541,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 16757
     },
     {
@@ -14839,6 +15442,7 @@
       "note_count": 314,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 4353
     },
     {
@@ -14888,6 +15492,7 @@
       "note_count": 1922,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 19553
     },
     {
@@ -14934,6 +15539,7 @@
       "note_count": 2087,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 14938
     },
     {
@@ -14984,6 +15590,7 @@
       "note_count": 2603,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 22661
     },
     {
@@ -15028,6 +15635,7 @@
       "note_count": 1954,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 28380
     },
     {
@@ -15069,6 +15677,7 @@
       "note_count": 728,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11938
     },
     {
@@ -15110,6 +15719,7 @@
       "note_count": 1016,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 16759
     },
     {
@@ -15150,6 +15760,7 @@
       "note_count": 258,
       "has_drums": false,
       "tempo_changes": 91,
+      "drop_channels": [],
       "size": 7835
     },
     {
@@ -15251,6 +15862,7 @@
       "note_count": 2592,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 19176
     },
     {
@@ -15293,6 +15905,7 @@
       "note_count": 357,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 6337
     },
     {
@@ -15342,6 +15955,7 @@
       "note_count": 1337,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 14589
     },
     {
@@ -15387,6 +16001,7 @@
       "note_count": 670,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11460
     },
     {
@@ -15436,6 +16051,7 @@
       "note_count": 485,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 5908
     },
     {
@@ -15486,6 +16102,7 @@
       "note_count": 2589,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 21910
     },
     {
@@ -15541,6 +16158,7 @@
       "note_count": 3872,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 29722
     },
     {
@@ -15599,6 +16217,7 @@
       "note_count": 4910,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 40006
     },
     {
@@ -15679,6 +16298,7 @@
       "note_count": 8485,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 58503
     },
     {
@@ -15755,6 +16375,7 @@
       "note_count": 7591,
       "has_drums": true,
       "tempo_changes": 15,
+      "drop_channels": [],
       "size": 83715
     },
     {
@@ -15830,6 +16451,7 @@
       "note_count": 5686,
       "has_drums": true,
       "tempo_changes": 15,
+      "drop_channels": [],
       "size": 71670
     },
     {
@@ -15862,6 +16484,7 @@
       "note_count": 328,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3611
     },
     {
@@ -15892,6 +16515,7 @@
       "note_count": 714,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4788
     },
     {
@@ -15922,6 +16546,7 @@
       "note_count": 590,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7820
     },
     {
@@ -15951,6 +16576,7 @@
       "note_count": 879,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5995
     },
     {
@@ -15982,6 +16608,7 @@
       "note_count": 2198,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13959
     },
     {
@@ -16013,6 +16640,7 @@
       "note_count": 2198,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18659
     },
     {
@@ -16077,6 +16705,7 @@
       "note_count": 2198,
       "has_drums": true,
       "tempo_changes": 8,
+      "drop_channels": [],
       "size": 18437
     },
     {
@@ -16106,6 +16735,7 @@
       "note_count": 7264,
       "has_drums": true,
       "tempo_changes": 7,
+      "drop_channels": [],
       "size": 58986
     },
     {
@@ -16135,6 +16765,7 @@
       "note_count": 7264,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 54866
     },
     {
@@ -16164,6 +16795,7 @@
       "note_count": 796,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5500
     },
     {
@@ -16193,6 +16825,7 @@
       "note_count": 1477,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9653
     },
     {
@@ -16252,6 +16885,7 @@
       "note_count": 2876,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25682
     },
     {
@@ -16307,6 +16941,7 @@
       "note_count": 1864,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18012
     },
     {
@@ -16338,6 +16973,7 @@
       "note_count": 2731,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22204
     },
     {
@@ -16367,6 +17003,7 @@
       "note_count": 1193,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12817
     },
     {
@@ -16421,6 +17058,7 @@
       "note_count": 1028,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 12698
     },
     {
@@ -16450,6 +17088,7 @@
       "note_count": 1028,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10336
     },
     {
@@ -16517,6 +17156,7 @@
       "note_count": 2196,
       "has_drums": true,
       "tempo_changes": 9,
+      "drop_channels": [],
       "size": 18171
     },
     {
@@ -16547,6 +17187,7 @@
       "note_count": 1994,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15558
     },
     {
@@ -16580,6 +17221,7 @@
       "note_count": 3395,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 30130
     },
     {
@@ -16611,6 +17253,9 @@
       "note_count": 2234,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 15932
     },
     {
@@ -16641,6 +17286,7 @@
       "note_count": 1449,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13694
     },
     {
@@ -16673,6 +17319,7 @@
       "note_count": 837,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6865
     },
     {
@@ -16705,6 +17352,10 @@
       "note_count": 3080,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6
+      ],
       "size": 25512
     },
     {
@@ -16765,6 +17416,7 @@
       "note_count": 1197,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10415
     },
     {
@@ -16793,6 +17445,7 @@
       "note_count": 4152,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29652
     },
     {
@@ -16825,6 +17478,7 @@
       "note_count": 1217,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 8569
     },
     {
@@ -16855,6 +17509,7 @@
       "note_count": 1190,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 10797
     },
     {
@@ -16884,6 +17539,7 @@
       "note_count": 707,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6289
     },
     {
@@ -16920,6 +17576,10 @@
       "note_count": 5779,
       "has_drums": true,
       "tempo_changes": 54,
+      "drop_channels": [
+        2,
+        8
+      ],
       "size": 48040
     },
     {
@@ -16952,6 +17612,7 @@
       "note_count": 752,
       "has_drums": false,
       "tempo_changes": 24,
+      "drop_channels": [],
       "size": 5779
     },
     {
@@ -16983,6 +17644,7 @@
       "note_count": 2792,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 23957
     },
     {
@@ -17012,6 +17674,7 @@
       "note_count": 2568,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 23942
     },
     {
@@ -17042,6 +17705,9 @@
       "note_count": 3382,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6
+      ],
       "size": 28430
     },
     {
@@ -17083,6 +17749,7 @@
       "note_count": 1270,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 11192
     },
     {
@@ -17113,6 +17780,7 @@
       "note_count": 633,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4132
     },
     {
@@ -17148,6 +17816,9 @@
       "note_count": 3938,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        11
+      ],
       "size": 34894
     },
     {
@@ -17181,6 +17852,7 @@
       "note_count": 1697,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15191
     },
     {
@@ -17215,6 +17887,9 @@
       "note_count": 4075,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        10
+      ],
       "size": 38175
     },
     {
@@ -17244,6 +17919,7 @@
       "note_count": 308,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3405
     },
     {
@@ -17279,6 +17955,9 @@
       "note_count": 3330,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 34474
     },
     {
@@ -17310,6 +17989,7 @@
       "note_count": 4405,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 31692
     },
     {
@@ -17343,6 +18023,9 @@
       "note_count": 786,
       "has_drums": false,
       "tempo_changes": 36,
+      "drop_channels": [
+        5
+      ],
       "size": 8284
     },
     {
@@ -17376,6 +18059,9 @@
       "note_count": 786,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 6991
     },
     {
@@ -17406,6 +18092,7 @@
       "note_count": 951,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8404
     },
     {
@@ -17441,6 +18128,7 @@
       "note_count": 3774,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 75594
     },
     {
@@ -17466,6 +18154,7 @@
       "note_count": 1501,
       "has_drums": false,
       "tempo_changes": 80,
+      "drop_channels": [],
       "size": 9926
     },
     {
@@ -17499,6 +18188,7 @@
       "note_count": 1348,
       "has_drums": true,
       "tempo_changes": 104,
+      "drop_channels": [],
       "size": 9670
     },
     {
@@ -17532,6 +18222,7 @@
       "note_count": 1348,
       "has_drums": true,
       "tempo_changes": 104,
+      "drop_channels": [],
       "size": 12501
     },
     {
@@ -17575,6 +18266,7 @@
       "note_count": 1679,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15183
     },
     {
@@ -17612,6 +18304,7 @@
       "note_count": 1036,
       "has_drums": true,
       "tempo_changes": 29,
+      "drop_channels": [],
       "size": 10168
     },
     {
@@ -17642,6 +18335,7 @@
       "note_count": 4554,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 32768
     },
     {
@@ -17669,6 +18363,7 @@
       "note_count": 3527,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 28672
     },
     {
@@ -17700,6 +18395,7 @@
       "note_count": 2436,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20591
     },
     {
@@ -17731,6 +18427,7 @@
       "note_count": 1599,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13968
     },
     {
@@ -17760,6 +18457,7 @@
       "note_count": 4124,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 36243
     },
     {
@@ -17792,6 +18490,7 @@
       "note_count": 1024,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7345
     },
     {
@@ -17820,6 +18519,7 @@
       "note_count": 1444,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13084
     },
     {
@@ -17852,6 +18552,10 @@
       "note_count": 4602,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6,
+        7
+      ],
       "size": 41347
     },
     {
@@ -17880,6 +18584,7 @@
       "note_count": 840,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 12663
     },
     {
@@ -17913,6 +18618,7 @@
       "note_count": 1120,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8271
     },
     {
@@ -17943,6 +18649,7 @@
       "note_count": 1400,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10361
     },
     {
@@ -17974,6 +18681,7 @@
       "note_count": 849,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9448
     },
     {
@@ -18003,6 +18711,7 @@
       "note_count": 1481,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 15786
     },
     {
@@ -18032,6 +18741,7 @@
       "note_count": 501,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4643
     },
     {
@@ -18099,6 +18809,7 @@
       "note_count": 3346,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 79206
     },
     {
@@ -18135,6 +18846,9 @@
       "note_count": 3277,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        13
+      ],
       "size": 31558
     },
     {
@@ -18167,6 +18881,7 @@
       "note_count": 328,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3611
     },
     {
@@ -18198,6 +18913,7 @@
       "note_count": 3638,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 33200
     },
     {
@@ -18233,6 +18949,7 @@
       "note_count": 4308,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 49437
     },
     {
@@ -18260,6 +18977,7 @@
       "note_count": 164,
       "has_drums": false,
       "tempo_changes": 40,
+      "drop_channels": [],
       "size": 1450
     },
     {
@@ -18290,6 +19008,7 @@
       "note_count": 1029,
       "has_drums": false,
       "tempo_changes": 21,
+      "drop_channels": [],
       "size": 7403
     },
     {
@@ -18321,6 +19040,7 @@
       "note_count": 3414,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 21103
     },
     {
@@ -18351,6 +19071,7 @@
       "note_count": 2786,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20997
     },
     {
@@ -18381,6 +19102,7 @@
       "note_count": 1601,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 13434
     },
     {
@@ -18410,6 +19132,7 @@
       "note_count": 488,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3735
     },
     {
@@ -18438,6 +19161,7 @@
       "note_count": 642,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4531
     },
     {
@@ -18468,6 +19192,7 @@
       "note_count": 2198,
       "has_drums": true,
       "tempo_changes": 381,
+      "drop_channels": [],
       "size": 19250
     },
     {
@@ -18499,6 +19224,7 @@
       "note_count": 1138,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10519
     },
     {
@@ -18529,6 +19255,9 @@
       "note_count": 1452,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 10056
     },
     {
@@ -18561,6 +19290,7 @@
       "note_count": 2567,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 19973
     },
     {
@@ -18785,6 +19515,7 @@
       "note_count": 16410,
       "has_drums": true,
       "tempo_changes": 74,
+      "drop_channels": [],
       "size": 109521
     },
     {
@@ -18816,6 +19547,7 @@
       "note_count": 3405,
       "has_drums": true,
       "tempo_changes": 198,
+      "drop_channels": [],
       "size": 22416
     },
     {
@@ -18844,6 +19576,7 @@
       "note_count": 1904,
       "has_drums": true,
       "tempo_changes": 155,
+      "drop_channels": [],
       "size": 17201
     },
     {
@@ -18894,6 +19627,7 @@
       "note_count": 1121,
       "has_drums": false,
       "tempo_changes": 9,
+      "drop_channels": [],
       "size": 10020
     },
     {
@@ -18924,6 +19658,7 @@
       "note_count": 3521,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 22621
     },
     {
@@ -18978,6 +19713,7 @@
       "note_count": 3836,
       "has_drums": false,
       "tempo_changes": 422,
+      "drop_channels": [],
       "size": 36864
     },
     {
@@ -19069,6 +19805,7 @@
       "note_count": 16176,
       "has_drums": true,
       "tempo_changes": 62,
+      "drop_channels": [],
       "size": 104170
     },
     {
@@ -19098,6 +19835,7 @@
       "note_count": 1073,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 23252
     },
     {
@@ -19124,6 +19862,7 @@
       "note_count": 1312,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8193
     },
     {
@@ -19188,6 +19927,7 @@
       "note_count": 2198,
       "has_drums": true,
       "tempo_changes": 8,
+      "drop_channels": [],
       "size": 18437
     },
     {
@@ -19224,6 +19964,7 @@
       "note_count": 5230,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 33756
     },
     {
@@ -19255,6 +19996,7 @@
       "note_count": 2380,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14751
     },
     {
@@ -19285,6 +20027,7 @@
       "note_count": 2620,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 21270
     },
     {
@@ -19315,6 +20058,7 @@
       "note_count": 1802,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14750
     },
     {
@@ -19346,6 +20090,10 @@
       "note_count": 1972,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6
+      ],
       "size": 17073
     },
     {
@@ -19376,6 +20124,7 @@
       "note_count": 3307,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 277670
     },
     {
@@ -19406,6 +20155,7 @@
       "note_count": 1439,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12296
     },
     {
@@ -19437,6 +20187,7 @@
       "note_count": 2878,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 23962
     },
     {
@@ -19473,6 +20224,11 @@
       "note_count": 2860,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2,
+        3,
+        4
+      ],
       "size": 24449
     },
     {
@@ -19504,6 +20260,10 @@
       "note_count": 2715,
       "has_drums": true,
       "tempo_changes": 7,
+      "drop_channels": [
+        12,
+        13
+      ],
       "size": 22408
     },
     {
@@ -19535,6 +20295,9 @@
       "note_count": 3686,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 38223
     },
     {
@@ -19563,6 +20326,7 @@
       "note_count": 509,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4451
     },
     {
@@ -19591,6 +20355,7 @@
       "note_count": 2966,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 25137
     },
     {
@@ -19628,6 +20393,10 @@
       "note_count": 4730,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        7,
+        11
+      ],
       "size": 41421
     },
     {
@@ -19656,6 +20425,7 @@
       "note_count": 1208,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10030
     },
     {
@@ -19685,6 +20455,7 @@
       "note_count": 4145,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 33729
     },
     {
@@ -19713,6 +20484,7 @@
       "note_count": 566,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5145
     },
     {
@@ -19743,6 +20515,7 @@
       "note_count": 1080,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9974
     },
     {
@@ -19771,6 +20544,7 @@
       "note_count": 406,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3692
     },
     {
@@ -19801,6 +20575,7 @@
       "note_count": 509,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5037
     },
     {
@@ -19828,6 +20603,7 @@
       "note_count": 830,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7460
     },
     {
@@ -19858,6 +20634,7 @@
       "note_count": 1171,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10737
     },
     {
@@ -19885,6 +20662,7 @@
       "note_count": 530,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4861
     },
     {
@@ -19915,6 +20693,7 @@
       "note_count": 919,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8450
     },
     {
@@ -19942,6 +20721,7 @@
       "note_count": 462,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4207
     },
     {
@@ -19972,6 +20752,7 @@
       "note_count": 1598,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14502
     },
     {
@@ -20000,6 +20781,7 @@
       "note_count": 723,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6614
     },
     {
@@ -20030,6 +20812,7 @@
       "note_count": 559,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5324
     },
     {
@@ -20057,6 +20840,7 @@
       "note_count": 1849,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15564
     },
     {
@@ -20084,6 +20868,7 @@
       "note_count": 792,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7156
     },
     {
@@ -20111,6 +20896,7 @@
       "note_count": 1379,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12312
     },
     {
@@ -20139,6 +20925,7 @@
       "note_count": 811,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7439
     },
     {
@@ -20166,6 +20953,7 @@
       "note_count": 569,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5045
     },
     {
@@ -20193,6 +20981,7 @@
       "note_count": 1386,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12173
     },
     {
@@ -20220,6 +21009,7 @@
       "note_count": 534,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4894
     },
     {
@@ -20247,6 +21037,7 @@
       "note_count": 752,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6796
     },
     {
@@ -20274,6 +21065,7 @@
       "note_count": 1068,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9705
     },
     {
@@ -20301,6 +21093,7 @@
       "note_count": 1272,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10742
     },
     {
@@ -20328,6 +21121,7 @@
       "note_count": 880,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7843
     },
     {
@@ -20356,6 +21150,7 @@
       "note_count": 802,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7041
     },
     {
@@ -20383,6 +21178,7 @@
       "note_count": 670,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6001
     },
     {
@@ -20411,6 +21207,7 @@
       "note_count": 551,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4999
     },
     {
@@ -20440,6 +21237,7 @@
       "note_count": 3208,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 46636
     },
     {
@@ -20473,6 +21271,7 @@
       "note_count": 2597,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29643
     },
     {
@@ -20504,6 +21303,7 @@
       "note_count": 30,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1722
     },
     {
@@ -20534,6 +21334,7 @@
       "note_count": 1962,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 33460
     },
     {
@@ -20566,6 +21367,7 @@
       "note_count": 2082,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34762
     },
     {
@@ -20595,6 +21397,7 @@
       "note_count": 8936,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 96057
     },
     {
@@ -20625,6 +21428,7 @@
       "note_count": 142,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4565
     },
     {
@@ -20652,6 +21456,7 @@
       "note_count": 514,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3246
     },
     {
@@ -20680,6 +21485,9 @@
       "note_count": 3420,
       "has_drums": false,
       "tempo_changes": 12,
+      "drop_channels": [
+        1
+      ],
       "size": 22746
     },
     {
@@ -20718,6 +21526,7 @@
       "note_count": 8041,
       "has_drums": true,
       "tempo_changes": 35,
+      "drop_channels": [],
       "size": 56318
     },
     {
@@ -20746,6 +21555,7 @@
       "note_count": 2762,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22731
     },
     {
@@ -20775,6 +21585,9 @@
       "note_count": 4616,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 31320
     },
     {
@@ -20810,6 +21623,7 @@
       "note_count": 5152,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 42319
     },
     {
@@ -20839,6 +21653,9 @@
       "note_count": 352,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 3607
     },
     {
@@ -20870,6 +21687,9 @@
       "note_count": 1988,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 16731
     },
     {
@@ -20924,6 +21744,7 @@
       "note_count": 1872,
       "has_drums": true,
       "tempo_changes": 24,
+      "drop_channels": [],
       "size": 15458
     },
     {
@@ -21002,6 +21823,7 @@
       "note_count": 6065,
       "has_drums": true,
       "tempo_changes": 11,
+      "drop_channels": [],
       "size": 49390
     },
     {
@@ -21033,6 +21855,7 @@
       "note_count": 3445,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 21577
     },
     {
@@ -21062,6 +21885,7 @@
       "note_count": 1816,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12441
     },
     {
@@ -21090,6 +21914,7 @@
       "note_count": 3470,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 21429
     },
     {
@@ -21121,6 +21946,10 @@
       "note_count": 1252,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3,
+        5
+      ],
       "size": 7896
     },
     {
@@ -21154,6 +21983,7 @@
       "note_count": 6264,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 68729
     },
     {
@@ -21183,6 +22013,7 @@
       "note_count": 1834,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 29297
     },
     {
@@ -21216,6 +22047,7 @@
       "note_count": 2587,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30472
     },
     {
@@ -21244,6 +22076,7 @@
       "note_count": 294,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7242
     },
     {
@@ -21269,6 +22102,7 @@
       "note_count": 2198,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 55082
     },
     {
@@ -21300,6 +22134,7 @@
       "note_count": 4865,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 40374
     },
     {
@@ -21328,6 +22163,7 @@
       "note_count": 1599,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15318
     },
     {
@@ -21359,6 +22195,7 @@
       "note_count": 3597,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 25209
     },
     {
@@ -21425,6 +22262,7 @@
       "note_count": 4012,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 24601
     },
     {
@@ -21451,6 +22289,7 @@
       "note_count": 326,
       "has_drums": true,
       "tempo_changes": 63,
+      "drop_channels": [],
       "size": 3178
     },
     {
@@ -21483,6 +22322,7 @@
       "note_count": 7561,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 61256
     },
     {
@@ -21508,6 +22348,7 @@
       "note_count": 6,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 238
     },
     {
@@ -21538,6 +22379,11 @@
       "note_count": 196,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [
+        3,
+        4,
+        5
+      ],
       "size": 1687
     },
     {
@@ -21565,6 +22411,7 @@
       "note_count": 820,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5207
     },
     {
@@ -21595,6 +22442,7 @@
       "note_count": 1601,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14932
     },
     {
@@ -21622,6 +22470,7 @@
       "note_count": 67,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 690
     },
     {
@@ -21651,6 +22500,9 @@
       "note_count": 467,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 3174
     },
     {
@@ -21700,6 +22552,7 @@
       "note_count": 1279,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 10498
     },
     {
@@ -21733,6 +22586,7 @@
       "note_count": 5163,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 59921
     },
     {
@@ -21763,6 +22617,7 @@
       "note_count": 981,
       "has_drums": true,
       "tempo_changes": 207,
+      "drop_channels": [],
       "size": 8396
     },
     {
@@ -21792,6 +22647,7 @@
       "note_count": 805,
       "has_drums": true,
       "tempo_changes": 207,
+      "drop_channels": [],
       "size": 7431
     },
     {
@@ -21825,6 +22681,7 @@
       "note_count": 2597,
       "has_drums": true,
       "tempo_changes": 52,
+      "drop_channels": [],
       "size": 24037
     },
     {
@@ -21851,6 +22708,7 @@
       "note_count": 85,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1025
     },
     {
@@ -21880,6 +22738,7 @@
       "note_count": 1281,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10661
     },
     {
@@ -21907,6 +22766,7 @@
       "note_count": 1018,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6521
     },
     {
@@ -21934,6 +22794,7 @@
       "note_count": 1018,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8249
     },
     {
@@ -21965,6 +22826,7 @@
       "note_count": 1320,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 47059
     },
     {
@@ -21998,6 +22860,7 @@
       "note_count": 1652,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12084
     },
     {
@@ -22024,6 +22887,7 @@
       "note_count": 1384,
       "has_drums": false,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 8625
     },
     {
@@ -22050,6 +22914,7 @@
       "note_count": 36,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 548
     },
     {
@@ -22080,6 +22945,7 @@
       "note_count": 1548,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13084
     },
     {
@@ -22109,6 +22975,7 @@
       "note_count": 3207,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 43877
     },
     {
@@ -22136,6 +23003,7 @@
       "note_count": 740,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 6440
     },
     {
@@ -22165,6 +23033,7 @@
       "note_count": 3014,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 24662
     },
     {
@@ -22192,6 +23061,7 @@
       "note_count": 2697,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 21968
     },
     {
@@ -22219,6 +23089,7 @@
       "note_count": 637,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 5507
     },
     {
@@ -22246,6 +23117,7 @@
       "note_count": 605,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 5426
     },
     {
@@ -22274,6 +23146,7 @@
       "note_count": 908,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5822
     },
     {
@@ -22301,6 +23174,7 @@
       "note_count": 1271,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 10534
     },
     {
@@ -22328,6 +23202,7 @@
       "note_count": 1163,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 9955
     },
     {
@@ -22359,6 +23234,9 @@
       "note_count": 2103,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 17476
     },
     {
@@ -22387,6 +23265,7 @@
       "note_count": 864,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5619
     },
     {
@@ -22414,6 +23293,7 @@
       "note_count": 583,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3938
     },
     {
@@ -22441,6 +23321,7 @@
       "note_count": 1050,
       "has_drums": false,
       "tempo_changes": 10,
+      "drop_channels": [],
       "size": 8895
     },
     {
@@ -22468,6 +23349,7 @@
       "note_count": 415,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2813
     },
     {
@@ -22496,6 +23378,7 @@
       "note_count": 1384,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8684
     },
     {
@@ -22525,6 +23408,7 @@
       "note_count": 4091,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 34693
     },
     {
@@ -22554,6 +23438,7 @@
       "note_count": 965,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6354
     },
     {
@@ -22581,6 +23466,7 @@
       "note_count": 2162,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 18009
     },
     {
@@ -22610,6 +23496,7 @@
       "note_count": 3470,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 28637
     },
     {
@@ -22651,6 +23538,7 @@
       "note_count": 1008,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 8870
     },
     {
@@ -22678,6 +23566,7 @@
       "note_count": 1092,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6728
     },
     {
@@ -22707,6 +23596,7 @@
       "note_count": 79,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 863
     },
     {
@@ -22735,6 +23625,7 @@
       "note_count": 2093,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 17554
     },
     {
@@ -22763,6 +23654,7 @@
       "note_count": 1774,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11014
     },
     {
@@ -22790,6 +23682,7 @@
       "note_count": 214,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1597
     },
     {
@@ -22817,6 +23710,7 @@
       "note_count": 1200,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 9944
     },
     {
@@ -22844,6 +23738,7 @@
       "note_count": 371,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 2391
     },
     {
@@ -22871,6 +23766,7 @@
       "note_count": 1031,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 8730
     },
     {
@@ -22898,6 +23794,7 @@
       "note_count": 1031,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 8745
     },
     {
@@ -22928,6 +23825,7 @@
       "note_count": 6690,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 54707
     },
     {
@@ -22957,6 +23855,7 @@
       "note_count": 5547,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 45405
     },
     {
@@ -22988,6 +23887,7 @@
       "note_count": 2179,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 19237
     },
     {
@@ -23037,6 +23937,7 @@
       "note_count": 1618,
       "has_drums": true,
       "tempo_changes": 15,
+      "drop_channels": [],
       "size": 13307
     },
     {
@@ -23069,6 +23970,12 @@
       "note_count": 4275,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        3,
+        4,
+        6
+      ],
       "size": 37343
     },
     {
@@ -23097,6 +24004,7 @@
       "note_count": 2388,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20407
     },
     {
@@ -23126,6 +24034,7 @@
       "note_count": 1908,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11758
     },
     {
@@ -23154,6 +24063,7 @@
       "note_count": 1960,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12165
     },
     {
@@ -23182,6 +24092,7 @@
       "note_count": 1297,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11029
     },
     {
@@ -23210,6 +24121,7 @@
       "note_count": 1297,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8157
     },
     {
@@ -23238,6 +24150,7 @@
       "note_count": 1741,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11231
     },
     {
@@ -23266,6 +24179,7 @@
       "note_count": 1801,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11064
     },
     {
@@ -23293,6 +24207,7 @@
       "note_count": 352,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2393
     },
     {
@@ -23342,6 +24257,7 @@
       "note_count": 945,
       "has_drums": false,
       "tempo_changes": 96,
+      "drop_channels": [],
       "size": 6896
     },
     {
@@ -23367,6 +24283,7 @@
       "note_count": 24,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 318
     },
     {
@@ -23395,6 +24312,7 @@
       "note_count": 777,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 5057
     },
     {
@@ -23424,6 +24342,7 @@
       "note_count": 2538,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 17837
     },
     {
@@ -23452,6 +24371,7 @@
       "note_count": 432,
       "has_drums": true,
       "tempo_changes": 7,
+      "drop_channels": [],
       "size": 4376
     },
     {
@@ -23483,6 +24403,9 @@
       "note_count": 2133,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6
+      ],
       "size": 18438
     },
     {
@@ -23512,6 +24435,7 @@
       "note_count": 2114,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 17685
     },
     {
@@ -23540,6 +24464,7 @@
       "note_count": 1500,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9681
     },
     {
@@ -23568,6 +24493,7 @@
       "note_count": 1861,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11557
     },
     {
@@ -23599,6 +24525,9 @@
       "note_count": 1025,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 9569
     },
     {
@@ -23627,6 +24556,7 @@
       "note_count": 1527,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11538
     },
     {
@@ -23656,6 +24586,7 @@
       "note_count": 1725,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12920
     },
     {
@@ -23683,6 +24614,7 @@
       "note_count": 244,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2220
     },
     {
@@ -23731,6 +24663,7 @@
       "note_count": 920,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7885
     },
     {
@@ -23760,6 +24693,7 @@
       "note_count": 854,
       "has_drums": true,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 9574
     },
     {
@@ -23792,6 +24726,7 @@
       "note_count": 1443,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 22951
     },
     {
@@ -23822,6 +24757,7 @@
       "note_count": 1039,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9153
     },
     {
@@ -23851,6 +24787,9 @@
       "note_count": 779,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
       "size": 8184
     },
     {
@@ -23882,6 +24821,7 @@
       "note_count": 5696,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 138755
     },
     {
@@ -23921,6 +24861,7 @@
       "note_count": 1279,
       "has_drums": true,
       "tempo_changes": 51,
+      "drop_channels": [],
       "size": 11867
     },
     {
@@ -23951,6 +24892,7 @@
       "note_count": 44,
       "has_drums": false,
       "tempo_changes": 6,
+      "drop_channels": [],
       "size": 914
     },
     {
@@ -23984,6 +24926,7 @@
       "note_count": 2882,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 31294
     },
     {
@@ -24014,6 +24957,7 @@
       "note_count": 725,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10760
     },
     {
@@ -24073,6 +25017,7 @@
       "note_count": 614,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6376
     },
     {
@@ -24101,6 +25046,7 @@
       "note_count": 1134,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7318
     },
     {
@@ -24129,6 +25075,7 @@
       "note_count": 774,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5208
     },
     {
@@ -24156,6 +25103,7 @@
       "note_count": 41,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 519
     },
     {
@@ -24182,6 +25130,7 @@
       "note_count": 656,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4339
     },
     {
@@ -24211,6 +25160,7 @@
       "note_count": 1166,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7474
     },
     {
@@ -24238,6 +25188,7 @@
       "note_count": 428,
       "has_drums": true,
       "tempo_changes": 26,
+      "drop_channels": [],
       "size": 3029
     },
     {
@@ -24266,6 +25217,7 @@
       "note_count": 704,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5203
     },
     {
@@ -24293,6 +25245,7 @@
       "note_count": 75,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 796
     },
     {
@@ -24320,6 +25273,7 @@
       "note_count": 1182,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10266
     },
     {
@@ -24349,6 +25303,7 @@
       "note_count": 817,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6740
     },
     {
@@ -24381,6 +25336,7 @@
       "note_count": 4249,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 26085
     },
     {
@@ -24411,6 +25367,7 @@
       "note_count": 2006,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16579
     },
     {
@@ -24438,6 +25395,7 @@
       "note_count": 1626,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13532
     },
     {
@@ -24467,6 +25425,7 @@
       "note_count": 1364,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12605
     },
     {
@@ -24493,6 +25452,7 @@
       "note_count": 116,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1179
     },
     {
@@ -24524,6 +25484,7 @@
       "note_count": 2209,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20196
     },
     {
@@ -24552,6 +25513,7 @@
       "note_count": 1244,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11704
     },
     {
@@ -24597,6 +25559,7 @@
       "note_count": 843,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9223
     },
     {
@@ -24624,6 +25587,7 @@
       "note_count": 654,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5999
     },
     {
@@ -24651,6 +25615,7 @@
       "note_count": 550,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5164
     },
     {
@@ -24678,6 +25643,7 @@
       "note_count": 266,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2343
     },
     {
@@ -24792,6 +25758,7 @@
       "note_count": 382,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5149
     },
     {
@@ -24819,6 +25786,7 @@
       "note_count": 392,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3449
     },
     {
@@ -24857,6 +25825,7 @@
       "note_count": 947,
       "has_drums": true,
       "tempo_changes": 5,
+      "drop_channels": [],
       "size": 12560
     },
     {
@@ -24887,6 +25856,7 @@
       "note_count": 1430,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13508
     },
     {
@@ -24916,6 +25886,7 @@
       "note_count": 778,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 6478
     },
     {
@@ -24944,6 +25915,9 @@
       "note_count": 1138,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 13000
     },
     {
@@ -24971,6 +25945,7 @@
       "note_count": 192,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5958
     },
     {
@@ -25002,6 +25977,7 @@
       "note_count": 1602,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16707
     },
     {
@@ -25029,6 +26005,7 @@
       "note_count": 110,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4295
     },
     {
@@ -25059,6 +26036,7 @@
       "note_count": 125,
       "has_drums": false,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 4545
     },
     {
@@ -25087,6 +26065,9 @@
       "note_count": 86,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 8446
     },
     {
@@ -25116,6 +26097,7 @@
       "note_count": 551,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3688
     },
     {
@@ -25144,6 +26126,7 @@
       "note_count": 115,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 968
     },
     {
@@ -25173,6 +26156,7 @@
       "note_count": 48,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 582
     },
     {
@@ -25205,6 +26189,7 @@
       "note_count": 1224,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7934
     },
     {
@@ -25234,6 +26219,9 @@
       "note_count": 1641,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 10829
     },
     {
@@ -25265,6 +26253,7 @@
       "note_count": 723,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4736
     },
     {
@@ -25294,6 +26283,7 @@
       "note_count": 1528,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9675
     },
     {
@@ -25323,6 +26313,7 @@
       "note_count": 690,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4505
     },
     {
@@ -25352,6 +26343,7 @@
       "note_count": 722,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4845
     },
     {
@@ -25385,6 +26377,7 @@
       "note_count": 1568,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9976
     },
     {
@@ -25419,6 +26412,10 @@
       "note_count": 1818,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6,
+        10
+      ],
       "size": 11575
     },
     {
@@ -25452,6 +26449,9 @@
       "note_count": 1424,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 9160
     },
     {
@@ -25481,6 +26481,7 @@
       "note_count": 1673,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10558
     },
     {
@@ -25510,6 +26511,7 @@
       "note_count": 891,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5955
     },
     {
@@ -25538,6 +26540,7 @@
       "note_count": 719,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6239
     },
     {
@@ -25566,6 +26569,7 @@
       "note_count": 208,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1791
     },
     {
@@ -25597,6 +26601,7 @@
       "note_count": 2312,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 18756
     },
     {
@@ -25627,6 +26632,7 @@
       "note_count": 860,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7269
     },
     {
@@ -25658,6 +26664,7 @@
       "note_count": 1923,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 15407
     },
     {
@@ -25687,6 +26694,7 @@
       "note_count": 228,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2151
     },
     {
@@ -25712,6 +26720,7 @@
       "note_count": 782,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5428
     },
     {
@@ -25745,6 +26754,7 @@
       "note_count": 1179,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10739
     },
     {
@@ -25777,6 +26787,7 @@
       "note_count": 1666,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13258
     },
     {
@@ -25806,6 +26817,7 @@
       "note_count": 424,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3724
     },
     {
@@ -25838,6 +26850,7 @@
       "note_count": 950,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7686
     },
     {
@@ -25868,6 +26881,7 @@
       "note_count": 911,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7663
     },
     {
@@ -25899,6 +26913,7 @@
       "note_count": 1423,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11402
     },
     {
@@ -25931,6 +26946,7 @@
       "note_count": 830,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6697
     },
     {
@@ -25961,6 +26977,7 @@
       "note_count": 318,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3712
     },
     {
@@ -25993,6 +27010,7 @@
       "note_count": 1082,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8527
     },
     {
@@ -26023,6 +27041,7 @@
       "note_count": 2906,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 26177
     },
     {
@@ -26052,6 +27071,7 @@
       "note_count": 1001,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8836
     },
     {
@@ -26084,6 +27104,7 @@
       "note_count": 1517,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12174
     },
     {
@@ -26114,6 +27135,7 @@
       "note_count": 2931,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 18267
     },
     {
@@ -26143,6 +27165,7 @@
       "note_count": 1223,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 10761
     },
     {
@@ -26175,6 +27198,7 @@
       "note_count": 1798,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14429
     },
     {
@@ -26204,6 +27228,7 @@
       "note_count": 712,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6066
     },
     {
@@ -26236,6 +27261,7 @@
       "note_count": 1222,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9836
     },
     {
@@ -26264,6 +27290,7 @@
       "note_count": 467,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4923
     },
     {
@@ -26294,6 +27321,7 @@
       "note_count": 685,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5552
     },
     {
@@ -26323,6 +27351,7 @@
       "note_count": 678,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5983
     },
     {
@@ -26353,6 +27382,7 @@
       "note_count": 998,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8010
     },
     {
@@ -26382,6 +27412,7 @@
       "note_count": 268,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2573
     },
     {
@@ -26414,6 +27445,7 @@
       "note_count": 936,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8568
     },
     {
@@ -26445,6 +27477,7 @@
       "note_count": 1416,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11373
     },
     {
@@ -26474,6 +27507,7 @@
       "note_count": 198,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2723
     },
     {
@@ -26505,6 +27539,7 @@
       "note_count": 294,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2423
     },
     {
@@ -26536,6 +27571,7 @@
       "note_count": 1328,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11360
     },
     {
@@ -26567,6 +27603,7 @@
       "note_count": 1442,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11519
     },
     {
@@ -26599,6 +27636,7 @@
       "note_count": 446,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4004
     },
     {
@@ -26629,6 +27667,7 @@
       "note_count": 1384,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11803
     },
     {
@@ -26661,6 +27700,7 @@
       "note_count": 1711,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 13707
     },
     {
@@ -26689,6 +27729,7 @@
       "note_count": 215,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2213
     },
     {
@@ -26720,6 +27761,7 @@
       "note_count": 539,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4372
     },
     {
@@ -26752,6 +27794,7 @@
       "note_count": 1241,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9941
     },
     {
@@ -26782,6 +27825,7 @@
       "note_count": 1006,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8652
     },
     {
@@ -26813,6 +27857,7 @@
       "note_count": 1757,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14083
     },
     {
@@ -26843,6 +27888,7 @@
       "note_count": 1006,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8652
     },
     {
@@ -26870,6 +27916,7 @@
       "note_count": 444,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4071
     },
     {
@@ -26902,6 +27949,7 @@
       "note_count": 514,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4217
     },
     {
@@ -26933,6 +27981,7 @@
       "note_count": 2867,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 24713
     },
     {
@@ -26964,6 +28013,7 @@
       "note_count": 1392,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11165
     },
     {
@@ -26994,6 +28044,7 @@
       "note_count": 1753,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14511
     },
     {
@@ -27020,6 +28071,7 @@
       "note_count": 100,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 991
     },
     {
@@ -27051,6 +28103,7 @@
       "note_count": 1537,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12331
     },
     {
@@ -27080,6 +28133,7 @@
       "note_count": 1512,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 12564
     },
     {
@@ -27108,6 +28162,7 @@
       "note_count": 252,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2283
     },
     {
@@ -27138,6 +28193,7 @@
       "note_count": 2246,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18340
     },
     {
@@ -27169,6 +28225,7 @@
       "note_count": 1221,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9807
     },
     {
@@ -27201,6 +28258,7 @@
       "note_count": 1066,
       "has_drums": true,
       "tempo_changes": 37,
+      "drop_channels": [],
       "size": 56884
     },
     {
@@ -27238,6 +28296,9 @@
       "note_count": 4393,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 40978
     },
     {
@@ -27278,6 +28339,7 @@
       "note_count": 5182,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 44581
     },
     {
@@ -27311,6 +28373,9 @@
       "note_count": 4932,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 31470
     },
     {
@@ -27342,6 +28407,7 @@
       "note_count": 197,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 1731
     },
     {
@@ -27376,6 +28442,7 @@
       "note_count": 4825,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 29711
     },
     {
@@ -27416,6 +28483,11 @@
       "note_count": 14514,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6,
+        8,
+        13
+      ],
       "size": 144624
     },
     {
@@ -27465,6 +28537,11 @@
       "note_count": 29028,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        6,
+        8,
+        13
+      ],
       "size": 289996
     },
     {
@@ -27495,6 +28572,7 @@
       "note_count": 1007,
       "has_drums": true,
       "tempo_changes": 19,
+      "drop_channels": [],
       "size": 8429
     },
     {
@@ -27527,6 +28605,7 @@
       "note_count": 1955,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 14870
     },
     {
@@ -27561,6 +28640,9 @@
       "note_count": 1082,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [
+        5
+      ],
       "size": 15534
     },
     {
@@ -27593,6 +28675,7 @@
       "note_count": 564,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 35816
     },
     {
@@ -27627,6 +28710,7 @@
       "note_count": 2299,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16195
     },
     {
@@ -27660,6 +28744,7 @@
       "note_count": 6287,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 48041
     },
     {
@@ -27695,6 +28780,7 @@
       "note_count": 10476,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 76000
     },
     {
@@ -27727,6 +28813,7 @@
       "note_count": 1109,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 52401
     },
     {
@@ -27767,6 +28854,7 @@
       "note_count": 3479,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 30467
     },
     {
@@ -27805,6 +28893,7 @@
       "note_count": 8263,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 67945
     },
     {
@@ -27831,6 +28920,7 @@
       "note_count": 382,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 3648
     },
     {
@@ -27858,6 +28948,7 @@
       "note_count": 313,
       "has_drums": false,
       "tempo_changes": 188,
+      "drop_channels": [],
       "size": 6126
     },
     {
@@ -27890,6 +28981,9 @@
       "note_count": 1471,
       "has_drums": true,
       "tempo_changes": 2,
+      "drop_channels": [
+        3
+      ],
       "size": 18275
     },
     {
@@ -27941,6 +29035,7 @@
       "note_count": 184,
       "has_drums": true,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 1965
     },
     {
@@ -27971,6 +29066,7 @@
       "note_count": 1337,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 11708
     },
     {
@@ -27998,6 +29094,7 @@
       "note_count": 955,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8738
     },
     {
@@ -28042,6 +29139,7 @@
       "note_count": 310,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2810
     },
     {
@@ -28072,6 +29170,7 @@
       "note_count": 945,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8819
     },
     {
@@ -28116,6 +29215,7 @@
       "note_count": 310,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2810
     },
     {
@@ -28160,6 +29260,7 @@
       "note_count": 316,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 2983
     },
     {
@@ -28208,6 +29309,7 @@
       "note_count": 436,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 3915
     },
     {
@@ -28239,6 +29341,7 @@
       "note_count": 932,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6236
     },
     {
@@ -28304,6 +29407,7 @@
       "note_count": 1008,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6848
     },
     {
@@ -28331,6 +29435,7 @@
       "note_count": 959,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8015
     },
     {
@@ -28367,6 +29472,7 @@
       "note_count": 67,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 793
     },
     {
@@ -28396,6 +29502,9 @@
       "note_count": 1431,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
       "size": 13080
     },
     {
@@ -28426,6 +29535,7 @@
       "note_count": 1235,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 16379
     },
     {
@@ -28455,6 +29565,7 @@
       "note_count": 674,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 6153
     },
     {
@@ -28483,6 +29594,7 @@
       "note_count": 564,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [],
       "size": 3778
     },
     {
@@ -28527,6 +29639,7 @@
       "note_count": 200,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 1799
     },
     {
@@ -28571,6 +29684,7 @@
       "note_count": 200,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 1763
     },
     {
@@ -28600,6 +29714,7 @@
       "note_count": 236,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [],
       "size": 2344
     },
     {
@@ -28633,6 +29748,9 @@
       "note_count": 3234,
       "has_drums": false,
       "tempo_changes": 6,
+      "drop_channels": [
+        7
+      ],
       "size": 26713
     },
     {
@@ -28665,6 +29783,9 @@
       "note_count": 1672,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        6
+      ],
       "size": 12635
     },
     {
@@ -28697,6 +29818,7 @@
       "note_count": 2118,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 18826
     },
     {
@@ -28722,6 +29844,7 @@
       "note_count": 827,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 7134
     },
     {
@@ -28750,6 +29873,7 @@
       "note_count": 592,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 5526
     },
     {
@@ -28775,6 +29899,7 @@
       "note_count": 6,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 148
     },
     {
@@ -28804,6 +29929,9 @@
       "note_count": 399,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        4
+      ],
       "size": 3975
     },
     {
@@ -28835,6 +29963,10 @@
       "note_count": 1166,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6
+      ],
       "size": 10823
     },
     {
@@ -28871,6 +30003,7 @@
       "note_count": 1593,
       "has_drums": true,
       "tempo_changes": 3,
+      "drop_channels": [],
       "size": 14168
     },
     {
@@ -28901,6 +30034,9 @@
       "note_count": 178,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [
+        8
+      ],
       "size": 2050
     },
     {
@@ -28947,6 +30083,9 @@
       "note_count": 9582,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
       "size": 69652
     },
     {
@@ -28972,6 +30111,7 @@
       "note_count": 569,
       "has_drums": false,
       "tempo_changes": 19,
+      "drop_channels": [],
       "size": 5763
     },
     {
@@ -28998,6 +30138,9 @@
       "note_count": 18,
       "has_drums": false,
       "tempo_changes": 2,
+      "drop_channels": [
+        1
+      ],
       "size": 428
     },
     {
@@ -29023,6 +30166,7 @@
       "note_count": 50,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 557
     },
     {
@@ -29052,6 +30196,7 @@
       "note_count": 921,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8404
     },
     {
@@ -29093,6 +30238,9 @@
       "note_count": 664,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
       "size": 6111
     },
     {
@@ -29125,6 +30273,9 @@
       "note_count": 715,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        10
+      ],
       "size": 6772
     },
     {
@@ -29160,6 +30311,7 @@
       "note_count": 1735,
       "has_drums": true,
       "tempo_changes": 61,
+      "drop_channels": [],
       "size": 11953
     },
     {
@@ -29190,6 +30342,7 @@
       "note_count": 314,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 4323
     },
     {
@@ -29215,6 +30368,7 @@
       "note_count": 1092,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 9425
     },
     {
@@ -29243,6 +30397,7 @@
       "note_count": 1010,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8653
     },
     {
@@ -29273,6 +30428,9 @@
       "note_count": 1011,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "size": 6626
     },
     {
@@ -29313,6 +30471,7 @@
       "note_count": 1906,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 20673
     },
     {
@@ -29357,6 +30516,10 @@
       "note_count": 288,
       "has_drums": false,
       "tempo_changes": 4,
+      "drop_channels": [
+        1,
+        2
+      ],
       "size": 2521
     },
     {
@@ -29385,6 +30548,7 @@
       "note_count": 1010,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 8808
     },
     {
@@ -29417,6 +30581,7 @@
       "note_count": 1159,
       "has_drums": true,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 11578
     },
     {
@@ -29444,6 +30609,7 @@
       "note_count": 49,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 658
     },
     {
@@ -29471,6 +30637,7 @@
       "note_count": 49,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 658
     },
     {
@@ -29500,6 +30667,7 @@
       "note_count": 66,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 923
     },
     {
@@ -29529,6 +30697,7 @@
       "note_count": 90,
       "has_drums": false,
       "tempo_changes": 1,
+      "drop_channels": [],
       "size": 830
     }
   ]

@@ -2,9 +2,10 @@
 // the playing deck's setTimeout-driven playback doesn't stall.
 
 self.onmessage = (e) => {
-  const { id, buffer } = e.data;
+  const { id, buffer, dropChannels } = e.data;
   try {
-    const midi = parseMidiFile(buffer);
+    const dropSet = new Set(dropChannels || []);
+    const midi = parseMidiFile(buffer, dropSet);
     const rollData = compileNotes(midi);
     // Transfer noting back — events/notes are plain arrays; structured clone is fine
     self.postMessage({ id, midi, rollData });
@@ -13,7 +14,7 @@ self.onmessage = (e) => {
   }
 };
 
-function parseMidiFile(arrayBuffer) {
+function parseMidiFile(arrayBuffer, dropSet = new Set()) {
   const data = new Uint8Array(arrayBuffer);
   const view = new DataView(arrayBuffer);
   let pos = 0;
@@ -63,10 +64,14 @@ function parseMidiFile(arrayBuffer) {
         pos += readVarLen();
       } else if (type === 0x90) {
         const note = data[pos++], vel = data[pos++];
-        events.push({ tick, type: vel > 0 ? 'noteOn' : 'noteOff', channel, note, velocity: vel });
+        if (!dropSet.has(channel)) {
+          events.push({ tick, type: vel > 0 ? 'noteOn' : 'noteOff', channel, note, velocity: vel });
+        }
       } else if (type === 0x80) {
         const note = data[pos++]; pos++;
-        events.push({ tick, type: 'noteOff', channel, note, velocity: 0 });
+        if (!dropSet.has(channel)) {
+          events.push({ tick, type: 'noteOff', channel, note, velocity: 0 });
+        }
       } else if (type === 0xc0) { pos++; }
       else if (type === 0xb0 || type === 0xe0 || type === 0xa0) { pos += 2; }
       else if (type === 0xd0) { pos++; }
