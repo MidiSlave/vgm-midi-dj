@@ -1,3 +1,75 @@
+# Session progress — 2026-05-19
+
+Second session. Built two-anchor warp, metronome, and a per-track override system; fixed a clutch of pernicious manifest bugs (Terra Funk's stray tempo at bar 190, Jenova's straggler-note cluster, Contra's IOI quantisation, FF6 ending's truncated file). Still local, not pushed.
+
+## Library
+
+- **Lemmings dropped** — 26 tracks removed (`docs/midi-files/lemmings/`). Library: 818 → 792 tracks across 15 games.
+- **Doctored Doom & DKC tracks swapped in** — `doom/level2.mid`, `doom/level9.mid`, `donkey-kong/reptilerumble.mid` replaced with Logic-beat-mapped versions (file tempos are now correct: 136 / 76.89 / 103.46 BPM). Originals copied to `backups/originals-pre-doctored/` outside the served tree.
+
+## Previewer — two-anchor warp
+
+Replaced the single "mark beat 1 on roll" button with a proper **two-anchor warp** override. User clicks any note on the roll to pin Anchor A, labels it as a (bar, beat) position; same for Anchor B somewhere later; **Apply warp** back-solves `perceived_bpm` and `beat_one_tick` so both anchors land on grid.
+
+- Snap-to-nearest-noteOn within ~2% of the visible window (Shift bypasses snap).
+- Gold "A" and blue "B" tab markers drawn on the roll as dashed verticals.
+- Bar/beat inputs (defaults 1/1 and 9/1). Compound meters honoured via `meter.ticksPerBeatMul`.
+- Apply button flashes the resulting BPM + offset; warns on degenerate inputs (A=B, opposite directions, out-of-range BPM).
+- Anchors persist per-track in localStorage alongside the existing BPM/meter/offset overrides.
+- New meter options in the dropdown: 2/4, 6/4, 9/8.
+
+The previewer's "detected" BPM and meter now come from the manifest (`perceived_bpm`, `meter`) instead of being hardcoded. The info bar shows `XX (file claims YY)` parenthetical when the manifest's perceived value differs from the file's raw tempo average — helpful for spotting lying-tempo files (Doom, etc).
+
+## Previewer — metronome + spacebar
+
+- **♩ Metronome** toggle in the transport bar. Schedules GM-drum-kit woodblock hits on every grid beat: note 76 (Hi Wood Block) on downbeats, 77 (Lo Wood Block) on other beats. Beat positions are derived from the active grid (BPM × meter × beat-1 offset) and converted to ms via the same tempo map the MIDI events ride.
+- **Spacebar** toggles play/pause anywhere on the page, ignored when an INPUT/SELECT/TEXTAREA has focus so typing a BPM doesn't pause playback.
+
+## Per-track tempo override mechanism
+
+New file: **`tools/tempo-overrides.json`**. Per-path entries override the manifest's `perceived_bpm` (and recompute `perceived_ticks_per_beat`) for tracks the user has verified by ear — typically after beat-mapping in Logic. `build-manifest.js` reads it on every run, applies entries, preserves the heuristic's guess in a new `perceived_bpm_auto` field. Seeded with:
+- `doom/level2.mid` → 136
+- `doom/level9.mid` → 77
+- `donkey-kong/reptilerumble.mid` → 103
+
+## Manifest builder — major correctness pass
+
+Several systemic bugs in `tools/build-manifest.js` and `docs/midi-worker.js`:
+
+1. **End-of-music tick** is now computed from the last *note* event, not the last *any* event. Stray tempo / EOT / sysex / CC events past the last note (Terra Funk has a tempo at bar 190 past bar-83 music) were inflating `duration_sec` and the roll's maxTick.
+2. **Straggler-cluster trim** — small trailing note clusters separated from the bulk by a long silence are now trimmed. Yamaha XG ("Xg") rips include 1–5% of notes 10×+ past the music's real end. Jenova Absolute went from **26:07 → 2:03** (Logic says 2:01). Mark of the Traitor: **154:18 → 1:38**. Staff Roll: **197:15 → 7:02**.
+3. **Stop rounding BPM** — `bpm` and `bpm_initial` now carry two decimal places. The worker also stops rounding tempo events to integer (`Math.round(60000000/tempo)` → `60000000/tempo`), so playback ms-per-tick stays accurate over long tracks.
+4. **Trust the file's tempo** when it's in a normal listening range (70–200 BPM). The IOI heuristic is kept only as a rescue for files lying at extreme tempos — Doom at 60, Castlevania at 240/250. Contra base now correctly reports **146** (was 143) instead of the IOI's quantised guess.
+5. **Truncated-file tolerance in the worker** — `FF6_60_Ending_Theme.mid` claims 21 tracks but the file is corrupt and ends after track 7. The worker now bounds-checks each MTrk header before reading and clamps `trackEnd` to file size, matching the behaviour `build-manifest` already had.
+
+## Findings — empirical groundwork for grid detection
+
+- **Doom level9** is *really* at 76.89 BPM (Logic Smart Tempo). Our IOI heuristic was giving 154 (× 2). My alignment-score scan ranked 102.5 (× 4/3) first — even a "smarter" detector can't break the 2× / 3:2 tie without listening. Suggests the future detector should surface **top-3 candidates** as one-click chips rather than guessing.
+- **Many tracks have meter changes** that we currently collapse to the first meter event. Jenova Absolute is `2/4 → 1/4 → 3/4`; most of the music is in 3/4. The manifest reports 2/4. Same for Contra boss's tempo: file has an intro automation 132 → 136, weighted average is 134.05, Logic shows the steady 136. **The right fix is a meter-aware / tempo-aware grid renderer** — walk the file's actual maps segment by segment rather than collapsing to one number. Outlined but not yet built.
+
+## Open / not done
+
+- **Meter-map / tempo-map architecture** — the structural fix to "VGM-DJ should respect the file's automation". Pass the full meter and tempo arrays through to the worker output and `tracks.json`; previewer's `renderRoll` walks the meter map; metronome follows. ~150 lines across worker + previewer + manifest. Highest-leverage thing left undone.
+- **Main DJ reading overrides** — `app.js`'s `buildRoutingUI` still ignores `overrides.json`. Previewer-side work doesn't reach the live rig yet.
+- **Spread-out straggler tracks** — 36 tracks still report >30 min after the cluster-trim. Their stragglers are spread across the timeline rather than clustered. Needs a density-based rule (end-of-music = where note density drops to ~zero) rather than a single-gap-boundary rule.
+- **Candidate-chip BPM detector** — "Auto-detect grid" button in the previewer that shows top-3 alignment-score candidates as chips. Foundation done (alignment scoring works); UI not built.
+
+## What's verified
+
+- Contra base / stage1 now show 146 BPM (matched Logic exactly).
+- Terra Funk shows 2:46 instead of 6:21.
+- Jenova Absolute shows 2:03 instead of 26:07.
+- FF6 ending loads instead of throwing.
+- Doom level9 perceived BPM = 77 (matches doctored file + Logic).
+- Castlevania files still get the IOI half-time fold (240 → 115 etc).
+
+What still needs the user's eyes:
+- Previewer two-anchor warp: pick a song that doesn't already line up, anchor A on a downbeat, anchor B further on, hit Apply, verify grid follows.
+- Metronome: toggle on, verify clicks land on the visible grid lines.
+- Spacebar play/pause works; doesn't pause when typing in BPM input.
+
+---
+
 # Session progress — 2026-05-18
 
 Fifteen commits landed on `main`, all local (not yet pushed to GitHub). Library, tools, dispatcher, sync, and a new standalone previewer/editor page all moved forward in one session.

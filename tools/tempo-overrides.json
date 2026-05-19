@@ -1,0 +1,8 @@
+{
+  "_comment": "Per-track tempo overrides. For tracks whose embedded BPM has been verified (e.g. beat-mapped in Logic), set perceived_bpm to the file's own avg tempo instead of running the IOI heuristic. Path is relative to docs/midi-files/. The build-manifest tool reads this file and merges entries into tracks.json.",
+  "tracks": {
+    "doom/level2.mid":          { "perceived_bpm": 136 },
+    "doom/level9.mid":          { "perceived_bpm": 77 },
+    "donkey-kong/reptilerumble.mid": { "perceived_bpm": 103 }
+  }
+}

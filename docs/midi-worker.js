@@ -36,9 +36,15 @@ function parseMidiFile(arrayBuffer, dropSet = new Set()) {
   const events = [];
 
   for (let t = 0; t < numTracks; t++) {
-    pos += 4; // 'MTrk'
+    // Tolerate truncated files: stop walking if the next MTrk header or its
+    // declared length runs past EOF (FF6_60_Ending_Theme.mid claims 21 tracks
+    // but the data runs out after track 7).
+    if (pos + 8 > data.length) break;
+    const trackMagic = String.fromCharCode(data[pos], data[pos+1], data[pos+2], data[pos+3]);
+    if (trackMagic !== 'MTrk') break;
+    pos += 4;
     const trackLen = view.getUint32(pos); pos += 4;
-    const trackEnd = pos + trackLen;
+    const trackEnd = Math.min(pos + trackLen, data.length);
     let tick = 0;
     let runningStatus = 0;
 
@@ -57,7 +63,10 @@ function parseMidiFile(arrayBuffer, dropSet = new Set()) {
         const len = readVarLen();
         if (metaType === 0x51) {
           const tempo = (data[pos] << 16) | (data[pos + 1] << 8) | data[pos + 2];
-          events.push({ tick, type: 'tempo', bpm: Math.round(60000000 / tempo) });
+          // Keep fractional BPM so ms-per-tick stays accurate. Logic exports
+          // tempos like 146.0003 which round to 146; over a long track the
+          // 0.0003 rounding accumulates into audible drift.
+          events.push({ tick, type: 'tempo', bpm: 60000000 / tempo });
         }
         pos += len;
       } else if (status === 0xf0 || status === 0xf7) {
@@ -104,11 +113,17 @@ function parseMidiFile(arrayBuffer, dropSet = new Set()) {
 function compileNotes(midi) {
   const notes = [];
   const open = new Map();
-  let maxTick = 0;
+  // End-of-music = last note-off, not last event. Trailing tempo / EOT /
+  // sysex / controller events have been observed in the wild past the last
+  // note (Terra Funk has a stray tempo at bar 190 past bar-83 music) and
+  // would otherwise inflate maxTick and render acres of empty piano roll.
+  let lastEventTick = 0;
+  const noteOnTicks = [];
   for (const ev of midi.events) {
-    if (ev.tick > maxTick) maxTick = ev.tick;
+    if (ev.tick > lastEventTick) lastEventTick = ev.tick;
     if (ev.type === 'noteOn') {
       open.set(`${ev.channel}:${ev.note}`, { tick: ev.tick, vel: ev.velocity });
+      noteOnTicks.push(ev.tick);
     } else if (ev.type === 'noteOff') {
       const key = `${ev.channel}:${ev.note}`;
       const start = open.get(key);
@@ -118,12 +133,34 @@ function compileNotes(midi) {
       }
     }
   }
+  // Hanging notes (unmatched noteOn at file end) ring out to the last event.
   for (const [key, start] of open) {
     const [ch, note] = key.split(':').map(Number);
-    notes.push({ channel: ch, note, startTick: start.tick, endTick: maxTick, velocity: start.vel });
+    notes.push({ channel: ch, note, startTick: start.tick, endTick: lastEventTick, velocity: start.vel });
   }
+  // Trim trailing straggler-clusters past a long silence (Jenova Absolute
+  // had 21 notes 10× past the music's actual end).
+  const musicalEnd = computeMusicalEnd(noteOnTicks, midi.ticksPerBeat);
   const pitched = notes.filter(n => n.channel !== 9);
   const minNote = pitched.length ? Math.min(...pitched.map(n => n.note)) - 2 : 48;
   const maxNote = pitched.length ? Math.max(...pitched.map(n => n.note)) + 2 : 84;
-  return { notes, maxTick: Math.max(1, maxTick), minNote, maxNote };
+  return { notes, maxTick: Math.max(1, musicalEnd), minNote, maxNote };
+}
+
+function computeMusicalEnd(noteTicks, ticksPerBeat) {
+  if (!noteTicks || noteTicks.length === 0) return 0;
+  const sorted = [...noteTicks].sort((a, b) => a - b);
+  const GAP_BEATS = 32;
+  const MAX_TAIL_FRAC = 0.05;
+  const gapTicks = GAP_BEATS * ticksPerBeat;
+  let endIdx = sorted.length - 1;
+  for (let i = sorted.length - 1; i > 0; i--) {
+    const gap = sorted[i] - sorted[i - 1];
+    if (gap > gapTicks) {
+      const tail = sorted.length - i;
+      if (tail < sorted.length * MAX_TAIL_FRAC) endIdx = i - 1;
+      else break;
+    }
+  }
+  return sorted[endIdx] + ticksPerBeat * 4;
 }

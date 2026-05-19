@@ -7,6 +7,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const MIDI_DIR = join(ROOT, 'docs', 'midi-files');
 const OUT = join(ROOT, 'docs', 'tracks.json');
+const TEMPO_OVERRIDES = join(__dirname, 'tempo-overrides.json');
+
+// Per-track corrections that override the auto-detected fields. Used for
+// tracks the user has verified by ear (typically after beat-mapping in Logic).
+// Path keys are relative to docs/midi-files/.
+function loadTempoOverrides() {
+  try {
+    const raw = readFileSync(TEMPO_OVERRIDES, 'utf8');
+    return JSON.parse(raw).tracks || {};
+  } catch {
+    return {};
+  }
+}
 
 const KEY_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
@@ -79,6 +92,35 @@ function detectPerceivedBpm(onsetTimes) {
 // within a small tick tolerance, the higher-numbered one is marked as a drop
 // candidate (the lower-numbered channel is kept as the "primary"). Returns a
 // sorted array of channel IDs to drop on parse.
+// Determine where the music actually ends in tick space. Some files have
+// trailing meta events or "straggler" notes far past the bulk of the music
+// (Yamaha XG "Xg" rips put 1-2% of notes 10×+ past the music's end). Trim
+// trailing clusters that sit beyond a long silence and are a tiny fraction
+// of the total — those reliably indicate junk, not legitimate outros.
+function computeMusicalEnd(allNoteTicks, fallbackTick, ticksPerBeat, fileMaxTick) {
+  if (!allNoteTicks || allNoteTicks.length === 0) {
+    return fallbackTick > 0 ? fallbackTick : fileMaxTick;
+  }
+  const sorted = [...allNoteTicks].sort((a, b) => a - b);
+  const GAP_BEATS = 32;       // silence longer than 32 beats marks a cluster boundary
+  const MAX_TAIL_FRAC = 0.05; // ignore <5% trailing cluster past a long gap
+  const gapTicks = GAP_BEATS * ticksPerBeat;
+  let endIdx = sorted.length - 1;
+  for (let i = sorted.length - 1; i > 0; i--) {
+    const gap = sorted[i] - sorted[i - 1];
+    if (gap > gapTicks) {
+      const tailCount = sorted.length - i; // notes at or past the boundary
+      if (tailCount < sorted.length * MAX_TAIL_FRAC) {
+        endIdx = i - 1; // chop this trailing cluster; keep scanning
+      } else {
+        break; // the trailing region is too big to be junk
+      }
+    }
+  }
+  // Add a one-bar tail so a final ringing note doesn't get clipped visually.
+  return sorted[endIdx] + ticksPerBeat * 4;
+}
+
 function detectDropChannels(channelNotes) {
   const TICK_TOL = 5;
   const channelIds = Object.keys(channelNotes)
@@ -167,6 +209,14 @@ function parseMidi(buffer) {
   const channelNotes = {}; // ch → [{tick, pitch}]  — for stereo-duplicate detection
   let totalNotes = 0;
   let maxTick = 0;
+  // End-of-music tick. Some files have stray events (tempo, EOT, sysex, CC)
+  // long after the last note; using maxTick for duration inflates it. We
+  // bound duration_sec by the last note-on / note-off instead, AND trim
+  // straggler notes that sit past a long silence (FF "Xg" rips put 1-2% of
+  // notes 10×+ past the bulk — Jenova Absolute had 21 notes after the music's
+  // real end, blowing duration up from 2:01 to 26:07).
+  let lastNoteEventTick = 0;
+  const allNoteTicks = []; // for straggler trim
   let trackName = null;
   let copyrightOrText = null;
   const programs = {};
@@ -213,13 +263,18 @@ function parseMidi(buffer) {
         if (vel > 0) {
           channels.add(channel);
           totalNotes++;
+          if (tick > lastNoteEventTick) lastNoteEventTick = tick;
+          allNoteTicks.push(tick);
           if (channel !== 9) {
             pitchClasses[note % 12] += vel;
             onsets.push({ tick, channel });
             (channelNotes[channel] ||= []).push({ tick, pitch: note });
           }
+        } else {
+          if (tick > lastNoteEventTick) lastNoteEventTick = tick; // velocity-0 noteOn = noteOff
         }
       } else if (type === 0x80) {
+        if (tick > lastNoteEventTick) lastNoteEventTick = tick;
         pos += 2;
       } else if (type === 0xc0) {
         const program = buffer[pos++];
@@ -235,22 +290,29 @@ function parseMidi(buffer) {
     pos = trackEnd;
   }
 
-  // Duration calculation across tempo changes
+  // Duration & BPM-weighting use the musical end-tick. Two passes:
+  //   1) bound by last note-on/off (not last event of any kind)
+  //   2) trim straggler note clusters separated by a long silence
+  const musicalEndTick = computeMusicalEnd(allNoteTicks, lastNoteEventTick, ticksPerBeat, maxTick);
   let duration_sec = 0;
   if (tempos.length === 0) tempos.push({ tick: 0, bpm: 120 });
   if (tempos[0].tick > 0) tempos.unshift({ tick: 0, bpm: 120 });
   for (let i = 0; i < tempos.length; i++) {
     const start = tempos[i].tick;
-    const end = i + 1 < tempos.length ? tempos[i + 1].tick : maxTick;
+    if (start >= musicalEndTick) break;
+    const nextTick = i + 1 < tempos.length ? tempos[i + 1].tick : musicalEndTick;
+    const end = Math.min(nextTick, musicalEndTick);
     const beats = (end - start) / ticksPerBeat;
     duration_sec += (beats / tempos[i].bpm) * 60;
   }
 
-  // Average BPM weighted by tick duration
+  // Average BPM weighted by tick duration (over musical span only)
   let weightedBpm = 0, totalTicks = 0;
   for (let i = 0; i < tempos.length; i++) {
     const start = tempos[i].tick;
-    const end = i + 1 < tempos.length ? tempos[i + 1].tick : maxTick;
+    if (start >= musicalEndTick) break;
+    const nextTick = i + 1 < tempos.length ? tempos[i + 1].tick : musicalEndTick;
+    const end = Math.min(nextTick, musicalEndTick);
     const ticks = Math.max(1, end - start);
     weightedBpm += tempos[i].bpm * ticks;
     totalTicks += ticks;
@@ -274,7 +336,16 @@ function parseMidi(buffer) {
       onsetTimes.push(segStartSec + (dt / ticksPerBeat) * (60 / tempos[segIdx].bpm));
     }
   }
-  const perceivedBpm = detectPerceivedBpm(onsetTimes);
+  const heuristicBpm = detectPerceivedBpm(onsetTimes);
+  // Prefer the file's own tempo when it's in a normal listening range
+  // (70–200 BPM). The IOI heuristic is a rescue only for files that lie at
+  // suspiciously extreme tempos (Doom @ 60, Castlevania @ 240+).
+  let perceivedBpm;
+  if (avgBpm >= 70 && avgBpm <= 200) {
+    perceivedBpm = Math.round(avgBpm * 100) / 100;
+  } else {
+    perceivedBpm = heuristicBpm;
+  }
   // Ratio of perceived-to-metadata BPM informs ticks-per-perceived-beat used by loops
   const metaBpm = avgBpm;
   const perceivedTicksPerBeat = perceivedBpm
@@ -286,8 +357,8 @@ function parseMidi(buffer) {
   return {
     format, numTracks, ticksPerBeat,
     drop_channels,
-    bpm: Math.round(avgBpm),
-    bpm_initial: Math.round(tempos[0].bpm),
+    bpm: Math.round(avgBpm * 100) / 100,
+    bpm_initial: Math.round(tempos[0].bpm * 100) / 100,
     perceived_bpm: perceivedBpm,
     perceived_ticks_per_beat: perceivedTicksPerBeat,
     meter: meters.length ? `${meters[0].numerator}/${meters[0].denominator}` : '4/4',
@@ -332,6 +403,10 @@ async function main() {
   const files = await walk(MIDI_DIR);
   console.log(`Found ${files.length} MIDI files`);
 
+  const overrides = loadTempoOverrides();
+  const overrideKeys = new Set(Object.keys(overrides));
+  let overridesApplied = 0;
+
   const tracks = [];
   let failed = 0;
   for (const file of files) {
@@ -344,6 +419,17 @@ async function main() {
       const size = statSync(file).size;
       const filename = file.split('/').pop();
       const cleanName = info.track_name && /^[\x20-\x7e]+$/.test(info.track_name) ? info.track_name.trim() : null;
+      // Apply per-track overrides. Recompute perceived_ticks_per_beat so the
+      // loop math stays consistent with the corrected perceived_bpm.
+      const overrideKey = relative(MIDI_DIR, file);
+      const ov = overrides[overrideKey];
+      let perceivedBpm = info.perceived_bpm;
+      let perceivedTpb = info.perceived_ticks_per_beat;
+      if (ov && ov.perceived_bpm) {
+        perceivedBpm = ov.perceived_bpm;
+        perceivedTpb = Math.round((info.bpm / perceivedBpm) * info.ticksPerBeat);
+        overridesApplied++;
+      }
       tracks.push({
         path: rel, // relative to public/ for fetch
         file: filename,
@@ -352,8 +438,9 @@ async function main() {
         game: gameDir,
         bpm: info.bpm,
         bpm_initial: info.bpm_initial,
-        perceived_bpm: info.perceived_bpm,
-        perceived_ticks_per_beat: info.perceived_ticks_per_beat,
+        perceived_bpm: perceivedBpm,
+        perceived_bpm_auto: info.perceived_bpm,
+        perceived_ticks_per_beat: perceivedTpb,
         meter: info.meter,
         meter_changes: info.meter_changes,
         meters_unique: info.meters_unique,
@@ -380,7 +467,9 @@ async function main() {
     tracks,
   }, null, 2));
 
-  console.log(`Wrote ${tracks.length} tracks → ${OUT} (${failed} failed)`);
+  const unmatched = [...overrideKeys].filter(k => !tracks.some(t => relative(MIDI_DIR, join(MIDI_DIR, k)) === k && t.path.endsWith(k)));
+  console.log(`Wrote ${tracks.length} tracks → ${OUT} (${failed} failed, ${overridesApplied} overrides applied)`);
+  if (unmatched.length) console.log(`  override keys with no matching track: ${unmatched.join(', ')}`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

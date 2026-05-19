@@ -45,6 +45,7 @@
       <button class="prev-btn prev-btn-large" id="prev-stop">■ Stop</button>
       <div class="prev-time"><span id="prev-time-cur">0:00</span> / <span id="prev-time-end">0:00</span></div>
       <div class="prev-progress"><div class="prev-progress-fill" id="prev-progress"></div></div>
+      <button class="prev-btn prev-metronome" id="prev-metronome" title="Metronome — woodblock on every grid beat (space-bar starts/stops)">♩ Metronome</button>
       <div class="prev-master-vol">
         <label>Vol</label>
         <input type="range" id="prev-volume" min="0" max="100" value="70">
@@ -56,33 +57,58 @@
         <label class="overrides-label">Grid</label>
         <div class="overrides-field">
           <span class="overrides-sublabel">BPM</span>
-          <input type="number" id="ov-bpm" min="20" max="240" step="1" class="ov-input">
+          <input type="number" id="ov-bpm" min="20" max="240" step="0.01" class="ov-input">
           <span class="muted" id="ov-bpm-detected">—</span>
         </div>
         <div class="overrides-field">
           <span class="overrides-sublabel">Meter</span>
           <select id="ov-meter" class="prev-select">
             <option value="">— detected —</option>
+            <option value="2/4">2/4</option>
             <option value="3/4">3/4</option>
             <option value="4/4">4/4</option>
             <option value="5/4">5/4</option>
+            <option value="6/4">6/4</option>
             <option value="6/8">6/8</option>
             <option value="7/8">7/8</option>
+            <option value="9/8">9/8</option>
             <option value="12/8">12/8</option>
           </select>
         </div>
         <div class="overrides-field">
-          <span class="overrides-sublabel">Beat 1 offset (ticks)</span>
+          <span class="overrides-sublabel">Offset (ticks)</span>
           <input type="number" id="ov-offset" step="1" value="0" class="ov-input">
-          <button class="prev-btn" id="ov-mark-beat1" title="Click on the piano roll to set beat 1">Mark on roll</button>
         </div>
         <button class="prev-btn" id="ov-reset">Reset</button>
+      </div>
+      <div class="overrides-row anchor-row">
+        <label class="overrides-label">Warp</label>
+        <div class="overrides-field anchor-field">
+          <span class="overrides-sublabel anchor-label anchor-label-a">A</span>
+          <span class="overrides-sublabel">bar</span>
+          <input type="number" id="ov-anchor-a-bar"  class="ov-input ov-input-tiny" value="1" min="1" step="1">
+          <span class="overrides-sublabel">beat</span>
+          <input type="number" id="ov-anchor-a-beat" class="ov-input ov-input-tiny" value="1" min="1" step="1">
+          <button class="prev-btn" id="ov-set-anchor-a" title="Click on the piano roll to set anchor A">Set on roll</button>
+          <span class="muted anchor-tick" id="ov-anchor-a-tick">— tick</span>
+        </div>
+        <div class="overrides-field anchor-field">
+          <span class="overrides-sublabel anchor-label anchor-label-b">B</span>
+          <span class="overrides-sublabel">bar</span>
+          <input type="number" id="ov-anchor-b-bar"  class="ov-input ov-input-tiny" value="9" min="1" step="1">
+          <span class="overrides-sublabel">beat</span>
+          <input type="number" id="ov-anchor-b-beat" class="ov-input ov-input-tiny" value="1" min="1" step="1">
+          <button class="prev-btn" id="ov-set-anchor-b" title="Click on the piano roll to set anchor B">Set on roll</button>
+          <span class="muted anchor-tick" id="ov-anchor-b-tick">— tick</span>
+        </div>
+        <button class="prev-btn primary" id="ov-apply-warp" title="Derive BPM and beat-1 offset from the two anchors">Apply warp</button>
+        <button class="prev-btn" id="ov-clear-anchors">Clear anchors</button>
       </div>
     </section>
 
     <section class="prev-roll-wrap">
       <canvas id="prev-roll" class="piano-roll"></canvas>
-      <div class="muted prev-roll-hint">click to seek · scroll to zoom · shift+drag to pan · grid override below</div>
+      <div class="muted prev-roll-hint">click to seek · scroll to zoom · shift+drag to pan · arm A/B above then click a note to set an anchor (shift bypasses note-snap)</div>
     </section>
 
     <section class="prev-channels">

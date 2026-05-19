@@ -132,9 +132,16 @@ const state = {
   rollView: { zoom: 1, offset: 0 }, // visible window of the roll
   startOffsetMs: 0,            // playback offset into the track at startWallTime
   detectedBpm: null,           // BPM as computed from the file
-  detectedMeter: '4/4',        // meter from file (currently always 4/4 — file meta not parsed)
+  detectedMeter: '4/4',        // meter from file (overridden by manifest if available)
   override: { bpm: null, meter: null, beat_one_tick: 0 }, // active overrides for the loaded track
-  markBeat1Mode: false,        // armed: next roll click sets beat-1 offset
+  // Two-anchor warp: user pins two points on the roll, labels them as
+  // (bar, beat) positions, and the app back-solves BPM + beat-1 offset.
+  anchorA: { tick: null, bar: 1, beat: 1 },
+  anchorB: { tick: null, bar: 9, beat: 1 },
+  armedAnchor: null,           // 'a' | 'b' | null — which anchor is awaiting a roll click
+  metronomeOn: false,
+  metronomeTicks: [],          // [{ms, downbeat}] precomputed per playback session
+  metronomeIndex: 0,
 };
 
 // WebAudioTinySynth provides GM-quality preview matching the main DJ app.
@@ -206,9 +213,17 @@ function summariseChannels(midi) {
     }
   }
 
-  // Close hanging notes at max tick
+  // Close hanging notes at the file's overall last event so tails ring out,
+  // but compute musical end-tick from the last note event for duration math.
   let maxTick = 0;
-  for (const ev of midi.events) if (ev.tick > maxTick) maxTick = ev.tick;
+  let musicalEndTick = 0;
+  for (const ev of midi.events) {
+    if (ev.tick > maxTick) maxTick = ev.tick;
+    if ((ev.type === 'noteOn' || ev.type === 'noteOff') && ev.tick > musicalEndTick) {
+      musicalEndTick = ev.tick;
+    }
+  }
+  if (musicalEndTick === 0) musicalEndTick = maxTick;
   for (const ch of Object.values(per)) {
     for (const [pitch, open] of ch.openNotes) {
       ch.notes.push({ tick: open.tick, endTick: maxTick, pitch, vel: open.vel });
@@ -216,14 +231,16 @@ function summariseChannels(midi) {
     delete ch.openNotes;
   }
 
-  // Need duration in seconds, computed from tempo events
+  // Duration: only span the musical region (trailing tempo / EOT excluded).
   const tempos = midi.events.filter(e => e.type === 'tempo').map(e => ({ tick: e.tick, bpm: e.bpm }));
   if (tempos.length === 0) tempos.push({ tick: 0, bpm: 120 });
   if (tempos[0].tick > 0) tempos.unshift({ tick: 0, bpm: 120 });
   let durSec = 0;
   for (let i = 0; i < tempos.length; i++) {
     const start = tempos[i].tick;
-    const end = i + 1 < tempos.length ? tempos[i + 1].tick : maxTick;
+    if (start >= musicalEndTick) break;
+    const nextTick = i + 1 < tempos.length ? tempos[i + 1].tick : musicalEndTick;
+    const end = Math.min(nextTick, musicalEndTick);
     durSec += ((end - start) / midi.ticksPerBeat) * (60 / tempos[i].bpm);
   }
 
@@ -410,11 +427,14 @@ function detectDuplicates(midi) {
 // schedules events 100ms ahead using AudioContext clock. No drift.
 // ──────────────────────────────────────────────────────────────
 function precomputeEventTimes(midi) {
-  // Walk events and assign each its absolute time (ms) from start
-  const tempos = []; // {tick, bpm, msAtTick}
+  // Walk events and assign each its absolute time (ms) from start. Track the
+  // ms timestamp of the last note event separately — trailing tempo / sysex
+  // events would otherwise inflate totalMs into empty silence (Terra Funk had
+  // a stray tempo at bar 190 past the last note at bar 83).
   let curBpm = 120;
   let lastTick = 0;
   let elapsedMs = 0;
+  let lastNoteMs = 0;
   const tpb = midi.ticksPerBeat;
   const eventsWithTime = [];
   for (const ev of midi.events) {
@@ -423,13 +443,10 @@ function precomputeEventTimes(midi) {
       lastTick = ev.tick;
     }
     if (ev.type === 'tempo') curBpm = ev.bpm;
+    else if (ev.type === 'noteOn' || ev.type === 'noteOff') lastNoteMs = elapsedMs;
     eventsWithTime.push({ ...ev, ms: elapsedMs });
   }
-  // Append a final tail marker so the duration is known
-  let maxTick = 0;
-  for (const ev of midi.events) if (ev.tick > maxTick) maxTick = ev.tick;
-  if (maxTick > lastTick) elapsedMs += (maxTick - lastTick) * (60000 / (curBpm * tpb));
-  return { eventsWithTime, totalMs: elapsedMs };
+  return { eventsWithTime, totalMs: lastNoteMs > 0 ? lastNoteMs : elapsedMs };
 }
 
 function pausePlayback() {
@@ -478,6 +495,10 @@ function startPlayback() {
     state.eventIndex++;
   }
   state.scheduledUntilMs = state.startOffsetMs;
+  if (state.metronomeOn) {
+    rebuildMetronomeSchedule();
+    positionMetronomeIndex(state.startOffsetMs);
+  }
   document.getElementById('prev-play').classList.add('playing');
   document.getElementById('prev-play').textContent = '❚❚ Pause';
   scheduleAhead();
@@ -492,12 +513,66 @@ function startPlayback() {
   }, 25);
 }
 
+// Walk every felt-beat from the start of the file to maxTick, converting each
+// beat's tick → ms through the source tempo map. Run once at playback start
+// (and whenever the metronome is toggled on mid-play); the ms timestamps are
+// then schedulable against the same clock the MIDI events ride.
+function rebuildMetronomeSchedule() {
+  state.metronomeTicks = [];
+  if (!state.midi || !state.rollData) return;
+  const fileTpb = state.midi.ticksPerBeat || 480;
+  const effectiveBpm = state.override.bpm || state.detectedBpm || 120;
+  const detectedBpm = state.detectedBpm || effectiveBpm;
+  const quarterTpb = (detectedBpm / effectiveBpm) * fileTpb;
+  const meter = parseMeter(state.override.meter || state.detectedMeter);
+  const tpb = quarterTpb * meter.ticksPerBeatMul;
+  if (!Number.isFinite(tpb) || tpb <= 0) return;
+  const beatOneTick = state.override.beat_one_tick || 0;
+  const maxTick = state.rollData.maxTick;
+  let beatN = Math.ceil((-beatOneTick) / tpb);
+  while (beatOneTick + beatN * tpb < 0) beatN++;
+  for (;;) {
+    const tick = beatOneTick + beatN * tpb;
+    if (tick > maxTick) break;
+    const inBar = ((beatN % meter.beatsPerBar) + meter.beatsPerBar) % meter.beatsPerBar;
+    state.metronomeTicks.push({ ms: tickToMs(tick), downbeat: inBar === 0 });
+    beatN++;
+  }
+}
+
+function positionMetronomeIndex(fromMs) {
+  state.metronomeIndex = 0;
+  const arr = state.metronomeTicks;
+  while (state.metronomeIndex < arr.length && arr[state.metronomeIndex].ms < fromMs) {
+    state.metronomeIndex++;
+  }
+}
+
+function scheduleMetronomeAhead(nowMs, upTo) {
+  if (!state.metronomeOn) return;
+  const synth = getTinySynth();
+  if (!synth) return;
+  const arr = state.metronomeTicks;
+  while (state.metronomeIndex < arr.length && arr[state.metronomeIndex].ms <= upTo) {
+    const t = arr[state.metronomeIndex++];
+    const delay = Math.max(0, t.ms - nowMs);
+    // GM drum kit (ch 9): 76 Hi Wood Block, 77 Low Wood Block. Independent of
+    // the loaded track's drum content because each note triggers its own hit.
+    const note = t.downbeat ? 76 : 77;
+    const vel  = t.downbeat ? 115 : 90;
+    setTimeout(() => synth.send([0x99, note, vel]), delay);
+    setTimeout(() => synth.send([0x89, note, 0]),   delay + 80);
+  }
+}
+
 function scheduleAhead() {
   const LOOKAHEAD_MS = 120;
   const nowMs = (performance.now() - state.startWallTime) + state.startOffsetMs;
   const upTo = nowMs + LOOKAHEAD_MS;
   const synth = getTinySynth();
   if (!synth) return;
+
+  scheduleMetronomeAhead(nowMs, upTo);
 
   const evs = state.eventsWithTime;
   while (state.eventIndex < evs.length && evs[state.eventIndex].ms <= upTo) {
@@ -715,6 +790,11 @@ function paintRoll() {
   const dpr = window.devicePixelRatio || 1;
   const cssW = canvas.clientWidth || 800;
   const { startTick, endTick, max } = getRollWindow();
+
+  // Anchor markers (drawn under the playhead so the playhead stays the brightest line)
+  drawAnchorMarker(c, 'a', state.anchorA, startTick, endTick, cssW, canvas.height, dpr);
+  drawAnchorMarker(c, 'b', state.anchorB, startTick, endTick, cssW, canvas.height, dpr);
+
   // Convert current play ms → current tick (linear interpolation through tempo map)
   const playTick = msToTick(currentPlayMs());
   if (playTick != null && playTick >= startTick && playTick <= endTick) {
@@ -723,6 +803,28 @@ function paintRoll() {
     c.lineWidth = 2 * dpr;
     c.beginPath(); c.moveTo(x, 0); c.lineTo(x, canvas.height); c.stroke();
   }
+}
+
+const ANCHOR_COLORS = { a: '#f5c977', b: '#77c5f5' };
+function drawAnchorMarker(c, which, anchor, startTick, endTick, cssW, canvasH, dpr) {
+  if (!anchor || anchor.tick == null) return;
+  if (anchor.tick < startTick || anchor.tick > endTick) return;
+  const x = ((anchor.tick - startTick) / (endTick - startTick)) * cssW * dpr;
+  const colour = ANCHOR_COLORS[which];
+  c.strokeStyle = colour;
+  c.lineWidth = 1.5 * dpr;
+  c.setLineDash([6 * dpr, 4 * dpr]);
+  c.beginPath(); c.moveTo(x, 0); c.lineTo(x, canvasH); c.stroke();
+  c.setLineDash([]);
+  // Label tab at the top
+  const tabW = 14 * dpr, tabH = 14 * dpr;
+  c.fillStyle = colour;
+  c.fillRect(x - tabW / 2, 0, tabW, tabH);
+  c.fillStyle = '#0d0f14';
+  c.font = `${10 * dpr}px ui-monospace, monospace`;
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
+  c.fillText(which.toUpperCase(), x, tabH / 2 + 0.5 * dpr);
 }
 
 // Convert a wall-clock ms (since track start) to MIDI tick.
@@ -808,6 +910,10 @@ function persistOverrideForCurrentTrack() {
   else delete merged.meter;
   if (state.override.beat_one_tick) merged.beat_one_tick = state.override.beat_one_tick;
   else delete merged.beat_one_tick;
+  if (state.anchorA?.tick != null) merged.anchor_a = { ...state.anchorA };
+  else delete merged.anchor_a;
+  if (state.anchorB?.tick != null) merged.anchor_b = { ...state.anchorB };
+  else delete merged.anchor_b;
   // Keep existing routing override (set by the channel-row dropdowns)
   if (Object.keys(merged).length === 0 && !merged.routing) delete state.overrides[path];
   else state.overrides[path] = merged;
@@ -816,8 +922,10 @@ function persistOverrideForCurrentTrack() {
 
 function bindOverrideControls() {
   document.getElementById('ov-bpm').addEventListener('input', (e) => {
-    const v = parseInt(e.target.value, 10);
-    state.override.bpm = Number.isFinite(v) && v >= 20 && v <= 240 ? v : null;
+    const v = parseFloat(e.target.value);
+    state.override.bpm = Number.isFinite(v) && v >= 20 && v <= 240
+      ? Math.round(v * 100) / 100
+      : null;
     persistOverrideForCurrentTrack();
     renderRoll();
   });
@@ -832,17 +940,166 @@ function bindOverrideControls() {
     persistOverrideForCurrentTrack();
     renderRoll();
   });
-  document.getElementById('ov-mark-beat1').addEventListener('click', (e) => {
-    state.markBeat1Mode = !state.markBeat1Mode;
-    e.target.classList.toggle('armed', state.markBeat1Mode);
-    e.target.textContent = state.markBeat1Mode ? 'Click on roll…' : 'Mark on roll';
-  });
   document.getElementById('ov-reset').addEventListener('click', () => {
     state.override = { bpm: null, meter: null, beat_one_tick: 0 };
     persistOverrideForCurrentTrack();
     updateOverrideUI();
     renderRoll();
   });
+
+  // Anchor controls
+  const wireAnchorField = (which) => {
+    const a = state[`anchor${which.toUpperCase()}`];
+    document.getElementById(`ov-anchor-${which}-bar`).addEventListener('input', (e) => {
+      const v = parseInt(e.target.value, 10);
+      a.bar = Number.isFinite(v) && v >= 1 ? v : 1;
+      persistOverrideForCurrentTrack();
+    });
+    document.getElementById(`ov-anchor-${which}-beat`).addEventListener('input', (e) => {
+      const v = parseInt(e.target.value, 10);
+      a.beat = Number.isFinite(v) && v >= 1 ? v : 1;
+      persistOverrideForCurrentTrack();
+    });
+    document.getElementById(`ov-set-anchor-${which}`).addEventListener('click', (e) => {
+      // Arming this anchor disarms the other so a stale click can't fire it.
+      state.armedAnchor = state.armedAnchor === which ? null : which;
+      updateAnchorArmedUI();
+    });
+  };
+  wireAnchorField('a');
+  wireAnchorField('b');
+  document.getElementById('ov-apply-warp').addEventListener('click', applyWarp);
+  document.getElementById('ov-clear-anchors').addEventListener('click', () => {
+    state.anchorA.tick = null;
+    state.anchorB.tick = null;
+    state.armedAnchor = null;
+    persistOverrideForCurrentTrack();
+    updateAnchorUI();
+    renderRoll();
+  });
+}
+
+function updateAnchorUI() {
+  for (const which of ['a', 'b']) {
+    const a = state[`anchor${which.toUpperCase()}`];
+    document.getElementById(`ov-anchor-${which}-bar`).value = a.bar;
+    document.getElementById(`ov-anchor-${which}-beat`).value = a.beat;
+    const tickEl = document.getElementById(`ov-anchor-${which}-tick`);
+    if (a.tick != null) {
+      tickEl.textContent = `tick ${a.tick}`;
+      tickEl.classList.add('set');
+    } else {
+      tickEl.textContent = '— tick';
+      tickEl.classList.remove('set');
+    }
+  }
+  updateAnchorArmedUI();
+}
+
+function updateAnchorArmedUI() {
+  for (const which of ['a', 'b']) {
+    const btn = document.getElementById(`ov-set-anchor-${which}`);
+    const armed = state.armedAnchor === which;
+    btn.classList.toggle('armed', armed);
+    btn.textContent = armed ? 'Click a note…' : 'Set on roll';
+  }
+}
+
+// Snap a tick to the nearest noteOn within a generous on-screen radius.
+// Radius scales with the visible window so it feels the same at any zoom.
+// Returns the original tick if no note is within radius (or snap disabled).
+function snapToNearestNote(targetTick, disableSnap) {
+  if (disableSnap || !state.rollData) return Math.round(targetTick);
+  const { startTick, endTick } = getRollWindow();
+  const radius = (endTick - startTick) * 0.02; // ~2% of visible window
+  let best = Math.round(targetTick);
+  let bestDist = radius;
+  for (const n of state.rollData.notes) {
+    const d = Math.abs(n.startTick - targetTick);
+    if (d < bestDist) { bestDist = d; best = n.startTick; }
+  }
+  return best;
+}
+
+function setAnchorFromClientX(which, clientX, shiftKey) {
+  if (!state.rollData) return;
+  const canvas = document.getElementById('prev-roll');
+  const rect = canvas.getBoundingClientRect();
+  const frac = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  const { startTick, endTick } = getRollWindow();
+  const rawTick = startTick + frac * (endTick - startTick);
+  const tick = snapToNearestNote(rawTick, shiftKey);
+  const a = state[`anchor${which.toUpperCase()}`];
+  a.tick = tick;
+  state.armedAnchor = null;
+  persistOverrideForCurrentTrack();
+  updateAnchorUI();
+  renderRoll();
+}
+
+// Two-anchor warp: given anchors A and B with target (bar, beat) positions,
+// back-solve the felt-beat tick spacing then the perceived BPM, and set the
+// beat-1 offset so anchor A's intended bar/beat lines up. Honours the meter
+// override (compound meters use ticksPerBeatMul).
+function applyWarp() {
+  if (!state.midi) return;
+  const a = state.anchorA, b = state.anchorB;
+  if (a.tick == null || b.tick == null) {
+    flashApplyButton('Set both anchors first');
+    return;
+  }
+  if (b.tick === a.tick) {
+    flashApplyButton('A and B share a tick');
+    return;
+  }
+  const meter = parseMeter(state.override.meter || state.detectedMeter);
+  const beatsPerBar = meter.beatsPerBar;
+  const beatA = (a.bar - 1) * beatsPerBar + (a.beat - 1);
+  const beatB = (b.bar - 1) * beatsPerBar + (b.beat - 1);
+  const deltaBeats = beatB - beatA;
+  if (deltaBeats === 0) {
+    flashApplyButton('A and B share a bar:beat');
+    return;
+  }
+  // Allow B to be earlier than A — math handles a negative deltaTicks/deltaBeats pair
+  // as long as the signs agree (otherwise the warp would be negative).
+  const deltaTicks = b.tick - a.tick;
+  if (Math.sign(deltaTicks) !== Math.sign(deltaBeats)) {
+    flashApplyButton('Tick and bar:beat directions disagree');
+    return;
+  }
+  const tpbFeltNew = deltaTicks / deltaBeats;
+  if (!Number.isFinite(tpbFeltNew) || tpbFeltNew <= 0) return;
+  // tpbFelt = (detectedBpm / effectiveBpm) * fileTpb * meter.ticksPerBeatMul
+  const fileTpb = state.midi.ticksPerBeat || 480;
+  const detectedBpm = state.detectedBpm || 120;
+  let bpmNew = detectedBpm * fileTpb * meter.ticksPerBeatMul / tpbFeltNew;
+  bpmNew = Math.round(bpmNew * 100) / 100;
+  if (!Number.isFinite(bpmNew) || bpmNew < 20 || bpmNew > 240) {
+    flashApplyButton(`BPM ${bpmNew.toFixed(1)} out of range`);
+    return;
+  }
+  const offsetNew = Math.round(a.tick - beatA * tpbFeltNew);
+  state.override.bpm = bpmNew;
+  state.override.beat_one_tick = offsetNew;
+  persistOverrideForCurrentTrack();
+  updateOverrideUI();
+  renderRoll();
+  flashApplyButton(`BPM ${bpmNew} · offset ${offsetNew}`);
+}
+
+let applyFlashTimer = null;
+function flashApplyButton(msg) {
+  const btn = document.getElementById('ov-apply-warp');
+  if (!btn) return;
+  const original = 'Apply warp';
+  btn.textContent = msg;
+  btn.classList.add('armed');
+  clearTimeout(applyFlashTimer);
+  applyFlashTimer = setTimeout(() => {
+    btn.textContent = original;
+    btn.classList.remove('armed');
+  }, 1800);
 }
 
 function bindRoll() {
@@ -854,8 +1111,8 @@ function bindRoll() {
 
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
-    if (state.markBeat1Mode) {
-      markBeat1FromClientX(e.clientX);
+    if (state.armedAnchor) {
+      setAnchorFromClientX(state.armedAnchor, e.clientX, e.shiftKey);
       return;
     }
     if (e.shiftKey) {
@@ -893,23 +1150,6 @@ function bindRoll() {
   // Repaint on resize so the roll fills the container
   const ro = new ResizeObserver(() => { if (state.rollData) renderRoll(); });
   ro.observe(canvas);
-}
-
-function markBeat1FromClientX(clientX) {
-  if (!state.rollData) return;
-  const canvas = document.getElementById('prev-roll');
-  const rect = canvas.getBoundingClientRect();
-  const frac = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-  const { startTick, endTick } = getRollWindow();
-  const targetTick = Math.round(startTick + frac * (endTick - startTick));
-  state.override.beat_one_tick = targetTick;
-  document.getElementById('ov-offset').value = targetTick;
-  state.markBeat1Mode = false;
-  const btn = document.getElementById('ov-mark-beat1');
-  btn.classList.remove('armed');
-  btn.textContent = 'Mark on roll';
-  persistOverrideForCurrentTrack();
-  renderRoll();
 }
 
 function seekToClientX(clientX) {
@@ -1036,12 +1276,17 @@ function applyLoadedMidi(midi, rollData, displayInfo) {
   // Update info panel
   document.getElementById('info-title').textContent = displayInfo.title;
   document.getElementById('info-game').textContent = displayInfo.game ?? '—';
-  const avgBpm = computeAvgBpm(midi, maxTick);
-  document.getElementById('info-bpm').textContent = avgBpm;
-  state.detectedBpm = avgBpm;
-  // Detected meter: we don't currently parse meter meta events in the worker.
-  // Treat 4/4 as the default detected meter and let the user override.
-  state.detectedMeter = '4/4';
+  // Prefer the manifest's perceived_bpm (the build-manifest heuristic that
+  // octave-folds into a sensible range) over the file's raw tempo-event
+  // average. Doom and similar games lie about their tempo in the file
+  // metadata — perceived_bpm is the better default for the warp math.
+  const manifestEntry = state.tracksManifest?.tracks?.find(t => t.path === displayInfo.path);
+  const fileAvgBpm = computeAvgBpm(midi, maxTick);
+  const perceivedBpm = manifestEntry?.perceived_bpm ?? fileAvgBpm;
+  state.detectedBpm = perceivedBpm;
+  document.getElementById('info-bpm').textContent =
+    fileAvgBpm !== perceivedBpm ? `${perceivedBpm} (file claims ${fileAvgBpm})` : String(perceivedBpm);
+  state.detectedMeter = manifestEntry?.meter || '4/4';
 
   // Load any saved overrides for this track
   const savedOverride = state.overrides[displayInfo.path] || {};
@@ -1050,7 +1295,15 @@ function applyLoadedMidi(midi, rollData, displayInfo) {
     meter: savedOverride.meter ?? null,
     beat_one_tick: savedOverride.beat_one_tick ?? 0,
   };
+  state.anchorA = savedOverride.anchor_a
+    ? { ...savedOverride.anchor_a }
+    : { tick: null, bar: 1, beat: 1 };
+  state.anchorB = savedOverride.anchor_b
+    ? { ...savedOverride.anchor_b }
+    : { tick: null, bar: 9, beat: 1 };
+  state.armedAnchor = null;
   updateOverrideUI();
+  updateAnchorUI();
   document.getElementById('info-duration').textContent = fmtTime(durSec);
   document.getElementById('info-channels').textContent = Object.keys(summary).filter(k => summary[k].note_count > 0).length;
   document.getElementById('info-tempos').textContent = midi.events.filter(e => e.type === 'tempo').length;
@@ -1216,6 +1469,24 @@ function init() {
     else startPlayback();
   });
   document.getElementById('prev-stop').addEventListener('click', () => stopPlayback(true));
+  document.getElementById('prev-metronome').addEventListener('click', (e) => {
+    state.metronomeOn = !state.metronomeOn;
+    e.currentTarget.classList.toggle('on', state.metronomeOn);
+    if (state.playing && state.metronomeOn) {
+      rebuildMetronomeSchedule();
+      positionMetronomeIndex(currentPlayMs());
+    }
+  });
+  // Spacebar toggles transport unless an input/select has focus.
+  window.addEventListener('keydown', (e) => {
+    if (e.code !== 'Space') return;
+    const tag = (e.target?.tagName || '').toUpperCase();
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    if (e.target?.isContentEditable) return;
+    e.preventDefault();
+    if (state.playing) pausePlayback();
+    else startPlayback();
+  });
   bindRoll();
   document.getElementById('prev-volume').addEventListener('input', (e) => {
     state.masterVolume = e.target.value / 100;

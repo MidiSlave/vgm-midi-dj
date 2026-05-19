@@ -5,3 +5,6 @@ node_modules/
 # HTTPS certs for `npm run serve` (local-only)
 cert.pem
 key.pem
+
+# Local backups of replaced MIDI files (originals stay in git history)
+backups/
