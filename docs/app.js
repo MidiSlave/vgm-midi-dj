@@ -301,6 +301,7 @@ function makeDeckState(id) {
     dropPending: false,
     cutTimer: null,
     cutPending: false,
+    autoAdvance: false,
     seekTimer: null,
     seekPending: null, // tick the playhead will jump to at the next bar of this deck
     // playback transport (live state for visualisation)
@@ -839,7 +840,11 @@ function playDeck(deckId, startTick = 0) {
     }
 
     const ev = events[eventIndex];
-    if (!ev && !deck.loop.active) { stopDeck(deckId); return; }
+    if (!ev && !deck.loop.active) {
+      stopDeck(deckId);
+      if (deck.autoAdvance) advanceToNextTrack(deckId);
+      return;
+    }
 
     let nextTick = ev ? ev.tick : Infinity;
     let isLoopJump = false;
@@ -996,6 +1001,47 @@ function updateCutUI(deckId) {
   const btn = document.querySelector(`.btn-cut[data-deck="${deckId}"]`);
   if (!btn) return;
   btn.classList.toggle('pending', decks[deckId].cutPending);
+}
+
+// Load the next track in browser order onto this deck and drop it at the
+// next master bar. Inherits the deck's current routing, output mute set,
+// and transpose — so a transition's part-muting carries into the next
+// track without the user having to set it up again.
+async function advanceToNextTrack(deckId) {
+  const deck = decks[deckId];
+  const currentPath = deck.meta?.path;
+  if (!currentPath) return;
+  const next = findNextTrackAfter(currentPath);
+  if (!next || next.path === currentPath) return;
+  // Snapshot inheritable state before loadTrackIntoDeck resets it
+  const inheritedRouting = { ...deck.routing };
+  const inheritedMute = new Set(deck.outputMute);
+  const inheritedTranspose = deck.transpose;
+  await loadTrackIntoDeck(deckId, next);
+  // Restore inheritable state (only the parts loadTrackIntoDeck cleared)
+  decks[deckId].outputMute = inheritedMute;
+  decks[deckId].transpose = inheritedTranspose;
+  // Routing assignments per source channel: keep the inherited target for any
+  // channel that exists in the new track too; new channels keep the freshly-
+  // assigned default from buildRoutingUI.
+  for (const src of Object.keys(decks[deckId].routing)) {
+    if (src in inheritedRouting) decks[deckId].routing[src] = inheritedRouting[src];
+  }
+  renderRoutingPills(deckId);
+  updateTransposeUI(deckId);
+  dropDeck(deckId);
+}
+
+function toggleAutoAdvance(deckId) {
+  const deck = decks[deckId];
+  deck.autoAdvance = !deck.autoAdvance;
+  updateAutoAdvanceUI(deckId);
+}
+
+function updateAutoAdvanceUI(deckId) {
+  const btn = document.querySelector(`.btn-auto[data-deck="${deckId}"]`);
+  if (!btn) return;
+  btn.classList.toggle('active', decks[deckId].autoAdvance);
 }
 
 function unmuteAllOutputs(deckId) {
@@ -1782,17 +1828,32 @@ function setSort(key) {
   renderBrowser();
 }
 
-function renderBrowser() {
+// Current browser order (filter + sort applied). Shared between the visible
+// browser list and the auto-advance "what plays next?" lookup.
+function getBrowserOrder() {
   const { search, games: gameFilter, sort: sortKey, dir } = browserState;
-
   let filtered = trackLibrary.filter(t => {
     if (gameFilter.size > 0 && !gameFilter.has(t.game)) return false;
     if (!search) return true;
     return t.title.toLowerCase().includes(search) || t.game.toLowerCase().includes(search);
   });
-
   const cmp = sortComparator(sortKey);
   filtered.sort((a, b) => cmp(a, b) * dir);
+  return filtered;
+}
+
+function findNextTrackAfter(currentPath) {
+  const order = getBrowserOrder();
+  if (!order.length) return null;
+  const idx = order.findIndex(t => t.path === currentPath);
+  // Wrap around if currentPath isn't in the filtered set (browser narrowed since load)
+  if (idx < 0) return order[0];
+  return order[(idx + 1) % order.length];
+}
+
+function renderBrowser() {
+  const filtered = getBrowserOrder();
+  const { sort: sortKey, dir } = browserState;
 
   const list = document.getElementById('browser-list');
   list.innerHTML = '';
@@ -1966,7 +2027,9 @@ function init() {
     document.querySelector(`.btn-cut[data-deck="${deckId}"]`).addEventListener('click', () => cutDeck(deckId));
     document.querySelector(`.btn-channel[data-deck="${deckId}"]`).addEventListener('click', () => flipDeckChannel(deckId));
     document.querySelector(`.btn-unmute-all[data-deck="${deckId}"]`).addEventListener('click', () => unmuteAllOutputs(deckId));
+    document.querySelector(`.btn-auto[data-deck="${deckId}"]`).addEventListener('click', () => toggleAutoAdvance(deckId));
     updateChannelToggleUI(deckId);
+    updateAutoAdvanceUI(deckId);
 
     // Loop: toggle button + length spinner
     document.querySelector(`.btn-loop-toggle[data-deck="${deckId}"]`).addEventListener('click', () => toggleLoop(deckId));

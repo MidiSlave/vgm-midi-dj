@@ -640,6 +640,8 @@ header h1 {
 .btn-channel[data-channel="a"] { color: var(--a); border-color: var(--a); }
 .btn-channel[data-channel="b"] { color: var(--b); border-color: var(--b); }
 .btn-unmute-all { font-size: 0.7rem; }
+.btn-auto { font-size: 0.7rem; }
+.btn-auto.active { border-color: var(--ok); color: var(--ok); }
 
 .routing-row {
   display: flex;
