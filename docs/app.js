@@ -1051,7 +1051,9 @@ function transitionDeck(sourceId) {
   if (!target.playing) dropDeck(targetId);
 }
 
-// CUT: stop this deck at the next master bar. Tapping it again while pending cancels.
+// CUT: hard swap to the other deck at the next master bar. Stops this deck
+// (if playing) AND drops the other deck (if loaded and not already playing).
+// Tapping it again while pending cancels both halves.
 function cutDeck(deckId) {
   const deck = decks[deckId];
   if (deck.cutPending) {
@@ -1061,7 +1063,11 @@ function cutDeck(deckId) {
     updateCutUI(deckId);
     return;
   }
-  if (!deck.playing) return;
+  const otherId = deckId === '1' ? '2' : '1';
+  const other = decks[otherId];
+  const willStop = deck.playing;
+  const willStart = other.midi && !other.playing;
+  if (!willStop && !willStart) return; // nothing to do
   const msUntil = msUntilNextDownbeat();
   deck.cutPending = true;
   updateCutUI(deckId);
@@ -1069,7 +1075,12 @@ function cutDeck(deckId) {
     deck.cutPending = false;
     deck.cutTimer = null;
     updateCutUI(deckId);
-    stopDeck(deckId);
+    if (willStop) stopDeck(deckId);
+    if (willStart) {
+      const startTick = other.currentTick || getDeckBeatOneTick(other);
+      anchorMasterToDeck(otherId, startTick);
+      playDeck(otherId, startTick);
+    }
   }, Math.max(0, msUntil));
 }
 
