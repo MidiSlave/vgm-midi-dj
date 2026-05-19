@@ -689,28 +689,17 @@ body.skin-off .deck-skin { display: none; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(13, 15, 20, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 4px;
-  padding: 0.35rem 0.5rem;
 }
-.deck-head, .deck-stats, .routing-slots {
-  background: rgba(13, 15, 20, 0.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 4px;
-  padding: 0.3rem 0.5rem;
+/* Interactive controls get their own opaque-ish background so they stay
+   readable when the deck skin shows through behind them. State rules
+   later in the file (.playing/.active/.cued/.pending) still apply their
+   own backgrounds via equal specificity + later source order. */
+.deck .btn,
+.deck .transpose-btn,
+.deck .cspinner {
+  background: rgba(13, 15, 20, 0.78);
 }
-body.skin-off .deck-controls,
-body.skin-off .deck-head,
-body.skin-off .deck-stats,
-body.skin-off .routing-slots {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 0;
-}
+.deck .btn:active { background: rgba(31, 37, 48, 0.85); }
 
 .pitch-fader {
   display: flex;
