@@ -188,20 +188,21 @@ let midiOutput = null;
 let testMode = false;
 let testSynth = null;
 
-// 'a' | 'both' | 'b' — A/B switch (binary mute, no fade)
+// 'a' | 'both' | 'b' — channel selector (A / A+B / B), binary mute, no fade
 let mixState = 'both';
 
 // Tracks which deck (if any) is currently CUE-soloed
 let cuedDeck = null;
 
 const decks = {
-  a: makeDeckState('a'),
-  b: makeDeckState('b'),
+  '1': makeDeckState('1'),
+  '2': makeDeckState('2'),
 };
 
 function makeDeckState(id) {
   return {
     id, midi: null, playing: false, timer: null,
+    channel: id === '1' ? 'a' : 'b', // routes against mixState (channel A or B)
     volume: 100, pitch: 1.0,
     transpose: 0, // semitones; drums (ch9) are skipped
     routing: {}, meta: null,
@@ -269,12 +270,12 @@ function setMasterBpm(bpm) {
   bpm = Math.max(20, Math.min(240, Math.round(bpm)));
   if (bpm === master.bpm) return;
   master.bpm = bpm;
-  for (const id of ['a', 'b']) syncDeckToMaster(id);
+  for (const id of ['1', '2']) syncDeckToMaster(id);
   document.getElementById('master-bpm-value').textContent = bpm;
   // Re-anchor beat-1 so it stays phase-locked: prefer the playing deck if there
   // is one (alignment to musical content), otherwise preserve the visual phase
   // so the master counter doesn't appear to jump.
-  const playingId = decks.a.playing ? 'a' : (decks.b.playing ? 'b' : null);
+  const playingId = decks['1'].playing ? '1' : (decks['2'].playing ? '2' : null);
   if (playingId) {
     anchorMasterToDeck(playingId, getLivePlaybackTick(decks[playingId]));
   } else {
@@ -467,15 +468,18 @@ function flashRoutingPill(deckId, outCh) {
 function deckAudible(deckId) {
   if (cuedDeck) return cuedDeck === deckId; // CUE solos
   if (mixState === 'both') return true;
-  return mixState === deckId;
+  return mixState === decks[deckId].channel;
 }
 
 function setMixState(state) {
   if (state === mixState) return;
-  const losing = (mixState === 'both') ? [state === 'a' ? 'b' : 'a'] :
-                 (state === 'both') ? [] : [mixState];
+  const losingChannels = (mixState === 'both') ? [state === 'a' ? 'b' : 'a']
+                       : (state === 'both') ? []
+                       : [mixState];
   mixState = state;
-  for (const d of losing) silenceDeck(d);
+  for (const deckId of ['1', '2']) {
+    if (losingChannels.includes(decks[deckId].channel)) silenceDeck(deckId);
+  }
   document.querySelectorAll('.mix-pos').forEach(b => {
     b.classList.toggle('active', b.dataset.state === state);
   });
@@ -486,13 +490,13 @@ function setCue(deckId, on) {
     if (cuedDeck && cuedDeck !== deckId) silenceDeck(cuedDeck);
     cuedDeck = deckId;
     // Silence the OTHER deck while cued
-    const other = deckId === 'a' ? 'b' : 'a';
+    const other = deckId === '1' ? '2' : '1';
     silenceDeck(other);
   } else {
     if (cuedDeck === deckId) {
       cuedDeck = null;
       // Re-evaluate: silence anything no longer audible
-      for (const d of ['a', 'b']) if (!deckAudible(d)) silenceDeck(d);
+      for (const d of ['1', '2']) if (!deckAudible(d)) silenceDeck(d);
     }
   }
   document.querySelectorAll('.btn-cue').forEach(b => {
@@ -564,8 +568,8 @@ function silenceDeck(deckId) {
 }
 
 function silenceAll() {
-  silenceDeck('a');
-  silenceDeck('b');
+  silenceDeck('1');
+  silenceDeck('2');
   const all = testMode ? [0, 1, 2, 3, 9] : [0, 1, 2, 3, 9];
   for (const ch of all) sendRaw(0xb0 | ch, 123, 0);
 }
@@ -1093,7 +1097,7 @@ function paintRoll(deckId) {
     const px = tickToX(deck.seekPending);
     ctx.save();
     ctx.setLineDash([4 * dpr, 4 * dpr]);
-    ctx.strokeStyle = deckId === 'a' ? 'rgba(92,224,208,0.7)' : 'rgba(255,122,138,0.7)';
+    ctx.strokeStyle = deckId === '1' ? 'rgba(92,224,208,0.7)' : 'rgba(255,122,138,0.7)';
     ctx.lineWidth = 1.5 * dpr;
     ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, h); ctx.stroke();
     ctx.restore();
@@ -1107,7 +1111,7 @@ function paintRoll(deckId) {
   }
   if (tick >= startTick && tick <= endTick) {
     const px = tickToX(tick);
-    ctx.strokeStyle = deckId === 'a' ? '#5ce0d0' : '#ff7a8a';
+    ctx.strokeStyle = deckId === '1' ? '#5ce0d0' : '#ff7a8a';
     ctx.lineWidth = 2 * dpr;
     ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, h); ctx.stroke();
   }
@@ -1120,7 +1124,7 @@ function paintRoll(deckId) {
     const max = deck.rollData.maxTick;
     const wx = (startTick / max) * w;
     const ww = ((endTick - startTick) / max) * w;
-    ctx.fillStyle = deckId === 'a' ? '#5ce0d0' : '#ff7a8a';
+    ctx.fillStyle = deckId === '1' ? '#5ce0d0' : '#ff7a8a';
     ctx.fillRect(wx, 0, Math.max(2, ww), stripH);
   }
 }
@@ -1154,9 +1158,9 @@ function startRollAnimation() {
   if (rollAnimating) return;
   rollAnimating = true;
   const frame = () => {
-    paintRoll('a');
-    paintRoll('b');
-    if (decks.a.playing || decks.b.playing) {
+    paintRoll('1');
+    paintRoll('2');
+    if (decks['1'].playing || decks['2'].playing) {
       requestAnimationFrame(frame);
     } else {
       rollAnimating = false;
@@ -1570,12 +1574,12 @@ function renderBrowser() {
       <span class="t-meter">${t.meter ?? '—'}${t.meter_changes ? '*' : ''}</span>
       <span class="t-len">${formatDuration(t.duration_sec)}</span>
       <span class="load-btns">
-        <button class="to-a">A</button>
-        <button class="to-b">B</button>
+        <button class="to-a">1</button>
+        <button class="to-b">2</button>
       </span>
     `;
-    row.querySelector('.to-a').addEventListener('click', () => loadTrackIntoDeck('a', t));
-    row.querySelector('.to-b').addEventListener('click', () => loadTrackIntoDeck('b', t));
+    row.querySelector('.to-a').addEventListener('click', () => loadTrackIntoDeck('1', t));
+    row.querySelector('.to-b').addEventListener('click', () => loadTrackIntoDeck('2', t));
     frag.appendChild(row);
   }
   list.appendChild(frag);
@@ -1681,7 +1685,7 @@ function init() {
   document.getElementById('master-reset').addEventListener('click', masterReset);
 
   // Per-deck setup
-  for (const deckId of ['a', 'b']) {
+  for (const deckId of ['1', '2']) {
     // Volume
     const vol = document.querySelector(`.cslider[data-target="vol-${deckId}"]`);
     vol.classList.add('subtle');
@@ -1724,7 +1728,7 @@ function init() {
 
   // Stop all
   document.getElementById('btn-stop-all').addEventListener('click', () => {
-    stopDeck('a'); stopDeck('b');
+    stopDeck('1'); stopDeck('2');
   });
 
   // Preview / test mode toggle

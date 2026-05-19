@@ -421,8 +421,8 @@ header h1 {
   gap: 0.5rem;
   border-top: 2px solid transparent;
 }
-#deck-a { border-top-color: var(--a); }
-#deck-b { border-top-color: var(--b); }
+#deck-1 { border-top-color: var(--a); }
+#deck-2 { border-top-color: var(--b); }
 
 .deck-head {
   display: flex;
@@ -435,8 +435,8 @@ header h1 {
   letter-spacing: 0.1em;
   color: var(--muted);
 }
-#deck-a .deck-label { color: var(--a); }
-#deck-b .deck-label { color: var(--b); }
+#deck-1 .deck-label { color: var(--a); }
+#deck-2 .deck-label { color: var(--b); }
 .track-name {
   font-size: 0.85rem;
   font-weight: 500;
