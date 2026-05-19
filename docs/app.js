@@ -1565,10 +1565,10 @@ function getDeckTicksPerBeat(deck) {
 // Change the staged loop length. If a loop is currently active, re-length it
 // live (keep loop.in, recompute loop.out). If inactive, just stash the value
 // for the next engage. Driven by the per-deck length spinner.
-// 27-entry loop-length list. Below the bar zone (≤ 12 beats) we label in
-// beats; from the bar zone up we label in DJ-phrase bars where 1 bar = 16 beats
-// (so 16 → 1 bar, 32 → 2 bar, etc.). Sub-labels show the beat count for the
-// bar zone and stay blank for the rest (the primary label speaks for itself).
+// 27-entry loop-length list using music-theory bars (1 bar = 4 beats in 4/4).
+// Half-beat increments through the sub-bar zone keep their "beat" labels;
+// whole multiples of a bar use the "bar" label with the beat count as
+// sublabel so the conversion is always visible.
 const LOOP_LENGTHS = [
   { value: 0.125, label: '1/8 beat' },
   { value: 0.25,  label: '1/4 beat' },
@@ -1579,24 +1579,24 @@ const LOOP_LENGTHS = [
   { value: 2.5,   label: '2.5 beat' },
   { value: 3,     label: '3 beat'   },
   { value: 3.5,   label: '3.5 beat' },
-  { value: 4,     label: '4 beat'   },
+  { value: 4,     label: '1 bar',   sublabel: '4 beat'   },
   { value: 4.5,   label: '4.5 beat' },
   { value: 5,     label: '5 beat'   },
   { value: 5.5,   label: '5.5 beat' },
-  { value: 6,     label: '6 beat'   },
+  { value: 6,     label: '1.5 bar', sublabel: '6 beat'   },
   { value: 6.5,   label: '6.5 beat' },
   { value: 7,     label: '7 beat'   },
   { value: 7.5,   label: '7.5 beat' },
-  { value: 8,     label: '8 beat'   },
-  { value: 12,    label: '12 beat'  },
-  { value: 16,    label: '1 bar',   sublabel: '16 beat'  },
-  { value: 24,    label: '1.5 bar', sublabel: '24 beat'  },
-  { value: 32,    label: '2 bar',   sublabel: '32 beat'  },
-  { value: 48,    label: '3 bar',   sublabel: '48 beat'  },
-  { value: 64,    label: '4 bar',   sublabel: '64 beat'  },
-  { value: 96,    label: '6 bar',   sublabel: '96 beat'  },
-  { value: 128,   label: '8 bar',   sublabel: '128 beat' },
-  { value: 256,   label: '16 bar',  sublabel: '256 beat' },
+  { value: 8,     label: '2 bar',   sublabel: '8 beat'   },
+  { value: 12,    label: '3 bar',   sublabel: '12 beat'  },
+  { value: 16,    label: '4 bar',   sublabel: '16 beat'  },
+  { value: 24,    label: '6 bar',   sublabel: '24 beat'  },
+  { value: 32,    label: '8 bar',   sublabel: '32 beat'  },
+  { value: 48,    label: '12 bar',  sublabel: '48 beat'  },
+  { value: 64,    label: '16 bar',  sublabel: '64 beat'  },
+  { value: 96,    label: '24 bar',  sublabel: '96 beat'  },
+  { value: 128,   label: '32 bar',  sublabel: '128 beat' },
+  { value: 256,   label: '64 bar',  sublabel: '256 beat' },
 ];
 const DEFAULT_LOOP_BEATS = 4;
 
