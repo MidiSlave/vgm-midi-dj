@@ -1,3 +1,145 @@
+# Session progress — 2026-05-19 (later)
+
+Third session of the day. Big push: synced the beat-1 plumbing, decoupled deck
+identity from channel assignment, built a scroll-spinner widget, added
+Transition / CUT / per-deck auto-advance, and switched routing pills to a
+gated state. Library down 18 tracks (Streets of Rage dropped).
+
+## Sync fix — beat_one_tick + bpm_initial plumbed end-to-end
+
+The main DJ app used to drop a deck at *raw* tick 0, treating that as the
+music's beat-1. For any track with a count-in, pickup, or silent pad before
+the audible downbeat, drop B always landed off-grid against A. Manifest
+schema now carries `beat_one_tick` (default 0) and `meter` (overridable);
+the override file accepts both alongside `perceived_bpm`. `dropDeck`,
+`anchorMasterToDeck`, and the play-button handler all anchor against
+`beat_one_tick` instead of raw 0.
+
+`playDeck` also stops seeding `currentBPM = master.bpm` and uses
+`bpm_initial` from the manifest, so the pre-first-tempo-event window plays
+at the right rate on lying-tempo files instead of jumping at tick 0.
+
+The previewer got an **Export → tempo-overrides.json** button that emits a
+paste-ready snippet for any tracks the user has BPM/offset/meter-anchored
+in localStorage.
+
+## Heuristic trust window widened (70–200 → 50–220)
+
+The IOI heuristic was overriding honest 60-BPM files with bad guesses
+(Doom levels 3-8 came out 125/91/120/81/150/91 in the manifest when Logic
+confirms they're all 60). Trust window widened so files authored at 60 land
+in the "trust the file" zone. 77 tracks changed perceived_bpm in the
+regen; existing overrides (doom level2 / level9 / reptilerumble) are
+untouched.
+
+## Decks A/B → 1/2; new `deck.channel` field
+
+Decoupled deck identity (Deck 1 / Deck 2 — what you load tracks into) from
+channel assignment (Channel A / Channel B — what the mix-switch routes
+between). Deck 1 defaults to Channel A and Deck 2 to Channel B; a per-deck
+A|B toggle reassigns without restarting playback. The mix-switch's
+`mixState` strings (`a` / `both` / `b`) stay unchanged because they
+already named channels semantically.
+
+## Scroll-in-place spinner widget
+
+New `mountSpinner` alongside the existing `mountSlider`/`mountDropdown`/
+`mountToggle`. Cycles by ‹/› taps, mouse wheel, or horizontal touch drag.
+Replaces:
+- master meter dropdown
+- the five per-deck loop-length pads → one `loop` toggle + one length
+  spinner each. 27-entry list: 1/8 beat through 16 bars (music-theory bars:
+  1 bar = 4 beats in 4/4), with half-beat increments through 8 beat for
+  syncopation loops (3.5-beat against a 4-beat phrase etc.).
+
+Loop length is dial-able live during an active loop — `loop.in` stays put,
+`loop.out` re-derives. Sub-beat loop starts now snap to their own length so
+a 1/8-beat stutter doesn't round to the next whole beat.
+
+I initially labelled this in DJ-phrase bars (1 bar = 16 beats) — visibly
+wrong on the roll, fixed to music-theory bars in a follow-up commit.
+
+## Transition / CUT / channel toggle / unmute-all / auto-advance
+
+Per deck:
+- **trans** — copies this deck's mute set onto the opposite-channel deck
+  in inverted form, then drops it at the next master bar if it isn't
+  already playing. Flashes red if both decks share a channel.
+- **cut** — schedules silence for the next master bar; tap again to cancel.
+- **A|B channel toggle** — flips `deck.channel`; silences immediately if
+  the flip pushed the deck off the audible channel.
+- **unmute all** — clears the deck's outputMute set in one tap.
+- **auto ↻** — when track ends, loads next in current browser order and
+  drops at next master bar. Inherits routing / mute / transpose; loop and
+  transport reset.
+
+Channel/auto/unmute-all moved to the deck-head top-right so the routing
+pills get the full bottom-row width (the routing-aux row used to sit
+under the pills as a fixed dead band).
+
+## Gated routing-pill indicators
+
+Replaced the 90ms flash-on-noteOn with a per-output active-note counter
+(`deck.outputActive`). Pills stay lit while ANY note is still sounding on
+that output and dim only when the last one ends. Every MIDI noteOn/noteOff
+to a hardware output now flows through `dispatchNoteOn`/`dispatchNoteOff`
+helpers so the gate stays accurate across loop wraps, mute toggles,
+transpose changes, transitions, and silence-deck calls.
+
+## Library audit — source fingerprints found
+
+Library down to 774 tracks across 14 games (Streets of Rage dropped, 18
+tracks — the user hadn't heard of it).
+
+Started a per-game source audit. Discovered Street Fighter's 55 tracks
+split cleanly into three clusters by metadata:
+
+- **26 tracks** with `embedded_name = "HMP2MID.EXE by Markus Hein"` —
+  these are direct conversions from Capcom's HMP arcade-sequence files.
+  Authentic source data, but the bpm=25 metadata is a converter quirk and
+  the original Capcom sequencing is loose by nature. May need
+  re-conversion with a better HMP→MIDI tool.
+- **24 tracks** at default file_bpm=120 with no embedded name —
+  fan transcriptions, varying quality, most likely candidates for
+  replacement.
+- **5 tracks** at custom BPMs — better-authored fan work.
+
+Plan to replace some game libraries with higher-quality sources:
+- **Street Fighter** — likely SPC2MIDI from SNES SF2/SSF2/SSF2T SPC files
+  (snesmusic.org). SPC files contain the actual SNES sound-chip sequencer
+  data, so the converted MIDI is tight by construction.
+- **Donkey Kong** (DKC1/2/3) — also SPC-sourceable for SNES tracks.
+- Possibly **Mega Man X** and **Final Fantasy** SNES titles for the same
+  reason.
+
+The library-wide metadata audit + per-track quality score (in the browser)
+is the next-likely build to make this navigable.
+
+## What's verified / what still needs eyes
+
+Verified by user:
+- Timing improved after sync fix.
+- Doom level3 reports 60 BPM in the manifest (was 125).
+- Footer transport centred.
+- Loop button works on mobile after the `loadTrackIntoDeck` beats-preservation fix.
+
+Still needs verification:
+- Gated routing-pill indicator behaviour (lit through long notes, dims when last note ends).
+- The 77 perceived_bpm flips from the heuristic-widening — Chrono Trigger
+  w1000a* now claims 210 BPM, which is at the trusted-zone edge and might
+  be wrong (file lies). Spot-check candidates.
+- Transition / CUT / auto-advance under live use.
+
+## Open follow-ups carried forward
+
+- Meter-map / tempo-map architecture (the file's per-segment maps walked
+  through the renderer + worker + manifest). Still outlined, not built.
+- Library metadata audit + quality-score browser badge (to act on this
+  session's source-fingerprint discovery at scale).
+- Replacement Street Fighter library via SPC2MIDI workflow.
+
+---
+
 # Session progress — 2026-05-19
 
 Second session. Built two-anchor warp, metronome, and a per-track override system; fixed a clutch of pernicious manifest bugs (Terra Funk's stray tempo at bar 190, Jenova's straggler-note cluster, Contra's IOI quantisation, FF6 ending's truncated file). Still local, not pushed.
