@@ -36,8 +36,10 @@ const GM_TO_TR08 = {
 function mountSlider(el, { onInput }) {
   const min = parseFloat(el.dataset.min ?? 0);
   const max = parseFloat(el.dataset.max ?? 100);
+  const vertical = el.dataset.orientation === 'vertical';
   let value = parseFloat(el.dataset.value ?? min);
 
+  if (vertical) el.classList.add('vertical');
   el.innerHTML = `
     <div class="cslider-track">
       <div class="cslider-fill"></div>
@@ -49,13 +51,24 @@ function mountSlider(el, { onInput }) {
 
   const paint = () => {
     const pct = ((value - min) / (max - min)) * 100;
-    fill.style.width = `${pct}%`;
-    thumb.style.left = `${pct}%`;
+    if (vertical) {
+      // Top of fader = max (high volume). Fill rises from bottom; thumb tracks.
+      fill.style.height = `${pct}%`;
+      thumb.style.bottom = `${pct}%`;
+    } else {
+      fill.style.width = `${pct}%`;
+      thumb.style.left = `${pct}%`;
+    }
   };
 
-  const setFromPointer = (clientX) => {
+  const setFromPointer = (clientX, clientY) => {
     const rect = el.querySelector('.cslider-track').getBoundingClientRect();
-    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    let pct;
+    if (vertical) {
+      pct = Math.max(0, Math.min(1, 1 - (clientY - rect.top) / rect.height));
+    } else {
+      pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    }
     const newVal = Math.round(min + pct * (max - min));
     if (newVal !== value) {
       value = newVal;
@@ -69,10 +82,10 @@ function mountSlider(el, { onInput }) {
     pointerId = e.pointerId;
     el.setPointerCapture(pointerId);
     el.classList.add('dragging');
-    setFromPointer(e.clientX);
+    setFromPointer(e.clientX, e.clientY);
   });
   el.addEventListener('pointermove', (e) => {
-    if (pointerId !== null) setFromPointer(e.clientX);
+    if (pointerId !== null) setFromPointer(e.clientX, e.clientY);
   });
   el.addEventListener('pointerup', () => {
     if (pointerId !== null) el.releasePointerCapture(pointerId);

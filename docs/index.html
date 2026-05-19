@@ -51,7 +51,10 @@
           <span><b class="stat-position">0:00</b><i>pos</i></span>
           <span><b class="stat-meter">—</b><i>meter</i></span>
         </div>
-        <canvas class="piano-roll" data-deck="1"></canvas>
+        <div class="deck-roll-row">
+          <canvas class="piano-roll" data-deck="1"></canvas>
+          <div class="cslider vol-slider" data-target="vol-1" data-orientation="vertical" data-min="0" data-max="127" data-value="100" title="deck 1 volume"></div>
+        </div>
         <div class="deck-controls">
           <button class="btn btn-play" data-deck="1">▶</button>
           <button class="btn btn-drop" data-deck="1" title="launch at next bar of master">drop</button>
@@ -67,7 +70,6 @@
             <span class="transpose-value" title="transpose (drums skip)">0</span>
             <button class="transpose-btn" data-deck="1" data-delta="1" title="+1 semitone">+</button>
           </div>
-          <div class="cslider vol-slider" data-target="vol-1" data-min="0" data-max="127" data-value="100"></div>
         </div>
         <div class="routing-slots" data-deck="1"></div>
       </div>
@@ -93,7 +95,10 @@
           <span><b class="stat-position">0:00</b><i>pos</i></span>
           <span><b class="stat-meter">—</b><i>meter</i></span>
         </div>
-        <canvas class="piano-roll" data-deck="2"></canvas>
+        <div class="deck-roll-row">
+          <canvas class="piano-roll" data-deck="2"></canvas>
+          <div class="cslider vol-slider" data-target="vol-2" data-orientation="vertical" data-min="0" data-max="127" data-value="100" title="deck 2 volume"></div>
+        </div>
         <div class="deck-controls">
           <button class="btn btn-play" data-deck="2">▶</button>
           <button class="btn btn-drop" data-deck="2" title="launch at next bar of master">drop</button>
@@ -109,21 +114,22 @@
             <span class="transpose-value" title="transpose (drums skip)">0</span>
             <button class="transpose-btn" data-deck="2" data-delta="1" title="+1 semitone">+</button>
           </div>
-          <div class="cslider vol-slider" data-target="vol-2" data-min="0" data-max="127" data-value="100"></div>
         </div>
         <div class="routing-slots" data-deck="2"></div>
       </div>
     </section>
 
     <footer>
-      <button id="btn-stop-all">stop</button>
-      <div class="master-transport">
-        <div class="master-beat" id="master-beat"></div>
-        <button id="master-tap" title="tap tempo">tap</button>
-        <button id="master-reset" title="reset to beat 1">↻</button>
-        <span id="master-bpm-value">120</span><i>bpm</i>
-        <div id="master-meter-mount"></div>
+      <div class="footer-left">
+        <button id="btn-stop-all">stop</button>
+        <div class="master-controls">
+          <button id="master-tap" title="tap tempo">tap</button>
+          <button id="master-reset" title="reset to beat 1">↻</button>
+          <span id="master-bpm-value">120</span><i>bpm</i>
+          <div id="master-meter-mount"></div>
+        </div>
       </div>
+      <div class="master-beat" id="master-beat"></div>
       <div class="master-bpm">
         <div class="cslider" data-target="bpm" data-min="20" data-max="220" data-value="120"></div>
       </div>

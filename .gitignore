@@ -8,3 +8,8 @@ key.pem
 
 # Local backups of replaced MIDI files (originals stay in git history)
 backups/
+
+# Claude / AI-assist working files — local-only, not part of the public repo
+CLAUDE.md
+progress.md
+.claude/
