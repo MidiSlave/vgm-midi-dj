@@ -348,7 +348,7 @@ header h1 {
 
 .track-row {
   display: grid;
-  grid-template-columns: minmax(0,1fr) 90px 50px 70px 60px 150px 50px 70px;
+  grid-template-columns: minmax(0,1fr) 90px 50px 70px 60px 220px 50px 70px;
   gap: 0.5rem;
   padding: 0.25rem 0.55rem;
   align-items: center;
@@ -369,11 +369,13 @@ header h1 {
 .track-row .t-game { text-transform: capitalize; }
 .track-row .t-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 3px;
   font-size: 0.62rem;
   line-height: 1;
+  overflow: hidden;
 }
+.t-tag { flex: 0 0 auto; }
 .t-tag {
   padding: 2px 5px;
   border-radius: 8px;
