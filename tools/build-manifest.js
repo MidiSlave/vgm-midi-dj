@@ -490,6 +490,48 @@ const RELEASE_CLASSIFIERS = {
     if (/termina|clock_town|clock_tower|bremen|snowhead|stone_tower|deku_palace|great_bay|awakening_of_zelda/i.test(f)) return "Majora's Mask";
     return 'Legend of Zelda (NES)';
   },
+  'final-fantasy'(filename) {
+    const f = filename;
+    if (/^FF6_/i.test(f) || /terra_funk|^Locke/i.test(f)) return 'Final Fantasy VI';
+    if (/^\d-\d{2}/.test(f) || /ffvii/i.test(f)) return 'Final Fantasy VII';
+    return 'Final Fantasy VI';
+  },
+  'donkey-kong'(filename) {
+    const f = filename;
+    if (/dkc?\W*3|dkciii|dkcsnow|dkc3|stickerbrush/i.test(f)) return 'DKC 3';
+    if (/dkc?\W*2|dkcii\b|dkq|brambles?|kremling|krook|kannons?|krool|lostworld/i.test(f)) return 'DKC 2';
+    return 'DKC 1';
+  },
+  castlevania(filename) {
+    const f = filename;
+    if (/^cvs_|^Dance_of_Pales\b/i.test(f)) return 'Symphony of the Night';
+    if (/cv4|c4(?!\w)|^C4|Castlevania4|Super_Castlevania_4|Theme_of_Simon-KKC/i.test(f)) return 'Castlevania IV';
+    return "Castlevania II (Simon's Quest)";
+  },
+  'mega-man'(filename) {
+    const f = filename;
+    if (/^mm3/i.test(f)) return 'Mega Man 3';
+    if (/^mm2/i.test(f)) return 'Mega Man 2';
+    if (/^mm1/i.test(f)) return 'Mega Man 1';
+    return 'Mega Man';
+  },
+  mario(filename) {
+    const f = filename;
+    if (/^m64|sm64/i.test(f)) return 'Super Mario 64';
+    if (/smw|marioworld|^mw[a-z]|gameoversmw|p-box/i.test(f)) return 'Super Mario World';
+    return 'Super Mario Bros';
+  },
+  metroid(filename) {
+    const f = filename;
+    if (/brinstair|crateria|maridia|tourian|norfair|wrecked|ridley|kraid|ceres|lower_norfair/i.test(f)) return 'Super Metroid';
+    return 'Metroid (NES)';
+  },
+  sonic(filename) {
+    const f = filename;
+    if (/sonic_?3|sonic3/i.test(f)) return 'Sonic 3';
+    if (/sonic_?2|sonic2/i.test(f)) return 'Sonic 2';
+    return 'Sonic 1';
+  },
 };
 
 function classifyRelease(gameDir, subPath, filename) {
