@@ -364,6 +364,49 @@ header h1 {
 }
 .cdropdown.inline .cdropdown-button:hover { background: var(--surface-2); }
 
+/* ─────────── Custom spinner (scroll-in-place selector) ─────────── */
+.cspinner {
+  display: inline-flex;
+  align-items: stretch;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  border-radius: 4px;
+  user-select: none;
+  touch-action: none;
+  font-size: 12px;
+  line-height: 1;
+  height: 30px;
+}
+.cspinner-prev, .cspinner-next {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  width: 22px;
+  font-size: 16px;
+  padding: 0;
+  line-height: 1;
+}
+.cspinner-prev:hover, .cspinner-next:hover { color: var(--text); background: var(--surface-3); }
+.cspinner-prev:disabled, .cspinner-next:disabled { opacity: 0.25; cursor: default; }
+.cspinner-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  padding: 0 4px;
+  border-left: 1px solid var(--surface-3);
+  border-right: 1px solid var(--surface-3);
+}
+.cspinner-label { font-weight: 600; color: var(--text); }
+.cspinner-sublabel { font-size: 9px; color: var(--muted); margin-top: 1px; }
+
+/* Compact variant for tighter spots */
+.cspinner.compact { height: 24px; }
+.cspinner.compact .cspinner-value { min-width: 56px; padding: 0 2px; }
+.cspinner.compact .cspinner-label { font-size: 11px; }
+
 /* ─────────── Custom slider ─────────── */
 .cslider {
   position: relative;
@@ -538,34 +581,18 @@ header h1 {
 
 .loop-group {
   display: flex;
-  gap: 2px;
-  background: var(--bg);
-  padding: 2px;
-  border-radius: 4px;
+  gap: 4px;
+  align-items: center;
 }
-.btn-loop-pad {
-  background: var(--surface-2);
-  color: var(--muted);
-  border: none;
-  padding: 0.35rem 0.5rem;
-  border-radius: 3px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: lowercase;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  font-family: inherit;
-  min-width: 32px;
-}
-.btn-loop-pad:hover { color: var(--text); background: var(--surface-3); }
-.btn-loop-pad.armed { color: var(--ok); border: 1px solid var(--ok); padding: calc(0.35rem - 1px) calc(0.5rem - 1px); }
-.btn-loop-pad.active {
+.btn-loop-toggle.active {
   background: var(--ok);
   color: var(--bg);
+  border-color: var(--ok);
 }
-.btn-loop-pad.exiting {
+.btn-loop-toggle.exiting {
   background: var(--ok);
   color: var(--bg);
+  border-color: var(--ok);
   animation: loop-exit-pulse 0.8s ease-in-out infinite;
 }
 @keyframes loop-exit-pulse {

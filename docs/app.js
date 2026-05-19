@@ -166,6 +166,94 @@ function mountDropdown(mountEl, { options, value, onChange, placeholder, classNa
   };
 }
 
+// Scroll-in-place selector. Tap ‹ / › to cycle, scroll wheel, or swipe
+// horizontally on touch. Value stays anchored in the centre — no menu pops.
+// options: [{ value, label, sublabel? }]
+function mountSpinner(mountEl, { options, value, onChange, className = '' }) {
+  const root = document.createElement('div');
+  root.className = `cspinner ${className}`;
+  const prev = document.createElement('button');
+  prev.className = 'cspinner-prev';
+  prev.type = 'button';
+  prev.textContent = '‹';
+  const valueWrap = document.createElement('div');
+  valueWrap.className = 'cspinner-value';
+  const labelEl = document.createElement('div');
+  labelEl.className = 'cspinner-label';
+  const subEl = document.createElement('div');
+  subEl.className = 'cspinner-sublabel';
+  valueWrap.append(labelEl, subEl);
+  const next = document.createElement('button');
+  next.className = 'cspinner-next';
+  next.type = 'button';
+  next.textContent = '›';
+  root.append(prev, valueWrap, next);
+  mountEl.replaceWith(root);
+  root.id = mountEl.id;
+
+  let idx = Math.max(0, options.findIndex(o => String(o.value) === String(value)));
+  if (idx < 0) idx = 0;
+
+  const render = () => {
+    const o = options[idx];
+    labelEl.textContent = o?.label ?? '';
+    subEl.textContent = o?.sublabel ?? '';
+    subEl.style.visibility = o?.sublabel ? 'visible' : 'hidden';
+    prev.disabled = idx <= 0;
+    next.disabled = idx >= options.length - 1;
+  };
+
+  const step = (delta) => {
+    const nidx = Math.max(0, Math.min(options.length - 1, idx + delta));
+    if (nidx === idx) return;
+    idx = nidx;
+    render();
+    onChange?.(options[idx].value);
+  };
+
+  prev.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(+1));
+
+  // Mouse wheel: vertical or horizontal scroll cycles options
+  root.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    step(d > 0 ? 1 : -1);
+  }, { passive: false });
+
+  // Touch drag: horizontal swipe steps once per ~28px
+  let touchStartX = null;
+  let touchAccum = 0;
+  root.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchAccum = 0;
+  }, { passive: true });
+  root.addEventListener('touchmove', (e) => {
+    if (touchStartX == null) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const stepPx = 28;
+    while (dx - touchAccum > stepPx) { touchAccum += stepPx; step(-1); }
+    while (dx - touchAccum < -stepPx) { touchAccum -= stepPx; step(+1); }
+  }, { passive: true });
+  root.addEventListener('touchend', () => { touchStartX = null; touchAccum = 0; });
+
+  render();
+  return {
+    getValue() { return options[idx]?.value; },
+    setValue(v) {
+      const i = options.findIndex(o => String(o.value) === String(v));
+      if (i >= 0 && i !== idx) { idx = i; render(); }
+    },
+    setOptions(opts, newValue) {
+      options = opts;
+      const i = options.findIndex(o => String(o.value) === String(newValue ?? options[idx]?.value));
+      idx = i >= 0 ? i : 0;
+      render();
+    },
+    el: root,
+  };
+}
+
 function mountToggle(el, { onChange, initial = false }) {
   let on = initial;
   const sync = () => el.setAttribute('aria-checked', String(on));
@@ -224,7 +312,7 @@ function makeDeckState(id) {
     rollOffscreen: null,   // pre-rendered notes canvas
     rollView: { zoom: 1, offset: 0 }, // zoom ∈ [1, 50]; offset ∈ [0, 1 - 1/zoom]
     // loop
-    loop: { in: null, out: null, active: false, beats: null, pendingExit: false },
+    loop: { in: null, out: null, active: false, beats: 4, pendingExit: false },
   };
 }
 
@@ -1321,19 +1409,78 @@ function getDeckTicksPerBeat(deck) {
   return deck.meta?.perceived_ticks_per_beat || deck.midi?.ticksPerBeat || 480;
 }
 
-function setBeatLoop(deckId, beats) {
+// Change the staged loop length. If a loop is currently active, re-length it
+// live (keep loop.in, recompute loop.out). If inactive, just stash the value
+// for the next engage. Driven by the per-deck length spinner.
+// 27-entry loop-length list. Below the bar zone (≤ 12 beats) we label in
+// beats; from the bar zone up we label in DJ-phrase bars where 1 bar = 16 beats
+// (so 16 → 1 bar, 32 → 2 bar, etc.). Sub-labels show the beat count for the
+// bar zone and stay blank for the rest (the primary label speaks for itself).
+const LOOP_LENGTHS = [
+  { value: 0.125, label: '1/8 beat' },
+  { value: 0.25,  label: '1/4 beat' },
+  { value: 0.5,   label: '1/2 beat' },
+  { value: 1,     label: '1 beat'   },
+  { value: 1.5,   label: '1.5 beat' },
+  { value: 2,     label: '2 beat'   },
+  { value: 2.5,   label: '2.5 beat' },
+  { value: 3,     label: '3 beat'   },
+  { value: 3.5,   label: '3.5 beat' },
+  { value: 4,     label: '4 beat'   },
+  { value: 4.5,   label: '4.5 beat' },
+  { value: 5,     label: '5 beat'   },
+  { value: 5.5,   label: '5.5 beat' },
+  { value: 6,     label: '6 beat'   },
+  { value: 6.5,   label: '6.5 beat' },
+  { value: 7,     label: '7 beat'   },
+  { value: 7.5,   label: '7.5 beat' },
+  { value: 8,     label: '8 beat'   },
+  { value: 12,    label: '12 beat'  },
+  { value: 16,    label: '1 bar',   sublabel: '16 beat'  },
+  { value: 24,    label: '1.5 bar', sublabel: '24 beat'  },
+  { value: 32,    label: '2 bar',   sublabel: '32 beat'  },
+  { value: 48,    label: '3 bar',   sublabel: '48 beat'  },
+  { value: 64,    label: '4 bar',   sublabel: '64 beat'  },
+  { value: 96,    label: '6 bar',   sublabel: '96 beat'  },
+  { value: 128,   label: '8 bar',   sublabel: '128 beat' },
+  { value: 256,   label: '16 bar',  sublabel: '256 beat' },
+];
+const DEFAULT_LOOP_BEATS = 4;
+
+function setLoopLength(deckId, beats) {
   const deck = decks[deckId];
   if (!deck.midi) return;
-  // Toggle off → arm pending exit (loop plays out to loop.out, then continues)
-  if (deck.loop.active && deck.loop.beats === beats) {
+  deck.loop.beats = beats;
+  if (deck.loop.active && deck.loop.in != null) {
+    const tpb = getDeckTicksPerBeat(deck);
+    deck.loop.out = deck.loop.in + beats * tpb;
+    paintRoll(deckId);
+  }
+  updateLoopUI(deckId);
+}
+
+// Engage a loop at the current staged length, or — if already looping — arm
+// the exit so it plays out to loop.out then continues. Driven by the Loop btn.
+function toggleLoop(deckId) {
+  const deck = decks[deckId];
+  if (!deck.midi || !deck.loop.beats) return;
+  if (deck.loop.active) {
     deck.loop.pendingExit = !deck.loop.pendingExit;
     updateLoopUI(deckId);
     return;
   }
+  setBeatLoop(deckId, deck.loop.beats);
+}
+
+function setBeatLoop(deckId, beats) {
+  const deck = decks[deckId];
+  if (!deck.midi) return;
   const tpb = getDeckTicksPerBeat(deck);
   const live = getLivePlaybackTick(deck);
-  // Quantise loop start to the nearest perceived beat boundary
-  const startTick = Math.round(live / tpb) * tpb;
+  // Quantise loop start: sub-beat loops snap to their own length, whole-beat
+  // loops snap to the perceived beat grid.
+  const snapUnit = Math.min(beats, 1) * tpb;
+  const startTick = Math.round(live / snapUnit) * snapUnit;
   deck.loop.in = startTick;
   deck.loop.out = startTick + beats * tpb;
   deck.loop.active = true;
@@ -1408,13 +1555,11 @@ function updateLoopUI(deckId) {
   const deck = decks[deckId];
   const root = document.querySelector(`#deck-${deckId}`);
   if (!root) return;
-  const activeBeats = deck.loop.active ? deck.loop.beats : null;
-  const pending = deck.loop.pendingExit;
-  root.querySelectorAll('.btn-loop-pad').forEach(b => {
-    const isActive = parseInt(b.dataset.beats) === activeBeats;
-    b.classList.toggle('active', isActive && !pending);
-    b.classList.toggle('exiting', isActive && pending);
-  });
+  const btn = root.querySelector('.btn-loop-toggle');
+  if (btn) {
+    btn.classList.toggle('active', deck.loop.active && !deck.loop.pendingExit);
+    btn.classList.toggle('exiting', deck.loop.active && deck.loop.pendingExit);
+  }
 }
 
 function updatePosition(deckId, tick, ticksPerBeat, bpm) {
@@ -1666,10 +1811,11 @@ function init() {
     onInput: (v) => { setMasterBpm(v); },
   });
 
-  // Master meter dropdown
-  mountDropdown(document.getElementById('master-meter-mount'), {
+  // Master meter spinner
+  mountSpinner(document.getElementById('master-meter-mount'), {
     options: [2, 3, 4, 5, 6, 7, 8].map(n => ({ value: n, label: `${n}/4` })),
     value: master.meter,
+    className: 'compact',
     onChange: (v) => {
       master.meter = v;
       buildMasterBeatDots();
@@ -1710,10 +1856,15 @@ function init() {
       else dropDeck(deckId);
     });
 
-    // Loop pads (beat-length auto loops)
-    document.querySelectorAll(`.btn-loop-pad[data-deck="${deckId}"]`).forEach(btn => {
-      btn.addEventListener('click', () => setBeatLoop(deckId, parseInt(btn.dataset.beats)));
+    // Loop: toggle button + length spinner
+    document.querySelector(`.btn-loop-toggle[data-deck="${deckId}"]`).addEventListener('click', () => toggleLoop(deckId));
+    mountSpinner(document.querySelector(`.loop-length-mount[data-deck="${deckId}"]`), {
+      options: LOOP_LENGTHS,
+      value: DEFAULT_LOOP_BEATS,
+      className: 'compact',
+      onChange: (v) => setLoopLength(deckId, v),
     });
+    decks[deckId].loop.beats = DEFAULT_LOOP_BEATS;
 
     // Transpose ± buttons
     document.querySelectorAll(`.transpose-btn[data-deck="${deckId}"]`).forEach(btn => {
