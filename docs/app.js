@@ -1139,6 +1139,7 @@ function flipDeckChannel(deckId) {
 // in order; first hit wins. If no file exists for the loaded track's game,
 // the skin stays invisible. Drop image files in docs/img/games/ to enable —
 // the loader is silent on misses (no console errors).
+let manifestVersion = '';
 const _skinCache = new Map(); // game → resolved url, or null when not found
 function updateDeckSkin(deckId, game) {
   const skin = document.querySelector(`.deck-skin[data-deck="${deckId}"]`);
@@ -1155,9 +1156,10 @@ function updateDeckSkin(deckId, game) {
   if (!game) return apply(null);
   if (_skinCache.has(game)) return apply(_skinCache.get(game));
   const exts = ['webp', 'jpg', 'png'];
+  const bust = manifestVersion ? `?v=${encodeURIComponent(manifestVersion)}` : '';
   (function tryNext(i) {
     if (i >= exts.length) { _skinCache.set(game, null); apply(null); return; }
-    const url = `img/games/${game}.${exts[i]}`;
+    const url = `img/games/${game}.${exts[i]}${bust}`;
     const img = new Image();
     img.onload = () => { _skinCache.set(game, url); apply(url); };
     img.onerror = () => tryNext(i + 1);
@@ -2067,6 +2069,10 @@ async function initBrowser() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     trackLibrary = data.tracks;
+    // Used as a cache-buster on per-deck skin image URLs so a manifest regen
+    // (which only happens when the user runs `npm run manifest` — typically
+    // after replacing midi-files or image assets) forces a fresh fetch.
+    manifestVersion = data.generated || '';
 
     renderGameChips();
     const searchEl = document.getElementById('browser-search');
