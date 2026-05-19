@@ -1923,6 +1923,7 @@ let browserState = { search: '', games: new Set(), sort: 'game', dir: 1 };
 const COLUMNS = [
   { key: 'title', label: 'title' },
   { key: 'game', label: 'game' },
+  { key: 'release', label: 'release' },
   { key: 'bpm', label: 'bpm' },
   { key: 'key', label: 'key' },
   { key: 'meter', label: 'meter' },
@@ -1940,7 +1941,8 @@ function tagSortKey(t) {
 function trackBpm(t) { return t.perceived_bpm ?? t.bpm ?? 0; }
 
 function sortComparator(key) {
-  if (key === 'game') return (a, b) => a.game.localeCompare(b.game) || a.title.localeCompare(b.title);
+  if (key === 'game') return (a, b) => a.game.localeCompare(b.game) || (a.release ?? '').localeCompare(b.release ?? '') || a.title.localeCompare(b.title);
+  if (key === 'release') return (a, b) => (a.release ?? '').localeCompare(b.release ?? '') || a.game.localeCompare(b.game) || a.title.localeCompare(b.title);
   if (key === 'title') return (a, b) => a.title.localeCompare(b.title);
   if (key === 'key') return (a, b) => (a.key ?? '').localeCompare(b.key ?? '');
   if (key === 'meter') return (a, b) => (a.meter ?? '').localeCompare(b.meter ?? '');
@@ -2017,6 +2019,7 @@ function renderBrowser() {
     row.innerHTML = `
       <span class="t-title" title="${t.title}">${t.title}</span>
       <span class="t-game">${t.game}</span>
+      <span class="t-release" title="${t.release ?? ''}">${t.release ?? '—'}</span>
       <span class="t-bpm">${trackBpm(t) || '—'}</span>
       <span class="t-key">${t.key ?? '—'}</span>
       <span class="t-meter">${t.meter ?? '—'}${t.meter_changes ? '*' : ''}</span>

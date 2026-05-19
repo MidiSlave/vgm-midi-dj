@@ -348,7 +348,7 @@ header h1 {
 
 .track-row {
   display: grid;
-  grid-template-columns: minmax(0,1fr) 90px 50px 70px 60px 220px 50px 70px;
+  grid-template-columns: minmax(0,1fr) 90px 140px 50px 70px 60px 220px 50px 70px;
   gap: 0.5rem;
   padding: 0.25rem 0.55rem;
   align-items: center;
@@ -358,6 +358,7 @@ header h1 {
 
 .track-row .t-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .track-row .t-game,
+.track-row .t-release,
 .track-row .t-bpm,
 .track-row .t-key,
 .track-row .t-meter,
@@ -367,6 +368,7 @@ header h1 {
   font-variant-numeric: tabular-nums;
 }
 .track-row .t-game { text-transform: capitalize; }
+.track-row .t-release { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .track-row .t-tags {
   display: flex;
   flex-wrap: nowrap;

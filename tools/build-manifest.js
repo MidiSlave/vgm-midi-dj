@@ -476,6 +476,29 @@ function prettyTitle(filename) {
     .trim();
 }
 
+// Per-game release classifiers — applied when a file sits at the top of its
+// game directory (no subdirectory). When a file IS in a subdirectory, the
+// subdirectory name is used as the release directly (preferred convention).
+// Each classifier takes the bare filename and returns a release label
+// (e.g. "A Link to the Past") or null when uncertain.
+const RELEASE_CLASSIFIERS = {
+  zelda(filename) {
+    const f = filename;
+    if (/^\d{1,2}[a-z]? - /.test(f)) return 'A Link to the Past';
+    if (/windfish/i.test(f)) return "Link's Awakening";
+    if (/outset|forest_haven|great_sea|king_of_hyrule|makar|earth_gods/i.test(f)) return 'Wind Waker';
+    if (/termina|clock_town|clock_tower|bremen|snowhead|stone_tower|deku_palace|great_bay|awakening_of_zelda/i.test(f)) return "Majora's Mask";
+    return 'Legend of Zelda (NES)';
+  },
+};
+
+function classifyRelease(gameDir, subPath, filename) {
+  // subPath is the path between gameDir and filename (empty if file is at top)
+  if (subPath) return subPath.split('/')[0];
+  const fn = RELEASE_CLASSIFIERS[gameDir];
+  return fn ? fn(filename) : '';
+}
+
 async function main() {
   const files = await walk(MIDI_DIR);
   console.log(`Found ${files.length} MIDI files`);
@@ -489,7 +512,12 @@ async function main() {
   for (const file of files) {
     const fromMidiDir = relative(MIDI_DIR, file).split('/').join('/');
     const rel = `midi-files/${fromMidiDir}`; // served via symlink in public/
-    const gameDir = relative(MIDI_DIR, file).split('/')[0];
+    const segments = relative(MIDI_DIR, file).split('/');
+    const gameDir = segments[0];
+    // Release = subdirectory under the game dir, OR a per-game classifier
+    // applied to the bare filename when the file sits at the top.
+    const subPath = segments.slice(1, -1).join('/');
+    const release = classifyRelease(gameDir, subPath, segments[segments.length - 1]);
     try {
       const buffer = readFileSync(file);
       const info = parseMidi(buffer);
@@ -525,6 +553,7 @@ async function main() {
         title: prettyTitle(filename),
         embedded_name: cleanName,
         game: gameDir,
+        release,
         bpm: info.bpm,
         bpm_initial: info.bpm_initial,
         perceived_bpm: perceivedBpm,
