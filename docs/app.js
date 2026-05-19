@@ -297,6 +297,7 @@ function makeDeckState(id) {
     activeNotes: new Map(), // key "outCh:note" → natural endTick (or null)
     tailTimers: new Map(),  // key → setTimeout id for deferred noteOff after loop wrap
     outputMute: new Set(),  // output channel indices currently muted
+    outputActive: new Map(), // outCh → count of audibly-sounding notes (drives gated pill)
     dropTimer: null,
     dropPending: false,
     cutTimer: null,
@@ -546,11 +547,34 @@ function sendRaw(status, data1, data2) {
   }
 }
 
-function flashRoutingPill(deckId, outCh) {
+function setPillActive(deckId, outCh, on) {
   const pill = document.querySelector(`.routing-pill[data-deck="${deckId}"][data-out="${outCh}"]`);
-  if (!pill) return;
-  pill.classList.add('active');
-  setTimeout(() => pill.classList.remove('active'), 90);
+  if (pill) pill.classList.toggle('active', on);
+}
+
+// Centralised note-on / note-off pairing: maintains an active-note counter per
+// output so the routing pill lights while ANY note is still sounding on that
+// output and dims when the last one ends. Every MIDI noteOn/noteOff to a
+// hardware output must go through these wrappers so the gate stays accurate.
+function dispatchNoteOn(deck, outCh, note, vel) {
+  sendRaw(0x90 | outCh, note, vel);
+  const count = (deck.outputActive.get(outCh) ?? 0) + 1;
+  deck.outputActive.set(outCh, count);
+  if (count === 1) setPillActive(deck.id, outCh, true);
+}
+function dispatchNoteOff(deck, outCh, note) {
+  sendRaw(0x80 | outCh, note, 0);
+  const count = (deck.outputActive.get(outCh) ?? 0) - 1;
+  if (count <= 0) {
+    deck.outputActive.delete(outCh);
+    setPillActive(deck.id, outCh, false);
+  } else {
+    deck.outputActive.set(outCh, count);
+  }
+}
+function clearOutputActive(deck) {
+  for (const outCh of deck.outputActive.keys()) setPillActive(deck.id, outCh, false);
+  deck.outputActive.clear();
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -625,20 +649,21 @@ function dispatchEvent(ev, deck) {
       for (const activeKey of [...deck.activeNotes.keys()]) {
         if (activeKey.startsWith(prefix) && activeKey !== key) {
           const prevNote = Number(activeKey.slice(prefix.length));
-          sendRaw(0x80 | outCh, prevNote, 0);
+          dispatchNoteOff(deck, outCh, prevNote);
           deck.activeNotes.delete(activeKey);
           const tail = deck.tailTimers.get(activeKey);
           if (tail) { clearTimeout(tail); deck.tailTimers.delete(activeKey); }
         }
       }
     }
-    sendRaw(0x90 | outCh, note, vel);
+    dispatchNoteOn(deck, outCh, note, vel);
     deck.activeNotes.set(key, ev.endTick ?? null);
-    flashRoutingPill(deck.id, outCh);
   } else if (ev.type === 'noteOff') {
     if (!testMode && outCh === 9) note = GM_TO_TR08[note] || note;
-    sendRaw(0x80 | outCh, note, 0);
-    deck.activeNotes.delete(`${outCh}:${note}`);
+    if (deck.activeNotes.has(`${outCh}:${note}`)) {
+      dispatchNoteOff(deck, outCh, note);
+      deck.activeNotes.delete(`${outCh}:${note}`);
+    }
   }
   // programChange from the source is ignored — output patches are fixed per hardware target
 }
@@ -656,6 +681,7 @@ function silenceDeck(deckId) {
   // All-notes-off CC on every output channel this deck uses
   const outs = new Set(Object.values(deck.routing).filter(v => v >= 0));
   for (const ch of outs) sendRaw(0xb0 | ch, 123, 0);
+  clearOutputActive(deck);
 }
 
 function silenceAll() {
@@ -743,8 +769,9 @@ function renderRoutingPills(deckId) {
     if (!sources || !sources.length) continue;
     const isMuted = deck.outputMute.has(outCh);
 
+    const isActive = (deck.outputActive.get(outCh) ?? 0) > 0;
     const pill = document.createElement('button');
-    pill.className = `routing-pill${isMuted ? ' muted' : ''}`;
+    pill.className = `routing-pill${isMuted ? ' muted' : ''}${isActive ? ' active' : ''}`;
     pill.type = 'button';
     pill.dataset.deck = deckId;
     pill.dataset.out = outCh;
@@ -768,7 +795,7 @@ function toggleOutputMute(deckId, outCh) {
     for (const [key] of [...deck.activeNotes]) {
       const [oc, note] = key.split(':').map(Number);
       if (oc === outCh) {
-        sendRaw(0x80 | oc, note, 0);
+        dispatchNoteOff(deck, oc, note);
         deck.activeNotes.delete(key);
       }
     }
@@ -967,7 +994,7 @@ function transitionDeck(sourceId) {
   for (const [key] of [...target.activeNotes]) {
     const [oc, note] = key.split(':').map(Number);
     if (target.outputMute.has(oc)) {
-      sendRaw(0x80 | oc, note, 0);
+      dispatchNoteOff(target, oc, note);
       target.activeNotes.delete(key);
     }
   }
@@ -1083,12 +1110,12 @@ function handleLoopWrap(deckId) {
     if (endTick != null && endTick > deck.loop.out) {
       const tailMs = (endTick - deck.loop.out) * msPerTickNow;
       const t = setTimeout(() => {
-        sendRaw(0x80 | outCh, note, 0);
+        dispatchNoteOff(deck, outCh, note);
         deck.tailTimers.delete(key);
       }, Math.max(0, tailMs));
       deck.tailTimers.set(key, t);
     } else {
-      sendRaw(0x80 | outCh, note, 0);
+      dispatchNoteOff(deck, outCh, note);
     }
   }
   deck.activeNotes.clear();
@@ -1670,7 +1697,7 @@ function setTranspose(deckId, semitones) {
   for (const [key] of [...deck.activeNotes]) {
     const [oc, note] = key.split(':').map(Number);
     if (oc !== 9) {
-      sendRaw(0x80 | oc, note, 0);
+      dispatchNoteOff(deck, oc, note);
       deck.activeNotes.delete(key);
     }
   }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-19T08:21:27.933Z",
+  "generated": "2026-05-19T08:36:17.273Z",
   "count": 792,
   "tracks": [
     {
@@ -29241,13 +29241,13 @@
       "path": "midi-files/street-fighter/honda__s_theme.mid",
       "file": "honda__s_theme.mid",
       "title": "Honda S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
+      "embedded_name": "honda__s_theme",
       "game": "street-fighter",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 40,
+      "bpm": 118.04,
+      "bpm_initial": 118.05,
+      "perceived_bpm": 118.04,
+      "perceived_bpm_auto": 118.04,
+      "perceived_ticks_per_beat": 480,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -29256,7 +29256,7 @@
         "4/4"
       ],
       "key": "B minor",
-      "duration_sec": 80.8,
+      "duration_sec": 73.1,
       "channels": [
         0,
         1,
@@ -29267,9 +29267,9 @@
       ],
       "note_count": 1384,
       "has_drums": false,
-      "tempo_changes": 1,
+      "tempo_changes": 2,
       "drop_channels": [],
-      "size": 11803
+      "size": 12708
     },
     {
       "path": "midi-files/street-fighter/honda__s_theme2.mid",
