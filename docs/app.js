@@ -298,13 +298,21 @@ function masterReset() {
   updateMasterBeatDots(true);
 }
 
+// Raw-tick offset where the file's audible beat-1 sits. Defaults to 0 for
+// tracks without an override. All grid math is anchored to this, NOT raw tick 0.
+function getDeckBeatOneTick(deck) {
+  return Number.isFinite(deck?.meta?.beat_one_tick) ? deck.meta.beat_one_tick : 0;
+}
+
 // Anchor master beat-1 to a specific deck's tick position so the beat counter
 // stays phase-locked to that deck's perceived beats. Called on play and drop.
 function anchorMasterToDeck(deckId, deckTick) {
   const deck = decks[deckId];
   if (!deck.midi) return;
   const tpb = getDeckTicksPerBeat(deck);
-  const beatsIntoTrack = deckTick / tpb;
+  // Subtract beat-1 offset so phase 0 aligns with the music's audible downbeat,
+  // not the file's raw tick 0 (which may include pickup, count-in, or silent pad).
+  const beatsIntoTrack = (deckTick - getDeckBeatOneTick(deck)) / tpb;
   // At master tempo, those beats took this long in real time
   const msIntoTrack = beatsIntoTrack * (60000 / master.bpm);
   master.beatOneAt = performance.now() - msIntoTrack;
@@ -693,9 +701,13 @@ function playDeck(deckId, startTick = 0) {
   if (btn) { btn.classList.add('playing'); btn.textContent = '■'; }
 
   const { events, ticksPerBeat } = deck.midi;
-  // Default: file's metadata tempo will override on the first tempo event; for files
-  // without tempo events, fall back to master so timing stays consistent.
-  let currentBPM = master.bpm;
+  // Initial tempo: prefer the file's authored tempo (bpm_initial from manifest)
+  // so the pre-first-tempo-event window plays at the right ms-per-tick.
+  // Falling back to master.bpm produced a transient rate jump when the file's
+  // first tempo event landed and bpm_initial differed from master.bpm —
+  // especially audible on lying-tempo files (Doom, Castlevania) where pitch
+  // is significantly != 1.
+  let currentBPM = deck.meta?.bpm_initial ?? master.bpm;
   let eventIndex = 0;
   // Fast-forward to startTick, picking up the active tempo
   while (eventIndex < events.length && events[eventIndex].tick < startTick) {
@@ -789,7 +801,10 @@ function dropDeck(deckId) {
   deck.dropPending = true;
   updateDropUI(deckId);
   if (deck.dropTimer) clearTimeout(deck.dropTimer);
-  const startTick = deck.currentTick || 0; // respect any cue position the user has scrubbed to
+  // Respect any cue position the user has scrubbed to. If the playhead sits at
+  // raw tick 0 (i.e. never moved), launch from the music's audible beat-1
+  // instead — that's the only point that lands B in phase with A's downbeat.
+  const startTick = deck.currentTick || getDeckBeatOneTick(deck);
   deck.dropTimer = setTimeout(() => {
     deck.dropPending = false;
     deck.dropTimer = null;
@@ -1678,7 +1693,7 @@ function init() {
       if (decks[deckId].playing) {
         stopDeck(deckId);
       } else {
-        const startTick = decks[deckId].currentTick || 0;
+        const startTick = decks[deckId].currentTick || getDeckBeatOneTick(decks[deckId]);
         anchorMasterToDeck(deckId, startTick);
         playDeck(deckId, startTick);
       }

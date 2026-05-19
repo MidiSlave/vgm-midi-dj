@@ -425,11 +425,23 @@ async function main() {
       const ov = overrides[overrideKey];
       let perceivedBpm = info.perceived_bpm;
       let perceivedTpb = info.perceived_ticks_per_beat;
+      let meter = info.meter;
+      let beatOneTick = 0;
+      let overrideHit = false;
       if (ov && ov.perceived_bpm) {
         perceivedBpm = ov.perceived_bpm;
         perceivedTpb = Math.round((info.bpm / perceivedBpm) * info.ticksPerBeat);
-        overridesApplied++;
+        overrideHit = true;
       }
+      if (ov && ov.meter) {
+        meter = ov.meter;
+        overrideHit = true;
+      }
+      if (ov && Number.isFinite(ov.beat_one_tick)) {
+        beatOneTick = Math.max(0, Math.round(ov.beat_one_tick));
+        overrideHit = true;
+      }
+      if (overrideHit) overridesApplied++;
       tracks.push({
         path: rel, // relative to public/ for fetch
         file: filename,
@@ -441,7 +453,9 @@ async function main() {
         perceived_bpm: perceivedBpm,
         perceived_bpm_auto: info.perceived_bpm,
         perceived_ticks_per_beat: perceivedTpb,
-        meter: info.meter,
+        beat_one_tick: beatOneTick,
+        meter,
+        meter_auto: info.meter,
         meter_changes: info.meter_changes,
         meters_unique: info.meters_unique,
         key: info.key,

@@ -1430,6 +1430,41 @@ function downloadOverrides() {
   URL.revokeObjectURL(url);
 }
 
+// Emit a subset of the local overrides as a paste-ready snippet for
+// tools/tempo-overrides.json. Only tracks with at least one of perceived_bpm /
+// beat_one_tick / meter set are included; routing and anchor data are stripped.
+function exportTempoOverrides() {
+  const tracks = {};
+  for (const [path, ov] of Object.entries(state.overrides)) {
+    const entry = {};
+    if (Number.isFinite(ov.perceived_bpm)) entry.perceived_bpm = ov.perceived_bpm;
+    if (Number.isFinite(ov.beat_one_tick) && ov.beat_one_tick !== 0) entry.beat_one_tick = ov.beat_one_tick;
+    if (ov.meter) entry.meter = ov.meter;
+    if (Object.keys(entry).length === 0) continue;
+    // tempo-overrides.json keys are relative to docs/midi-files/, not the
+    // app's `midi-files/...` fetch path. Strip the prefix.
+    const key = path.replace(/^midi-files\//, '');
+    tracks[key] = entry;
+  }
+  const payload = { tracks };
+  const text = JSON.stringify(payload, null, 2);
+  const blob = new Blob([text], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tempo-overrides.partial.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  const status = document.getElementById('prev-save-status');
+  const count = Object.keys(tracks).length;
+  status.textContent = count
+    ? `exported ${count} track${count === 1 ? '' : 's'} — merge into tools/tempo-overrides.json`
+    : 'no BPM / offset / meter overrides to export yet';
+  setTimeout(() => status.textContent = '', 5000);
+}
+
 function clearOverrides() {
   if (!confirm('Clear all saved per-track overrides? This cannot be undone.')) return;
   state.overrides = {};
@@ -1495,6 +1530,7 @@ function init() {
   });
   document.getElementById('prev-save').addEventListener('click', saveCurrentOverride);
   document.getElementById('prev-download').addEventListener('click', downloadOverrides);
+  document.getElementById('prev-export-tempo').addEventListener('click', exportTempoOverrides);
   document.getElementById('prev-clear-overrides').addEventListener('click', clearOverrides);
   bindOverrideControls();
 }
