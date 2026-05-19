@@ -1099,6 +1099,36 @@ function flipDeckChannel(deckId) {
   updateChannelToggleUI(deckId);
 }
 
+// Subtle per-deck background skin. Probes docs/img/games/<game>.{webp,jpg,png}
+// in order; first hit wins. If no file exists for the loaded track's game,
+// the skin stays invisible. Drop image files in docs/img/games/ to enable —
+// the loader is silent on misses (no console errors).
+const _skinCache = new Map(); // game → resolved url, or null when not found
+function updateDeckSkin(deckId, game) {
+  const skin = document.querySelector(`.deck-skin[data-deck="${deckId}"]`);
+  if (!skin) return;
+  const apply = (url) => {
+    if (url) {
+      skin.style.backgroundImage = `url("${url}")`;
+      skin.classList.add('loaded');
+    } else {
+      skin.style.backgroundImage = '';
+      skin.classList.remove('loaded');
+    }
+  };
+  if (!game) return apply(null);
+  if (_skinCache.has(game)) return apply(_skinCache.get(game));
+  const exts = ['webp', 'jpg', 'png'];
+  (function tryNext(i) {
+    if (i >= exts.length) { _skinCache.set(game, null); apply(null); return; }
+    const url = `img/games/${game}.${exts[i]}`;
+    const img = new Image();
+    img.onload = () => { _skinCache.set(game, url); apply(url); };
+    img.onerror = () => tryNext(i + 1);
+    img.src = url;
+  })(0);
+}
+
 function updateChannelToggleUI(deckId) {
   const btn = document.querySelector(`.btn-channel[data-deck="${deckId}"]`);
   if (!btn) return;
@@ -1815,6 +1845,7 @@ async function loadTrackIntoDeck(deckId, track) {
     cancelPendingSeek(deckId);
     const nameEl = document.querySelector(`#deck-${deckId} .track-name`);
     nameEl.textContent = `${track.title} · ${track.game}`;
+    updateDeckSkin(deckId, track.game);
     nameEl.classList.remove('muted');
     updateDeckStats(deckId, track);
     if (!master.autoSet && track.perceived_bpm) {
@@ -1846,8 +1877,16 @@ const COLUMNS = [
   { key: 'bpm', label: 'bpm' },
   { key: 'key', label: 'key' },
   { key: 'meter', label: 'meter' },
+  { key: 'tags', label: 'tags' },
   { key: 'duration_sec', label: 'len' },
 ];
+
+const TAG_ORDER = ['drums', 'bass', 'chords', 'lead'];
+
+function tagSortKey(t) {
+  // Stable string: drums/bass/chords/lead as ones/zeros — full band sorts first
+  return TAG_ORDER.map(tag => (t.tags ?? []).includes(tag) ? '1' : '0').join('');
+}
 
 function trackBpm(t) { return t.perceived_bpm ?? t.bpm ?? 0; }
 
@@ -1857,6 +1896,7 @@ function sortComparator(key) {
   if (key === 'key') return (a, b) => (a.key ?? '').localeCompare(b.key ?? '');
   if (key === 'meter') return (a, b) => (a.meter ?? '').localeCompare(b.meter ?? '');
   if (key === 'bpm') return (a, b) => trackBpm(a) - trackBpm(b);
+  if (key === 'tags') return (a, b) => tagSortKey(b).localeCompare(tagSortKey(a)) || a.title.localeCompare(b.title);
   // numeric fallback
   return (a, b) => (a[key] ?? 0) - (b[key] ?? 0);
 }
@@ -1922,12 +1962,16 @@ function renderBrowser() {
     const t = filtered[i];
     const row = document.createElement('div');
     row.className = 'track-row';
+    const tagsHtml = (t.tags ?? []).map(tag =>
+      `<span class="t-tag t-tag-${tag}">${tag}</span>`
+    ).join('');
     row.innerHTML = `
       <span class="t-title" title="${t.title}">${t.title}</span>
       <span class="t-game">${t.game}</span>
       <span class="t-bpm">${trackBpm(t) || '—'}</span>
       <span class="t-key">${t.key ?? '—'}</span>
       <span class="t-meter">${t.meter ?? '—'}${t.meter_changes ? '*' : ''}</span>
+      <span class="t-tags">${tagsHtml}</span>
       <span class="t-len">${formatDuration(t.duration_sec)}</span>
       <span class="load-btns">
         <button class="to-a">1</button>

@@ -121,6 +121,57 @@ function computeMusicalEnd(allNoteTicks, fallbackTick, ticksPerBeat, fileMaxTick
   return sorted[endIdx] + ticksPerBeat * 4;
 }
 
+// Classify a non-drum channel into a role tag based on pitch range and
+// polyphony. Returns one of: 'bass', 'lead', 'chords', or null when the
+// channel is too sparse to commit to. Polyphony is measured by sweeping
+// on/off events and counting tick-time spent at ≥2 simultaneous notes.
+function classifyChannel(notes, ticksPerBeat) {
+  if (!notes || notes.length < 4) return null;
+  const events = [];
+  for (const n of notes) {
+    events.push({ tick: n.tick, type: 'on' });
+    if (n.endTick != null) events.push({ tick: n.endTick, type: 'off' });
+  }
+  events.sort((a, b) => a.tick - b.tick || (a.type === 'off' ? -1 : 1));
+  let active = 0, maxActive = 0;
+  let lastTick = events[0].tick;
+  let polyTicks = 0, activeTicks = 0;
+  for (const e of events) {
+    if (e.tick > lastTick) {
+      const span = e.tick - lastTick;
+      if (active >= 1) activeTicks += span;
+      if (active >= 2) polyTicks += span;
+      lastTick = e.tick;
+    }
+    if (e.type === 'on') { active++; if (active > maxActive) maxActive = active; }
+    else active--;
+  }
+  const pctPolyphonic = activeTicks > 0 ? polyTicks / activeTicks : 0;
+  const mono = maxActive <= 1 || pctPolyphonic < 0.02;
+  const avgPitch = notes.reduce((s, n) => s + n.pitch, 0) / notes.length;
+  // Bass: monophonic AND mostly below C4 (MIDI 60).
+  if (mono && avgPitch < 56) return 'bass';
+  // Chord-bearing: anything substantially polyphonic.
+  if (pctPolyphonic >= 0.15) return 'chords';
+  // Lead: mono pitched line above bass register.
+  if (mono) return 'lead';
+  // Light polyphony (e.g. occasional dyads) — treat as lead for tagging.
+  return 'lead';
+}
+
+function detectTrackTags(channelNotes, hasDrums, ticksPerBeat) {
+  const tags = new Set();
+  if (hasDrums) tags.add('drums');
+  for (const [ch, notes] of Object.entries(channelNotes)) {
+    if (Number(ch) === 9) continue;
+    const role = classifyChannel(notes, ticksPerBeat);
+    if (role) tags.add(role);
+  }
+  // Stable, predictable order
+  const order = ['drums', 'bass', 'chords', 'lead'];
+  return order.filter(t => tags.has(t));
+}
+
 function detectDropChannels(channelNotes) {
   const TICK_TOL = 5;
   const channelIds = Object.keys(channelNotes)
@@ -206,7 +257,8 @@ function parseMidi(buffer) {
   const channels = new Set();
   const pitchClasses = new Array(12).fill(0);
   const onsets = []; // {tick, channel}
-  const channelNotes = {}; // ch → [{tick, pitch}]  — for stereo-duplicate detection
+  const channelNotes = {}; // ch → [{tick, pitch, endTick}]  — for dupe detect + tag classification
+  const pendingNotes = {}; // `${ch}:${pitch}` → index into channelNotes[ch] of the open note
   let totalNotes = 0;
   let maxTick = 0;
   // End-of-music tick. Some files have stray events (tempo, EOT, sysex, CC)
@@ -268,14 +320,33 @@ function parseMidi(buffer) {
           if (channel !== 9) {
             pitchClasses[note % 12] += vel;
             onsets.push({ tick, channel });
-            (channelNotes[channel] ||= []).push({ tick, pitch: note });
+            const arr = (channelNotes[channel] ||= []);
+            arr.push({ tick, pitch: note, endTick: null });
+            pendingNotes[`${channel}:${note}`] = arr.length - 1;
           }
         } else {
           if (tick > lastNoteEventTick) lastNoteEventTick = tick; // velocity-0 noteOn = noteOff
+          if (channel !== 9) {
+            const key = `${channel}:${note}`;
+            const idx = pendingNotes[key];
+            if (idx != null && channelNotes[channel]?.[idx]?.endTick == null) {
+              channelNotes[channel][idx].endTick = tick;
+            }
+            delete pendingNotes[key];
+          }
         }
       } else if (type === 0x80) {
         if (tick > lastNoteEventTick) lastNoteEventTick = tick;
-        pos += 2;
+        const note = buffer[pos++];
+        pos++; // skip velocity
+        if (channel !== 9) {
+          const key = `${channel}:${note}`;
+          const idx = pendingNotes[key];
+          if (idx != null && channelNotes[channel]?.[idx]?.endTick == null) {
+            channelNotes[channel][idx].endTick = tick;
+          }
+          delete pendingNotes[key];
+        }
       } else if (type === 0xc0) {
         const program = buffer[pos++];
         if (!(channel in programs)) programs[channel] = program;
@@ -357,10 +428,12 @@ function parseMidi(buffer) {
     : ticksPerBeat;
 
   const drop_channels = detectDropChannels(channelNotes);
+  const tags = detectTrackTags(channelNotes, channels.has(9), ticksPerBeat);
 
   return {
     format, numTracks, ticksPerBeat,
     drop_channels,
+    tags,
     bpm: Math.round(avgBpm * 100) / 100,
     bpm_initial: Math.round(tempos[0].bpm * 100) / 100,
     perceived_bpm: perceivedBpm,
@@ -469,6 +542,7 @@ async function main() {
         has_drums: info.has_drums,
         tempo_changes: info.tempo_changes,
         drop_channels: info.drop_channels,
+        tags: info.tags,
         size,
       });
     } catch (err) {

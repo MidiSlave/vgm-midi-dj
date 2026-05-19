@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-19T08:46:52.544Z",
+  "generated": "2026-05-19T08:59:07.883Z",
   "count": 774,
   "tracks": [
     {
@@ -30,6 +30,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 597
     },
     {
@@ -86,6 +90,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 27338
     },
     {
@@ -119,6 +128,9 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "bass"
       ],
       "size": 1493
     },
@@ -160,6 +172,10 @@
       "drop_channels": [
         5
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5280
     },
     {
@@ -193,6 +209,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 3552
     },
     {
@@ -230,6 +250,10 @@
         4,
         5
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 788
     },
     {
@@ -262,6 +286,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "bass",
+        "chords"
       ],
       "size": 10976
     },
@@ -301,6 +329,10 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 2327
     },
     {
@@ -337,6 +369,11 @@
       "drop_channels": [
         2,
         5
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 1551
     },
@@ -394,6 +431,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 27338
     },
     {
@@ -430,6 +472,10 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 2124
     },
     {
@@ -465,6 +511,11 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 1959
     },
     {
@@ -497,6 +548,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 5196
     },
     {
@@ -536,6 +592,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         7
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 45404
     },
@@ -657,6 +717,12 @@
         5,
         10
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22481
     },
     {
@@ -691,6 +757,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 35324
     },
     {
@@ -728,6 +798,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 24271
     },
     {
@@ -781,6 +857,12 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9754
     },
     {
@@ -815,6 +897,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 35324
     },
     {
@@ -851,6 +937,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 70225
     },
     {
@@ -905,6 +996,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 90080
     },
     {
@@ -953,6 +1049,12 @@
         13,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 37412
     },
     {
@@ -995,6 +1097,10 @@
         2,
         4,
         11
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 8418
     },
@@ -1065,6 +1171,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 84534
     },
     {
@@ -1100,6 +1211,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18051
     },
     {
@@ -1133,6 +1250,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "chords",
+        "lead"
       ],
       "size": 4598
     },
@@ -1173,6 +1294,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 49232
     },
     {
@@ -1210,6 +1337,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 85969
     },
     {
@@ -1245,6 +1378,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 65131
     },
     {
@@ -1281,6 +1419,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12236
     },
     {
@@ -1325,6 +1469,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20843
     },
     {
@@ -1355,6 +1505,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 872
     },
     {
@@ -1391,6 +1545,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 29311
     },
     {
@@ -1432,6 +1591,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 58256
     },
     {
@@ -1476,6 +1641,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 74200
     },
     {
@@ -1531,6 +1702,12 @@
       "drop_channels": [
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 124498
     },
     {
@@ -1585,6 +1762,12 @@
       "drop_channels": [
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 159018
     },
     {
@@ -1637,6 +1820,12 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19656
     },
     {
@@ -1681,6 +1870,12 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 57624
     },
     {
@@ -1713,6 +1908,10 @@
       "has_drums": false,
       "tempo_changes": 121,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 7398
     },
     {
@@ -1745,6 +1944,10 @@
       "has_drums": false,
       "tempo_changes": 13,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 6657
     },
     {
@@ -1787,6 +1990,12 @@
         5,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14169
     },
     {
@@ -1826,6 +2035,11 @@
       "has_drums": false,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 43396
     },
     {
@@ -1866,6 +2080,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17886
     },
     {
@@ -1926,6 +2145,12 @@
         12,
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 48942
     },
     {
@@ -1983,6 +2208,11 @@
       "has_drums": true,
       "tempo_changes": 12,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 148199
     },
     {
@@ -2083,6 +2313,12 @@
       "has_drums": true,
       "tempo_changes": 16,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 214789
     },
     {
@@ -2194,6 +2430,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 73810
     },
     {
@@ -2224,6 +2466,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 1904
     },
     {
@@ -2260,6 +2505,12 @@
       "has_drums": true,
       "tempo_changes": 20,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17230
     },
     {
@@ -2295,6 +2546,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 62703
     },
     {
@@ -2395,6 +2651,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 19352
     },
     {
@@ -2434,6 +2695,12 @@
       "has_drums": true,
       "tempo_changes": 192,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18097
     },
     {
@@ -2463,6 +2730,9 @@
       "has_drums": false,
       "tempo_changes": 34,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 3408
     },
     {
@@ -2499,6 +2769,12 @@
       "has_drums": true,
       "tempo_changes": 20,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17230
     },
     {
@@ -2533,6 +2809,12 @@
       "has_drums": true,
       "tempo_changes": 72,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8675
     },
     {
@@ -2567,6 +2849,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7840
     },
     {
@@ -2600,6 +2888,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 10377
     },
     {
@@ -2635,6 +2928,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 11863
     },
@@ -2673,6 +2971,11 @@
       "drop_channels": [
         3,
         6
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 10724
     },
@@ -2724,6 +3027,10 @@
       "drop_channels": [
         5
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 5037
     },
     {
@@ -2774,6 +3081,10 @@
       "drop_channels": [
         5
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 5045
     },
     {
@@ -2812,6 +3123,11 @@
         3,
         6
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10724
     },
     {
@@ -2845,6 +3161,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13082
     },
     {
@@ -2878,6 +3200,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 2805
     },
     {
@@ -2951,6 +3278,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 81918
     },
     {
@@ -3017,6 +3349,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 26440
     },
     {
@@ -3056,6 +3394,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 35367
     },
     {
@@ -3101,6 +3444,10 @@
       "drop_channels": [
         5
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 9831
     },
     {
@@ -3139,6 +3486,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 54532
     },
     {
@@ -3176,6 +3529,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15247
     },
     {
@@ -3212,6 +3571,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 3001
     },
     {
@@ -3244,6 +3607,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 5717
     },
     {
@@ -3286,6 +3653,12 @@
       "drop_channels": [
         4
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7370
     },
     {
@@ -3323,6 +3696,10 @@
       "drop_channels": [
         4,
         8
+      ],
+      "tags": [
+        "chords",
+        "lead"
       ],
       "size": 2786
     },
@@ -3367,6 +3744,10 @@
         3,
         4
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 5850
     },
     {
@@ -3407,6 +3788,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 4983
     },
@@ -3450,6 +3837,12 @@
       "drop_channels": [
         4
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5948
     },
     {
@@ -3482,6 +3875,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 12966
     },
     {
@@ -3522,6 +3919,10 @@
         7,
         8
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 26321
     },
     {
@@ -3555,6 +3956,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 9966
     },
     {
@@ -3588,6 +3994,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 45123
     },
     {
@@ -3621,6 +4032,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 34549
     },
     {
@@ -3656,6 +4073,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 24758
     },
     {
@@ -3718,6 +4140,11 @@
       "has_drums": false,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11834
     },
     {
@@ -3750,6 +4177,11 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 12751
     },
     {
@@ -3794,6 +4226,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 16701
     },
     {
@@ -3829,6 +4267,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 999
     },
     {
@@ -3864,6 +4307,11 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 10317
     },
     {
@@ -3894,6 +4342,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 2354
     },
     {
@@ -3932,6 +4383,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         10
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 27287
     },
@@ -3975,6 +4431,11 @@
       "drop_channels": [
         3,
         5
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 22309
     },
@@ -4026,6 +4487,12 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 23666
     },
     {
@@ -4069,6 +4536,11 @@
         3,
         5
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 29421
     },
     {
@@ -4110,6 +4582,12 @@
       "has_drums": true,
       "tempo_changes": 28,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22205
     },
     {
@@ -4161,6 +4639,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 28679
     },
     {
@@ -4191,6 +4675,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 16691
     },
     {
@@ -4227,6 +4714,12 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7393
     },
     {
@@ -4260,6 +4753,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 1396
     },
     {
@@ -4289,6 +4788,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 2049
     },
     {
@@ -4323,6 +4825,11 @@
       "has_drums": false,
       "tempo_changes": 122,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7636
     },
     {
@@ -4361,6 +4868,11 @@
       "drop_channels": [
         6,
         7
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 8675
     },
@@ -4401,6 +4913,12 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20186
     },
     {
@@ -4434,6 +4952,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 10670
     },
     {
@@ -4467,6 +4990,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19031
     },
     {
@@ -4501,6 +5030,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19358
     },
     {
@@ -4530,6 +5065,9 @@
       "has_drums": false,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 11003
     },
     {
@@ -4578,6 +5116,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 34348
     },
     {
@@ -4612,6 +5156,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20525
     },
     {
@@ -4646,6 +5196,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20158
     },
     {
@@ -4681,6 +5237,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11535
     },
     {
@@ -4714,6 +5276,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 13483
     },
     {
@@ -4747,6 +5314,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4547
     },
     {
@@ -4778,6 +5351,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1546
     },
     {
@@ -4812,6 +5389,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5936
     },
     {
@@ -4843,6 +5426,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 8128
     },
     {
@@ -4878,6 +5465,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 11371
     },
     {
@@ -4919,6 +5511,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 95177
     },
     {
@@ -4953,6 +5551,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 34453
     },
     {
@@ -4991,6 +5595,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 34432
     },
     {
@@ -5020,6 +5630,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 15952
     },
     {
@@ -5071,6 +5684,12 @@
       "drop_channels": [
         7,
         8
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 74557
     },
@@ -5126,6 +5745,11 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 100788
     },
     {
@@ -5160,6 +5784,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15932
     },
     {
@@ -5199,6 +5829,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 13719
     },
     {
@@ -5233,6 +5868,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7786
     },
     {
@@ -5267,6 +5908,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12055
     },
     {
@@ -5382,6 +6029,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17971
     },
     {
@@ -5421,6 +6074,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19143
     },
     {
@@ -5456,6 +6115,12 @@
       "has_drums": true,
       "tempo_changes": 7,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20817
     },
     {
@@ -5494,6 +6159,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 38194
     },
     {
@@ -5602,6 +6273,9 @@
       "has_drums": false,
       "tempo_changes": 9,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 7045
     },
     {
@@ -5660,6 +6334,10 @@
         13,
         14
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 16656
     },
     {
@@ -5697,6 +6375,10 @@
         2,
         4,
         5
+      ],
+      "tags": [
+        "chords",
+        "lead"
       ],
       "size": 5100
     },
@@ -5747,6 +6429,10 @@
         13,
         14
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 23341
     },
     {
@@ -5788,6 +6474,9 @@
         6,
         7
       ],
+      "tags": [
+        "lead"
+      ],
       "size": 2894
     },
     {
@@ -5825,6 +6514,10 @@
         2,
         6
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6646
     },
     {
@@ -5860,6 +6553,9 @@
       "drop_channels": [
         4
       ],
+      "tags": [
+        "lead"
+      ],
       "size": 2226
     },
     {
@@ -5893,6 +6589,9 @@
       "drop_channels": [
         1,
         2
+      ],
+      "tags": [
+        "chords"
       ],
       "size": 2956
     },
@@ -5931,6 +6630,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10526
     },
     {
@@ -5967,6 +6672,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7117
     },
     {
@@ -6006,6 +6717,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 43520
     },
     {
@@ -6039,6 +6756,11 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 3248
     },
     {
@@ -6072,6 +6794,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11043
     },
     {
@@ -6111,6 +6839,11 @@
         3,
         5
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 37752
     },
     {
@@ -6144,6 +6877,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 8850
     },
     {
@@ -6179,6 +6917,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 10809
     },
     {
@@ -6218,6 +6961,11 @@
         1,
         3
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 21320
     },
     {
@@ -6254,6 +7002,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 14259
     },
     {
@@ -6286,6 +7039,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 14105
     },
     {
@@ -6320,6 +7078,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22462
     },
     {
@@ -6408,6 +7172,11 @@
       "has_drums": true,
       "tempo_changes": 222,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 7316
     },
     {
@@ -6443,6 +7212,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10676
     },
     {
@@ -6478,6 +7253,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 50235
     },
     {
@@ -6512,6 +7293,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 30456
     },
     {
@@ -6541,6 +7328,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 9594
     },
     {
@@ -6583,6 +7373,11 @@
       "drop_channels": [
         11,
         12
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 11587
     },
@@ -6627,6 +7422,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 14361
     },
     {
@@ -6680,6 +7479,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22803
     },
     {
@@ -6712,6 +7517,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 25569
     },
     {
@@ -6749,6 +7560,10 @@
         4,
         5
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 18721
     },
     {
@@ -6785,6 +7600,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10160
     },
     {
@@ -6818,6 +7638,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 35857
     },
     {
@@ -6853,6 +7679,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 63092
     },
@@ -6890,6 +7722,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 67547
     },
     {
@@ -6925,6 +7762,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13734
     },
     {
@@ -6962,6 +7805,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 21562
     },
     {
@@ -7000,6 +7849,11 @@
         3,
         4,
         5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 42075
     },
@@ -7074,6 +7928,11 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 31959
     },
     {
@@ -7127,6 +7986,11 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 19836
     },
     {
@@ -7159,6 +8023,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 1465
     },
     {
@@ -7198,6 +8067,11 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 42075
     },
     {
@@ -7232,6 +8106,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 13985
     },
     {
@@ -7270,6 +8149,11 @@
         3,
         4,
         5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 34757
     },
@@ -7310,6 +8194,11 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 24394
     },
     {
@@ -7348,6 +8237,11 @@
         3,
         4,
         5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 19247
     },
@@ -7437,6 +8331,11 @@
         4,
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 25701
     },
     {
@@ -7470,6 +8369,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9900
     },
     {
@@ -7516,6 +8420,12 @@
       "drop_channels": [
         8
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11637
     },
     {
@@ -7550,6 +8460,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 517
     },
     {
@@ -7603,6 +8518,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18808
     },
     {
@@ -7674,6 +8595,12 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22000
     },
     {
@@ -7719,6 +8646,12 @@
         6,
         7,
         13
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 71612
     },
@@ -7766,6 +8699,11 @@
       "drop_channels": [
         5,
         13
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 31733
     },
@@ -7815,6 +8753,12 @@
         11,
         13
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 108731
     },
     {
@@ -7853,6 +8797,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 53694
     },
     {
@@ -7891,6 +8840,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 28000
     },
     {
@@ -7942,6 +8897,12 @@
         14,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 308796
     },
     {
@@ -7988,6 +8949,12 @@
       "drop_channels": [
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 54744
     },
     {
@@ -8028,6 +8995,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13162
     },
     {
@@ -8074,6 +9047,12 @@
         12,
         13,
         15
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 105978
     },
@@ -8122,6 +9101,12 @@
         1,
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 94850
     },
     {
@@ -8165,6 +9150,12 @@
         13,
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6233
     },
     {
@@ -8202,6 +9193,12 @@
       "drop_channels": [
         5
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2651
     },
     {
@@ -8237,6 +9234,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 1890
     },
     {
@@ -8287,6 +9290,12 @@
         12,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 58656
     },
     {
@@ -8334,6 +9343,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 60410
     },
     {
@@ -8422,6 +9436,12 @@
       "drop_channels": [
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 35755
     },
     {
@@ -8468,6 +9488,12 @@
       "drop_channels": [
         14,
         15
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 52974
     },
@@ -8516,6 +9542,12 @@
         14,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 47879
     },
     {
@@ -8559,6 +9591,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 14701
     },
@@ -8619,6 +9657,12 @@
         13,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 23823
     },
     {
@@ -8648,6 +9692,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 24612
     },
     {
@@ -8763,6 +9810,12 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 36243
     },
     {
@@ -8801,6 +9854,12 @@
         2,
         4,
         5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 882
     },
@@ -8848,6 +9907,10 @@
         11,
         12
       ],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 15180
     },
     {
@@ -8894,6 +9957,12 @@
         3,
         5,
         14
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 11045
     },
@@ -8945,6 +10014,11 @@
         13,
         14
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 43074
     },
     {
@@ -8986,6 +10060,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 18605
     },
@@ -9034,6 +10114,12 @@
         1,
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 32197
     },
     {
@@ -9081,6 +10167,12 @@
         1,
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 31783
     },
     {
@@ -9127,6 +10219,11 @@
         8,
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 53669
     },
     {
@@ -9172,6 +10269,12 @@
         5,
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 73530
     },
     {
@@ -9210,6 +10313,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 54605
     },
@@ -9251,6 +10360,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 61652
     },
@@ -9296,6 +10411,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 60990
     },
     {
@@ -9334,6 +10455,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 43254
     },
     {
@@ -9376,6 +10502,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 205485
     },
     {
@@ -9416,6 +10548,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 94008
     },
     {
@@ -9452,6 +10590,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22404
     },
     {
@@ -9487,6 +10631,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 10132
     },
     {
@@ -9523,6 +10672,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         6
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 964
     },
@@ -9565,6 +10719,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 27255
     },
     {
@@ -9603,6 +10763,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 43293
     },
     {
@@ -9843,6 +11009,12 @@
         5,
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 89378
     },
     {
@@ -9877,6 +11049,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 796
     },
@@ -9925,6 +11102,12 @@
         10,
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 52864
     },
     {
@@ -9970,6 +11153,11 @@
         10,
         11,
         12
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 9942
     },
@@ -10017,6 +11205,12 @@
         8,
         15
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 287422
     },
     {
@@ -10051,6 +11245,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14838
     },
     {
@@ -10085,6 +11285,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 779
     },
@@ -10128,6 +11334,12 @@
       "drop_channels": [
         5,
         7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 32506
     },
@@ -10186,6 +11398,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 30248
     },
     {
@@ -10236,6 +11453,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 28741
     },
     {
@@ -10275,6 +11497,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 43043
     },
     {
@@ -10310,6 +11538,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6236
     },
     {
@@ -10349,6 +11583,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 70960
     },
@@ -10393,6 +11632,12 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7280
     },
     {
@@ -10434,6 +11679,11 @@
         3,
         8
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 27374
     },
     {
@@ -10469,6 +11719,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 29405
     },
     {
@@ -10511,6 +11766,11 @@
       "drop_channels": [
         7,
         12
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 22189
     },
@@ -10561,6 +11821,11 @@
         13,
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 28602
     },
     {
@@ -10597,6 +11862,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 85805
     },
     {
@@ -10633,6 +11902,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 66210
     },
     {
@@ -10670,6 +11943,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 152361
     },
     {
@@ -10702,6 +11980,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9544
     },
     {
@@ -10735,6 +12018,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 24440
     },
     {
@@ -10772,6 +12060,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 411301
     },
     {
@@ -10806,6 +12099,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 1965
     },
     {
@@ -10843,6 +12142,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 108141
     },
     {
@@ -10879,6 +12183,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 52686
     },
     {
@@ -10915,6 +12223,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 242842
     },
     {
@@ -10957,6 +12269,12 @@
       "has_drums": true,
       "tempo_changes": 17,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 59303
     },
     {
@@ -11001,6 +12319,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 30364
     },
@@ -11047,6 +12371,12 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33919
     },
     {
@@ -11080,6 +12410,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8729
     },
     {
@@ -11126,6 +12461,12 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 82415
     },
     {
@@ -11170,6 +12511,12 @@
         11,
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 44129
     },
     {
@@ -11212,6 +12559,11 @@
       "drop_channels": [
         1,
         6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
       ],
       "size": 47563
     },
@@ -11277,6 +12629,12 @@
       "drop_channels": [
         13
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 35977
     },
     {
@@ -11314,6 +12672,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         8
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 39936
     },
@@ -11358,6 +12721,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         12
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 51321
     },
@@ -11407,6 +12776,12 @@
         12,
         14
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 81812
     },
     {
@@ -11443,6 +12818,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 29514
     },
     {
@@ -11486,6 +12865,12 @@
         1,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 44324
     },
     {
@@ -11522,6 +12907,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 25309
     },
     {
@@ -11559,6 +12949,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 104921
     },
     {
@@ -11596,6 +12991,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 46009
     },
     {
@@ -11625,6 +13025,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 172034
     },
     {
@@ -11661,6 +13064,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 50003
     },
     {
@@ -11696,6 +13103,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 3628
     },
     {
@@ -11729,6 +13140,11 @@
       "has_drums": true,
       "tempo_changes": 8,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 32786
     },
     {
@@ -11765,6 +13181,10 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass"
+      ],
       "size": 48115
     },
     {
@@ -11796,6 +13216,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 30105
     },
     {
@@ -11831,6 +13256,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 25183
     },
     {
@@ -11867,6 +13297,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 13152
     },
     {
@@ -11904,6 +13339,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 13399
     },
     {
@@ -11943,6 +13383,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11544
     },
     {
@@ -11979,6 +13425,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 72549
     },
     {
@@ -12019,6 +13470,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 38154
     },
@@ -12083,6 +13539,12 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8862
     },
     {
@@ -12115,6 +13577,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 30251
     },
     {
@@ -12150,6 +13618,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 12819
     },
     {
@@ -12185,6 +13658,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 54064
     },
     {
@@ -12217,6 +13696,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 8397
     },
     {
@@ -12250,6 +13734,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5303
     },
     {
@@ -12283,6 +13773,12 @@
       "has_drums": true,
       "tempo_changes": 80,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12663
     },
     {
@@ -12315,6 +13811,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2089
     },
     {
@@ -12350,6 +13851,11 @@
       "tempo_changes": 4,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 13526
     },
@@ -12387,6 +13893,12 @@
       "has_drums": true,
       "tempo_changes": 23,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10545
     },
     {
@@ -12416,6 +13928,9 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums"
+      ],
       "size": 2915
     },
     {
@@ -12449,6 +13964,11 @@
       "has_drums": true,
       "tempo_changes": 49,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 59517
     },
     {
@@ -12500,6 +14020,10 @@
       "drop_channels": [
         2
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 9880
     },
     {
@@ -12535,6 +14059,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 3320
     },
     {
@@ -12564,6 +14093,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 2350
     },
     {
@@ -12601,6 +14133,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11796
     },
     {
@@ -12631,6 +14168,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 3554
     },
     {
@@ -12699,6 +14240,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 4276
     },
     {
@@ -12730,6 +14275,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 7741
     },
     {
@@ -12763,6 +14312,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8243
     },
     {
@@ -12794,6 +14349,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 1904
     },
     {
@@ -12825,6 +14384,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5382
     },
     {
@@ -12860,6 +14424,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10661
     },
     {
@@ -12896,6 +14466,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 13107
     },
     {
@@ -12929,6 +14504,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 47482
     },
     {
@@ -13012,6 +14592,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 26950
     },
     {
@@ -13044,6 +14629,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 11507
     },
     {
@@ -13081,6 +14671,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33273
     },
     {
@@ -13181,6 +14776,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 2886
     },
     {
@@ -13210,6 +14809,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 334
     },
     {
@@ -13241,6 +14843,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 5586
     },
     {
@@ -13294,6 +14900,10 @@
       "drop_channels": [
         12,
         13
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 36337
     },
@@ -13350,6 +14960,12 @@
       "tempo_changes": 3,
       "drop_channels": [
         11
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 40629
     },
@@ -13409,6 +15025,12 @@
         2,
         8
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 32426
     },
     {
@@ -13465,6 +15087,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14147
     },
     {
@@ -13517,6 +15144,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 15866
     },
     {
@@ -13573,6 +15204,12 @@
       "drop_channels": [
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12592
     },
     {
@@ -13627,6 +15264,12 @@
       "tempo_changes": 2,
       "drop_channels": [
         7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 26500
     },
@@ -13683,6 +15326,10 @@
         10,
         11
       ],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 11623
     },
     {
@@ -13738,6 +15385,12 @@
         5,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12774
     },
     {
@@ -13791,6 +15444,12 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 29793
     },
     {
@@ -13848,6 +15507,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 8790
     },
     {
@@ -13894,6 +15558,9 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 12107
     },
     {
@@ -13942,6 +15609,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 10556
     },
@@ -13994,6 +15666,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9383
     },
     {
@@ -14041,6 +15718,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9421
     },
     {
@@ -14095,6 +15778,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 10963
     },
     {
@@ -14148,6 +15836,9 @@
         5,
         6,
         7
+      ],
+      "tags": [
+        "lead"
       ],
       "size": 6262
     },
@@ -14210,6 +15901,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5490
     },
     {
@@ -14258,6 +15954,12 @@
       "tempo_changes": 2,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 20332
     },
@@ -14312,6 +16014,11 @@
       "drop_channels": [
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 35652
     },
     {
@@ -14361,6 +16068,12 @@
       "tempo_changes": 2,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 6960
     },
@@ -14412,6 +16125,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33123
     },
     {
@@ -14465,6 +16184,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13929
     },
     {
@@ -14519,6 +16243,12 @@
       "has_drums": true,
       "tempo_changes": 93,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 47391
     },
     {
@@ -14573,6 +16303,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 9559
     },
@@ -14631,6 +16366,10 @@
       "has_drums": false,
       "tempo_changes": 17,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 2146
     },
     {
@@ -14678,6 +16417,10 @@
       "has_drums": false,
       "tempo_changes": 257,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 20087
     },
     {
@@ -14725,6 +16468,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10133
     },
     {
@@ -14777,6 +16525,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 4536
     },
     {
@@ -14827,6 +16580,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 28333
     },
     {
@@ -14903,6 +16662,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 21207
     },
     {
@@ -14957,6 +16722,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         6
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 29074
     },
@@ -15017,6 +16787,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19581
     },
     {
@@ -15064,6 +16840,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 12524
     },
     {
@@ -15113,6 +16894,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11657
     },
     {
@@ -15161,6 +16948,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 7031
     },
     {
@@ -15218,6 +17009,12 @@
         7,
         13
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 28115
     },
     {
@@ -15269,6 +17066,10 @@
       "has_drums": false,
       "tempo_changes": 23,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 7194
     },
     {
@@ -15315,6 +17116,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11789
     },
     {
@@ -15365,6 +17172,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5387
     },
     {
@@ -15413,6 +17224,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 9347
     },
     {
@@ -15466,6 +17281,12 @@
         5,
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20151
     },
     {
@@ -15512,6 +17333,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11308
     },
     {
@@ -15565,6 +17392,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20387
     },
     {
@@ -15618,6 +17451,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14862
     },
     {
@@ -15668,6 +17507,10 @@
       "drop_channels": [
         1,
         10
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 7204
     },
@@ -15723,6 +17566,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13703
     },
     {
@@ -15771,6 +17620,12 @@
       "drop_channels": [
         1,
         3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 11935
     },
@@ -15828,6 +17683,10 @@
         10,
         15
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 14372
     },
     {
@@ -15869,6 +17728,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 5430
     },
     {
@@ -15920,6 +17783,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 12543
     },
     {
@@ -15991,6 +17859,12 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18207
     },
     {
@@ -16042,6 +17916,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 29771
     },
     {
@@ -16091,6 +17971,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 2884
     },
     {
@@ -16136,6 +18021,10 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 8993
     },
     {
@@ -16182,6 +18071,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15774
     },
     {
@@ -16226,6 +18120,9 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 1342
     },
     {
@@ -16272,6 +18169,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 3785
     },
     {
@@ -16316,6 +18218,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 4729
     },
     {
@@ -16366,6 +18272,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10512
     },
     {
@@ -16424,6 +18335,10 @@
       "drop_channels": [
         10
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 17675
     },
     {
@@ -16475,6 +18390,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19399
     },
     {
@@ -16526,6 +18446,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7503
     },
     {
@@ -16573,6 +18498,10 @@
       "tempo_changes": 2,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 6701
     },
@@ -16627,6 +18556,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 31766
     },
@@ -16683,6 +18617,11 @@
       "drop_channels": [
         1,
         11
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 16757
     },
@@ -16767,6 +18706,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4353
     },
     {
@@ -16820,6 +18764,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 19553
     },
     {
@@ -16870,6 +18819,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14938
     },
     {
@@ -16924,6 +18879,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22661
     },
     {
@@ -16972,6 +18933,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 28380
     },
     {
@@ -17017,6 +18983,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11938
     },
     {
@@ -17062,6 +19034,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 16759
     },
     {
@@ -17106,6 +19083,10 @@
       "has_drums": false,
       "tempo_changes": 91,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 7835
     },
     {
@@ -17211,6 +19192,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19176
     },
     {
@@ -17257,6 +19244,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6337
     },
     {
@@ -17310,6 +19303,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14589
     },
     {
@@ -17359,6 +19358,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 11460
     },
     {
@@ -17412,6 +19415,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 5908
     },
     {
@@ -17466,6 +19474,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 21910
     },
     {
@@ -17525,6 +19538,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 29722
     },
     {
@@ -17588,6 +19607,12 @@
       "tempo_changes": 2,
       "drop_channels": [
         7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 40006
     },
@@ -17673,6 +19698,12 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 58503
     },
     {
@@ -17753,6 +19784,12 @@
       "has_drums": true,
       "tempo_changes": 15,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 83715
     },
     {
@@ -17832,6 +19869,12 @@
       "has_drums": true,
       "tempo_changes": 15,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 71670
     },
     {
@@ -17868,6 +19911,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3611
     },
     {
@@ -17902,6 +19950,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4788
     },
     {
@@ -17936,6 +19990,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7820
     },
     {
@@ -17969,6 +20028,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5995
     },
     {
@@ -18004,6 +20068,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 13959
     },
     {
@@ -18039,6 +20108,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 18659
     },
     {
@@ -18107,6 +20181,11 @@
       "has_drums": true,
       "tempo_changes": 8,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 18437
     },
     {
@@ -18140,6 +20219,10 @@
       "has_drums": true,
       "tempo_changes": 7,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 58986
     },
     {
@@ -18173,6 +20256,10 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 54866
     },
     {
@@ -18206,6 +20293,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5500
     },
     {
@@ -18239,6 +20332,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9653
     },
     {
@@ -18302,6 +20401,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 25682
     },
     {
@@ -18361,6 +20466,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18012
     },
     {
@@ -18396,6 +20507,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22204
     },
     {
@@ -18429,6 +20546,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12817
     },
     {
@@ -18487,6 +20610,12 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12698
     },
     {
@@ -18520,6 +20649,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10336
     },
     {
@@ -18591,6 +20726,11 @@
       "has_drums": true,
       "tempo_changes": 9,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 18171
     },
     {
@@ -18625,6 +20765,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15558
     },
     {
@@ -18662,6 +20808,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 30130
     },
     {
@@ -18699,6 +20851,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15932
     },
     {
@@ -18733,6 +20890,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13694
     },
     {
@@ -18769,6 +20931,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6865
     },
     {
@@ -18807,6 +20973,12 @@
       "drop_channels": [
         5,
         6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 25512
     },
@@ -18872,6 +21044,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10415
     },
     {
@@ -18904,6 +21081,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 29652
     },
     {
@@ -18940,6 +21121,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 8569
     },
     {
@@ -18974,6 +21159,11 @@
       "has_drums": false,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10797
     },
     {
@@ -19007,6 +21197,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6289
     },
     {
@@ -19050,6 +21246,11 @@
         2,
         8
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 48040
     },
     {
@@ -19086,6 +21287,10 @@
       "has_drums": false,
       "tempo_changes": 24,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5779
     },
     {
@@ -19121,6 +21326,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 23957
     },
     {
@@ -19154,6 +21365,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 23942
     },
     {
@@ -19189,6 +21405,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
       ],
       "size": 28430
     },
@@ -19235,6 +21456,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 11192
     },
     {
@@ -19269,6 +21495,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 4132
     },
     {
@@ -19310,6 +21541,12 @@
       "drop_channels": [
         11
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 34894
     },
     {
@@ -19347,6 +21584,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15191
     },
     {
@@ -19387,6 +21630,12 @@
       "drop_channels": [
         10
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 38175
     },
     {
@@ -19420,6 +21669,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3405
     },
     {
@@ -19461,6 +21715,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 34474
     },
     {
@@ -19496,6 +21755,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 31692
     },
     {
@@ -19534,6 +21798,11 @@
       "tempo_changes": 36,
       "drop_channels": [
         5
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 8284
     },
@@ -19574,6 +21843,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6991
     },
     {
@@ -19608,6 +21882,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8404
     },
     {
@@ -19647,6 +21927,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 75594
     },
     {
@@ -19676,6 +21961,9 @@
       "has_drums": false,
       "tempo_changes": 80,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 9926
     },
     {
@@ -19713,6 +22001,12 @@
       "has_drums": true,
       "tempo_changes": 104,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9670
     },
     {
@@ -19750,6 +22044,12 @@
       "has_drums": true,
       "tempo_changes": 104,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12501
     },
     {
@@ -19797,6 +22097,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15183
     },
     {
@@ -19838,6 +22143,12 @@
       "has_drums": true,
       "tempo_changes": 29,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10168
     },
     {
@@ -19872,6 +22183,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 32768
     },
     {
@@ -19903,6 +22219,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 28672
     },
     {
@@ -19938,6 +22259,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 20591
     },
     {
@@ -19973,6 +22299,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13968
     },
     {
@@ -20006,6 +22338,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 36243
     },
     {
@@ -20042,6 +22380,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7345
     },
     {
@@ -20074,6 +22418,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13084
     },
     {
@@ -20113,6 +22463,12 @@
         6,
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 41347
     },
     {
@@ -20145,6 +22501,11 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 12663
     },
     {
@@ -20182,6 +22543,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8271
     },
     {
@@ -20216,6 +22583,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10361
     },
     {
@@ -20251,6 +22624,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9448
     },
     {
@@ -20284,6 +22662,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 15786
     },
     {
@@ -20317,6 +22700,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 4643
     },
     {
@@ -20388,6 +22775,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 79206
     },
     {
@@ -20430,6 +22822,11 @@
       "drop_channels": [
         13
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 31558
     },
     {
@@ -20466,6 +22863,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3611
     },
     {
@@ -20501,6 +22903,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33200
     },
     {
@@ -20540,6 +22948,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 49437
     },
     {
@@ -20571,6 +22985,10 @@
       "has_drums": false,
       "tempo_changes": 40,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 1450
     },
     {
@@ -20605,6 +23023,10 @@
       "has_drums": false,
       "tempo_changes": 21,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 7403
     },
     {
@@ -20640,6 +23062,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 21103
     },
     {
@@ -20674,6 +23102,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20997
     },
     {
@@ -20708,6 +23142,12 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13434
     },
     {
@@ -20741,6 +23181,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3735
     },
     {
@@ -20773,6 +23218,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 4531
     },
     {
@@ -20807,6 +23257,12 @@
       "has_drums": true,
       "tempo_changes": 381,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19250
     },
     {
@@ -20842,6 +23298,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10519
     },
     {
@@ -20877,6 +23339,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
       ],
       "size": 10056
     },
@@ -20914,6 +23381,12 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19973
     },
     {
@@ -21142,6 +23615,12 @@
       "has_drums": true,
       "tempo_changes": 74,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 109521
     },
     {
@@ -21177,6 +23656,12 @@
       "has_drums": true,
       "tempo_changes": 198,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22416
     },
     {
@@ -21209,6 +23694,12 @@
       "has_drums": true,
       "tempo_changes": 155,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17201
     },
     {
@@ -21263,6 +23754,10 @@
       "has_drums": false,
       "tempo_changes": 9,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 10020
     },
     {
@@ -21297,6 +23792,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 22621
     },
     {
@@ -21355,6 +23855,10 @@
       "has_drums": false,
       "tempo_changes": 422,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 36864
     },
     {
@@ -21453,6 +23957,11 @@
         13,
         14
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 104170
     },
     {
@@ -21486,6 +23995,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 23252
     },
     {
@@ -21516,6 +24029,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 8193
     },
     {
@@ -21584,6 +24101,11 @@
       "has_drums": true,
       "tempo_changes": 8,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 18437
     },
     {
@@ -21624,6 +24146,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33756
     },
     {
@@ -21659,6 +24187,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 14751
     },
     {
@@ -21693,6 +24226,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 21270
     },
     {
@@ -21727,6 +24264,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 14750
     },
     {
@@ -21765,6 +24306,12 @@
         5,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 17073
     },
     {
@@ -21801,6 +24348,11 @@
       "drop_channels": [
         4
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 277670
     },
     {
@@ -21835,6 +24387,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 12296
     },
     {
@@ -21870,6 +24427,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 23962
     },
     {
@@ -21914,6 +24477,12 @@
         3,
         4
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 24449
     },
     {
@@ -21952,6 +24521,11 @@
         12,
         13
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 22408
     },
     {
@@ -21989,6 +24563,12 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 38223
     },
     {
@@ -22021,6 +24601,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 4451
     },
     {
@@ -22053,6 +24638,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 25137
     },
     {
@@ -22099,6 +24689,11 @@
         11,
         12
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 41421
     },
     {
@@ -22131,6 +24726,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 10030
     },
     {
@@ -22164,6 +24764,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 33729
     },
     {
@@ -22198,6 +24804,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 46636
     },
@@ -22236,6 +24846,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 29643
     },
     {
@@ -22271,6 +24887,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 1722
     },
     {
@@ -22305,6 +24924,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 33460
     },
     {
@@ -22341,6 +24964,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 34762
     },
     {
@@ -22374,6 +25002,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 96057
     },
     {
@@ -22408,6 +25040,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 4565
     },
     {
@@ -22439,6 +25075,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 3246
     },
     {
@@ -22472,6 +25113,9 @@
       "tempo_changes": 12,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "chords"
       ],
       "size": 22746
     },
@@ -22517,6 +25161,12 @@
       "drop_channels": [
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 56318
     },
     {
@@ -22549,6 +25199,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22731
     },
     {
@@ -22583,6 +25239,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "drums",
+        "chords"
       ],
       "size": 31320
     },
@@ -22625,6 +25285,12 @@
       "drop_channels": [
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 42319
     },
     {
@@ -22659,6 +25325,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 3607
     },
@@ -22696,6 +25366,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         1
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 16731
     },
@@ -22755,6 +25430,11 @@
       "has_drums": true,
       "tempo_changes": 24,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 15458
     },
     {
@@ -22837,6 +25517,12 @@
       "has_drums": true,
       "tempo_changes": 11,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 49390
     },
     {
@@ -22872,6 +25558,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 21577
     },
     {
@@ -22905,6 +25597,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12441
     },
     {
@@ -22937,6 +25635,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 21429
     },
     {
@@ -22975,6 +25679,11 @@
         3,
         5
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 7896
     },
     {
@@ -23012,6 +25721,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 68729
     },
     {
@@ -23046,6 +25760,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "drums",
+        "bass"
       ],
       "size": 29297
     },
@@ -23084,6 +25802,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 30472
     },
     {
@@ -23116,6 +25840,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 7242
     },
     {
@@ -23145,6 +25874,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 55082
     },
     {
@@ -23180,6 +25912,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 40374
     },
     {
@@ -23212,6 +25949,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 15318
     },
     {
@@ -23247,6 +25989,10 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 25209
     },
     {
@@ -23317,6 +26063,11 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 24601
     },
     {
@@ -23347,6 +26098,10 @@
       "has_drums": true,
       "tempo_changes": 63,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass"
+      ],
       "size": 3178
     },
     {
@@ -23383,6 +26138,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 61256
     },
     {
@@ -23412,6 +26173,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 238
     },
     {
@@ -23450,6 +26214,10 @@
         4,
         5
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1687
     },
     {
@@ -23481,6 +26249,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 5207
     },
     {
@@ -23515,6 +26288,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 14932
     },
     {
@@ -23546,6 +26324,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 690
     },
     {
@@ -23580,6 +26361,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
       ],
       "size": 3174
     },
@@ -23634,6 +26420,11 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 10498
     },
     {
@@ -23671,6 +26462,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 59921
     },
     {
@@ -23705,6 +26501,11 @@
       "has_drums": true,
       "tempo_changes": 207,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 8396
     },
     {
@@ -23738,6 +26539,11 @@
       "has_drums": true,
       "tempo_changes": 207,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 7431
     },
     {
@@ -23775,6 +26581,12 @@
       "has_drums": true,
       "tempo_changes": 52,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 24037
     },
     {
@@ -23805,6 +26617,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1025
     },
     {
@@ -23838,6 +26654,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10661
     },
     {
@@ -23869,6 +26690,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6521
     },
     {
@@ -23900,6 +26725,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 8249
     },
     {
@@ -23935,6 +26764,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 47059
     },
     {
@@ -23972,6 +26805,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12084
     },
     {
@@ -24002,6 +26840,10 @@
       "has_drums": false,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 8625
     },
     {
@@ -24032,6 +26874,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 548
     },
     {
@@ -24066,6 +26912,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 13084
     },
     {
@@ -24101,6 +26952,10 @@
       "drop_channels": [
         2
       ],
+      "tags": [
+        "drums",
+        "bass"
+      ],
       "size": 43877
     },
     {
@@ -24132,6 +26987,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 6440
     },
     {
@@ -24165,6 +27024,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 24662
     },
     {
@@ -24196,6 +27060,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 21968
     },
     {
@@ -24227,6 +27095,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5507
     },
     {
@@ -24258,6 +27130,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5426
     },
     {
@@ -24290,6 +27166,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 5822
     },
     {
@@ -24321,6 +27202,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 10534
     },
     {
@@ -24352,6 +27237,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 9955
     },
     {
@@ -24391,6 +27280,11 @@
         5,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 17476
     },
     {
@@ -24423,6 +27317,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 5619
     },
     {
@@ -24454,6 +27353,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 3938
     },
     {
@@ -24485,6 +27389,10 @@
       "has_drums": false,
       "tempo_changes": 10,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 8895
     },
     {
@@ -24516,6 +27424,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 2813
     },
     {
@@ -24548,6 +27460,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 8684
     },
     {
@@ -24581,6 +27497,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 34693
     },
     {
@@ -24614,6 +27534,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 6354
     },
     {
@@ -24645,6 +27569,9 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 18009
     },
     {
@@ -24678,6 +27605,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 28637
     },
     {
@@ -24723,6 +27655,10 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 8870
     },
     {
@@ -24754,6 +27690,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 6728
     },
     {
@@ -24787,6 +27728,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 863
     },
     {
@@ -24819,6 +27764,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 17554
     },
     {
@@ -24851,6 +27799,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 11014
     },
     {
@@ -24882,6 +27834,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 1597
     },
     {
@@ -24913,6 +27869,9 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 9944
     },
     {
@@ -24944,6 +27903,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 2391
     },
     {
@@ -24975,6 +27939,9 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 8730
     },
     {
@@ -25006,6 +27973,9 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 8745
     },
     {
@@ -25040,6 +28010,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 54707
     },
     {
@@ -25073,6 +28049,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 45405
     },
     {
@@ -25108,6 +28088,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 19237
     },
     {
@@ -25161,6 +28147,12 @@
       "has_drums": true,
       "tempo_changes": 15,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13307
     },
     {
@@ -25202,6 +28194,11 @@
         4,
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 37343
     },
     {
@@ -25234,6 +28231,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 20407
     },
     {
@@ -25267,6 +28269,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11758
     },
     {
@@ -25299,6 +28307,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 12165
     },
     {
@@ -25331,6 +28343,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 11029
     },
     {
@@ -25363,6 +28380,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 8157
     },
     {
@@ -25395,6 +28417,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 11231
     },
     {
@@ -25427,6 +28453,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11064
     },
     {
@@ -25458,6 +28490,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 2393
     },
     {
@@ -25511,6 +28546,10 @@
       "has_drums": false,
       "tempo_changes": 96,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6896
     },
     {
@@ -25540,6 +28579,9 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 318
     },
     {
@@ -25572,6 +28614,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 5057
     },
     {
@@ -25605,6 +28652,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 17837
     },
     {
@@ -25637,6 +28689,11 @@
       "has_drums": true,
       "tempo_changes": 7,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 4376
     },
     {
@@ -25674,6 +28731,10 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 18438
     },
     {
@@ -25707,6 +28768,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 17685
     },
     {
@@ -25739,6 +28805,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9681
     },
     {
@@ -25771,6 +28842,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11557
     },
     {
@@ -25808,6 +28885,12 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9569
     },
     {
@@ -25840,6 +28923,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 11538
     },
     {
@@ -25873,6 +28961,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12920
     },
     {
@@ -25904,6 +28998,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 2220
     },
     {
@@ -25956,6 +29053,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 7885
     },
     {
@@ -25989,6 +29090,11 @@
       "has_drums": true,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9574
     },
     {
@@ -26025,6 +29131,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 22951
     },
     {
@@ -26059,6 +29171,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 9153
     },
     {
@@ -26093,6 +29210,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "bass",
+        "chords"
       ],
       "size": 8184
     },
@@ -26129,6 +29250,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 138755
     },
     {
@@ -26174,6 +29299,11 @@
       "drop_channels": [
         12
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 11867
     },
     {
@@ -26208,6 +29338,10 @@
       "has_drums": false,
       "tempo_changes": 6,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 914
     },
     {
@@ -26245,6 +29379,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 31294
     },
     {
@@ -26279,6 +29418,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 10760
     },
     {
@@ -26342,6 +29485,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 6376
     },
     {
@@ -26374,6 +29521,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 7318
     },
     {
@@ -26406,6 +29558,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 5208
     },
     {
@@ -26437,6 +29594,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 519
     },
     {
@@ -26467,6 +29628,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 4339
     },
     {
@@ -26503,6 +29667,10 @@
         2,
         3
       ],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 7474
     },
     {
@@ -26534,6 +29702,11 @@
       "has_drums": true,
       "tempo_changes": 26,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 3029
     },
     {
@@ -26566,6 +29739,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5203
     },
     {
@@ -26597,6 +29774,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 796
     },
     {
@@ -26628,6 +29809,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 10266
     },
     {
@@ -26661,6 +29846,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 6740
     },
     {
@@ -26697,6 +29887,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 26085
     },
     {
@@ -26731,6 +29927,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 16579
     },
     {
@@ -26763,6 +29964,9 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "lead"
       ],
       "size": 13532
     },
@@ -26797,6 +30001,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 12605
     },
     {
@@ -26827,6 +30036,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1179
     },
     {
@@ -26862,6 +30075,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 20196
     },
     {
@@ -26894,6 +30112,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 11704
     },
     {
@@ -26943,6 +30166,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 9223
     },
     {
@@ -26974,6 +30202,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5999
     },
     {
@@ -27005,6 +30237,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 5164
     },
     {
@@ -27036,6 +30272,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass"
+      ],
       "size": 2343
     },
     {
@@ -27154,6 +30393,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 5149
     },
     {
@@ -27185,6 +30429,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 3449
     },
     {
@@ -27227,6 +30475,12 @@
       "has_drums": true,
       "tempo_changes": 5,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12560
     },
     {
@@ -27261,6 +30515,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13508
     },
     {
@@ -27294,6 +30553,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 6478
     },
     {
@@ -27328,6 +30592,10 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 13000
     },
     {
@@ -27359,6 +30627,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 5958
     },
     {
@@ -27396,6 +30668,11 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 16707
     },
     {
@@ -27427,6 +30704,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 4295
     },
     {
@@ -27461,6 +30742,10 @@
       "has_drums": false,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 4545
     },
     {
@@ -27495,6 +30780,10 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 8446
     },
     {
@@ -27528,6 +30817,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3688
     },
     {
@@ -27560,6 +30855,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 968
     },
     {
@@ -27593,6 +30893,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 582
     },
     {
@@ -27629,6 +30935,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7934
     },
     {
@@ -27663,6 +30975,12 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 10829
     },
@@ -27699,6 +31017,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4736
     },
     {
@@ -27734,6 +31058,11 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 9675
     },
     {
@@ -27767,6 +31096,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4505
     },
     {
@@ -27800,6 +31135,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4845
     },
     {
@@ -27837,6 +31178,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9976
     },
     {
@@ -27878,6 +31225,12 @@
         6,
         10
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11575
     },
     {
@@ -27917,6 +31270,12 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9160
     },
     {
@@ -27950,6 +31309,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 10558
     },
     {
@@ -27983,6 +31347,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5955
     },
     {
@@ -28015,6 +31384,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6239
     },
     {
@@ -28047,6 +31421,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 1791
     },
     {
@@ -28082,6 +31460,11 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 18756
     },
     {
@@ -28116,6 +31499,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7269
     },
     {
@@ -28151,6 +31539,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 15407
     },
     {
@@ -28184,6 +31576,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2151
     },
     {
@@ -28213,6 +31610,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 5428
     },
     {
@@ -28250,6 +31650,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10739
     },
     {
@@ -28288,6 +31693,9 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "chords"
+      ],
       "size": 13258
     },
     {
@@ -28321,6 +31729,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 3724
     },
     {
@@ -28357,6 +31770,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7686
     },
     {
@@ -28393,6 +31811,11 @@
       "drop_channels": [
         2
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 7663
     },
     {
@@ -28428,6 +31851,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 11402
     },
     {
@@ -28466,6 +31892,10 @@
       "drop_channels": [
         4
       ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6697
     },
     {
@@ -28501,6 +31931,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         2
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 3712
     },
@@ -28541,6 +31976,9 @@
         6,
         7
       ],
+      "tags": [
+        "chords"
+      ],
       "size": 8527
     },
     {
@@ -28575,6 +32013,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 26177
     },
     {
@@ -28608,6 +32052,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 8836
     },
     {
@@ -28644,6 +32093,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 12174
     },
     {
@@ -28678,6 +32130,12 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18267
     },
     {
@@ -28711,6 +32169,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 10761
     },
     {
@@ -28747,6 +32210,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 14429
     },
     {
@@ -28780,6 +32247,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6066
     },
     {
@@ -28816,6 +32287,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 9836
     },
     {
@@ -28848,6 +32324,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4923
     },
     {
@@ -28882,6 +32363,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 5552
     },
     {
@@ -28915,6 +32399,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5983
     },
     {
@@ -28949,6 +32438,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 8010
     },
     {
@@ -28983,6 +32476,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 2573
     },
@@ -29022,6 +32520,11 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 8568
     },
     {
@@ -29057,6 +32560,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 11373
     },
     {
@@ -29090,6 +32597,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2723
     },
     {
@@ -29125,6 +32637,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2423
     },
     {
@@ -29162,6 +32679,11 @@
       "drop_channels": [
         2
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11360
     },
     {
@@ -29197,6 +32719,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 11519
     },
     {
@@ -29235,6 +32760,11 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4004
     },
     {
@@ -29269,6 +32799,11 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12708
     },
     {
@@ -29305,6 +32840,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 13707
     },
     {
@@ -29337,6 +32876,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2213
     },
     {
@@ -29372,6 +32916,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 4372
     },
     {
@@ -29408,6 +32956,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 9941
     },
     {
@@ -29444,6 +32996,11 @@
       "drop_channels": [
         8
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 8652
     },
     {
@@ -29479,6 +33036,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 14083
     },
     {
@@ -29515,6 +33075,11 @@
       "drop_channels": [
         8
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
       "size": 8652
     },
     {
@@ -29546,6 +33111,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4071
     },
     {
@@ -29582,6 +33152,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 4217
     },
     {
@@ -29617,6 +33190,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 24713
     },
     {
@@ -29652,6 +33231,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 11165
     },
     {
@@ -29688,6 +33270,12 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14511
     },
     {
@@ -29718,6 +33306,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 991
     },
     {
@@ -29753,6 +33344,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords"
+      ],
       "size": 12331
     },
     {
@@ -29788,6 +33383,11 @@
       "drop_channels": [
         3
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 12564
     },
     {
@@ -29820,6 +33420,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 2283
     },
     {
@@ -29856,6 +33461,12 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18340
     },
     {
@@ -29891,6 +33502,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 9807
     },
     {
@@ -29921,6 +33535,10 @@
       "has_drums": true,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
       "size": 3648
     },
     {
@@ -29952,6 +33570,10 @@
       "has_drums": false,
       "tempo_changes": 188,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 6126
     },
     {
@@ -29989,6 +33611,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
       ],
       "size": 18275
     },
@@ -30045,6 +33672,12 @@
       "has_drums": true,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 1965
     },
     {
@@ -30079,6 +33712,11 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 11708
     },
     {
@@ -30110,6 +33748,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 8738
     },
     {
@@ -30158,6 +33799,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 2810
     },
     {
@@ -30193,6 +33837,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         13
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 8819
     },
@@ -30242,6 +33890,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 2810
     },
     {
@@ -30290,6 +33941,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 2983
     },
     {
@@ -30342,6 +33996,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 3915
     },
     {
@@ -30377,6 +34034,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6236
     },
     {
@@ -30446,6 +34108,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6848
     },
     {
@@ -30477,6 +34144,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 8015
     },
     {
@@ -30517,6 +34187,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 793
     },
     {
@@ -30552,6 +34226,12 @@
       "drop_channels": [
         2
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 13080
     },
     {
@@ -30586,6 +34266,10 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
       "size": 16379
     },
     {
@@ -30619,6 +34303,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6153
     },
     {
@@ -30651,6 +34340,10 @@
       "has_drums": false,
       "tempo_changes": 2,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 3778
     },
     {
@@ -30699,6 +34392,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1799
     },
     {
@@ -30747,6 +34444,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 1763
     },
     {
@@ -30780,6 +34481,10 @@
       "has_drums": false,
       "tempo_changes": 4,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 2344
     },
     {
@@ -30819,6 +34524,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 26713
     },
     {
@@ -30857,6 +34567,11 @@
       "drop_channels": [
         6
       ],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 12635
     },
     {
@@ -30893,6 +34608,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 18826
     },
     {
@@ -30922,6 +34643,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 7134
     },
     {
@@ -30954,6 +34678,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 5526
     },
     {
@@ -30983,6 +34713,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 148
     },
     {
@@ -31017,6 +34750,11 @@
       "tempo_changes": 2,
       "drop_channels": [
         4
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 3975
     },
@@ -31055,6 +34793,11 @@
       "drop_channels": [
         5,
         6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
       ],
       "size": 10823
     },
@@ -31096,6 +34839,12 @@
       "has_drums": true,
       "tempo_changes": 3,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 14168
     },
     {
@@ -31131,6 +34880,9 @@
       "tempo_changes": 4,
       "drop_channels": [
         8
+      ],
+      "tags": [
+        "chords"
       ],
       "size": 2050
     },
@@ -31184,6 +34936,12 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 69652
     },
     {
@@ -31213,6 +34971,9 @@
       "has_drums": false,
       "tempo_changes": 19,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 5763
     },
     {
@@ -31245,6 +35006,9 @@
       "drop_channels": [
         1
       ],
+      "tags": [
+        "chords"
+      ],
       "size": 428
     },
     {
@@ -31274,6 +35038,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
       "size": 557
     },
     {
@@ -31307,6 +35074,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 8404
     },
     {
@@ -31354,6 +35126,11 @@
       "drop_channels": [
         7
       ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 6111
     },
     {
@@ -31391,6 +35168,11 @@
       "tempo_changes": 1,
       "drop_channels": [
         10
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
       ],
       "size": 6772
     },
@@ -31431,6 +35213,12 @@
       "has_drums": true,
       "tempo_changes": 61,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 11953
     },
     {
@@ -31465,6 +35253,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 4323
     },
     {
@@ -31494,6 +35287,9 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
       "size": 9425
     },
     {
@@ -31526,6 +35322,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 8653
     },
     {
@@ -31561,6 +35362,10 @@
       "tempo_changes": 1,
       "drop_channels": [
         3
+      ],
+      "tags": [
+        "bass",
+        "lead"
       ],
       "size": 6626
     },
@@ -31606,6 +35411,12 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 20673
     },
     {
@@ -31657,6 +35468,9 @@
         1,
         2
       ],
+      "tags": [
+        "lead"
+      ],
       "size": 2521
     },
     {
@@ -31689,6 +35503,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
       "size": 8808
     },
     {
@@ -31725,6 +35544,11 @@
       "has_drums": true,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
       "size": 11578
     },
     {
@@ -31756,6 +35580,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 658
     },
     {
@@ -31787,6 +35615,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
       "size": 658
     },
     {
@@ -31820,6 +35652,11 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
       "size": 923
     },
     {
@@ -31853,6 +35690,10 @@
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
       "size": 830
     }
   ]

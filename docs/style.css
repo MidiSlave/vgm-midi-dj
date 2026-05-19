@@ -260,7 +260,7 @@ header h1 {
 
 .track-row {
   display: grid;
-  grid-template-columns: minmax(0,1fr) 90px 50px 70px 60px 50px 70px;
+  grid-template-columns: minmax(0,1fr) 90px 50px 70px 60px 150px 50px 70px;
   gap: 0.5rem;
   padding: 0.25rem 0.55rem;
   align-items: center;
@@ -279,6 +279,25 @@ header h1 {
   font-variant-numeric: tabular-nums;
 }
 .track-row .t-game { text-transform: capitalize; }
+.track-row .t-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  font-size: 0.62rem;
+  line-height: 1;
+}
+.t-tag {
+  padding: 2px 5px;
+  border-radius: 8px;
+  border: 1px solid;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  background: transparent;
+}
+.t-tag-drums  { color: #ffb86c; border-color: rgba(255, 184, 108, 0.4); }
+.t-tag-bass   { color: #9b8cff; border-color: rgba(155, 140, 255, 0.4); }
+.t-tag-chords { color: #5ce0d0; border-color: rgba(92, 224, 208, 0.4); }
+.t-tag-lead   { color: #ff79c6; border-color: rgba(255, 121, 198, 0.4); }
 
 .track-row .load-btns { display: flex; gap: 0.25rem; justify-content: flex-end; }
 .track-row .load-btns button {
@@ -490,7 +509,21 @@ header h1 {
   flex-direction: column;
   gap: 0.5rem;
   border-top: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
+.deck-skin {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background-image 0s;
+  z-index: 0;
+}
+.deck-skin.loaded { opacity: 0.14; }
+.deck > :not(.deck-skin) { position: relative; z-index: 1; }
 #deck-1 { border-top-color: var(--a); }
 #deck-2 { border-top-color: var(--b); }
 
