@@ -1763,7 +1763,10 @@ async function loadTrackIntoDeck(deckId, track) {
     decks[deckId].midi = midi;
     decks[deckId].meta = track;
     decks[deckId].currentTick = 0;
-    decks[deckId].loop = { in: null, out: null, active: false, beats: null, pendingExit: false };
+    // Preserve the loop length the user has dialled on the spinner; only
+    // clear the active loop's anchors / state on track load.
+    const keptBeats = decks[deckId].loop?.beats ?? DEFAULT_LOOP_BEATS;
+    decks[deckId].loop = { in: null, out: null, active: false, beats: keptBeats, pendingExit: false };
     decks[deckId].transpose = 0;
     decks[deckId].outputMute = new Set();
     decks[deckId].rollView = { zoom: 1, offset: 0 };
