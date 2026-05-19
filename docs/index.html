@@ -21,7 +21,43 @@
         <span>preview</span>
       </button>
       <div id="midi-status"><span class="dot" id="midi-dot"></span><span id="midi-port">no midi</span></div>
+      <button id="settings-btn" title="settings" aria-label="settings">⚙</button>
     </header>
+
+    <div id="settings-modal" hidden>
+      <div class="settings-backdrop" data-close="1"></div>
+      <div class="settings-panel" role="dialog" aria-labelledby="settings-title">
+        <header class="settings-header">
+          <h2 id="settings-title">Settings</h2>
+          <button class="settings-close" aria-label="close" data-close="1">×</button>
+        </header>
+        <section class="settings-section">
+          <h3>Interface</h3>
+          <label class="settings-row">
+            <span>Deck skin overlay</span>
+            <button class="toggle" id="settings-skin-toggle" role="switch" aria-checked="true">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </button>
+          </label>
+        </section>
+        <section class="settings-section">
+          <h3>MIDI</h3>
+          <label class="settings-row">
+            <span>Hardware output port</span>
+            <div id="settings-midi-port-mount"></div>
+          </label>
+          <p class="settings-hint">Choose which MIDI device receives note data from the decks. Defaults to the first available.</p>
+        </section>
+        <section class="settings-section" id="settings-cue-section">
+          <h3>CUE (headphones)</h3>
+          <p class="settings-hint">When implemented, CUE will route the deck's notes through the in-browser GM synth to a chosen audio output instead of the hardware MIDI. Routing/mute pills will still apply, so you preview exactly what would play.</p>
+          <label class="settings-row muted">
+            <span>Audio output device</span>
+            <span class="settings-todo">— not yet wired —</span>
+          </label>
+        </section>
+      </div>
+    </div>
 
     <section id="browser">
       <div class="browser-controls">

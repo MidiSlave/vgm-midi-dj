@@ -522,6 +522,8 @@ async function unlockTestSynth() {
 // ──────────────────────────────────────────────────────────────
 // MIDI plumbing
 // ──────────────────────────────────────────────────────────────
+let midiAccess = null;
+const SETTINGS_MIDI_PORT_KEY = 'vgmdj-midi-port-id';
 async function initMIDI() {
   const port = document.getElementById('midi-port');
   const status = document.getElementById('midi-status');
@@ -530,23 +532,57 @@ async function initMIDI() {
     return;
   }
   try {
-    const access = await navigator.requestMIDIAccess({ sysex: false });
-    const pickFirst = () => {
-      const outs = [...access.outputs.values()];
-      if (outs.length) {
-        midiOutput = outs[0];
-        port.textContent = midiOutput.name;
-        status.classList.add('ok');
-      } else {
+    midiAccess = await navigator.requestMIDIAccess({ sysex: false });
+    const choose = () => {
+      const outs = [...midiAccess.outputs.values()];
+      if (!outs.length) {
         midiOutput = null;
         port.textContent = 'no midi out';
         status.classList.remove('ok');
+        refreshSettingsMidiPortDropdown();
+        return;
       }
+      const preferredId = localStorage.getItem(SETTINGS_MIDI_PORT_KEY);
+      const pick = outs.find(o => o.id === preferredId) ?? outs[0];
+      midiOutput = pick;
+      port.textContent = pick.name;
+      status.classList.add('ok');
+      refreshSettingsMidiPortDropdown();
     };
-    pickFirst();
-    access.onstatechange = pickFirst;
+    choose();
+    midiAccess.onstatechange = choose;
   } catch (err) {
     port.textContent = `err: ${err.message}`;
+  }
+}
+
+function setMidiOutputById(id) {
+  if (!midiAccess) return;
+  const outs = [...midiAccess.outputs.values()];
+  const pick = outs.find(o => o.id === id) ?? outs[0];
+  if (!pick) return;
+  midiOutput = pick;
+  document.getElementById('midi-port').textContent = pick.name;
+  localStorage.setItem(SETTINGS_MIDI_PORT_KEY, pick.id);
+}
+
+let settingsMidiDropdown = null;
+function refreshSettingsMidiPortDropdown() {
+  if (!midiAccess) return;
+  const mount = document.getElementById('settings-midi-port-mount');
+  if (!mount) return;
+  const outs = [...midiAccess.outputs.values()].map(o => ({ value: o.id, label: o.name || o.id }));
+  if (!outs.length) outs.push({ value: '', label: '(none available)' });
+  const current = midiOutput?.id ?? outs[0].value;
+  if (settingsMidiDropdown) {
+    settingsMidiDropdown.setOptions(outs);
+    settingsMidiDropdown.setValue(current);
+  } else {
+    settingsMidiDropdown = mountDropdown(mount, {
+      options: outs,
+      value: current,
+      onChange: (id) => setMidiOutputById(id),
+    });
   }
 }
 
@@ -2158,6 +2194,36 @@ function init() {
   // Mix switch
   document.querySelectorAll('.mix-pos').forEach(btn => {
     btn.addEventListener('click', () => setMixState(btn.dataset.state));
+  });
+
+  initSettingsModal();
+}
+
+const SETTINGS_SKIN_KEY = 'vgmdj-skin-on';
+function readSkinSetting() {
+  const v = localStorage.getItem(SETTINGS_SKIN_KEY);
+  return v == null ? true : v === '1';
+}
+function applySkinSetting(on) {
+  document.body.classList.toggle('skin-off', !on);
+  localStorage.setItem(SETTINGS_SKIN_KEY, on ? '1' : '0');
+}
+
+function initSettingsModal() {
+  const modal = document.getElementById('settings-modal');
+  const open = () => { modal.hidden = false; refreshSettingsMidiPortDropdown(); };
+  const close = () => { modal.hidden = true; };
+  document.getElementById('settings-btn').addEventListener('click', open);
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+
+  // Skin toggle (persisted)
+  applySkinSetting(readSkinSetting());
+  mountToggle(document.getElementById('settings-skin-toggle'), {
+    initial: readSkinSetting(),
+    onChange: (on) => applySkinSetting(on),
   });
 }
 

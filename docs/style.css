@@ -68,6 +68,94 @@ header h1 {
 }
 .header-spacer { flex: 1; }
 
+#settings-btn {
+  background: transparent;
+  border: 1px solid var(--surface-3);
+  color: var(--muted);
+  width: 30px; height: 30px;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+#settings-btn:hover { color: var(--text); border-color: var(--accent); }
+
+#settings-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#settings-modal[hidden] { display: none; }
+.settings-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+.settings-panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--surface-3);
+  border-radius: 8px;
+  width: min(520px, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  overflow: auto;
+  padding: 1rem 1.2rem 1.2rem;
+}
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.settings-header h2 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.settings-close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 20px;
+  cursor: pointer;
+  width: 28px; height: 28px;
+}
+.settings-close:hover { color: var(--accent); }
+.settings-section {
+  border-top: 1px solid var(--line);
+  padding-top: 0.7rem;
+  margin-top: 0.5rem;
+}
+.settings-section h3 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin: 0.4rem 0;
+  font-size: 0.78rem;
+}
+.settings-row.muted { color: var(--muted); }
+.settings-todo { font-size: 0.7rem; color: var(--muted); font-style: italic; }
+.settings-hint {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin: 0.2rem 0 0.4rem;
+  line-height: 1.4;
+}
+
 /* Toggle (was checkbox) */
 .toggle {
   display: inline-flex;
@@ -523,6 +611,7 @@ header h1 {
   z-index: 0;
 }
 .deck-skin.loaded { opacity: 0.14; }
+body.skin-off .deck-skin { display: none; }
 .deck > :not(.deck-skin) { position: relative; z-index: 1; }
 #deck-1 { border-top-color: var(--a); }
 #deck-2 { border-top-color: var(--b); }
