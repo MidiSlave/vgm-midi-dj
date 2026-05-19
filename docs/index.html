@@ -51,7 +51,9 @@
         <canvas class="piano-roll" data-deck="1"></canvas>
         <div class="deck-controls">
           <button class="btn btn-play" data-deck="1">▶</button>
-          <button class="btn btn-drop" data-deck="1" title="launch at next bar of other deck">drop</button>
+          <button class="btn btn-drop" data-deck="1" title="launch at next bar of master">drop</button>
+          <button class="btn btn-trans" data-deck="1" title="transition: drop the other deck with inverse mute at next bar">trans</button>
+          <button class="btn btn-cut" data-deck="1" title="stop this deck at the next master bar">cut</button>
           <button class="btn btn-cue" data-deck="1">cue</button>
           <div class="loop-group" data-deck="1">
             <button class="btn btn-loop-toggle" data-deck="1" title="engage loop / arm exit">loop</button>
@@ -64,7 +66,13 @@
           </div>
           <div class="cslider vol-slider" data-target="vol-1" data-min="0" data-max="127" data-value="100"></div>
         </div>
-        <div class="routing-slots" data-deck="1"></div>
+        <div class="routing-row" data-deck="1">
+          <div class="routing-slots" data-deck="1"></div>
+          <div class="routing-aux">
+            <button class="btn btn-channel" data-deck="1" data-channel="a" title="reassign deck to channel A or B">A</button>
+            <button class="btn btn-unmute-all" data-deck="1" title="unmute all outputs on this deck">unmute all</button>
+          </div>
+        </div>
       </div>
 
       <div id="mix-switch">
@@ -88,7 +96,9 @@
         <canvas class="piano-roll" data-deck="2"></canvas>
         <div class="deck-controls">
           <button class="btn btn-play" data-deck="2">▶</button>
-          <button class="btn btn-drop" data-deck="2" title="launch at next bar of other deck">drop</button>
+          <button class="btn btn-drop" data-deck="2" title="launch at next bar of master">drop</button>
+          <button class="btn btn-trans" data-deck="2" title="transition: drop the other deck with inverse mute at next bar">trans</button>
+          <button class="btn btn-cut" data-deck="2" title="stop this deck at the next master bar">cut</button>
           <button class="btn btn-cue" data-deck="2">cue</button>
           <div class="loop-group" data-deck="2">
             <button class="btn btn-loop-toggle" data-deck="2" title="engage loop / arm exit">loop</button>
@@ -101,7 +111,13 @@
           </div>
           <div class="cslider vol-slider" data-target="vol-2" data-min="0" data-max="127" data-value="100"></div>
         </div>
-        <div class="routing-slots" data-deck="2"></div>
+        <div class="routing-row" data-deck="2">
+          <div class="routing-slots" data-deck="2"></div>
+          <div class="routing-aux">
+            <button class="btn btn-channel" data-deck="2" data-channel="b" title="reassign deck to channel A or B">B</button>
+            <button class="btn btn-unmute-all" data-deck="2" title="unmute all outputs on this deck">unmute all</button>
+          </div>
+        </div>
       </div>
     </section>
 

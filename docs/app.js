@@ -299,6 +299,8 @@ function makeDeckState(id) {
     outputMute: new Set(),  // output channel indices currently muted
     dropTimer: null,
     dropPending: false,
+    cutTimer: null,
+    cutPending: false,
     seekTimer: null,
     seekPending: null, // tick the playhead will jump to at the next bar of this deck
     // playback transport (live state for visualisation)
@@ -912,6 +914,111 @@ function cancelDrop(deckId) {
   deck.dropTimer = null;
   deck.dropPending = false;
   updateDropUI(deckId);
+}
+
+// All hardware-output channel indices. Used as the universe for inverse-mute.
+const ALL_OUTPUTS = Object.keys(SYNTHS).map(Number);
+
+// Find the deck assigned to the opposite channel from `sourceId`. Returns the
+// deck id or null when both decks share a channel (in which case Transition
+// has no valid target).
+function findOppositeChannelDeck(sourceId) {
+  const source = decks[sourceId];
+  const otherChannel = source.channel === 'a' ? 'b' : 'a';
+  for (const id of ['1', '2']) {
+    if (id !== sourceId && decks[id].channel === otherChannel) return id;
+  }
+  return null;
+}
+
+function flashButton(btn, cls = 'flash', ms = 250) {
+  if (!btn) return;
+  btn.classList.add(cls);
+  setTimeout(() => btn.classList.remove(cls), ms);
+}
+
+// Transition: copy the source deck's mute set onto the opposite-channel deck
+// in inverted form (anything unmuted on source becomes muted on target, and
+// vice versa) — so the two decks together cover the full output set with no
+// overlap. If the target isn't already playing, drop it at the next master bar.
+function transitionDeck(sourceId) {
+  const source = decks[sourceId];
+  if (!source.midi) return;
+  const targetId = findOppositeChannelDeck(sourceId);
+  if (!targetId) {
+    flashButton(document.querySelector(`.btn-trans[data-deck="${sourceId}"]`), 'flash-warn', 400);
+    return;
+  }
+  const target = decks[targetId];
+  if (!target.midi) {
+    flashButton(document.querySelector(`.btn-trans[data-deck="${sourceId}"]`), 'flash-warn', 400);
+    return;
+  }
+  target.outputMute = new Set();
+  for (const out of ALL_OUTPUTS) {
+    if (!source.outputMute.has(out)) target.outputMute.add(out);
+  }
+  // Silence any currently sounding notes on outputs that just became muted
+  for (const [key] of [...target.activeNotes]) {
+    const [oc, note] = key.split(':').map(Number);
+    if (target.outputMute.has(oc)) {
+      sendRaw(0x80 | oc, note, 0);
+      target.activeNotes.delete(key);
+    }
+  }
+  renderRoutingPills(targetId);
+  if (!target.playing) dropDeck(targetId);
+}
+
+// CUT: stop this deck at the next master bar. Tapping it again while pending cancels.
+function cutDeck(deckId) {
+  const deck = decks[deckId];
+  if (deck.cutPending) {
+    clearTimeout(deck.cutTimer);
+    deck.cutTimer = null;
+    deck.cutPending = false;
+    updateCutUI(deckId);
+    return;
+  }
+  if (!deck.playing) return;
+  const msUntil = msUntilNextDownbeat();
+  deck.cutPending = true;
+  updateCutUI(deckId);
+  deck.cutTimer = setTimeout(() => {
+    deck.cutPending = false;
+    deck.cutTimer = null;
+    updateCutUI(deckId);
+    stopDeck(deckId);
+  }, Math.max(0, msUntil));
+}
+
+function updateCutUI(deckId) {
+  const btn = document.querySelector(`.btn-cut[data-deck="${deckId}"]`);
+  if (!btn) return;
+  btn.classList.toggle('pending', decks[deckId].cutPending);
+}
+
+function unmuteAllOutputs(deckId) {
+  const deck = decks[deckId];
+  if (!deck.outputMute.size) return;
+  deck.outputMute.clear();
+  renderRoutingPills(deckId);
+}
+
+function flipDeckChannel(deckId) {
+  const deck = decks[deckId];
+  deck.channel = deck.channel === 'a' ? 'b' : 'a';
+  // If the flip just moved this deck off the audible channel, silence it
+  if (!deckAudible(deckId)) silenceDeck(deckId);
+  updateChannelToggleUI(deckId);
+}
+
+function updateChannelToggleUI(deckId) {
+  const btn = document.querySelector(`.btn-channel[data-deck="${deckId}"]`);
+  if (!btn) return;
+  const ch = decks[deckId].channel;
+  btn.textContent = ch.toUpperCase();
+  btn.dataset.channel = ch;
 }
 
 function updateDropUI(deckId) {
@@ -1855,6 +1962,11 @@ function init() {
       if (decks[deckId].dropPending) cancelDrop(deckId);
       else dropDeck(deckId);
     });
+    document.querySelector(`.btn-trans[data-deck="${deckId}"]`).addEventListener('click', () => transitionDeck(deckId));
+    document.querySelector(`.btn-cut[data-deck="${deckId}"]`).addEventListener('click', () => cutDeck(deckId));
+    document.querySelector(`.btn-channel[data-deck="${deckId}"]`).addEventListener('click', () => flipDeckChannel(deckId));
+    document.querySelector(`.btn-unmute-all[data-deck="${deckId}"]`).addEventListener('click', () => unmuteAllOutputs(deckId));
+    updateChannelToggleUI(deckId);
 
     // Loop: toggle button + length spinner
     document.querySelector(`.btn-loop-toggle[data-deck="${deckId}"]`).addEventListener('click', () => toggleLoop(deckId));

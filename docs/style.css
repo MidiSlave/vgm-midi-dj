@@ -619,6 +619,41 @@ header h1 {
   0%, 100% { background: transparent; }
   50% { background: rgba(102, 214, 138, 0.18); }
 }
+.btn-trans { border-color: var(--a); color: var(--a); }
+.btn-trans.flash-warn {
+  border-color: var(--accent); color: var(--accent);
+  background: rgba(255, 85, 119, 0.18);
+}
+.btn-cut { border-color: var(--accent); color: var(--accent); }
+.btn-cut.pending {
+  animation: cut-pulse 0.4s ease-in-out infinite;
+}
+@keyframes cut-pulse {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(255, 85, 119, 0.22); }
+}
+.btn-channel {
+  min-width: 32px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.btn-channel[data-channel="a"] { color: var(--a); border-color: var(--a); }
+.btn-channel[data-channel="b"] { color: var(--b); border-color: var(--b); }
+.btn-unmute-all { font-size: 0.7rem; }
+
+.routing-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.routing-row .routing-slots { flex: 1 1 auto; min-width: 0; }
+.routing-aux {
+  display: flex;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+  align-items: center;
+}
 
 .routing-slots {
   display: flex;
