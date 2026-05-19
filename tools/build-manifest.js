@@ -337,11 +337,15 @@ function parseMidi(buffer) {
     }
   }
   const heuristicBpm = detectPerceivedBpm(onsetTimes);
-  // Prefer the file's own tempo when it's in a normal listening range
-  // (70–200 BPM). The IOI heuristic is a rescue only for files that lie at
-  // suspiciously extreme tempos (Doom @ 60, Castlevania @ 240+).
+  // Prefer the file's own tempo when it's in a plausible listening range
+  // (50–220 BPM). The IOI heuristic is a rescue only for files at extreme
+  // tempos that almost certainly lie (e.g. 25 BPM "long-note" rips, 240+
+  // "double-time" rips). Files authored at 60 BPM are common and honest; the
+  // narrower 70–200 window was treating them as suspect and replacing with
+  // IOI-guessed values that were often wrong (Doom level3-8 came out at
+  // 125/91/120/81/150/91 when Logic confirms they're all 60).
   let perceivedBpm;
-  if (avgBpm >= 70 && avgBpm <= 200) {
+  if (avgBpm >= 50 && avgBpm <= 220) {
     perceivedBpm = Math.round(avgBpm * 100) / 100;
   } else {
     perceivedBpm = heuristicBpm;
