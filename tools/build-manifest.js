@@ -484,7 +484,6 @@ function prettyTitle(filename) {
 const RELEASE_CLASSIFIERS = {
   zelda(filename) {
     const f = filename;
-    if (/^\d{1,2}[a-z]? - /.test(f)) return 'A Link to the Past';
     if (/windfish/i.test(f)) return "Link's Awakening";
     if (/outset|forest_haven|great_sea|king_of_hyrule|makar|earth_gods/i.test(f)) return 'Wind Waker';
     if (/termina|clock_town|clock_tower|bremen|snowhead|stone_tower|deku_palace|great_bay|awakening_of_zelda/i.test(f)) return "Majora's Mask";

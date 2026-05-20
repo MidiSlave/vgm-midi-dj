@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-19T10:27:55.116Z",
-  "count": 810,
+  "generated": "2026-05-20T02:55:20.619Z",
+  "count": 906,
   "tracks": [
     {
       "path": "midi-files/castlevania/C4-clear.mid",
@@ -34230,99 +34230,17 @@
       "size": 9807
     },
     {
-      "path": "midi-files/zelda/01 - Title ~ Link to the Past.mid",
-      "file": "01 - Title ~ Link to the Past.mid",
-      "title": "01   Title ~ Link To The Past",
-      "embedded_name": "Title ~ Link to the Past",
+      "path": "midi-files/zelda/A Link to the Past/Agahnim-1.mid",
+      "file": "Agahnim-1.mid",
+      "title": "Agahnim 1",
+      "embedded_name": "untitled",
       "game": "zelda",
       "release": "A Link to the Past",
       "bpm": 120,
       "bpm_initial": 120,
       "perceived_bpm": 120,
       "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# major",
-      "duration_sec": 19.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        7,
-        9,
-        10
-      ],
-      "note_count": 382,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 17791
-    },
-    {
-      "path": "midi-files/zelda/02 - Beginning of a New Journey.mid",
-      "file": "02 - Beginning of a New Journey.mid",
-      "title": "02   Beginning Of A New Journey",
-      "embedded_name": "Beginning of a New Journey",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.03,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.03,
-      "perceived_bpm_auto": 120.03,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G# minor",
-      "duration_sec": 63.8,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 536,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "lead"
-      ],
-      "size": 115761
-    },
-    {
-      "path": "midi-files/zelda/03 - Seal of Seven Maidens.mid",
-      "file": "03 - Seal of Seven Maidens.mid",
-      "title": "03   Seal Of Seven Maidens",
-      "embedded_name": "Seal of Seven Maidens",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.51,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.51,
-      "perceived_bpm_auto": 122.51,
-      "perceived_ticks_per_beat": 240,
+      "perceived_ticks_per_beat": 120,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -34331,85 +34249,47 @@
         "4/4"
       ],
       "key": "C major",
-      "duration_sec": 124.7,
+      "duration_sec": 29.3,
       "channels": [
         0,
         1,
         2,
         3,
-        4,
-        5
+        4
       ],
-      "note_count": 2624,
+      "note_count": 119,
       "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
+      "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
       "tags": [
         "bass",
         "lead"
       ],
-      "size": 426797
+      "size": 1121
     },
     {
-      "path": "midi-files/zelda/04a - Time of the Falling Rain.mid",
-      "file": "04a - Time of the Falling Rain.mid",
-      "title": "04a   Time Of The Falling Rain",
-      "embedded_name": "Time of the Falling Rain",
+      "path": "midi-files/zelda/A Link to the Past/Agahnim-2.mid",
+      "file": "Agahnim-2.mid",
+      "title": "Agahnim 2",
+      "embedded_name": "Zelda3 Evil",
       "game": "zelda",
       "release": "A Link to the Past",
-      "bpm": 120.02,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.02,
-      "perceived_bpm_auto": 120.02,
-      "perceived_ticks_per_beat": 240,
+      "bpm": 115.49,
+      "bpm_initial": 90,
+      "perceived_bpm": 115.49,
+      "perceived_bpm_auto": 115.49,
+      "perceived_ticks_per_beat": 192,
       "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
+      "meter": "3/4",
+      "meter_auto": "3/4",
       "meter_changes": null,
       "meters_unique": [
-        "4/4"
+        "3/4"
       ],
-      "key": "C minor",
-      "duration_sec": 63.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 1162,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 168020
-    },
-    {
-      "path": "midi-files/zelda/04b - Time of the Falling Rain (storm).mid",
-      "file": "04b - Time of the Falling Rain (storm).mid",
-      "title": "04b   Time Of The Falling Rain (Storm)",
-      "embedded_name": "Time of the Falling Rain (storm)",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.02,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.02,
-      "perceived_bpm_auto": 120.02,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 63.7,
+      "key": "G major",
+      "duration_sec": 58.9,
       "channels": [
         0,
         1,
@@ -34420,28 +34300,33 @@
         6,
         7
       ],
-      "note_count": 1217,
+      "note_count": 376,
       "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
+      "tempo_changes": 162,
+      "drop_channels": [
+        4,
+        5,
+        6,
+        7
+      ],
       "tags": [
         "bass",
         "lead"
       ],
-      "size": 171346
+      "size": 4960
     },
     {
-      "path": "midi-files/zelda/05a - Hyrule Castle.mid",
-      "file": "05a - Hyrule Castle.mid",
-      "title": "05a   Hyrule Castle",
-      "embedded_name": "Hyrule Castle",
+      "path": "midi-files/zelda/A Link to the Past/Agahnim-3.mid",
+      "file": "Agahnim-3.mid",
+      "title": "Agahnim 3",
+      "embedded_name": "String Ensemble Bass",
       "game": "zelda",
       "release": "A Link to the Past",
-      "bpm": 123.33,
-      "bpm_initial": 120,
-      "perceived_bpm": 123.33,
-      "perceived_bpm_auto": 123.33,
-      "perceived_ticks_per_beat": 240,
+      "bpm": 167.13,
+      "bpm_initial": 117,
+      "perceived_bpm": 167.13,
+      "perceived_bpm_auto": 167.13,
+      "perceived_ticks_per_beat": 192,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -34449,8 +34334,61 @@
       "meters_unique": [
         "4/4"
       ],
-      "key": "G minor",
-      "duration_sec": 184.8,
+      "key": "C major",
+      "duration_sec": 228.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 1168,
+      "has_drums": false,
+      "tempo_changes": 1097,
+      "drop_channels": [
+        1,
+        3,
+        5
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 18596
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Boss-1.mid",
+      "file": "Boss-1.mid",
+      "title": "Boss 1",
+      "embedded_name": "Channel 1",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 92,
+      "bpm_initial": 92,
+      "perceived_bpm": 92,
+      "perceived_bpm_auto": 92,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "3/4"
+        },
+        {
+          "tick": 720,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "3/4",
+        "4/4"
+      ],
+      "key": "A major",
+      "duration_sec": 37.7,
       "channels": [
         0,
         1,
@@ -34462,311 +34400,83 @@
         7,
         9
       ],
-      "note_count": 3226,
+      "note_count": 1285,
       "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 256824
-    },
-    {
-      "path": "midi-files/zelda/05b - Hyrule Castle (storm).mid",
-      "file": "05b - Hyrule Castle (storm).mid",
-      "title": "05b   Hyrule Castle (Storm)",
-      "embedded_name": "Hyrule Castle (storm)",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 123.33,
-      "bpm_initial": 120,
-      "perceived_bpm": 123.33,
-      "perceived_bpm_auto": 123.33,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G minor",
-      "duration_sec": 184.8,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9,
-        10,
-        11
-      ],
-      "note_count": 3395,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 264824
-    },
-    {
-      "path": "midi-files/zelda/06 - Princess Zelda_s Rescue.mid",
-      "file": "06 - Princess Zelda_s Rescue.mid",
-      "title": "06   Princess Zelda S Rescue",
-      "embedded_name": "Princess Zelda's Rescue",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.06,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.06,
-      "perceived_bpm_auto": 122.06,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G major",
-      "duration_sec": 106.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 467,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 103660
-    },
-    {
-      "path": "midi-files/zelda/07 - Safety in the Sanctuary.mid",
-      "file": "07 - Safety in the Sanctuary.mid",
-      "title": "07   Safety In The Sanctuary",
-      "embedded_name": "Safety in the Sanctuary",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.91,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.91,
-      "perceived_bpm_auto": 120.91,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 77.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 377,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 64675
-    },
-    {
-      "path": "midi-files/zelda/08 - Hyrule Field Main Theme.mid",
-      "file": "08 - Hyrule Field Main Theme.mid",
-      "title": "08   Hyrule Field Main Theme",
-      "embedded_name": "Hyrule Field Main Theme",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# minor",
-      "duration_sec": 95.2,
-      "channels": [
-        0,
-        1,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9,
-        10
-      ],
-      "note_count": 2014,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 92979
-    },
-    {
-      "path": "midi-files/zelda/09 - Kakariko Village.mid",
-      "file": "09 - Kakariko Village.mid",
-      "title": "09   Kakariko Village",
-      "embedded_name": "Kakariko Village",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 123.43,
-      "bpm_initial": 120,
-      "perceived_bpm": 123.43,
-      "perceived_bpm_auto": 123.43,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# major",
-      "duration_sec": 196.5,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 1022,
-      "has_drums": false,
-      "tempo_changes": 2,
+      "tempo_changes": 1,
       "drop_channels": [
-        5
+        5,
+        6,
+        7
       ],
       "tags": [
+        "drums",
         "bass",
+        "chords",
         "lead"
       ],
-      "size": 146065
+      "size": 8244
     },
     {
-      "path": "midi-files/zelda/10 - Guessing-Game House.mid",
-      "file": "10 - Guessing-Game House.mid",
-      "title": "10   Guessing Game House",
-      "embedded_name": "Guessing-Game House",
+      "path": "midi-files/zelda/A Link to the Past/Boss-2.mid",
+      "file": "Boss-2.mid",
+      "title": "Boss 2",
+      "embedded_name": "Zelda 3:  A Link to the Past",
       "game": "zelda",
       "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
+      "bpm": 90,
+      "bpm_initial": 90,
+      "perceived_bpm": 90,
+      "perceived_bpm_auto": 90,
+      "perceived_ticks_per_beat": 960,
       "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "3/4"
+        },
+        {
+          "tick": 5760,
+          "sig": "2/4"
+        }
       ],
-      "key": "G# minor",
-      "duration_sec": 58.1,
+      "meters_unique": [
+        "3/4",
+        "2/4"
+      ],
+      "key": "A major",
+      "duration_sec": 49.2,
       "channels": [
         0,
         1,
         2,
         3,
-        4
+        9
       ],
-      "note_count": 965,
-      "has_drums": false,
-      "tempo_changes": 2,
+      "note_count": 1708,
+      "has_drums": true,
+      "tempo_changes": 1,
       "drop_channels": [],
       "tags": [
+        "drums",
         "bass",
-        "lead"
+        "chords"
       ],
-      "size": 77200
+      "size": 15826
     },
     {
-      "path": "midi-files/zelda/11 - Fortune Teller.mid",
-      "file": "11 - Fortune Teller.mid",
-      "title": "11   Fortune Teller",
-      "embedded_name": "Fortune Teller",
+      "path": "midi-files/zelda/A Link to the Past/Boss-3.mid",
+      "file": "Boss-3.mid",
+      "title": "Boss 3",
+      "embedded_name": "untitled",
       "game": "zelda",
       "release": "A Link to the Past",
       "bpm": 120,
       "bpm_initial": 120,
       "perceived_bpm": 120,
       "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F# major",
-      "duration_sec": 53.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "note_count": 520,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 51507
-    },
-    {
-      "path": "midi-files/zelda/12 - Soldiers of Kakariko Village.mid",
-      "file": "12 - Soldiers of Kakariko Village.mid",
-      "title": "12   Soldiers Of Kakariko Village",
-      "embedded_name": "Soldiers of Kakariko Village",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
+      "perceived_ticks_per_beat": 120,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -34775,117 +34485,76 @@
         "4/4"
       ],
       "key": "A major",
-      "duration_sec": 33.9,
+      "duration_sec": 27.4,
       "channels": [
         0,
         1,
         2,
         3,
         4,
-        5,
-        7
+        9
       ],
-      "note_count": 938,
-      "has_drums": false,
-      "tempo_changes": 2,
+      "note_count": 918,
+      "has_drums": true,
+      "tempo_changes": 1,
       "drop_channels": [],
       "tags": [
+        "drums",
         "bass",
-        "lead"
+        "chords"
       ],
-      "size": 30843
+      "size": 5968
     },
     {
-      "path": "midi-files/zelda/13 - Dank Dungeons.mid",
-      "file": "13 - Dank Dungeons.mid",
-      "title": "13   Dank Dungeons",
-      "embedded_name": "Dank Dungeons",
+      "path": "midi-files/zelda/A Link to the Past/Boss-4.mid",
+      "file": "Boss-4.mid",
+      "title": "Boss 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 175,
+      "bpm_initial": 175,
+      "perceived_bpm": 175,
+      "perceived_bpm_auto": 175,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "2/4",
+      "meter_auto": "2/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "2/4"
+      ],
+      "key": "A major",
+      "duration_sec": 54.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 1907,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 11928
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Boss-5.mid",
+      "file": "Boss-5.mid",
+      "title": "Boss 5",
+      "embedded_name": "untitled",
       "game": "zelda",
       "release": "A Link to the Past",
       "bpm": 120,
       "bpm_initial": 120,
       "perceived_bpm": 120,
       "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A minor",
-      "duration_sec": 55.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 599,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 59278
-    },
-    {
-      "path": "midi-files/zelda/14 - Lost Ancient Ruins.mid",
-      "file": "14 - Lost Ancient Ruins.mid",
-      "title": "14   Lost Ancient Ruins",
-      "embedded_name": "Lost Ancient Ruins",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.6,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.6,
-      "perceived_bpm_auto": 122.6,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# minor",
-      "duration_sec": 129.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 837,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 113109
-    },
-    {
-      "path": "midi-files/zelda/15 - Anger of the Guardians.mid",
-      "file": "15 - Anger of the Guardians.mid",
-      "title": "15   Anger Of The Guardians",
-      "embedded_name": "Anger of the Guardians",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
+      "perceived_ticks_per_beat": 120,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -34894,7 +34563,7 @@
         "4/4"
       ],
       "key": "A major",
-      "duration_sec": 41.1,
+      "duration_sec": 27.4,
       "channels": [
         0,
         1,
@@ -34903,788 +34572,16 @@
         4,
         9
       ],
-      "note_count": 913,
+      "note_count": 918,
       "has_drums": true,
-      "tempo_changes": 2,
+      "tempo_changes": 1,
       "drop_channels": [],
       "tags": [
         "drums",
         "bass",
-        "lead"
+        "chords"
       ],
-      "size": 10826
-    },
-    {
-      "path": "midi-files/zelda/16 - Great Victory!.mid",
-      "file": "16 - Great Victory!.mid",
-      "title": "16   Great Victory!",
-      "embedded_name": "Great Victory!",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G# major",
-      "duration_sec": 13.3,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 217,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [
-        5
-      ],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 5728
-    },
-    {
-      "path": "midi-files/zelda/17 - Mirror.mid",
-      "file": "17 - Mirror.mid",
-      "title": "17   Mirror",
-      "embedded_name": "Mirror",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G major",
-      "duration_sec": 8,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 92,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 11437
-    },
-    {
-      "path": "midi-files/zelda/18a - The Silly Pink Rabbit!.mid",
-      "file": "18a - The Silly Pink Rabbit!.mid",
-      "title": "18a   The Silly Pink Rabbit!",
-      "embedded_name": "The Silly Pink Rabbit!",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.28,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.28,
-      "perceived_bpm_auto": 120.28,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 67,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 890,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 11914
-    },
-    {
-      "path": "midi-files/zelda/18b - The Silly Pink Rabbit! (storm).mid",
-      "file": "18b - The Silly Pink Rabbit! (storm).mid",
-      "title": "18b   The Silly Pink Rabbit! (Storm)",
-      "embedded_name": "The Silly Pink Rabbit! (storm)",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.28,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.28,
-      "perceived_bpm_auto": 120.28,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 67,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        6,
-        7
-      ],
-      "note_count": 937,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 60485
-    },
-    {
-      "path": "midi-files/zelda/19 - Forest of Mystery.mid",
-      "file": "19 - Forest of Mystery.mid",
-      "title": "19   Forest Of Mystery",
-      "embedded_name": "Forest of Mystery",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "E minor",
-      "duration_sec": 56.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        7
-      ],
-      "note_count": 738,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [
-        7
-      ],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 101063
-    },
-    {
-      "path": "midi-files/zelda/20 - Master Sword.mid",
-      "file": "20 - Master Sword.mid",
-      "title": "20   Master Sword",
-      "embedded_name": "Master Sword",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G major",
-      "duration_sec": 11.6,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 58,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "lead"
-      ],
-      "size": 15390
-    },
-    {
-      "path": "midi-files/zelda/21 - Priest of the Dark Order.mid",
-      "file": "21 - Priest of the Dark Order.mid",
-      "title": "21   Priest Of The Dark Order",
-      "embedded_name": "Priest of the Dark Order",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.76,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.76,
-      "perceived_bpm_auto": 120.76,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 74.5,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 290,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [
-        3
-      ],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 54711
-    },
-    {
-      "path": "midi-files/zelda/22 - The Dark World.mid",
-      "file": "22 - The Dark World.mid",
-      "title": "22   The Dark World",
-      "embedded_name": "The Dark World",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.71,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.71,
-      "perceived_bpm_auto": 122.71,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G minor",
-      "duration_sec": 135.8,
-      "channels": [
-        0,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9
-      ],
-      "note_count": 2704,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 160929
-    },
-    {
-      "path": "midi-files/zelda/23a - Black Mist.mid",
-      "file": "23a - Black Mist.mid",
-      "title": "23a   Black Mist",
-      "embedded_name": "Black Mist",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.37,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.37,
-      "perceived_bpm_auto": 122.37,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 118.3,
-      "channels": [
-        0,
-        1,
-        3,
-        4,
-        5,
-        9
-      ],
-      "note_count": 1787,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 39616
-    },
-    {
-      "path": "midi-files/zelda/23b - Black Mist (storm).mid",
-      "file": "23b - Black Mist (storm).mid",
-      "title": "23b   Black Mist (Storm)",
-      "embedded_name": "Black Mist (storm)",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.37,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.37,
-      "perceived_bpm_auto": 122.37,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 118.3,
-      "channels": [
-        0,
-        1,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9
-      ],
-      "note_count": 1872,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 127095
-    },
-    {
-      "path": "midi-files/zelda/24 - Dungeon of Shadows.mid",
-      "file": "24 - Dungeon of Shadows.mid",
-      "title": "24   Dungeon Of Shadows",
-      "embedded_name": "Dungeon of Shadows",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 122.91,
-      "bpm_initial": 120,
-      "perceived_bpm": 122.91,
-      "perceived_bpm_auto": 122.91,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# major",
-      "duration_sec": 148.3,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 3090,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 112359
-    },
-    {
-      "path": "midi-files/zelda/25 - Meeting the Maidens.mid",
-      "file": "25 - Meeting the Maidens.mid",
-      "title": "25   Meeting The Maidens",
-      "embedded_name": "Meeting the Maidens",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.99,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.99,
-      "perceived_bpm_auto": 120.99,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G major",
-      "duration_sec": 78.5,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 774,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "lead"
-      ],
-      "size": 162375
-    },
-    {
-      "path": "midi-files/zelda/26 - The Goddess Appears.mid",
-      "file": "26 - The Goddess Appears.mid",
-      "title": "26   The Goddess Appears",
-      "embedded_name": "The Goddess Appears",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.22,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.22,
-      "perceived_bpm_auto": 120.22,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G# minor",
-      "duration_sec": 66.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 566,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "lead"
-      ],
-      "size": 120367
-    },
-    {
-      "path": "midi-files/zelda/27 - Release of Ganon.mid",
-      "file": "27 - Release of Ganon.mid",
-      "title": "27   Release Of Ganon",
-      "embedded_name": "Release of Ganon",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F major",
-      "duration_sec": 7.6,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 85,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "tags": [
-        "lead"
-      ],
-      "size": 1174
-    },
-    {
-      "path": "midi-files/zelda/28 - Ganon_s Message.mid",
-      "file": "28 - Ganon_s Message.mid",
-      "title": "28   Ganon S Message",
-      "embedded_name": "Ganon's Message",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 120.97,
-      "bpm_initial": 120,
-      "perceived_bpm": 120.97,
-      "perceived_bpm_auto": 120.97,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 78.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        7
-      ],
-      "note_count": 339,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 57430
-    },
-    {
-      "path": "midi-files/zelda/29 - The Prince of Darkness.mid",
-      "file": "29 - The Prince of Darkness.mid",
-      "title": "29   The Prince Of Darkness",
-      "embedded_name": "The Prince of Darkness",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 121.09,
-      "bpm_initial": 120,
-      "perceived_bpm": 121.09,
-      "perceived_bpm_auto": 121.09,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 80.4,
-      "channels": [
-        0,
-        1,
-        3,
-        4,
-        5,
-        6,
-        9
-      ],
-      "note_count": 1784,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 82906
-    },
-    {
-      "path": "midi-files/zelda/30 - Power of the Gods.mid",
-      "file": "30 - Power of the Gods.mid",
-      "title": "30   Power Of The Gods",
-      "embedded_name": "Power of the Gods",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 121.82,
-      "bpm_initial": 120,
-      "perceived_bpm": 121.82,
-      "perceived_bpm_auto": 121.82,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 98.4,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 599,
-      "has_drums": false,
-      "tempo_changes": 2,
-      "drop_channels": [
-        5
-      ],
-      "tags": [
-        "bass",
-        "lead"
-      ],
-      "size": 139198
-    },
-    {
-      "path": "midi-files/zelda/31 - Epilogue ~ Beautiful Hyrule.mid",
-      "file": "31 - Epilogue ~ Beautiful Hyrule.mid",
-      "title": "31   Epilogue ~ Beautiful Hyrule",
-      "embedded_name": "Epilogue ~ Beautiful Hyrule",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 123.67,
-      "bpm_initial": 120,
-      "perceived_bpm": 123.67,
-      "perceived_bpm_auto": 123.67,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 231.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9
-      ],
-      "note_count": 2214,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 293115
-    },
-    {
-      "path": "midi-files/zelda/32 - Staff Roll.mid",
-      "file": "32 - Staff Roll.mid",
-      "title": "32   Staff Roll",
-      "embedded_name": "Staff Roll",
-      "game": "zelda",
-      "release": "A Link to the Past",
-      "bpm": 123.7,
-      "bpm_initial": 120,
-      "perceived_bpm": 123.7,
-      "perceived_bpm_auto": 123.7,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "G major",
-      "duration_sec": 236,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9
-      ],
-      "note_count": 1802,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 267270
+      "size": 6314
     },
     {
       "path": "midi-files/zelda/Bremen_mask.mid",
@@ -35720,6 +34617,372 @@
         "lead"
       ],
       "size": 3648
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Caught-by-Kakariko-Guards-1.mid",
+      "file": "Caught-by-Kakariko-Guards-1.mid",
+      "title": "Caught By Kakariko Guards 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D minor",
+      "duration_sec": 16.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "note_count": 658,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 6052
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Caught-by-Kakariko-Guards-2.mid",
+      "file": "Caught-by-Kakariko-Guards-2.mid",
+      "title": "Caught By Kakariko Guards 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 215,
+      "bpm_initial": 215,
+      "perceived_bpm": 215,
+      "perceived_bpm_auto": 215,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A major",
+      "duration_sec": 37.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 1624,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 13288
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Caught-by-Kakariko-Guards-3.mid",
+      "file": "Caught-by-Kakariko-Guards-3.mid",
+      "title": "Caught By Kakariko Guards 3",
+      "embedded_name": "MR9G",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 214,
+      "bpm_initial": 214,
+      "perceived_bpm": 214,
+      "perceived_bpm_auto": 214,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 169.2,
+      "channels": [
+        0,
+        1,
+        2,
+        4,
+        9
+      ],
+      "note_count": 6167,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 46186
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-1.mid",
+      "file": "Cave-1.mid",
+      "title": "Cave 1",
+      "embedded_name": "Low Strings",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 125,
+      "bpm_initial": 125,
+      "perceived_bpm": 125,
+      "perceived_bpm_auto": 125,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 40.1,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 440,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 3018
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-2.mid",
+      "file": "Cave-2.mid",
+      "title": "Cave 2",
+      "embedded_name": "Cave",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 250,
+      "bpm_initial": 250,
+      "perceived_bpm": 122,
+      "perceived_bpm_auto": 122,
+      "perceived_ticks_per_beat": 197,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C# major",
+      "duration_sec": 121.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "note_count": 2980,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        4,
+        5,
+        6,
+        7,
+        10,
+        13,
+        14
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 83146
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-3.mid",
+      "file": "Cave-3.mid",
+      "title": "Cave 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 29.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note_count": 302,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3206
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-4.mid",
+      "file": "Cave-4.mid",
+      "title": "Cave 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F# minor",
+      "duration_sec": 47.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 558,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 3810
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-5.mid",
+      "file": "Cave-5.mid",
+      "title": "Cave 5",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 116,
+      "bpm_initial": 116,
+      "perceived_bpm": 116,
+      "perceived_bpm_auto": 116,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 43.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 319,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 3883
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Cave-6.mid",
+      "file": "Cave-6.mid",
+      "title": "Cave 6",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F# minor",
+      "duration_sec": 47.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 558,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 3810
     },
     {
       "path": "midi-files/zelda/Clock_tower.mid",
@@ -35800,6 +35063,1316 @@
         "lead"
       ],
       "size": 18275
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-1.mid",
+      "file": "Credits-1.mid",
+      "title": "Credits 1",
+      "embedded_name": "Credits",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 125.27,
+      "bpm_initial": 120,
+      "perceived_bpm": 125.27,
+      "perceived_bpm_auto": 125.27,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D major",
+      "duration_sec": 293.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "note_count": 2362,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 16463
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-2.mid",
+      "file": "Credits-2.mid",
+      "title": "Credits 2",
+      "embedded_name": "Melody",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132,
+      "bpm_initial": 132,
+      "perceived_bpm": 132,
+      "perceived_bpm_auto": 132,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 240,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 1386,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 12414
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-3.mid",
+      "file": "Credits-3.mid",
+      "title": "Credits 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 232,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 1891,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 150971
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-4.mid",
+      "file": "Credits-4.mid",
+      "title": "Credits 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 131.91,
+      "bpm_initial": 132.15,
+      "perceived_bpm": 131.91,
+      "perceived_bpm_auto": 131.91,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 240.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 1937,
+      "has_drums": true,
+      "tempo_changes": 65,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 14238
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-5.mid",
+      "file": "Credits-5.mid",
+      "title": "Credits 5",
+      "embedded_name": "Melody",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132,
+      "bpm_initial": 132,
+      "perceived_bpm": 132,
+      "perceived_bpm_auto": 132,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 1981696,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 2585.8,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 1386,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 11825
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Credits-6.mid",
+      "file": "Credits-6.mid",
+      "title": "Credits 6",
+      "embedded_name": "Credits",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 130.56,
+      "bpm_initial": 120,
+      "perceived_bpm": 130.56,
+      "perceived_bpm_auto": 130.56,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 247,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "note_count": 3239,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [
+        5,
+        6,
+        7,
+        8,
+        11
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 21930
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Crystal.mid",
+      "file": "Crystal.mid",
+      "title": "Crystal",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 36,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 366,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 6877
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-Death-Mountain-1.mid",
+      "file": "Dark-Death-Mountain-1.mid",
+      "title": "Dark Death Mountain 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 56.3,
+      "channels": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 1053,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 8567
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-Death-Mountain-2.mid",
+      "file": "Dark-Death-Mountain-2.mid",
+      "title": "Dark Death Mountain 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 135,
+      "bpm_initial": 135,
+      "perceived_bpm": 135,
+      "perceived_bpm_auto": 135,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "2/4",
+      "meter_auto": "2/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "2/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 111.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      "note_count": 2068,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 13096
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-Death-Mountain-3.mid",
+      "file": "Dark-Death-Mountain-3.mid",
+      "title": "Dark Death Mountain 3",
+      "embedded_name": null,
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 38.25,
+      "bpm_initial": 64,
+      "perceived_bpm": 138,
+      "perceived_bpm_auto": 138,
+      "perceived_ticks_per_beat": 133,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 8298,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      "note_count": 2275,
+      "has_drums": true,
+      "tempo_changes": 3,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 18753
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-01.mid",
+      "file": "Dark-World-01.mid",
+      "title": "Dark World 01",
+      "embedded_name": "Drums",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 121.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 2268,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 20936
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-02.mid",
+      "file": "Dark-World-02.mid",
+      "title": "Dark World 02",
+      "embedded_name": "Zelda: Link to the Past, Dark world overworld music",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 59.9,
+      "channels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "note_count": 2074,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6,
+        11
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 13859
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-03.mid",
+      "file": "Dark-World-03.mid",
+      "title": "Dark World 03",
+      "embedded_name": "WinJammer Demo",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 121.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 2268,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 21006
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-04.mid",
+      "file": "Dark-World-04.mid",
+      "title": "Dark World 04",
+      "embedded_name": "Staff",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 139,
+      "bpm_initial": 139,
+      "perceived_bpm": 139,
+      "perceived_bpm_auto": 139,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 177.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "note_count": 3735,
+      "has_drums": true,
+      "tempo_changes": 3,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 43450
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-05.mid",
+      "file": "Dark-World-05.mid",
+      "title": "Dark World 05",
+      "embedded_name": "Zelda Dark World Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 138,
+      "bpm_initial": 138,
+      "perceived_bpm": 138,
+      "perceived_bpm_auto": 138,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 179,
+      "channels": [
+        0,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "note_count": 3798,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        12
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 30727
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-06.mid",
+      "file": "Dark-World-06.mid",
+      "title": "Dark World 06",
+      "embedded_name": null,
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 127.99,
+      "bpm_initial": 120,
+      "perceived_bpm": 127.99,
+      "perceived_bpm_auto": 127.99,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 5057.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note_count": 3811,
+      "has_drums": true,
+      "tempo_changes": 3,
+      "drop_channels": [
+        4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 26898
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-07.mid",
+      "file": "Dark-World-07.mid",
+      "title": "Dark World 07",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 61.5,
+      "channels": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 1264,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 9050
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-08.mid",
+      "file": "Dark-World-08.mid",
+      "title": "Dark World 08",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 135,
+      "bpm_initial": 135,
+      "perceived_bpm": 135,
+      "perceived_bpm_auto": 135,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 131.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 2674,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 17263
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-09.mid",
+      "file": "Dark-World-09.mid",
+      "title": "Dark World 09",
+      "embedded_name": "Dark Overworld",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 126.55,
+      "bpm_initial": 120,
+      "perceived_bpm": 126.55,
+      "perceived_bpm_auto": 126.55,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 132.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note_count": 2344,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 15124
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-10.mid",
+      "file": "Dark-World-10.mid",
+      "title": "Dark World 10",
+      "embedded_name": "Link to the Past - Dark World Overworld",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 121.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 3578,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 21976
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-11.mid",
+      "file": "Dark-World-11.mid",
+      "title": "Dark World 11",
+      "embedded_name": null,
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 61.5,
+      "channels": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "note_count": 2198,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 15422
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Bunny-1.mid",
+      "file": "Dark-World-Bunny-1.mid",
+      "title": "Dark World Bunny 1",
+      "embedded_name": "Trumpet",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 180,
+      "bpm_initial": 180,
+      "perceived_bpm": 180,
+      "perceived_bpm_auto": 180,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D major",
+      "duration_sec": 98.5,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 1304,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
+      "size": 8319
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Bunny-2.mid",
+      "file": "Dark-World-Bunny-2.mid",
+      "title": "Dark World Bunny 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D major",
+      "duration_sec": 32.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "note_count": 456,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3628
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Bunny-3.mid",
+      "file": "Dark-World-Bunny-3.mid",
+      "title": "Dark World Bunny 3",
+      "embedded_name": "Zelda A Link to the Past - Rabbit",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 175.74,
+      "bpm_initial": 178,
+      "perceived_bpm": 175.74,
+      "perceived_bpm_auto": 175.74,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D major",
+      "duration_sec": 66.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 1956,
+      "has_drums": false,
+      "tempo_changes": 6,
+      "drop_channels": [
+        1,
+        3
+      ],
+      "tags": [
+        "chords"
+      ],
+      "size": 14150
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Dungeon-1.mid",
+      "file": "Dark-World-Dungeon-1.mid",
+      "title": "Dark World Dungeon 1",
+      "embedded_name": "High Part",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 145,
+      "bpm_initial": 145,
+      "perceived_bpm": 145,
+      "perceived_bpm_auto": 145,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 94.2,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 2012,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
+      "size": 13060
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Dungeon-2.mid",
+      "file": "Dark-World-Dungeon-2.mid",
+      "title": "Dark World Dungeon 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 145,
+      "bpm_initial": 145,
+      "perceived_bpm": 145,
+      "perceived_bpm_auto": 145,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 94.2,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 2012,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
+      "size": 13080
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Dungeon-3.mid",
+      "file": "Dark-World-Dungeon-3.mid",
+      "title": "Dark World Dungeon 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 52.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 1085,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 57210
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Dungeon-4.mid",
+      "file": "Dark-World-Dungeon-4.mid",
+      "title": "Dark World Dungeon 4",
+      "embedded_name": "Story Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132.78,
+      "bpm_initial": 120,
+      "perceived_bpm": 132.78,
+      "perceived_bpm_auto": 132.78,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 159.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 3199,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [
+        4
+      ],
+      "tags": [
+        "bass",
+        "chords"
+      ],
+      "size": 22611
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Remix-01.mid",
+      "file": "Dark-World-Remix-01.mid",
+      "title": "Dark World Remix 01",
+      "embedded_name": "Ice Rain",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 59.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "note_count": 2773,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        4,
+        5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 20290
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Remix-02.mid",
+      "file": "Dark-World-Remix-02.mid",
+      "title": "Dark World Remix 02",
+      "embedded_name": "Dark World (F-Zero Mix)",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 131.9,
+      "channels": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "note_count": 2500,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 21115
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Dark-World-Remix-03.mid",
+      "file": "Dark-World-Remix-03.mid",
+      "title": "Dark World Remix 03",
+      "embedded_name": "z3dark6",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 121.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 2268,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 19002
     },
     {
       "path": "midi-files/zelda/Dawn.mid",
@@ -36430,6 +37003,524 @@
       "size": 13080
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Ending-1.mid",
+      "file": "Ending-1.mid",
+      "title": "Ending 1",
+      "embedded_name": "Zelda: Link to the Past, Ending music",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120.25,
+      "bpm_initial": 120,
+      "perceived_bpm": 120.25,
+      "perceived_bpm_auto": 120.25,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 222.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "note_count": 2207,
+      "has_drums": true,
+      "tempo_changes": 13,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 15645
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ending-2.mid",
+      "file": "Ending-2.mid",
+      "title": "Ending 2",
+      "embedded_name": "The Legend Of Zelda - A Link To The Past",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 117.75,
+      "bpm_initial": 90,
+      "perceived_bpm": 117.75,
+      "perceived_bpm_auto": 117.75,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "6/8",
+      "meter_auto": "6/8",
+      "meter_changes": null,
+      "meters_unique": [
+        "6/8"
+      ],
+      "key": "C major",
+      "duration_sec": 222.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "note_count": 3014,
+      "has_drums": true,
+      "tempo_changes": 6,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 26986
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ending-3.mid",
+      "file": "Ending-3.mid",
+      "title": "Ending 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 227,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 2445,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 202013
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ending-4.mid",
+      "file": "Ending-4.mid",
+      "title": "Ending 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 118.55,
+      "bpm_initial": 122.35,
+      "perceived_bpm": 118.55,
+      "perceived_bpm_auto": 118.55,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 226.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 2232,
+      "has_drums": true,
+      "tempo_changes": 1148,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 25842
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ending-5.mid",
+      "file": "Ending-5.mid",
+      "title": "Ending 5",
+      "embedded_name": "Piccolo",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 115.65,
+      "bpm_initial": 120,
+      "perceived_bpm": 115.65,
+      "perceived_bpm_auto": 115.65,
+      "perceived_ticks_per_beat": 256,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 239.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "note_count": 6180,
+      "has_drums": true,
+      "tempo_changes": 68,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 56072
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Fairy-1.mid",
+      "file": "Fairy-1.mid",
+      "title": "Fairy 1",
+      "embedded_name": "Bass",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 89.57,
+      "bpm_initial": 112,
+      "perceived_bpm": 89.57,
+      "perceived_bpm_auto": 89.57,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 50.4,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 468,
+      "has_drums": false,
+      "tempo_changes": 79,
+      "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
+      "size": 3597
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Fairy-2.mid",
+      "file": "Fairy-2.mid",
+      "title": "Fairy 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 28,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note_count": 252,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 2116
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Fairy-3.mid",
+      "file": "Fairy-3.mid",
+      "title": "Fairy 3",
+      "embedded_name": "Fairy Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 142.58,
+      "bpm_initial": 120,
+      "perceived_bpm": 142.58,
+      "perceived_bpm_auto": 142.58,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 95.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note_count": 772,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 14217
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Fairy-4.mid",
+      "file": "Fairy-4.mid",
+      "title": "Fairy 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 80,
+      "bpm_initial": 80,
+      "perceived_bpm": 80,
+      "perceived_bpm_auto": 80,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 42,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 357,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 3421
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Flute-Boy-1.mid",
+      "file": "Flute-Boy-1.mid",
+      "title": "Flute Boy 1",
+      "embedded_name": "Ocarina",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 200,
+      "bpm_initial": 200,
+      "perceived_bpm": 200,
+      "perceived_bpm_auto": 200,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D major",
+      "duration_sec": 12.9,
+      "channels": [
+        0
+      ],
+      "note_count": 44,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 349
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Flute-Boy-2.mid",
+      "file": "Flute-Boy-2.mid",
+      "title": "Flute Boy 2",
+      "embedded_name": "Flute Tune from Zelda 3",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 240,
+      "bpm_initial": 120,
+      "perceived_bpm": 91,
+      "perceived_bpm_auto": 91,
+      "perceived_ticks_per_beat": 506,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 37.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "note_count": 726,
+      "has_drums": true,
+      "tempo_changes": 12,
+      "drop_channels": [
+        6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 7246
+    },
+    {
       "path": "midi-files/zelda/Forest_haven.mid",
       "file": "Forest_haven.mid",
       "title": "Forest Haven",
@@ -36467,6 +37558,251 @@
         "chords"
       ],
       "size": 16379
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Battle-1.mid",
+      "file": "Ganon-Battle-1.mid",
+      "title": "Ganon Battle 1",
+      "embedded_name": "Channel 1",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "7/8",
+      "meter_auto": "7/8",
+      "meter_changes": null,
+      "meters_unique": [
+        "7/8"
+      ],
+      "key": "C minor",
+      "duration_sec": 66.6,
+      "channels": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 1582,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 10063
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Battle-2.mid",
+      "file": "Ganon-Battle-2.mid",
+      "title": "Ganon Battle 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 36.2,
+      "channels": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 951,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 6179
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Battle-3.mid",
+      "file": "Ganon-Battle-3.mid",
+      "title": "Ganon Battle 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "7/4",
+      "meter_auto": "7/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "7/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 100.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 2655,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 16535
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Intro-1.mid",
+      "file": "Ganon-Intro-1.mid",
+      "title": "Ganon Intro 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 33.1,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 167,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 1500
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Intro-2.mid",
+      "file": "Ganon-Intro-2.mid",
+      "title": "Ganon Intro 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 101.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 442,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3371
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Ganon-Transformation.mid",
+      "file": "Ganon-Transformation.mid",
+      "title": "Ganon Transformation",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 5.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 170,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "chords"
+      ],
+      "size": 1434
     },
     {
       "path": "midi-files/zelda/Great_bay.mid",
@@ -36508,6 +37844,260 @@
       "size": 6153
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-1.mid",
+      "file": "Hyrule-Castle-1.mid",
+      "title": "Hyrule Castle 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 134.55,
+      "bpm_initial": 152,
+      "perceived_bpm": 134.55,
+      "perceived_bpm_auto": 134.55,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 175.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 3426,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 25170
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-2.mid",
+      "file": "Hyrule-Castle-2.mid",
+      "title": "Hyrule Castle 2",
+      "embedded_name": "Trumpet",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 130,
+      "bpm_initial": 130,
+      "perceived_bpm": 130,
+      "perceived_bpm_auto": 130,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 252.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 5754,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 43388
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-3.mid",
+      "file": "Hyrule-Castle-3.mid",
+      "title": "Hyrule Castle 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 85.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 2054,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 28325
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-4.mid",
+      "file": "Hyrule-Castle-4.mid",
+      "title": "Hyrule Castle 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 127.67,
+      "bpm_initial": 100,
+      "perceived_bpm": 127.67,
+      "perceived_bpm_auto": 127.67,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 175,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 3633,
+      "has_drums": true,
+      "tempo_changes": 6,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 25588
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-5.mid",
+      "file": "Hyrule-Castle-5.mid",
+      "title": "Hyrule Castle 5",
+      "embedded_name": null,
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 41.61,
+      "bpm_initial": 64,
+      "perceived_bpm": 130,
+      "perceived_bpm_auto": 130,
+      "perceived_ticks_per_beat": 154,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 8464.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 4653,
+      "has_drums": true,
+      "tempo_changes": 5,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 37714
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Hyrule-Castle-6.mid",
+      "file": "Hyrule-Castle-6.mid",
+      "title": "Hyrule Castle 6",
+      "embedded_name": "Hyrule Castle (Punk Cover)",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 170,
+      "bpm_initial": 170,
+      "perceived_bpm": 170,
+      "perceived_bpm_auto": 170,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G minor",
+      "duration_sec": 139.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 4519,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 30286
+    },
+    {
       "path": "midi-files/zelda/Intro.mid",
       "file": "Intro.mid",
       "title": "Intro",
@@ -36543,6 +38133,501 @@
         "lead"
       ],
       "size": 3778
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Intro-1.mid",
+      "file": "Intro-1.mid",
+      "title": "Intro 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 62.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 1283,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 8198
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Intro-2.mid",
+      "file": "Intro-2.mid",
+      "title": "Intro 2",
+      "embedded_name": "Legend of Zelda: Link to the Past - Introduction",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 145,
+      "bpm_initial": 145,
+      "perceived_bpm": 145,
+      "perceived_bpm_auto": 145,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 18432,
+          "sig": "3/4"
+        },
+        {
+          "tick": 27648,
+          "sig": "4/4"
+        },
+        {
+          "tick": 39936,
+          "sig": "3/4"
+        },
+        {
+          "tick": 49152,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4",
+        "3/4"
+      ],
+      "key": "G major",
+      "duration_sec": 107.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 2450,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 20287
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Intro-3.mid",
+      "file": "Intro-3.mid",
+      "title": "Intro 3",
+      "embedded_name": "Story Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 130.78,
+      "bpm_initial": 120,
+      "perceived_bpm": 130.78,
+      "perceived_bpm_auto": 130.78,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 15232,
+          "sig": "4/4"
+        },
+        {
+          "tick": 34432,
+          "sig": "3/4"
+        },
+        {
+          "tick": 43648,
+          "sig": "4/4"
+        },
+        {
+          "tick": 55936,
+          "sig": "3/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4",
+        "3/4"
+      ],
+      "key": "C major",
+      "duration_sec": 129.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 2512,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 23351
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Intro-4.mid",
+      "file": "Intro-4.mid",
+      "title": "Intro 4",
+      "embedded_name": "Trumpet",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 151.87,
+      "bpm_initial": 176.8,
+      "perceived_bpm": 151.87,
+      "perceived_bpm_auto": 151.87,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 50688,
+          "sig": "3/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4",
+        "3/4"
+      ],
+      "key": "D minor",
+      "duration_sec": 73,
+      "channels": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        9
+      ],
+      "note_count": 982,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 8860
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-1.mid",
+      "file": "Kakariko-Village-1.mid",
+      "title": "Kakariko Village 1",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132,
+      "bpm_initial": 132,
+      "perceived_bpm": 132,
+      "perceived_bpm_auto": 132,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 117,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 565,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        7
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 10186
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-2.mid",
+      "file": "Kakariko-Village-2.mid",
+      "title": "Kakariko Village 2",
+      "embedded_name": "Strings",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 102,
+      "bpm_initial": 102,
+      "perceived_bpm": 102,
+      "perceived_bpm_auto": 102,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 92.1,
+      "channels": [
+        0,
+        1,
+        2
+      ],
+      "note_count": 671,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 6550
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-3.mid",
+      "file": "Kakariko-Village-3.mid",
+      "title": "Kakariko Village 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 91.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 482,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 53292
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-4.mid",
+      "file": "Kakariko-Village-4.mid",
+      "title": "Kakariko Village 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 200,
+      "bpm_initial": 200,
+      "perceived_bpm": 200,
+      "perceived_bpm_auto": 200,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 188.1,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 1016,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 8049
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-5.mid",
+      "file": "Kakariko-Village-5.mid",
+      "title": "Kakariko Village 5",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 100,
+      "bpm_initial": 100,
+      "perceived_bpm": 100,
+      "perceived_bpm_auto": 100,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "12/8",
+      "meter_auto": "12/8",
+      "meter_changes": null,
+      "meters_unique": [
+        "12/8"
+      ],
+      "key": "A# major",
+      "duration_sec": 52.2,
+      "channels": [
+        0,
+        1,
+        2
+      ],
+      "note_count": 213,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 2825
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-6.mid",
+      "file": "Kakariko-Village-6.mid",
+      "title": "Kakariko Village 6",
+      "embedded_name": "The Morning Light",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 73,
+      "bpm_initial": 73,
+      "perceived_bpm": 73,
+      "perceived_bpm_auto": 73,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 157.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note_count": 2671,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 22030
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Kakariko-Village-7.mid",
+      "file": "Kakariko-Village-7.mid",
+      "title": "Kakariko Village 7",
+      "embedded_name": "Drums",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 160,
+      "bpm_initial": 160,
+      "perceived_bpm": 160,
+      "perceived_bpm_auto": 160,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F minor",
+      "duration_sec": 193.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 5852,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 35695
     },
     {
       "path": "midi-files/zelda/level9-1.mid",
@@ -36689,6 +38774,943 @@
       "size": 2344
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-1.mid",
+      "file": "Light-World-Dungeon-1.mid",
+      "title": "Light World Dungeon 1",
+      "embedded_name": "Ahh Ahh Ahh",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 141.88,
+      "bpm_initial": 132,
+      "perceived_bpm": 141.88,
+      "perceived_bpm_auto": 141.88,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 113.3,
+      "channels": [
+        0,
+        1,
+        2
+      ],
+      "note_count": 721,
+      "has_drums": false,
+      "tempo_changes": 27,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 5898
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-2.mid",
+      "file": "Light-World-Dungeon-2.mid",
+      "title": "Light World Dungeon 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 141.88,
+      "bpm_initial": 132,
+      "perceived_bpm": 141.88,
+      "perceived_bpm_auto": 141.88,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 113.3,
+      "channels": [
+        0,
+        1,
+        2
+      ],
+      "note_count": 721,
+      "has_drums": false,
+      "tempo_changes": 27,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 5913
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-3.mid",
+      "file": "Light-World-Dungeon-3.mid",
+      "title": "Light World Dungeon 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 250,
+      "bpm_initial": 250,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 171,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 117.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 731,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 58524
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-4.mid",
+      "file": "Light-World-Dungeon-4.mid",
+      "title": "Light World Dungeon 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 74.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 405,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 22014
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-5.mid",
+      "file": "Light-World-Dungeon-5.mid",
+      "title": "Light World Dungeon 5",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 124.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 788,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 15321
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Dungeon-6.mid",
+      "file": "Light-World-Dungeon-6.mid",
+      "title": "Light World Dungeon 6",
+      "embedded_name": "Z3 Light World Dungeon (Rock Remix)",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 153,
+      "bpm_initial": 153,
+      "perceived_bpm": 153,
+      "perceived_bpm_auto": 153,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 115.9,
+      "channels": [
+        1,
+        2,
+        4,
+        9
+      ],
+      "note_count": 2592,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 22556
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-01.mid",
+      "file": "Light-World-Overworld-01.mid",
+      "title": "Light World Overworld 01",
+      "embedded_name": "Lead",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 79.3,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 1270,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 8332
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-02.mid",
+      "file": "Light-World-Overworld-02.mid",
+      "title": "Light World Overworld 02",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132,
+      "bpm_initial": 132,
+      "perceived_bpm": 132,
+      "perceived_bpm_auto": 132,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 59.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "note_count": 1868,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 15273
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-03.mid",
+      "file": "Light-World-Overworld-03.mid",
+      "title": "Light World Overworld 03",
+      "embedded_name": "Trumpet 1",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 135,
+      "bpm_initial": 135,
+      "perceived_bpm": 135,
+      "perceived_bpm_auto": 135,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 151,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note_count": 4625,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        6,
+        7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 53522
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-04.mid",
+      "file": "Light-World-Overworld-04.mid",
+      "title": "Light World Overworld 04",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 103.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 4739,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 33521
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-05.mid",
+      "file": "Light-World-Overworld-05.mid",
+      "title": "Light World Overworld 05",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 44.1,
+      "channels": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 1439,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 10344
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-06.mid",
+      "file": "Light-World-Overworld-06.mid",
+      "title": "Light World Overworld 06",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 135,
+      "bpm_initial": 135,
+      "perceived_bpm": 135,
+      "perceived_bpm_auto": 135,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "2/4",
+      "meter_auto": "2/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "2/4"
+      ],
+      "key": "F major",
+      "duration_sec": 84.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 2608,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 16409
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-07.mid",
+      "file": "Light-World-Overworld-07.mid",
+      "title": "Light World Overworld 07",
+      "embedded_name": "Zelda 3- Light World Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 132,
+      "bpm_initial": 132,
+      "perceived_bpm": 132,
+      "perceived_bpm_auto": 132,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "2/4",
+      "meter_auto": "2/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "2/4"
+        },
+        {
+          "tick": 384,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "2/4",
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 119,
+      "channels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "note_count": 3257,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        10,
+        12
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 27942
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-08.mid",
+      "file": "Light-World-Overworld-08.mid",
+      "title": "Light World Overworld 08",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 142,
+      "bpm_initial": 142,
+      "perceived_bpm": 142,
+      "perceived_bpm_auto": 142,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 48.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9,
+        10
+      ],
+      "note_count": 993,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 8805
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-09.mid",
+      "file": "Light-World-Overworld-09.mid",
+      "title": "Light World Overworld 09",
+      "embedded_name": "Light World XG",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 130,
+      "bpm_initial": 130,
+      "perceived_bpm": 130,
+      "perceived_bpm_auto": 130,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 84.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 2491,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        7
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 21935
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-Remix-1.mid",
+      "file": "Light-World-Overworld-Remix-1.mid",
+      "title": "Light World Overworld Remix 1",
+      "embedded_name": "WinJammer Demo",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 131.66,
+      "bpm_initial": 120,
+      "perceived_bpm": 131.66,
+      "perceived_bpm_auto": 131.66,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F minor",
+      "duration_sec": 115,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 4245,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 27255
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-Remix-2.mid",
+      "file": "Light-World-Overworld-Remix-2.mid",
+      "title": "Light World Overworld Remix 2",
+      "embedded_name": "The Legend Of Zelda",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 110,
+      "bpm_initial": 110,
+      "perceived_bpm": 110,
+      "perceived_bpm_auto": 110,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 63.1,
+      "channels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9
+      ],
+      "note_count": 1336,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 11560
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-Remix-3.mid",
+      "file": "Light-World-Overworld-Remix-3.mid",
+      "title": "Light World Overworld Remix 3",
+      "embedded_name": "Track 0",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F major",
+      "duration_sec": 72,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "note_count": 4604,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        6
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 47593
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Light-World-Overworld-Remix-4.mid",
+      "file": "Light-World-Overworld-Remix-4.mid",
+      "title": "Light World Overworld Remix 4",
+      "embedded_name": "Bass",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 136,
+      "bpm_initial": 136,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# minor",
+      "duration_sec": 72.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 1788,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 14668
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Lost-Woods-1.mid",
+      "file": "Lost-Woods-1.mid",
+      "title": "Lost Woods 1",
+      "embedded_name": "Flute (Melody)",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 142.8,
+      "bpm_initial": 142.8,
+      "perceived_bpm": 142.8,
+      "perceived_bpm_auto": 142.8,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 41.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 614,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 5621
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Lost-Woods-2.mid",
+      "file": "Lost-Woods-2.mid",
+      "title": "Lost Woods 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 250,
+      "bpm_initial": 250,
+      "perceived_bpm": 136,
+      "perceived_bpm_auto": 136,
+      "perceived_ticks_per_beat": 176,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C# major",
+      "duration_sec": 63.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12
+      ],
+      "note_count": 1782,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        12
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 61448
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Master-Sword.mid",
+      "file": "Master-Sword.mid",
+      "title": "Master Sword",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 9.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 58,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 13386
+    },
+    {
       "path": "midi-files/zelda/medley.mid",
       "file": "medley.mid",
       "title": "Medley",
@@ -36732,6 +39754,168 @@
         "lead"
       ],
       "size": 26713
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Mini-Game-1.mid",
+      "file": "Mini-Game-1.mid",
+      "title": "Mini Game 1",
+      "embedded_name": "Zelda 3- Mini Game Music       [Mark Jansen]",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 93,
+      "bpm_initial": 93,
+      "perceived_bpm": 93,
+      "perceived_bpm_auto": 93,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 53.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      "note_count": 1152,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 9126
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Mini-Game-2.mid",
+      "file": "Mini-Game-2.mid",
+      "title": "Mini Game 2",
+      "embedded_name": "High",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 189,
+      "bpm_initial": 189,
+      "perceived_bpm": 189,
+      "perceived_bpm_auto": 189,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "6/4",
+      "meter_auto": "6/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "6/4"
+        },
+        {
+          "tick": 720,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "6/4",
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 43.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 767,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 5104
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Mini-Game-3.mid",
+      "file": "Mini-Game-3.mid",
+      "title": "Mini Game 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# minor",
+      "duration_sec": 23.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 399,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 2706
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Mini-Game-4.mid",
+      "file": "Mini-Game-4.mid",
+      "title": "Mini Game 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 185,
+      "bpm_initial": 185,
+      "perceived_bpm": 185,
+      "perceived_bpm_auto": 185,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# minor",
+      "duration_sec": 53,
+      "channels": [
+        0,
+        1,
+        2
+      ],
+      "note_count": 917,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 5985
     },
     {
       "path": "midi-files/zelda/Outset_island.mid",
@@ -36893,6 +40077,180 @@
       "size": 5526
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Rain-Scene-1.mid",
+      "file": "Rain-Scene-1.mid",
+      "title": "Rain Scene 1",
+      "embedded_name": "Zelda 3- Rain Scene",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 145.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note_count": 4514,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 36928
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Rain-Scene-2.mid",
+      "file": "Rain-Scene-2.mid",
+      "title": "Rain Scene 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 29,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 480,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3299
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Rain-Scene-3.mid",
+      "file": "Rain-Scene-3.mid",
+      "title": "Rain Scene 3",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 146,
+      "bpm_initial": 146,
+      "perceived_bpm": 146,
+      "perceived_bpm_auto": 146,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 48000,
+          "sig": "3/4"
+        },
+        {
+          "tick": 71040,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4",
+        "3/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 38.6,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 817,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        4
+      ],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 7626
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Rain-Scene-4.mid",
+      "file": "Rain-Scene-4.mid",
+      "title": "Rain Scene 4",
+      "embedded_name": "Rain Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 128.52,
+      "bpm_initial": 120,
+      "perceived_bpm": 128.52,
+      "perceived_bpm_auto": 128.52,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 86.1,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 1544,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 17522
+    },
+    {
       "path": "midi-files/zelda/recorder.mid",
       "file": "recorder.mid",
       "title": "Recorder",
@@ -36924,6 +40282,316 @@
         "lead"
       ],
       "size": 148
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-1.mid",
+      "file": "Sanctuary-1.mid",
+      "title": "Sanctuary 1",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 88.5,
+      "channels": [
+        0
+      ],
+      "note_count": 339,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords"
+      ],
+      "size": 2832
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-2.mid",
+      "file": "Sanctuary-2.mid",
+      "title": "Sanctuary 2",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 88.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 1685,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "chords"
+      ],
+      "size": 15327
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-3.mid",
+      "file": "Sanctuary-3.mid",
+      "title": "Sanctuary 3",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 125,
+      "bpm_initial": 125,
+      "perceived_bpm": 125,
+      "perceived_bpm_auto": 125,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 62.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 333,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 2789
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-4.mid",
+      "file": "Sanctuary-4.mid",
+      "title": "Sanctuary 4",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C minor",
+      "duration_sec": 38.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 182,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 37923
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-5.mid",
+      "file": "Sanctuary-5.mid",
+      "title": "Sanctuary 5",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 62.97,
+      "bpm_initial": 80,
+      "perceived_bpm": 62.97,
+      "perceived_bpm_auto": 62.97,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C# minor",
+      "duration_sec": 103.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 535,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3753
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Sanctuary-6.mid",
+      "file": "Sanctuary-6.mid",
+      "title": "Sanctuary 6",
+      "embedded_name": "Zelda III,",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 88.5,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "note_count": 1685,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "chords"
+      ],
+      "size": 15327
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Shop-1.mid",
+      "file": "Shop-1.mid",
+      "title": "Shop 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F# major",
+      "duration_sec": 20.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 228,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        3
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 1617
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Shop-2.mid",
+      "file": "Shop-2.mid",
+      "title": "Shop 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F# major",
+      "duration_sec": 63.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 1062,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "chords",
+        "lead"
+      ],
+      "size": 6762
     },
     {
       "path": "midi-files/zelda/Snowhead.mid",
@@ -37257,6 +40925,178 @@
         "lead"
       ],
       "size": 557
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Title-1.mid",
+      "file": "Title-1.mid",
+      "title": "Title 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 17.3,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9
+      ],
+      "note_count": 494,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 3525
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Title-2.mid",
+      "file": "Title-2.mid",
+      "title": "Title 2",
+      "embedded_name": "Intro Theme",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 18.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "note_count": 501,
+      "has_drums": true,
+      "tempo_changes": 15,
+      "drop_channels": [
+        2
+      ],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 3586
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Title-3.mid",
+      "file": "Title-3.mid",
+      "title": "Title 3",
+      "embedded_name": "Trumpet",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 151.87,
+      "bpm_initial": 176.8,
+      "perceived_bpm": 151.87,
+      "perceived_bpm_auto": 151.87,
+      "perceived_ticks_per_beat": 384,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 50688,
+          "sig": "3/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4",
+        "3/4"
+      ],
+      "key": "D minor",
+      "duration_sec": 73,
+      "channels": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        9
+      ],
+      "note_count": 982,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 8860
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Title-4.mid",
+      "file": "Title-4.mid",
+      "title": "Title 4",
+      "embedded_name": "Strings",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 151.13,
+      "bpm_initial": 176,
+      "perceived_bpm": 151.13,
+      "perceived_bpm_auto": 151.13,
+      "perceived_ticks_per_beat": 240,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A# major",
+      "duration_sec": 72.7,
+      "channels": [
+        0,
+        1,
+        2,
+        5,
+        9
+      ],
+      "note_count": 470,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords"
+      ],
+      "size": 3984
     },
     {
       "path": "midi-files/zelda/Title_screen.mid",
@@ -37779,6 +41619,90 @@
       "size": 11578
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Triforce-1.mid",
+      "file": "Triforce-1.mid",
+      "title": "Triforce 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "C major",
+      "duration_sec": 45.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 276,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 37295
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Triforce-2.mid",
+      "file": "Triforce-2.mid",
+      "title": "Triforce 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 115,
+      "bpm_initial": 115,
+      "perceived_bpm": 115,
+      "perceived_bpm_auto": 115,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "C major",
+      "duration_sec": 91.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 604,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 7543
+    },
+    {
       "path": "midi-files/zelda/triforce1.mid",
       "file": "triforce1.mid",
       "title": "Triforce1",
@@ -37890,6 +41814,170 @@
       "size": 923
     },
     {
+      "path": "midi-files/zelda/A Link to the Past/Victory-1.mid",
+      "file": "Victory-1.mid",
+      "title": "Victory 1",
+      "embedded_name": "Trumpets 1",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 162.4,
+      "bpm_initial": 150,
+      "perceived_bpm": 162.4,
+      "perceived_bpm_auto": 162.4,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# major",
+      "duration_sec": 10.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "note_count": 186,
+      "has_drums": false,
+      "tempo_changes": 4,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 1674
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Victory-2.mid",
+      "file": "Victory-2.mid",
+      "title": "Victory 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# major",
+      "duration_sec": 10.9,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 372,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        5
+      ],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 3614
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Victory-Crystal.mid",
+      "file": "Victory-Crystal.mid",
+      "title": "Victory Crystal",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 100,
+      "bpm_initial": 100,
+      "perceived_bpm": 100,
+      "perceived_bpm_auto": 100,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "G major",
+      "duration_sec": 142.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note_count": 1727,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 69242
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Warp-Tile.mid",
+      "file": "Warp-Tile.mid",
+      "title": "Warp Tile",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 5.8,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "note_count": 70,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 16534
+    },
+    {
       "path": "midi-files/zelda/Windfish_ballad.mid",
       "file": "Windfish_ballad.mid",
       "title": "Windfish Ballad",
@@ -37926,6 +42014,84 @@
         "lead"
       ],
       "size": 830
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Zeldas-Rescue-1.mid",
+      "file": "Zeldas-Rescue-1.mid",
+      "title": "Zeldas Rescue 1",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G major",
+      "duration_sec": 49.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 237,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 2314
+    },
+    {
+      "path": "midi-files/zelda/A Link to the Past/Zeldas-Rescue-2.mid",
+      "file": "Zeldas-Rescue-2.mid",
+      "title": "Zeldas Rescue 2",
+      "embedded_name": "untitled",
+      "game": "zelda",
+      "release": "A Link to the Past",
+      "bpm": 99.51,
+      "bpm_initial": 91,
+      "perceived_bpm": 99.51,
+      "perceived_bpm_auto": 99.51,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "G major",
+      "duration_sec": 99.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "note_count": 461,
+      "has_drums": false,
+      "tempo_changes": 3,
+      "drop_channels": [],
+      "tags": [
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 3463
     }
   ]
 }
