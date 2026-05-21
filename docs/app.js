@@ -925,6 +925,7 @@ function playDeck(deckId, startTick = 0) {
 
     let nextTick = ev ? ev.tick : Infinity;
     let isLoopJump = false;
+    let isPendingExitBar = false;
 
     // If loop end falls before the next event, schedule either the wrap-jump or
     // a clean exit at that exact tick. With pendingExit we land on loop.out then
@@ -932,6 +933,21 @@ function playDeck(deckId, startTick = 0) {
     if (deck.loop.active && deck.loop.out != null && deck.loop.out < nextTick) {
       nextTick = deck.loop.out;
       isLoopJump = !deck.loop.pendingExit;
+    }
+
+    // pendingExit honours the *next bar boundary* regardless of where the
+    // playhead is relative to the loop region — so a user-armed exit fires
+    // promptly even when playback is before, after, or outside the loop.
+    if (deck.loop.active && deck.loop.pendingExit) {
+      const tpb = getDeckTicksPerBeat(deck);
+      const meterNum = parseMeterNum(deck.meta?.meter) || 4;
+      const ticksPerBar = tpb * meterNum;
+      const nextBarTick = Math.ceil((currentTick + 1) / ticksPerBar) * ticksPerBar;
+      if (nextBarTick < nextTick) {
+        nextTick = nextBarTick;
+        isLoopJump = false;
+        isPendingExitBar = true;
+      }
     }
 
     cumulativeMs += (nextTick - currentTick) * msPerTick();
@@ -945,6 +961,14 @@ function playDeck(deckId, startTick = 0) {
       deck.currentTick = currentTick;
       if (isLoopJump) {
         handleLoopWrap(deckId);
+        return;
+      }
+      if (isPendingExitBar) {
+        deck.loop.active = false;
+        deck.loop.pendingExit = false;
+        updateLoopUI(deckId);
+        updatePosition(deckId, currentTick, ticksPerBeat, currentBPM);
+        step();
         return;
       }
       do {
@@ -1468,6 +1492,31 @@ function paintRoll(deckId) {
     if (deck.loop.out != null) {
       ctx.beginPath(); ctx.moveTo(x2, 0); ctx.lineTo(x2, h); ctx.stroke();
     }
+    // Drag handles — chevrons at top/bottom of each boundary line. Visible
+    // but unobtrusive; hit zone (in bindPianoRoll) is wider than the glyph.
+    const handleFill = deck.loop.active ? '#66d68a' : 'rgba(102,214,138,0.7)';
+    const sz = 6 * dpr;
+    ctx.fillStyle = handleFill;
+    const drawHandle = (x, pointRight) => {
+      // Top chevron pointing inward
+      ctx.beginPath();
+      if (pointRight) {
+        ctx.moveTo(x, 0); ctx.lineTo(x + sz, 0); ctx.lineTo(x, sz);
+      } else {
+        ctx.moveTo(x, 0); ctx.lineTo(x - sz, 0); ctx.lineTo(x, sz);
+      }
+      ctx.closePath(); ctx.fill();
+      // Bottom chevron
+      ctx.beginPath();
+      if (pointRight) {
+        ctx.moveTo(x, h); ctx.lineTo(x + sz, h); ctx.lineTo(x, h - sz);
+      } else {
+        ctx.moveTo(x, h); ctx.lineTo(x - sz, h); ctx.lineTo(x, h - sz);
+      }
+      ctx.closePath(); ctx.fill();
+    };
+    drawHandle(x1, true);
+    if (deck.loop.out != null) drawHandle(x2, false);
   }
 
   // Pending seek marker (dashed, deck colour) — where playhead will jump at next bar
@@ -1554,7 +1603,7 @@ function bindPianoRoll(deckId) {
   canvas.style.touchAction = 'none';
 
   const pointers = new Map(); // pointerId → {x, y}
-  let dragMode = null;        // 'scrub' | 'pan' | 'pinch' | null
+  let dragMode = null;        // 'scrub' | 'pan' | 'pinch' | 'loopIn' | 'loopOut' | null
   let pinchStartDist = 0;
   let pinchStartZoom = 1;
   let pinchStartMidFrac = 0.5;  // midpoint as fraction of canvas at pinch start
@@ -1576,6 +1625,40 @@ function bindPianoRoll(deckId) {
     return Math.round(t);
   };
 
+  // Beat-snap helper for loop-handle drag. Distinct from xToTick because we
+  // want beat granularity regardless of zoom, and no clamp to view window.
+  const xToTickForLoop = (x, snap) => {
+    const deck = decks[deckId];
+    const rect = canvas.getBoundingClientRect();
+    const frac = (x - rect.left) / rect.width;
+    const { startTick, endTick } = getRollViewWindow(deck);
+    let t = startTick + frac * (endTick - startTick);
+    if (snap) {
+      const tpb = getDeckTicksPerBeat(deck);
+      t = Math.round(t / tpb) * tpb;
+    }
+    return Math.max(0, Math.round(t));
+  };
+
+  // Hit-test a loop handle. Returns 'loopIn' / 'loopOut' / null.
+  // Hit zone is 14px CSS each side of the marker — wider than the visual chevron.
+  const hitTestLoopHandle = (clientX) => {
+    const deck = decks[deckId];
+    if (deck.loop.in == null || deck.loop.out == null) return null;
+    const rect = canvas.getBoundingClientRect();
+    const { startTick, endTick } = getRollViewWindow(deck);
+    const span = endTick - startTick;
+    const tickToCssX = (t) => rect.left + ((t - startTick) / span) * rect.width;
+    const HIT = 14;
+    const xIn = tickToCssX(deck.loop.in);
+    const xOut = tickToCssX(deck.loop.out);
+    const dIn = Math.abs(clientX - xIn);
+    const dOut = Math.abs(clientX - xOut);
+    if (dIn <= HIT && dIn <= dOut) return 'loopIn';
+    if (dOut <= HIT) return 'loopOut';
+    return null;
+  };
+
   canvas.addEventListener('pointerdown', (e) => {
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     canvas.setPointerCapture(e.pointerId);
@@ -1591,6 +1674,15 @@ function bindPianoRoll(deckId) {
       pinchStartWorldX = startOffset + pinchStartMidFrac / pinchStartZoom;
       dragMode = 'pinch';
       return;
+    }
+
+    // Loop-handle drag takes priority over scrub, but only when not shift-panning.
+    if (!e.shiftKey) {
+      const hit = hitTestLoopHandle(e.clientX);
+      if (hit) {
+        dragMode = hit;
+        return;
+      }
     }
 
     panStartX = e.clientX;
@@ -1635,6 +1727,29 @@ function bindPianoRoll(deckId) {
 
     if (dragMode === 'scrub') {
       seekDeck(deckId, xToTick(e.clientX, !e.shiftKey));
+      return;
+    }
+
+    if (dragMode === 'loopIn' || dragMode === 'loopOut') {
+      const deck = decks[deckId];
+      const tpb = getDeckTicksPerBeat(deck);
+      const minLen = tpb; // one beat
+      let t = xToTickForLoop(e.clientX, !e.shiftKey);
+      if (dragMode === 'loopIn') {
+        // Guard: don't cross/overlap the out marker — clamp to one beat below it
+        if (deck.loop.out != null && t > deck.loop.out - minLen) t = deck.loop.out - minLen;
+        if (t < 0) t = 0;
+        deck.loop.in = t;
+      } else {
+        if (deck.loop.in != null && t < deck.loop.in + minLen) t = deck.loop.in + minLen;
+        deck.loop.out = t;
+      }
+      // Keep beat count in sync so the length spinner reflects manual drags
+      if (deck.loop.in != null && deck.loop.out != null && tpb > 0) {
+        deck.loop.beats = (deck.loop.out - deck.loop.in) / tpb;
+      }
+      paintRoll(deckId);
+      return;
     }
   });
 
