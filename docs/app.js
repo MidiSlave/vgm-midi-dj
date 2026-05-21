@@ -376,7 +376,20 @@ function setMasterBpm(bpm) {
   bpm = Math.max(20, Math.min(240, Math.round(bpm)));
   if (bpm === master.bpm) return;
   master.bpm = bpm;
-  for (const id of ['1', '2']) syncDeckToMaster(id);
+  for (const id of ['1', '2']) {
+    syncDeckToMaster(id);
+    const d = decks[id];
+    if (!d.playing) continue;
+    // Anchors (lastEventTick/WallTime + currentMsPerTick) still reflect the OLD
+    // rate at this point — syncDeckToMaster only touched deck.pitch. Capture the
+    // live tick under the OLD rate, then re-anchor under the NEW rate so the
+    // in-flight setTimeout target (computed from startWallTime + cumulativeMs)
+    // and the live-playhead interpolation stay consistent across the jump.
+    const liveTick = getLivePlaybackTick(d);
+    d.lastEventTick = liveTick;
+    d.lastEventWallTime = performance.now();
+    d.currentMsPerTick = (60000 / (master.bpm * d.pitch)) / getDeckTicksPerBeat(d);
+  }
   document.getElementById('master-bpm-value').textContent = bpm;
   // Re-anchor beat-1 so it stays phase-locked: prefer the playing deck if there
   // is one (alignment to musical content), otherwise preserve the visual phase
@@ -406,6 +419,24 @@ function syncDeckToMaster(deckId) {
 function masterReset() {
   master.beatOneAt = performance.now();
   updateMasterBeatDots(true);
+}
+
+// When a deck starts playing and it's the only deck playing, slave master.meter
+// to that deck's meter so DROP/CUT quantising, beat-dots and loop maths all
+// follow the audible groove. Two-deck-different-meter case is left alone — the
+// user resolves it with CUT (which has its own meter-swap logic).
+function adoptDeckMeterIfSolo(deckId) {
+  const deck = decks[deckId];
+  if (!deck?.meta) return;
+  const otherId = deckId === '1' ? '2' : '1';
+  if (decks[otherId].playing) return;
+  const m = parseMeterNum(deck.meta?.meter) || 4;
+  if (m === master.meter) return;
+  master.meter = m;
+  buildMasterBeatDots();
+  lastShownBeat = -1;
+  updateMasterBeatDots(true);
+  masterMeterSpinner?.setValue(m);
 }
 
 // Raw-tick offset where the file's audible beat-1 sits. Defaults to 0 for
@@ -872,6 +903,8 @@ function playDeck(deckId, startTick = 0) {
     silenceDeck(deckId);
   }
 
+  adoptDeckMeterIfSolo(deckId);
+
   deck.playing = true;
   const btn = document.querySelector(`.btn-play[data-deck="${deckId}"]`);
   if (btn) { btn.classList.add('playing'); btn.textContent = '■'; }
@@ -956,13 +989,16 @@ function playDeck(deckId, startTick = 0) {
 
     cumulativeMs += (nextTick - currentTick) * msPerTick();
     const targetWallTime = deck.startWallTime + cumulativeMs;
-    deck.lastEventWallTime = performance.now();
-    deck.lastEventTick = currentTick;
     deck.currentMsPerTick = msPerTick();
 
     deck.timer = setTimeout(() => {
       currentTick = nextTick;
       deck.currentTick = currentTick;
+      // Anchor live-playhead interpolation to the *intended* fire time rather
+      // than performance.now() — otherwise setTimeout jitter (5–100ms) leaks
+      // into every read of getLivePlaybackTick.
+      deck.lastEventWallTime = targetWallTime;
+      deck.lastEventTick = currentTick;
       if (isLoopJump) {
         handleLoopWrap(deckId);
         return;
@@ -1260,6 +1296,13 @@ function handleLoopWrap(deckId) {
   // Re-arm without the full silenceDeck (which would kill the tails we just scheduled)
   deck.playing = false;
   if (deck.timer) { clearTimeout(deck.timer); deck.timer = null; }
+  // Re-anchor master to this deck's loop-in so phase error doesn't accumulate
+  // across long loops. Only when this deck is the solo reference — otherwise
+  // the other deck owns the grid and we mustn't yank it.
+  const otherId = deckId === '1' ? '2' : '1';
+  if (!decks[otherId].playing) {
+    anchorMasterToDeck(deckId, deck.loop.in);
+  }
   playDeck(deckId, deck.loop.in);
 }
 
