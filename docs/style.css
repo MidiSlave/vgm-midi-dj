@@ -356,6 +356,10 @@ header h1 {
   border-bottom: 1px solid var(--line);
 }
 .track-row:not(.track-row-header):hover { background: var(--surface-2); }
+/* Rubato / heavy tempo automation — dim the title so the eye skips past
+   these when scanning for mix-friendly tracks. Loaders + columns stay
+   readable so you can still pick them up deliberately. */
+.track-row.unstable .t-title { color: var(--muted); font-style: italic; }
 
 .track-row .t-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .track-row .t-game,
@@ -698,7 +702,7 @@ body.skin-off .deck-skin { display: none; }
 .deck-controls {
   display: flex;
   align-items: center;
-  gap: clamp(0.3rem, 0.45vw, 0.55rem);
+  gap: clamp(0.45rem, 0.85vw, 0.95rem);
 }
 /* Same fluid sizing as deck-head btns — keeps touch target ≥36px on iPad. */
 .deck-controls .btn {
@@ -912,6 +916,14 @@ body.skin-off .deck-skin { display: none; }
 }
 .routing-pill.muted .pill-name { text-decoration: line-through; }
 .routing-pill.muted .pill-dot { background: transparent; border: 1px solid var(--muted); }
+.routing-pill.unused {
+  opacity: 0.25;
+  cursor: default;
+  background: transparent;
+}
+.routing-pill.unused:hover { border-color: var(--line); background: transparent; }
+.routing-pill.unused .pill-name { color: var(--muted); }
+.routing-pill.unused .pill-count { background: transparent; }
 
 /* ─────────── Mix switch ─────────── */
 #mix-switch {

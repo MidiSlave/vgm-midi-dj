@@ -849,23 +849,29 @@ function renderRoutingPills(deckId) {
     (groups[o] ||= []).push(parseInt(src));
   }
 
+  // Render every hardware output, every time, in a stable order — so the
+  // user's muscle memory survives a track change. Outputs the loaded track
+  // doesn't use are rendered dimmed and inert.
   for (const outCh of Object.keys(SYNTHS).map(Number)) {
     const sources = groups[outCh];
-    if (!sources || !sources.length) continue;
-    const isMuted = deck.outputMute.has(outCh);
-
-    const isActive = (deck.outputActive.get(outCh) ?? 0) > 0;
+    const hasSources = !!(sources && sources.length);
+    const isMuted = hasSources && deck.outputMute.has(outCh);
+    const isActive = hasSources && (deck.outputActive.get(outCh) ?? 0) > 0;
     const pill = document.createElement('button');
-    pill.className = `routing-pill${isMuted ? ' muted' : ''}${isActive ? ' active' : ''}`;
+    pill.className = `routing-pill${!hasSources ? ' unused' : ''}${isMuted ? ' muted' : ''}${isActive ? ' active' : ''}`;
     pill.type = 'button';
     pill.dataset.deck = deckId;
     pill.dataset.out = outCh;
     pill.innerHTML = `
       <span class="pill-dot"></span>
       <span class="pill-name">${SYNTHS[outCh]}</span>
-      <span class="pill-count">${sources.length}</span>
+      <span class="pill-count">${hasSources ? sources.length : ''}</span>
     `;
-    pill.addEventListener('click', () => toggleOutputMute(deckId, outCh));
+    if (hasSources) {
+      pill.addEventListener('click', () => toggleOutputMute(deckId, outCh));
+    } else {
+      pill.disabled = true;
+    }
     container.appendChild(pill);
   }
 }
@@ -2264,7 +2270,11 @@ function renderBrowser() {
   for (let i = 0; i < filtered.length; i++) {
     const t = filtered[i];
     const row = document.createElement('div');
-    row.className = 'track-row';
+    // Mark heavily tempo-mapped / rubato tracks as unstable so the eye skips
+    // past them when looking for mix-friendly material on stage.
+    const unstable = (t.tempo_changes ?? 0) > 3;
+    row.className = `track-row${unstable ? ' unstable' : ''}`;
+    if (unstable) row.title = `${t.tempo_changes} tempo events — likely rubato / not mix-friendly`;
     const tagsHtml = (t.tags ?? []).map(tag =>
       `<span class="t-tag t-tag-${tag}">${tag}</span>`
     ).join('');
