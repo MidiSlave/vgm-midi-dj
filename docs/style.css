@@ -1012,3 +1012,46 @@ body.test-mode #browser { box-shadow: inset 0 0 0 1px rgba(92, 224, 208, 0.2); }
   #mix-switch { flex-direction: row; justify-content: center; }
   .routing-slots { grid-template-columns: 1fr; }
 }
+
+/* ─────────── iPad Air landscape (and similar) ─────────── */
+/* Tighten spacing, grow piano roll, enlarge touch targets. Sits above the
+   800px stack breakpoint so this only applies in the landscape band. */
+@media (min-width: 801px) and (max-width: 1280px) {
+  #app { padding: 0.5rem; gap: 0.4rem; }
+
+  /* Browser — denser rows so more tracks fit on screen */
+  #browser { padding: 0.4rem; gap: 0.3rem; }
+  .track-row { padding: 0.17rem 0.5rem; }
+  .track-row-header { padding-top: 0.3rem; padding-bottom: 0.3rem; }
+
+  /* Decks — pull padding and gaps in */
+  #decks { gap: 0.4rem; }
+  .deck { padding: 0.45rem; gap: 0.35rem; }
+  .deck-stats { padding: 0.3rem; gap: 0.2rem; }
+  .deck-roll-row { gap: 0.35rem; }
+  .deck-controls { gap: 0.35rem; }
+
+  /* Bigger piano roll — was 110px fixed */
+  .piano-roll { height: clamp(140px, 18vh, 200px); }
+  .deck-roll-row .vol-slider { height: auto; }
+
+  /* Touch-friendly buttons (power-user tap target, not full 44pt) */
+  .deck-head .btn,
+  .deck-controls .btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+
+  /* Routing pills — guarantee a comfy tap height */
+  .routing-slots { gap: 0.3rem; }
+  .routing-pill {
+    padding: 0.35rem 0.6rem 0.35rem 0.5rem;
+    font-size: 0.74rem;
+    min-height: 32px;
+  }
+
+  /* Footer master controls — keep proportions consistent with deck btns */
+  footer { gap: 0.4rem; }
+  .master-controls { gap: 0.4rem; padding: 0.25rem 0.5rem; }
+}
