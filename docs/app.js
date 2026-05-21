@@ -445,6 +445,7 @@ function masterTapTempo() {
 }
 
 let masterBpmSlider = null;
+let masterMeterSpinner = null;
 
 function buildMasterBeatDots() {
   const root = document.getElementById('master-beat');
@@ -1077,6 +1078,23 @@ function cutDeck(deckId) {
     updateCutUI(deckId);
     if (willStop) stopDeck(deckId);
     if (willStart) {
+      // Incoming deck arrives fully audible: unmute any pill-muted outputs
+      // right at the swap moment so the muted outputs don't sneak back in
+      // audibly before the deck actually drops.
+      if (other.outputMute.size) {
+        other.outputMute.clear();
+        renderRoutingPills(otherId);
+      }
+      // Adopt the incoming deck's meter so the beat-dot clock, DROP quantising,
+      // and loop-bar maths all follow what's now playing.
+      const incomingMeter = parseMeterNum(other.meta?.meter) || 4;
+      if (incomingMeter !== master.meter) {
+        master.meter = incomingMeter;
+        buildMasterBeatDots();
+        lastShownBeat = -1;
+        updateMasterBeatDots(true);
+        masterMeterSpinner?.setValue(incomingMeter);
+      }
       const startTick = other.currentTick || getDeckBeatOneTick(other);
       anchorMasterToDeck(otherId, startTick);
       playDeck(otherId, startTick);
@@ -2016,9 +2034,8 @@ function renderBrowser() {
     el.addEventListener('click', () => setSort(el.dataset.sort));
   });
 
-  const limit = Math.min(filtered.length, 500);
   const frag = document.createDocumentFragment();
-  for (let i = 0; i < limit; i++) {
+  for (let i = 0; i < filtered.length; i++) {
     const t = filtered[i];
     const row = document.createElement('div');
     row.className = 'track-row';
@@ -2044,13 +2061,6 @@ function renderBrowser() {
     frag.appendChild(row);
   }
   list.appendChild(frag);
-  if (filtered.length > limit) {
-    const more = document.createElement('div');
-    more.className = 'track-row muted';
-    more.style.justifyContent = 'center';
-    more.textContent = `…${filtered.length - limit} more — narrow search`;
-    list.appendChild(more);
-  }
 }
 
 function renderGameChips() {
@@ -2132,7 +2142,7 @@ function init() {
   });
 
   // Master meter spinner
-  mountSpinner(document.getElementById('master-meter-mount'), {
+  masterMeterSpinner = mountSpinner(document.getElementById('master-meter-mount'), {
     options: [2, 3, 4, 5, 6, 7, 8].map(n => ({ value: n, label: `${n}/4` })),
     value: master.meter,
     className: 'compact',
