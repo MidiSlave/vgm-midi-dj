@@ -1,5 +1,7 @@
 # VGM MIDI DJ
 
+**Live app:** <https://midislave.github.io/vgm-midi-dj/>
+
 Two-deck DJ webapp for performing classic video-game MIDI through hardware synths (or in-browser GM for preview). Built for an iPad live set: pick tracks, warp them to a shared tempo grid, mute outputs on the fly, beat-loop, transpose, transition between decks with inverse-mute, cut hard at the next bar, and auto-chain tracks.
 
 ## What it does
