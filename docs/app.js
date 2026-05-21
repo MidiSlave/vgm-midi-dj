@@ -1650,13 +1650,16 @@ function bindPianoRoll(deckId) {
   canvas.style.touchAction = 'none';
 
   const pointers = new Map(); // pointerId → {x, y}
-  let dragMode = null;        // 'scrub' | 'pan' | 'pinch' | 'loopIn' | 'loopOut' | null
+  let dragMode = null;        // 'scrub' | 'pan' | 'pinch' | 'loopIn' | 'loopOut' | 'loopRegion' | null
   let pinchStartDist = 0;
   let pinchStartZoom = 1;
   let pinchStartMidFrac = 0.5;  // midpoint as fraction of canvas at pinch start
   let pinchStartWorldX = 0;     // world fraction (0..1) under the midpoint at pinch start
   let panStartX = 0;
   let panStartOffset = 0;
+  let loopRegionStartTick = 0;  // tick under cursor when loop-region drag began
+  let loopRegionStartIn = 0;
+  let loopRegionStartOut = 0;
 
   const xToTick = (x, snap = true) => {
     const deck = decks[deckId];
@@ -1687,8 +1690,9 @@ function bindPianoRoll(deckId) {
     return Math.max(0, Math.round(t));
   };
 
-  // Hit-test a loop handle. Returns 'loopIn' / 'loopOut' / null.
-  // Hit zone is 14px CSS each side of the marker — wider than the visual chevron.
+  // Hit-test a loop handle. Returns 'loopIn' / 'loopOut' / 'loopRegion' / null.
+  // Handles win when within 14px of either marker; otherwise a click inside
+  // the loop band itself returns 'loopRegion' so the whole loop can be slid.
   const hitTestLoopHandle = (clientX) => {
     const deck = decks[deckId];
     if (deck.loop.in == null || deck.loop.out == null) return null;
@@ -1703,6 +1707,7 @@ function bindPianoRoll(deckId) {
     const dOut = Math.abs(clientX - xOut);
     if (dIn <= HIT && dIn <= dOut) return 'loopIn';
     if (dOut <= HIT) return 'loopOut';
+    if (clientX > xIn && clientX < xOut) return 'loopRegion';
     return null;
   };
 
@@ -1723,11 +1728,17 @@ function bindPianoRoll(deckId) {
       return;
     }
 
-    // Loop-handle drag takes priority over scrub, but only when not shift-panning.
+    // Loop-handle / loop-region drag takes priority over scrub, but only when not shift-panning.
     if (!e.shiftKey) {
       const hit = hitTestLoopHandle(e.clientX);
       if (hit) {
         dragMode = hit;
+        if (hit === 'loopRegion') {
+          const deck = decks[deckId];
+          loopRegionStartTick = xToTickForLoop(e.clientX, false);
+          loopRegionStartIn = deck.loop.in;
+          loopRegionStartOut = deck.loop.out;
+        }
         return;
       }
     }
@@ -1774,6 +1785,21 @@ function bindPianoRoll(deckId) {
 
     if (dragMode === 'scrub') {
       seekDeck(deckId, xToTick(e.clientX, !e.shiftKey));
+      return;
+    }
+
+    if (dragMode === 'loopRegion') {
+      const deck = decks[deckId];
+      const tpb = getDeckTicksPerBeat(deck);
+      const curTick = xToTickForLoop(e.clientX, false);
+      let delta = curTick - loopRegionStartTick;
+      if (!e.shiftKey && tpb > 0) delta = Math.round(delta / tpb) * tpb;
+      let newIn = loopRegionStartIn + delta;
+      let newOut = loopRegionStartOut + delta;
+      if (newIn < 0) { newOut -= newIn; newIn = 0; }
+      deck.loop.in = newIn;
+      deck.loop.out = newOut;
+      paintRoll(deckId);
       return;
     }
 
