@@ -307,6 +307,7 @@ function makeDeckState(id) {
     volume: 100, pitch: 1.0,
     transpose: 0, // semitones; drums (ch9) are skipped
     timeFold: 1, // 0.5 | 1 | 2 — half/normal/double-time relative to master
+    outputsFlipped: false, // swap SH-01A (1) ↔ Bass Stn 2 (2) outputs
     routing: {}, meta: null,
     activeNotes: new Map(), // key "outCh:note" → natural endTick (or null)
     tailTimers: new Map(),  // key → setTimeout id for deferred noteOff after loop wrap
@@ -832,6 +833,38 @@ function buildRoutingUI(deckId, midi) {
   for (const ch of getChannelsUsed(midi)) {
     deck.routing[ch] = ch === 9 ? 9 : (ch < 4 ? ch : ch % 4);
   }
+  // Fresh track → fresh routing, so clear any flip carried from the prior track.
+  deck.outputsFlipped = false;
+  const flipBtn = document.querySelector(`.btn-flip[data-deck="${deckId}"]`);
+  if (flipBtn) flipBtn.classList.remove('active');
+  renderRoutingPills(deckId);
+}
+
+// Swap outputs 1 (SH-01A) ↔ 2 (Bass Stn 2) on this deck. Silences any active
+// notes on those outputs first so a mid-flight noteOff doesn't go to the wrong
+// box and leave a hung note on the other.
+function flipOutputs(deckId) {
+  const deck = decks[deckId];
+  // All-notes-off on outputs 1 and 2, then drop tracked state for those keys
+  for (const [key] of [...deck.activeNotes]) {
+    const oc = Number(key.split(':')[0]);
+    if (oc === 1 || oc === 2) {
+      const note = Number(key.split(':')[1]);
+      dispatchNoteOff(deck, oc, note);
+      deck.activeNotes.delete(key);
+      const tail = deck.tailTimers.get(key);
+      if (tail) { clearTimeout(tail); deck.tailTimers.delete(key); }
+    }
+  }
+  sendRaw(0xb0 | 1, 123, 0);
+  sendRaw(0xb0 | 2, 123, 0);
+  for (const src in deck.routing) {
+    if (deck.routing[src] === 1) deck.routing[src] = 2;
+    else if (deck.routing[src] === 2) deck.routing[src] = 1;
+  }
+  deck.outputsFlipped = !deck.outputsFlipped;
+  const btn = document.querySelector(`.btn-flip[data-deck="${deckId}"]`);
+  if (btn) btn.classList.toggle('active', deck.outputsFlipped);
   renderRoutingPills(deckId);
 }
 
@@ -2426,6 +2459,7 @@ function init() {
     document.querySelector(`.btn-channel[data-deck="${deckId}"]`).addEventListener('click', () => flipDeckChannel(deckId));
     document.querySelector(`.btn-unmute-all[data-deck="${deckId}"]`).addEventListener('click', () => unmuteAllOutputs(deckId));
     document.querySelector(`.btn-auto[data-deck="${deckId}"]`).addEventListener('click', () => toggleAutoAdvance(deckId));
+    document.querySelector(`.btn-flip[data-deck="${deckId}"]`).addEventListener('click', () => flipOutputs(deckId));
     updateChannelToggleUI(deckId);
     updateAutoAdvanceUI(deckId);
 
