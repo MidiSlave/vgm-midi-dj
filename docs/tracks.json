@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-20T02:55:20.619Z",
-  "count": 906,
+  "generated": "2026-05-21T06:55:06.487Z",
+  "count": 873,
   "tracks": [
     {
       "path": "midi-files/castlevania/C4-clear.mid",
@@ -32022,1465 +32022,16 @@
       "size": 5955
     },
     {
-      "path": "midi-files/street-fighter/balrog_ending.mid",
-      "file": "balrog_ending.mid",
-      "title": "Balrog Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
+      "path": "midi-files/street-fighter/Street Fighter II/Chun-Li's Theme.mid",
+      "file": "Chun-Li's Theme.mid",
+      "title": "Chun Li'S Theme",
+      "embedded_name": "Theme of Chun-Li -= Street Fighter II GB =- Sequenced to MIDI by Tsu Ryu - Kibegami and Takeuchi Yuka",
       "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 86,
-      "perceived_bpm_auto": 86,
-      "perceived_ticks_per_beat": 56,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# major",
-      "duration_sec": 65.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "note_count": 719,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 6239
-    },
-    {
-      "path": "midi-files/street-fighter/balrog_ending2.mid",
-      "file": "balrog_ending2.mid",
-      "title": "Balrog Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A minor",
-      "duration_sec": 39.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "note_count": 208,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 1791
-    },
-    {
-      "path": "midi-files/street-fighter/balrog__s_theme.mid",
-      "file": "balrog__s_theme.mid",
-      "title": "Balrog S Theme",
-      "embedded_name": "Balrog's Theme",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 138,
-      "bpm_initial": 138,
-      "perceived_bpm": 138,
-      "perceived_bpm_auto": 138,
-      "perceived_ticks_per_beat": 384,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 111.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        9
-      ],
-      "note_count": 2312,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "chords",
-        "lead"
-      ],
-      "size": 18756
-    },
-    {
-      "path": "midi-files/street-fighter/balrog__s_theme2.mid",
-      "file": "balrog__s_theme2.mid",
-      "title": "Balrog S Theme2",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 130,
-      "perceived_bpm_auto": 130,
-      "perceived_ticks_per_beat": 37,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 72.6,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 860,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 7269
-    },
-    {
-      "path": "midi-files/street-fighter/balrog__s_theme3.mid",
-      "file": "balrog__s_theme3.mid",
-      "title": "Balrog S Theme3",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 54.6,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1923,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 15407
-    },
-    {
-      "path": "midi-files/street-fighter/bison_ending.mid",
-      "file": "bison_ending.mid",
-      "title": "Bison Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 40,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "E minor",
-      "duration_sec": 23.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 228,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2151
-    },
-    {
-      "path": "midi-files/street-fighter/bison_ending2.mid",
-      "file": "bison_ending2.mid",
-      "title": "Bison Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A# major",
-      "duration_sec": 34.8,
-      "channels": [
-        0
-      ],
-      "note_count": 782,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 5428
-    },
-    {
-      "path": "midi-files/street-fighter/bison__s_theme.mid",
-      "file": "bison__s_theme.mid",
-      "title": "Bison S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 130,
-      "perceived_bpm_auto": 130,
-      "perceived_ticks_per_beat": 37,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "B minor",
-      "duration_sec": 68.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
-      "note_count": 1179,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 10739
-    },
-    {
-      "path": "midi-files/street-fighter/bison__s_theme2.mid",
-      "file": "bison__s_theme2.mid",
-      "title": "Bison S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C# minor",
-      "duration_sec": 50.4,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1666,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        7
-      ],
-      "tags": [
-        "chords"
-      ],
-      "size": 13258
-    },
-    {
-      "path": "midi-files/street-fighter/blanka_ending.mid",
-      "file": "blanka_ending.mid",
-      "title": "Blanka Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 40,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 27.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        5
-      ],
-      "note_count": 424,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 3724
-    },
-    {
-      "path": "midi-files/street-fighter/blanka_ending2.mid",
-      "file": "blanka_ending2.mid",
-      "title": "Blanka Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 37.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 950,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 7686
-    },
-    {
-      "path": "midi-files/street-fighter/blanka__s_theme.mid",
-      "file": "blanka__s_theme.mid",
-      "title": "Blanka S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 136,
-      "perceived_bpm_auto": 136,
-      "perceived_ticks_per_beat": 35,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 73,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 911,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        2
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 7663
-    },
-    {
-      "path": "midi-files/street-fighter/blanka__s_theme2.mid",
-      "file": "blanka__s_theme2.mid",
-      "title": "Blanka S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 60.2,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1423,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 11402
-    },
-    {
-      "path": "midi-files/street-fighter/bonus_stage_arcadeonly.mid",
-      "file": "bonus_stage_arcadeonly.mid",
-      "title": "Bonus Stage Arcadeonly",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A minor",
-      "duration_sec": 35.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 830,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        4
-      ],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 6697
-    },
-    {
-      "path": "midi-files/street-fighter/cammy_ending.mid",
-      "file": "cammy_ending.mid",
-      "title": "Cammy Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 115,
-      "perceived_bpm_auto": 115,
-      "perceived_ticks_per_beat": 42,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 50.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 318,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        2
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 3712
-    },
-    {
-      "path": "midi-files/street-fighter/cammy_ending2.mid",
-      "file": "cammy_ending2.mid",
-      "title": "Cammy Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 55.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1082,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        6,
-        7
-      ],
-      "tags": [
-        "chords"
-      ],
-      "size": 8527
-    },
-    {
-      "path": "midi-files/street-fighter/cammy__s_theme.mid",
-      "file": "cammy__s_theme.mid",
-      "title": "Cammy S Theme",
-      "embedded_name": "Cammy's Theme",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 135,
-      "bpm_initial": 135,
-      "perceived_bpm": 135,
-      "perceived_bpm_auto": 135,
-      "perceived_ticks_per_beat": 384,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 115.3,
-      "channels": [
-        0,
-        1,
-        2,
-        4,
-        5,
-        9
-      ],
-      "note_count": 2906,
-      "has_drums": true,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 26177
-    },
-    {
-      "path": "midi-files/street-fighter/cammy__s_theme2.mid",
-      "file": "cammy__s_theme2.mid",
-      "title": "Cammy S Theme2",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 133,
-      "perceived_bpm_auto": 133,
-      "perceived_ticks_per_beat": 36,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 65.8,
-      "channels": [
-        0,
-        1,
-        2,
-        4,
-        5
-      ],
-      "note_count": 1001,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 8836
-    },
-    {
-      "path": "midi-files/street-fighter/cammy__s_theme3.mid",
-      "file": "cammy__s_theme3.mid",
-      "title": "Cammy S Theme3",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 49.4,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1517,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 12174
-    },
-    {
-      "path": "midi-files/street-fighter/cammy__s_theme4.mid",
-      "file": "cammy__s_theme4.mid",
-      "title": "Cammy S Theme4",
-      "embedded_name": "Sax",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 140,
+      "release": "Street Fighter II",
+      "bpm": 100,
       "bpm_initial": 100,
-      "perceived_bpm": 140,
-      "perceived_bpm_auto": 140,
-      "perceived_ticks_per_beat": 120,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 111.3,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        9
-      ],
-      "note_count": 2931,
-      "has_drums": true,
-      "tempo_changes": 2,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 18267
-    },
-    {
-      "path": "midi-files/street-fighter/chun_li__s_theme.mid",
-      "file": "chun_li__s_theme.mid",
-      "title": "Chun Li S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 130,
-      "perceived_bpm_auto": 130,
-      "perceived_ticks_per_beat": 37,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 65.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 1223,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 10761
-    },
-    {
-      "path": "midi-files/street-fighter/chun_li__s_theme2.mid",
-      "file": "chun_li__s_theme2.mid",
-      "title": "Chun Li S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "B minor",
-      "duration_sec": 55.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1798,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords"
-      ],
-      "size": 14429
-    },
-    {
-      "path": "midi-files/street-fighter/dee_jay__s_theme.mid",
-      "file": "dee_jay__s_theme.mid",
-      "title": "Dee Jay S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 40,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 58.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 712,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 6066
-    },
-    {
-      "path": "midi-files/street-fighter/dee_jay__s_theme2.mid",
-      "file": "dee_jay__s_theme2.mid",
-      "title": "Dee Jay S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 40.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1222,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 9836
-    },
-    {
-      "path": "midi-files/street-fighter/dhalsim_ending.mid",
-      "file": "dhalsim_ending.mid",
-      "title": "Dhalsim Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 150,
-      "perceived_bpm_auto": 150,
-      "perceived_ticks_per_beat": 32,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 41.7,
-      "channels": [
-        0,
-        1,
-        2,
-        5
-      ],
-      "note_count": 467,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 4923
-    },
-    {
-      "path": "midi-files/street-fighter/dhalsim_ending2.mid",
-      "file": "dhalsim_ending2.mid",
-      "title": "Dhalsim Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F# major",
-      "duration_sec": 30.8,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 685,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 5552
-    },
-    {
-      "path": "midi-files/street-fighter/dhalsim__s_theme.mid",
-      "file": "dhalsim__s_theme.mid",
-      "title": "Dhalsim S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 150,
-      "perceived_bpm_auto": 150,
-      "perceived_ticks_per_beat": 32,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 62.1,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 678,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 5983
-    },
-    {
-      "path": "midi-files/street-fighter/dhalsim__s_theme2.mid",
-      "file": "dhalsim__s_theme2.mid",
-      "title": "Dhalsim S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F# major",
-      "duration_sec": 51.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "note_count": 998,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords"
-      ],
-      "size": 8010
-    },
-    {
-      "path": "midi-files/street-fighter/feilong_ending.mid",
-      "file": "feilong_ending.mid",
-      "title": "Feilong Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 115,
-      "perceived_bpm_auto": 115,
-      "perceived_ticks_per_beat": 42,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "E minor",
-      "duration_sec": 40.7,
-      "channels": [
-        0,
-        1,
-        3,
-        4,
-        5
-      ],
-      "note_count": 268,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        3
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2573
-    },
-    {
-      "path": "midi-files/street-fighter/feilong__s_theme.mid",
-      "file": "feilong__s_theme.mid",
-      "title": "Feilong S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 136,
-      "perceived_bpm_auto": 136,
-      "perceived_ticks_per_beat": 35,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 44.7,
-      "channels": [
-        0,
-        2,
-        3,
-        4,
-        5,
-        6,
-        8,
-        9
-      ],
-      "note_count": 936,
-      "has_drums": true,
-      "tempo_changes": 1,
-      "drop_channels": [
-        3
-      ],
-      "tags": [
-        "drums",
-        "bass",
-        "lead"
-      ],
-      "size": 8568
-    },
-    {
-      "path": "midi-files/street-fighter/feilong__s_theme2.mid",
-      "file": "feilong__s_theme2.mid",
-      "title": "Feilong S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 66.8,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1416,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 11373
-    },
-    {
-      "path": "midi-files/street-fighter/guile_ending.mid",
-      "file": "guile_ending.mid",
-      "title": "Guile Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 140,
-      "perceived_bpm_auto": 140,
-      "perceived_ticks_per_beat": 34,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "B major",
-      "duration_sec": 37.3,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "note_count": 198,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2723
-    },
-    {
-      "path": "midi-files/street-fighter/guile_ending2.mid",
-      "file": "guile_ending2.mid",
-      "title": "Guile Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# major",
-      "duration_sec": 31.5,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 294,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2423
-    },
-    {
-      "path": "midi-files/street-fighter/guile__s_theme.mid",
-      "file": "guile__s_theme.mid",
-      "title": "Guile S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 130,
-      "perceived_bpm_auto": 130,
-      "perceived_ticks_per_beat": 37,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 85.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1328,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        2
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 11360
-    },
-    {
-      "path": "midi-files/street-fighter/guile__s_theme2.mid",
-      "file": "guile__s_theme2.mid",
-      "title": "Guile S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 58.4,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1442,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 11519
-    },
-    {
-      "path": "midi-files/street-fighter/honda_ending.mid",
-      "file": "honda_ending.mid",
-      "title": "Honda Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
       "perceived_bpm": 100,
       "perceived_bpm_auto": 100,
-      "perceived_ticks_per_beat": 48,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 37.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 446,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        6
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 4004
-    },
-    {
-      "path": "midi-files/street-fighter/honda__s_theme.mid",
-      "file": "honda__s_theme.mid",
-      "title": "Honda S Theme",
-      "embedded_name": "honda__s_theme",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 118.04,
-      "bpm_initial": 118.05,
-      "perceived_bpm": 118.04,
-      "perceived_bpm_auto": 118.04,
       "perceived_ticks_per_beat": 480,
       "beat_one_tick": 0,
       "meter": "4/4",
@@ -33490,38 +32041,325 @@
         "4/4"
       ],
       "key": "B minor",
-      "duration_sec": 73.1,
+      "duration_sec": 151.1,
       "channels": [
         0,
         1,
         2,
         3,
-        5,
-        7
+        9
       ],
-      "note_count": 1384,
+      "note_count": 5412,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 44574
+    },
+    {
+      "path": "midi-files/street-fighter/Street Fighter II/Ryu's Theme.mid",
+      "file": "Ryu's Theme.mid",
+      "title": "Ryu'S Theme",
+      "embedded_name": "Theme of Ryu [ v1.1 ] -= Street Fighter II GB =- Sequenced to MIDI by Tsu Ryu - Kibegami",
+      "game": "street-fighter",
+      "release": "Street Fighter II",
+      "bpm": 100,
+      "bpm_initial": 100,
+      "perceived_bpm": 100,
+      "perceived_bpm_auto": 100,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "F# minor",
+      "duration_sec": 136.7,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 2892,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        3
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 24846
+    },
+    {
+      "path": "midi-files/street-fighter/Street Fighter II/Title.mid",
+      "file": "Title.mid",
+      "title": "Title",
+      "embedded_name": "Title Screen Theme -= Street Fighter II GB =- Sequenced to MIDI by Tsu Ryu - Kibegami and Takeuchi Yuka",
+      "game": "street-fighter",
+      "release": "Street Fighter II",
+      "bpm": 135,
+      "bpm_initial": 135,
+      "perceived_bpm": 135,
+      "perceived_bpm_auto": 135,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 40.4,
+      "channels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 756,
       "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        3
+      ],
+      "tags": [
+        "chords"
+      ],
+      "size": 7283
+    },
+    {
+      "path": "midi-files/tetris/A-Type (1).mid",
+      "file": "A-Type (1).mid",
+      "title": "A Type (1)",
+      "embedded_name": "untitled",
+      "game": "tetris",
+      "release": "",
+      "bpm": 144,
+      "bpm_initial": 144,
+      "perceived_bpm": 144,
+      "perceived_bpm_auto": 144,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 61.5,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 738,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 6086
+    },
+    {
+      "path": "midi-files/tetris/A-Type (2).mid",
+      "file": "A-Type (2).mid",
+      "title": "A Type (2)",
+      "embedded_name": "Staff",
+      "game": "tetris",
+      "release": "",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 39.6,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 490,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 4419
+    },
+    {
+      "path": "midi-files/tetris/A-Type (3).mid",
+      "file": "A-Type (3).mid",
+      "title": "A Type (3)",
+      "embedded_name": "Track 0",
+      "game": "tetris",
+      "release": "",
+      "bpm": 80,
+      "bpm_initial": 80,
+      "perceived_bpm": 80,
+      "perceived_bpm_auto": 80,
+      "perceived_ticks_per_beat": 960,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 50.3,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 734,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 6995
+    },
+    {
+      "path": "midi-files/tetris/A-Type (4).mid",
+      "file": "A-Type (4).mid",
+      "title": "A Type (4)",
+      "embedded_name": "Track 0",
+      "game": "tetris",
+      "release": "",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 960,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 91.1,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note_count": 2889,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [
+        1,
+        6,
+        8
+      ],
+      "tags": [
+        "drums",
+        "bass",
+        "chords",
+        "lead"
+      ],
+      "size": 26741
+    },
+    {
+      "path": "midi-files/tetris/A-Type (XG).mid",
+      "file": "A-Type (XG).mid",
+      "title": "A Type (XG)",
+      "embedded_name": null,
+      "game": "tetris",
+      "release": "",
+      "bpm": 123.92,
+      "bpm_initial": 120,
+      "perceived_bpm": 123.92,
+      "perceived_bpm_auto": 123.92,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A minor",
+      "duration_sec": 142.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9
+      ],
+      "note_count": 3690,
+      "has_drums": true,
       "tempo_changes": 2,
-      "drop_channels": [],
+      "drop_channels": [
+        3
+      ],
       "tags": [
-        "bass",
+        "drums",
         "chords",
         "lead"
       ],
-      "size": 12708
+      "size": 32341
     },
     {
-      "path": "midi-files/street-fighter/honda__s_theme2.mid",
-      "file": "honda__s_theme2.mid",
-      "title": "Honda S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
+      "path": "midi-files/tetris/B-Type (1).mid",
+      "file": "B-Type (1).mid",
+      "title": "B Type (1)",
+      "embedded_name": "untitled",
+      "game": "tetris",
       "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
+      "bpm": 154,
+      "bpm_initial": 154,
+      "perceived_bpm": 154,
+      "perceived_bpm_auto": 154,
+      "perceived_ticks_per_beat": 120,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -33529,358 +32367,35 @@
       "meters_unique": [
         "4/4"
       ],
-      "key": "B minor",
-      "duration_sec": 56.7,
+      "key": "E minor",
+      "duration_sec": 54.4,
       "channels": [
         0,
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1711,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords"
-      ],
-      "size": 13707
-    },
-    {
-      "path": "midi-files/street-fighter/ken_ending.mid",
-      "file": "ken_ending.mid",
-      "title": "Ken Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 40,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "A major",
-      "duration_sec": 27.1,
-      "channels": [
-        0,
-        1,
-        2,
-        5
-      ],
-      "note_count": 215,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2213
-    },
-    {
-      "path": "midi-files/street-fighter/ken_ending2.mid",
-      "file": "ken_ending2.mid",
-      "title": "Ken Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D minor",
-      "duration_sec": 28,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 539,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 4372
-    },
-    {
-      "path": "midi-files/street-fighter/ken_ending3.mid",
-      "file": "ken_ending3.mid",
-      "title": "Ken Ending3",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 69.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1241,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords",
-        "lead"
-      ],
-      "size": 9941
-    },
-    {
-      "path": "midi-files/street-fighter/ken__s_theme.mid",
-      "file": "ken__s_theme.mid",
-      "title": "Ken S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 94,
-      "perceived_bpm_auto": 94,
-      "perceived_ticks_per_beat": 51,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 56.9,
-      "channels": [
-        1,
-        2,
-        5,
-        7,
-        8,
         9
       ],
-      "note_count": 1006,
+      "note_count": 1186,
       "has_drums": true,
       "tempo_changes": 1,
-      "drop_channels": [
-        8
-      ],
+      "drop_channels": [],
       "tags": [
         "drums",
         "bass",
         "chords"
       ],
-      "size": 8652
+      "size": 8872
     },
     {
-      "path": "midi-files/street-fighter/ken__s_theme2.mid",
-      "file": "ken__s_theme2.mid",
-      "title": "Ken S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
+      "path": "midi-files/tetris/B-Type (2).mid",
+      "file": "B-Type (2).mid",
+      "title": "B Type (2)",
+      "embedded_name": "Single Staff",
+      "game": "tetris",
       "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D minor",
-      "duration_sec": 68.1,
-      "channels": [
-        0,
-        1,
-        2,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 1757,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 14083
-    },
-    {
-      "path": "midi-files/street-fighter/ken__s_theme3.mid",
-      "file": "ken__s_theme3.mid",
-      "title": "Ken S Theme3",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 94,
-      "perceived_bpm_auto": 94,
-      "perceived_ticks_per_beat": 51,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 56.9,
-      "channels": [
-        1,
-        2,
-        5,
-        7,
-        8,
-        9
-      ],
-      "note_count": 1006,
-      "has_drums": true,
-      "tempo_changes": 1,
-      "drop_channels": [
-        8
-      ],
-      "tags": [
-        "drums",
-        "bass",
-        "chords"
-      ],
-      "size": 8652
-    },
-    {
-      "path": "midi-files/street-fighter/ryu_ending.mid",
-      "file": "ryu_ending.mid",
-      "title": "Ryu Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 83,
-      "perceived_bpm_auto": 83,
-      "perceived_ticks_per_beat": 58,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "B minor",
-      "duration_sec": 69.9,
-      "channels": [
-        0,
-        1,
-        5
-      ],
-      "note_count": 444,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 4071
-    },
-    {
-      "path": "midi-files/street-fighter/ryu_ending2.mid",
-      "file": "ryu_ending2.mid",
-      "title": "Ryu Ending2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C major",
-      "duration_sec": 55.4,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "note_count": 514,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 4217
-    },
-    {
-      "path": "midi-files/street-fighter/ryu__s_theme.mid",
-      "file": "ryu__s_theme.mid",
-      "title": "Ryu S Theme",
-      "embedded_name": "Theme From Ryu - SF2",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 132,
-      "bpm_initial": 132,
-      "perceived_bpm": 132,
-      "perceived_bpm_auto": 132,
+      "bpm": 145,
+      "bpm_initial": 145,
+      "perceived_bpm": 145,
+      "perceived_bpm_auto": 145,
       "perceived_ticks_per_beat": 384,
       "beat_one_tick": 0,
       "meter": "4/4",
@@ -33890,156 +32405,109 @@
         "4/4"
       ],
       "key": "E minor",
-      "duration_sec": 121.7,
+      "duration_sec": 71.2,
       "channels": [
         0,
         1,
         2,
         3,
         4,
-        5,
         9
       ],
-      "note_count": 2867,
+      "note_count": 2501,
       "has_drums": true,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "drums",
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 24713
-    },
-    {
-      "path": "midi-files/street-fighter/ryu__s_theme2.mid",
-      "file": "ryu__s_theme2.mid",
-      "title": "Ryu S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D major",
-      "duration_sec": 53.6,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1392,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 11165
-    },
-    {
-      "path": "midi-files/street-fighter/ryu__s_theme3.mid",
-      "file": "ryu__s_theme3.mid",
-      "title": "Ryu S Theme3",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 130,
-      "perceived_bpm_auto": 130,
-      "perceived_ticks_per_beat": 37,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F# minor",
-      "duration_sec": 64.6,
-      "channels": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        9
-      ],
-      "note_count": 1753,
-      "has_drums": true,
-      "tempo_changes": 1,
+      "tempo_changes": 2,
       "drop_channels": [
-        3
+        3,
+        4
       ],
       "tags": [
         "drums",
-        "bass",
         "chords",
         "lead"
       ],
-      "size": 14511
+      "size": 21951
     },
     {
-      "path": "midi-files/street-fighter/vega_ending.mid",
-      "file": "vega_ending.mid",
-      "title": "Vega Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
+      "path": "midi-files/tetris/C-Type (1).mid",
+      "file": "C-Type (1).mid",
+      "title": "C Type (1)",
+      "embedded_name": "untitled",
+      "game": "tetris",
       "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 90,
-      "perceived_bpm_auto": 90,
-      "perceived_ticks_per_beat": 53,
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 120,
       "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
+      "meter": "3/4",
+      "meter_auto": "3/4",
       "meter_changes": null,
       "meters_unique": [
-        "4/4"
+        "3/4"
       ],
-      "key": "G minor",
-      "duration_sec": 40.8,
+      "key": "C# minor",
+      "duration_sec": 41.7,
       "channels": [
         0,
         1
       ],
-      "note_count": 100,
+      "note_count": 285,
       "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [],
       "tags": [
         "lead"
       ],
-      "size": 991
+      "size": 1924
     },
     {
-      "path": "midi-files/street-fighter/vega__s_theme.mid",
-      "file": "vega__s_theme.mid",
-      "title": "Vega S Theme",
-      "embedded_name": null,
-      "game": "street-fighter",
+      "path": "midi-files/tetris/C-Type (2).mid",
+      "file": "C-Type (2).mid",
+      "title": "C Type (2)",
+      "embedded_name": "Gameboy Tetris Music C",
+      "game": "tetris",
       "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "3/4"
+      ],
+      "key": "C# minor",
+      "duration_sec": 77.4,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 570,
+      "has_drums": false,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 3660
+    },
+    {
+      "path": "midi-files/tetris/C-Type (3).mid",
+      "file": "C-Type (3).mid",
+      "title": "C Type (3)",
+      "embedded_name": null,
+      "game": "tetris",
+      "release": "",
+      "bpm": 111,
+      "bpm_initial": 111,
+      "perceived_bpm": 111,
+      "perceived_bpm_auto": 111,
+      "perceived_ticks_per_beat": 48,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -34048,186 +32516,409 @@
         "4/4"
       ],
       "key": "B minor",
-      "duration_sec": 62.6,
+      "duration_sec": 32.2,
       "channels": [
         0,
         1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1537,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords"
-      ],
-      "size": 12331
-    },
-    {
-      "path": "midi-files/street-fighter/vega__s_theme2.mid",
-      "file": "vega__s_theme2.mid",
-      "title": "Vega S Theme2",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 140,
-      "perceived_bpm_auto": 140,
-      "perceived_ticks_per_beat": 34,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "D# minor",
-      "duration_sec": 73.9,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        5
-      ],
-      "note_count": 1512,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [
-        3
-      ],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 12564
-    },
-    {
-      "path": "midi-files/street-fighter/zangief_ending.mid",
-      "file": "zangief_ending.mid",
-      "title": "Zangief Ending",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 81,
-      "perceived_bpm_auto": 81,
-      "perceived_ticks_per_beat": 59,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "C minor",
-      "duration_sec": 21.5,
-      "channels": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "note_count": 252,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "bass",
-        "chords",
-        "lead"
-      ],
-      "size": 2283
-    },
-    {
-      "path": "midi-files/street-fighter/zangief__s_theme.mid",
-      "file": "zangief__s_theme.mid",
-      "title": "Zangief S Theme",
-      "embedded_name": "HMP2MID.EXE by Markus Hein (heinm@cs.tu-berlin.de)",
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 25,
-      "bpm_initial": 25,
-      "perceived_bpm": 136,
-      "perceived_bpm_auto": 136,
-      "perceived_ticks_per_beat": 35,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "E minor",
-      "duration_sec": 72.4,
-      "channels": [
         2,
         3,
         4,
         5,
         6,
-        9
+        7
       ],
-      "note_count": 2246,
-      "has_drums": true,
+      "note_count": 355,
+      "has_drums": false,
       "tempo_changes": 1,
       "drop_channels": [
-        6
+        3,
+        4,
+        5,
+        6,
+        7
       ],
+      "tags": [
+        "bass",
+        "lead"
+      ],
+      "size": 3013
+    },
+    {
+      "path": "midi-files/tetris/C-Type (4).mid",
+      "file": "C-Type (4).mid",
+      "title": "C Type (4)",
+      "embedded_name": "The third music selection in the original Gameboy Tetris game",
+      "game": "tetris",
+      "release": "",
+      "bpm": 112.5,
+      "bpm_initial": 112.5,
+      "perceived_bpm": 112.5,
+      "perceived_bpm_auto": 112.5,
+      "perceived_ticks_per_beat": 480,
+      "beat_one_tick": 0,
+      "meter": "3/4",
+      "meter_auto": "3/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "3/4"
+        },
+        {
+          "tick": 27360,
+          "sig": "4/4"
+        },
+        {
+          "tick": 33120,
+          "sig": "3/4"
+        },
+        {
+          "tick": 73440,
+          "sig": "4/4"
+        },
+        {
+          "tick": 79200,
+          "sig": "3/4"
+        }
+      ],
+      "meters_unique": [
+        "3/4",
+        "4/4"
+      ],
+      "key": "F# minor",
+      "duration_sec": 103.2,
+      "channels": [
+        0,
+        1,
+        2,
+        3,
+        9,
+        12
+      ],
+      "note_count": 2276,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "chords",
+        "lead"
+      ],
+      "size": 19755
+    },
+    {
+      "path": "midi-files/tetris/Game Over.mid",
+      "file": "Game Over.mid",
+      "title": "Game Over",
+      "embedded_name": null,
+      "game": "tetris",
+      "release": "",
+      "bpm": 120,
+      "bpm_initial": 120,
+      "perceived_bpm": 120,
+      "perceived_bpm_auto": 120,
+      "perceived_ticks_per_beat": 48,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "B minor",
+      "duration_sec": 3,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 18,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 293
+    },
+    {
+      "path": "midi-files/tetris/High Score.mid",
+      "file": "High Score.mid",
+      "title": "High Score",
+      "embedded_name": "TRI",
+      "game": "tetris",
+      "release": "",
+      "bpm": 149,
+      "bpm_initial": 149,
+      "perceived_bpm": 149,
+      "perceived_bpm_auto": 149,
+      "perceived_ticks_per_beat": 96,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "G# major",
+      "duration_sec": 80.3,
+      "channels": [
+        0,
+        1,
+        2,
+        15
+      ],
+      "note_count": 843,
+      "has_drums": false,
+      "tempo_changes": 1,
+      "drop_channels": [
+        2
+      ],
+      "tags": [
+        "lead"
+      ],
+      "size": 7416
+    },
+    {
+      "path": "midi-files/tetris/Rocket Shoots Off.mid",
+      "file": "Rocket Shoots Off.mid",
+      "title": "Rocket Shoots Off",
+      "embedded_name": "untitled",
+      "game": "tetris",
+      "release": "",
+      "bpm": 200,
+      "bpm_initial": 200,
+      "perceived_bpm": 200,
+      "perceived_bpm_auto": 200,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "A major",
+      "duration_sec": 36.9,
+      "channels": [
+        0,
+        1
+      ],
+      "note_count": 135,
+      "has_drums": false,
+      "tempo_changes": 9,
+      "drop_channels": [],
+      "tags": [
+        "lead"
+      ],
+      "size": 1127
+    },
+    {
+      "path": "midi-files/tetris/Score.mid",
+      "file": "Score.mid",
+      "title": "Score",
+      "embedded_name": "untitled",
+      "game": "tetris",
+      "release": "",
+      "bpm": 131,
+      "bpm_initial": 131,
+      "perceived_bpm": 131,
+      "perceived_bpm_auto": 131,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 40.1,
+      "channels": [
+        0,
+        1,
+        9
+      ],
+      "note_count": 442,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "lead"
+      ],
+      "size": 4305
+    },
+    {
+      "path": "midi-files/tetris/Title Screen (1).mid",
+      "file": "Title Screen (1).mid",
+      "title": "Title Screen (1)",
+      "embedded_name": "untitled",
+      "game": "tetris",
+      "release": "",
+      "bpm": 141,
+      "bpm_initial": 141,
+      "perceived_bpm": 141,
+      "perceived_bpm_auto": 141,
+      "perceived_ticks_per_beat": 120,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 43.8,
+      "channels": [
+        0,
+        1,
+        9
+      ],
+      "note_count": 429,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "chords"
+      ],
+      "size": 2854
+    },
+    {
+      "path": "midi-files/tetris/Title Screen (2).mid",
+      "file": "Title Screen (2).mid",
+      "title": "Title Screen (2)",
+      "embedded_name": "tetris title theme",
+      "game": "tetris",
+      "release": "",
+      "bpm": 150,
+      "bpm_initial": 150,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 39.8,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 427,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 3891
+    },
+    {
+      "path": "midi-files/tetris/Title Screen (3).mid",
+      "file": "Title Screen (3).mid",
+      "title": "Title Screen (3)",
+      "embedded_name": "Tetris - Title",
+      "game": "tetris",
+      "release": "",
+      "bpm": 150,
+      "bpm_initial": 120,
+      "perceived_bpm": 150,
+      "perceived_bpm_auto": 150,
+      "perceived_ticks_per_beat": 192,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": [
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        },
+        {
+          "tick": 0,
+          "sig": "4/4"
+        }
+      ],
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 39.8,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 539,
+      "has_drums": true,
+      "tempo_changes": 2,
+      "drop_channels": [],
+      "tags": [
+        "drums",
+        "bass",
+        "lead"
+      ],
+      "size": 37713
+    },
+    {
+      "path": "midi-files/tetris/Title Screen (4).mid",
+      "file": "Title Screen (4).mid",
+      "title": "Title Screen (4)",
+      "embedded_name": "Title Screen (4)",
+      "game": "tetris",
+      "release": "",
+      "bpm": 156,
+      "bpm_initial": 156,
+      "perceived_bpm": 156,
+      "perceived_bpm_auto": 156,
+      "perceived_ticks_per_beat": 960,
+      "beat_one_tick": 0,
+      "meter": "4/4",
+      "meter_auto": "4/4",
+      "meter_changes": null,
+      "meters_unique": [
+        "4/4"
+      ],
+      "key": "D# major",
+      "duration_sec": 38.5,
+      "channels": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "note_count": 674,
+      "has_drums": true,
+      "tempo_changes": 1,
+      "drop_channels": [],
       "tags": [
         "drums",
         "bass",
         "chords",
         "lead"
       ],
-      "size": 18340
-    },
-    {
-      "path": "midi-files/street-fighter/zangief__s_theme2.mid",
-      "file": "zangief__s_theme2.mid",
-      "title": "Zangief S Theme2",
-      "embedded_name": null,
-      "game": "street-fighter",
-      "release": "",
-      "bpm": 120,
-      "bpm_initial": 120,
-      "perceived_bpm": 120,
-      "perceived_bpm_auto": 120,
-      "perceived_ticks_per_beat": 240,
-      "beat_one_tick": 0,
-      "meter": "4/4",
-      "meter_auto": "4/4",
-      "meter_changes": null,
-      "meters_unique": [
-        "4/4"
-      ],
-      "key": "F# major",
-      "duration_sec": 51.7,
-      "channels": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "note_count": 1221,
-      "has_drums": false,
-      "tempo_changes": 1,
-      "drop_channels": [],
-      "tags": [
-        "chords"
-      ],
-      "size": 9807
+      "size": 5001
     },
     {
       "path": "midi-files/zelda/A Link to the Past/Agahnim-1.mid",

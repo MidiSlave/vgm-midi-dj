@@ -1811,13 +1811,13 @@ function updateTransposeUI(deckId) {
   const keyEl = root.querySelector('.stat-key');
   if (keyEl && deck.meta?.key) {
     if (deck.transpose === 0) {
-      keyEl.textContent = deck.meta.key;
+      keyEl.textContent = formatKey(deck.meta.key);
     } else {
       const [tonic, mode] = deck.meta.key.split(' ');
       const tonicIdx = NOTE_NAMES.indexOf(tonic);
       if (tonicIdx >= 0) {
         const shifted = NOTE_NAMES[((tonicIdx + deck.transpose) % 12 + 12) % 12];
-        keyEl.textContent = `${deck.meta.key}▸${shifted} ${mode}`;
+        keyEl.textContent = `${formatKey(deck.meta.key)}▸${formatKey(`${shifted} ${mode}`)}`;
       }
     }
   }
@@ -1852,11 +1852,20 @@ function formatDuration(sec) {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+// Compact jazz-style key labels: "C major" → "C△", "A minor" → "A-".
+function formatKey(k) {
+  if (!k) return '—';
+  const [tonic, mode] = k.split(' ');
+  if (mode === 'minor') return `${tonic}-`;
+  if (mode === 'major') return `${tonic}△`;
+  return k;
+}
+
 function updateDeckStats(deckId, meta) {
   const root = document.querySelector(`#deck-${deckId}`);
   if (!root) return;
   root.querySelector('.stat-bpm').textContent = meta?.bpm ?? '—';
-  root.querySelector('.stat-key').textContent = meta?.key ?? '—';
+  root.querySelector('.stat-key').textContent = formatKey(meta?.key);
   root.querySelector('.stat-duration').textContent = formatDuration(meta?.duration_sec);
   root.querySelector('.stat-position').textContent = '0:00';
   const meterEl = root.querySelector('.stat-meter');
@@ -2021,7 +2030,7 @@ function renderBrowser() {
       <span class="t-game">${t.game}</span>
       <span class="t-release" title="${t.release ?? ''}">${t.release ?? '—'}</span>
       <span class="t-bpm">${trackBpm(t) || '—'}</span>
-      <span class="t-key">${t.key ?? '—'}</span>
+      <span class="t-key">${formatKey(t.key)}</span>
       <span class="t-meter">${t.meter ?? '—'}${t.meter_changes ? '*' : ''}</span>
       <span class="t-tags">${tagsHtml}</span>
       <span class="t-len">${formatDuration(t.duration_sec)}</span>
