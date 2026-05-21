@@ -306,6 +306,7 @@ function makeDeckState(id) {
     channel: id === '1' ? 'a' : 'b', // routes against mixState (channel A or B)
     volume: 100, pitch: 1.0,
     transpose: 0, // semitones; drums (ch9) are skipped
+    timeFold: 1, // 0.5 | 1 | 2 — half/normal/double-time relative to master
     routing: {}, meta: null,
     activeNotes: new Map(), // key "outCh:note" → natural endTick (or null)
     tailTimers: new Map(),  // key → setTimeout id for deferred noteOff after loop wrap
@@ -392,10 +393,13 @@ function setMasterBpm(bpm) {
 function syncDeckToMaster(deckId) {
   const deck = decks[deckId];
   if (!deck.meta?.perceived_bpm) {
-    deck.pitch = 1;
+    deck.pitch = deck.timeFold || 1;
     return;
   }
-  deck.pitch = master.bpm / deck.meta.perceived_bpm;
+  // timeFold (½/1/2×) reduces the perceived BPM the ratio sees, which raises
+  // pitch — so the deck plays N× faster relative to master without altering master.bpm.
+  const effectivePerceivedBpm = deck.meta.perceived_bpm / (deck.timeFold || 1);
+  deck.pitch = master.bpm / effectivePerceivedBpm;
   updateBpmDisplay(deckId);
 }
 
@@ -1906,7 +1910,13 @@ function updateBpmDisplay(deckId) {
   // shows what the track "wants" to be at, so the user can see the warp ratio implicitly.
   const base = deck.meta?.perceived_bpm ?? deck.meta?.bpm;
   bpmEl.textContent = base ?? '—';
-  bpmEl.title = base ? `Native ${base} → playing at master ${master.bpm} BPM` : '';
+  if (base) {
+    const fold = deck.timeFold || 1;
+    const foldNote = fold === 1 ? '' : ` × ${fold === 0.5 ? '½' : '2'} fold`;
+    bpmEl.title = `Native ${base} → playing at master ${master.bpm} BPM${foldNote}`;
+  } else {
+    bpmEl.title = '';
+  }
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -1928,6 +1938,36 @@ function setTranspose(deckId, semitones) {
   }
   deck.transpose = semitones;
   updateTransposeUI(deckId);
+}
+
+// Time-fold (½×/1×/2×) — multiplies playback rate against master without
+// changing master.bpm. Implemented entirely through deck.pitch (see
+// syncDeckToMaster); raw-tick beat math is unchanged.
+const TIME_FOLDS = [0.5, 1, 2];
+const TIME_FOLD_LABELS = { 0.5: '½×', 1: '1×', 2: '2×' };
+
+function setTimeFold(deckId, fold) {
+  const deck = decks[deckId];
+  if (!TIME_FOLDS.includes(fold) || fold === deck.timeFold) return;
+  deck.timeFold = fold;
+  syncDeckToMaster(deckId);
+  updateTimeFoldUI(deckId);
+  // Mid-playback fold changes: silence + resume from the live tick so the new
+  // rate takes effect immediately and no notes hang at the old msPerTick.
+  if (deck.playing) {
+    const liveTick = Math.round(getLivePlaybackTick(deck));
+    playDeck(deckId, liveTick);
+  }
+}
+
+function updateTimeFoldUI(deckId) {
+  const deck = decks[deckId];
+  const root = document.querySelector(`#deck-${deckId} .time-fold`);
+  if (!root) return;
+  root.querySelectorAll('.time-fold-btn').forEach(btn => {
+    const v = parseFloat(btn.dataset.fold);
+    btn.classList.toggle('active', v === deck.timeFold);
+  });
 }
 
 function updateTransposeUI(deckId) {
@@ -2029,6 +2069,7 @@ async function loadTrackIntoDeck(deckId, track) {
     const keptBeats = decks[deckId].loop?.beats ?? DEFAULT_LOOP_BEATS;
     decks[deckId].loop = { in: null, out: null, active: false, beats: keptBeats, pendingExit: false };
     decks[deckId].transpose = 0;
+    decks[deckId].timeFold = 1;
     decks[deckId].outputMute = new Set();
     decks[deckId].rollView = { zoom: 1, offset: 0 };
     decks[deckId].rollData = rollData; // pre-computed in the worker
@@ -2046,6 +2087,7 @@ async function loadTrackIntoDeck(deckId, track) {
     }
     syncDeckToMaster(deckId);
     updateTransposeUI(deckId);
+    updateTimeFoldUI(deckId);
     buildRoutingUI(deckId, midi);
     updateLoopUI(deckId);
     // Paint a placeholder (background + playhead) immediately so the deck looks responsive
@@ -2324,6 +2366,14 @@ function init() {
         setTranspose(deckId, decks[deckId].transpose + parseInt(btn.dataset.delta));
       });
     });
+
+    // Time-fold (½/1/2×) segmented buttons
+    document.querySelectorAll(`#deck-${deckId} .time-fold-btn`).forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeFold(deckId, parseFloat(btn.dataset.fold));
+      });
+    });
+    updateTimeFoldUI(deckId);
 
     // Piano roll
     bindPianoRoll(deckId);
