@@ -1016,8 +1016,10 @@ body.test-mode #browser { box-shadow: inset 0 0 0 1px rgba(92, 224, 208, 0.2); }
 /* ─────────── iPad Air landscape (and similar) ─────────── */
 /* Tighten spacing, grow piano roll, enlarge touch targets. Sits above the
    800px stack breakpoint so this only applies in the landscape band. */
-@media (min-width: 801px) and (max-width: 1280px) {
-  #app { padding: 0.5rem; gap: 0.4rem; }
+@media (min-width: 801px) and (max-width: 1400px) {
+  /* Let the app fill the iPad viewport instead of capping at 1280px and
+     leaving gutters on iPad Pro 12.9" (1366px). */
+  #app { max-width: none; padding: 0.5rem; gap: 0.4rem; }
 
   /* Browser — denser rows so more tracks fit on screen */
   #browser { padding: 0.4rem; gap: 0.3rem; }
