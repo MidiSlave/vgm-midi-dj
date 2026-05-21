@@ -628,7 +628,7 @@ body.skin-off .deck-skin { display: none; }
 .deck-head {
   display: flex;
   align-items: center;
-  gap: clamp(0.3rem, 0.45vw, 0.55rem);
+  gap: clamp(0.55rem, 1.1vw, 1.3rem);
 }
 /* Fluid touch target — min-height keeps ≥36px on iPad-class viewports. */
 .deck-head .btn {
@@ -703,10 +703,10 @@ body.skin-off .deck-skin { display: none; }
   display: flex;
   align-items: center;
   gap: clamp(0.45rem, 0.85vw, 0.95rem);
+  /* Distribute items uniformly across the full deck width — first item
+     anchors left, last item anchors right, even gaps in between. */
+  justify-content: space-between;
 }
-/* Push the loop length spinner cluster to the right edge so the row
-   fills the full deck width instead of bunching on the left. */
-.deck-controls .loop-group { margin-left: auto; }
 /* Same fluid sizing as deck-head btns — keeps touch target ≥36px on iPad. */
 .deck-controls .btn {
   padding: clamp(0.3rem, 0.45vw, 0.5rem) clamp(0.45rem, 0.65vw, 0.75rem);
@@ -927,6 +927,30 @@ body.skin-off .deck-skin { display: none; }
 .routing-pill.unused:hover { border-color: var(--line); background: transparent; }
 .routing-pill.unused .pill-name { color: var(--muted); }
 .routing-pill.unused .pill-count { background: transparent; }
+
+/* Flip toggle — small round button that sits between SH-01A and Bass Stn 2
+   pills, showing that the swap happens between exactly those two outputs. */
+.flip-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(28px, 3.5vh, 36px);
+  width: clamp(28px, 3.5vh, 36px);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+.flip-pill:hover { color: var(--text); border-color: var(--surface-3); }
+.flip-pill.active {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
 
 /* ─────────── Mix switch ─────────── */
 #mix-switch {

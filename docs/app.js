@@ -835,8 +835,6 @@ function buildRoutingUI(deckId, midi) {
   }
   // Fresh track → fresh routing, so clear any flip carried from the prior track.
   deck.outputsFlipped = false;
-  const flipBtn = document.querySelector(`.btn-flip[data-deck="${deckId}"]`);
-  if (flipBtn) flipBtn.classList.remove('active');
   renderRoutingPills(deckId);
 }
 
@@ -863,8 +861,6 @@ function flipOutputs(deckId) {
     else if (deck.routing[src] === 2) deck.routing[src] = 1;
   }
   deck.outputsFlipped = !deck.outputsFlipped;
-  const btn = document.querySelector(`.btn-flip[data-deck="${deckId}"]`);
-  if (btn) btn.classList.toggle('active', deck.outputsFlipped);
   renderRoutingPills(deckId);
 }
 
@@ -906,6 +902,18 @@ function renderRoutingPills(deckId) {
       pill.disabled = true;
     }
     container.appendChild(pill);
+    // Flip toggle lives between the SH-01A and Bass Stn 2 pills — visually
+    // shows the swap happens between exactly those two outputs.
+    if (outCh === 1) {
+      const flip = document.createElement('button');
+      flip.className = `flip-pill${deck.outputsFlipped ? ' active' : ''}`;
+      flip.type = 'button';
+      flip.dataset.deck = deckId;
+      flip.title = 'swap SH-01A ↔ Bass Stn 2 outputs';
+      flip.innerHTML = '⇄';
+      flip.addEventListener('click', () => flipOutputs(deckId));
+      container.appendChild(flip);
+    }
   }
 }
 
@@ -2459,7 +2467,6 @@ function init() {
     document.querySelector(`.btn-channel[data-deck="${deckId}"]`).addEventListener('click', () => flipDeckChannel(deckId));
     document.querySelector(`.btn-unmute-all[data-deck="${deckId}"]`).addEventListener('click', () => unmuteAllOutputs(deckId));
     document.querySelector(`.btn-auto[data-deck="${deckId}"]`).addEventListener('click', () => toggleAutoAdvance(deckId));
-    document.querySelector(`.btn-flip[data-deck="${deckId}"]`).addEventListener('click', () => flipOutputs(deckId));
     updateChannelToggleUI(deckId);
     updateAutoAdvanceUI(deckId);
 
