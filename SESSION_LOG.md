@@ -228,3 +228,63 @@ Source: `~/Downloads/Launch Control XL 3 programmer's DAW mode...pdf`
 **Backups:**
 - `/Users/naenae/bloop/baeng-and-raembl/midi-dj-ios.backup/` — pre-baseline snapshot of the iOS app.
 - No web-app backup needed (everything in git).
+
+---
+
+## 2026-05-23 (later in the day) — iOS polyfill extension landed
+
+Polyfill work from the NEXT-TASK spec above is done and verified on hardware (iPad Air 13-inch M2 + LCXL3 connected). User confirmed LCXL3 → VGM DJ surface works end-to-end inside the WebView shell.
+
+### What was changed
+
+**`midi-dj-ios/VGMMidiDJ/UI/WebMIDIPolyfill.js`** — full bidirectional polyfill:
+- `ACCESS.sysexEnabled = true` (was `false`; LCXL3 driver requires SysEx for LED + OLED writes).
+- `makeInput(id, name, manufacturer)` and `makeOutput(id, name, manufacturer)` factories producing WebMIDI-shaped port objects with `state`, `connection`, `open/close`, `addEventListener`, and (for inputs) `onmidimessage` + `_deliverMessage`.
+- `output.send(data, ts)` now tags the bridge payload with `outputId: this.id` so native can route per-destination.
+- `window.__vgmMidiInput(inputId, bytes, timeStamp)` looks up the input by id and dispatches via the saved `_deliverMessage`. Bytes wrapped to `Uint8Array`.
+- `window.__vgmMidiPortsUpdate({inputs, outputs})` diffs against current ACCESS maps, mutates port `state`, and fires `MIDIConnectionEvent`-shaped objects on both `ACCESS.onstatechange` and each affected port's `onstatechange`. The `native-vgm-dj` entry is implicitly preserved even if native omits it.
+
+**`midi-dj-ios/VGMMidiDJ/MIDI/MIDIService.swift`** — added the receive side + per-UID routing:
+- `Source` struct (id/name/manufacturer/endpoint), `@Published sources: [Source]`, plus `manufacturer` field added to `Destination`.
+- `inputPort: MIDIPortRef` created via `MIDIInputPortCreateWithProtocol(... ._1_0 ...)`. UMP read block unpacks MT=1 (system) and MT=2 (channel-voice) words into raw MIDI byte arrays; SysEx (MT=3) ignored — LCXL3 only sends short messages back.
+- `refreshSources()` enumerates `MIDIGetSource(i)`, skips our own virtual source's UID (avoids feedback loop), connects new sources via `MIDIPortConnectSource` with a heap-allocated `UnsafeMutablePointer<MIDIUniqueID>` as refCon, disconnects ones that vanished and frees their refCons.
+- `send(_:to:at:)` — new overload that targets a hardware destination by UID via `MIDISend` (instead of `MIDIReceived` on the virtual source).
+- `onMIDIReceived: ((MIDIUniqueID, [UInt8]) -> Void)?` callback — fires on the CoreMIDI read thread.
+- `onTopologyChanged: (() -> Void)?` callback — fires on main alongside the @Published refresh.
+- `withPacketList` helper extracted; buffer sized for 1.2 KiB+ SysEx (LCXL3 OLED bitmap).
+
+**`midi-dj-ios/VGMMidiDJ/UI/WebAppView.swift`** — wired the bridge to topology + input forwarding:
+- `Coordinator.init` hooks `onMIDIReceived` (→ `deliverMIDIInputToJS`) and `onTopologyChanged` (→ `pushPortTopology`).
+- `handleSend` reads `body["outputId"]`: `"native-vgm-dj"` or absent → virtual source; otherwise parsed as `MIDIUniqueID` and routed to that destination.
+- `deliverMIDIInputToJS(uid:bytes:)` builds the JS literal on the read thread (cheap), hops to main, calls `evaluateJavaScript("window.__vgmMidiInput('<uid>',[b0,b1,b2])")`.
+- `pushPortTopology()` builds inputs/outputs arrays from `midiService.sources`/`destinations`, prepends `native-vgm-dj`, serialises with `JSONSerialization`, calls `window.__vgmMidiPortsUpdate(...)`.
+- `webView(_:didFinish:)` calls `pushPortTopology()` so the LCXL3 driver sees the device on first scan.
+
+**`midi-dj-ios/CLAUDE.md`** — bridge-contract table updated to reflect the new `outputId` field on `send` and the new `__vgmMidiInput` / `__vgmMidiPortsUpdate` callbacks.
+
+### Architectural decisions made during the work
+
+- **MIDI 1.0 UMP only.** Created the input port with `MIDIInputPortCreateWithProtocol(... ._1_0 ...)` so the OS converts raw MIDI 1.0 bytes into 32-bit UMP words for us. The decoder handles MT=1 (system common/real-time) and MT=2 (channel voice). SysEx (MT=3) is dropped on the floor for now — the LCXL3 doesn't send SysEx host-bound, so it doesn't matter; if a future device does, the decoder will need a multi-word reassembler.
+- **No rebroadcast from LCXL3 to the VGM DJ virtual source yet.** Per the explicit "we are NOT rebroadcasting yet" note in `prompt.md`. AUM can still see the LCXL3 directly if the user enables `LCXL3 1 DAW Out` in AUM's MIDI Connections. The architecture decision to eventually have VGM DJ be the source-of-truth still stands; this just defers the actual rebroadcast.
+- **refCon strategy** — heap-allocated `UnsafeMutablePointer<MIDIUniqueID>`, one per connected source. Freed on disconnect or in `deinit`. Avoids the `Unmanaged<Box>` retain/release dance.
+- **Skip our own virtual source when enumerating sources.** Otherwise `MIDIPortConnectSource` on our own `MIDISourceCreate`'d endpoint would feed every `MIDIReceived` call straight back into the input port — instant feedback loop, every note we send to AUM would echo back. The destinations skip is defensive (a virtual source isn't a destination anyway).
+
+### Verified on hardware
+
+- Build + install + launch on iPad Air 13" M2 (devicectl, device ID `00008112-001149082683A01E`).
+- LCXL3 connects via DAW port, LEDs paint, encoders + Solo/Mute buttons + OLED touch popups all work inside VGM DJ.
+- VGM DJ → AUM virtual-source path (note traffic) still works — no regression.
+- AUM does NOT see LCXL3 CCs via the VGM DJ source (because we don't rebroadcast). User confirmed this; expected behaviour. To use AUM with LCXL3 today, enable `LCXL3 1 DAW Out` directly in AUM's MIDI Connections.
+
+### Known gaps / next-next agent's playground
+
+- **LCXL3 → VGM DJ virtual-source rebroadcast.** The "VGM DJ owns the LCXL3 and translates to mapping-friendly CCs that AUM consumes" architecture isn't built yet. Today it's two independent subscribers. When you build this, decide whether VGM DJ should *replace* the LCXL3 source for AUM (use the virtual source as the only thing AUM listens to, gain the freedom to remap CCs) or just *also* publish (riskier — feedback loops, dupes).
+- **SysEx in (host-bound).** `dispatchEventList` returns nil for MT=3. Not a problem for LCXL3 but blocks any future device that responds with SysEx.
+- **Source-list churn.** Every CoreMIDI notification triggers a full refresh + topology re-push. Fine for human-scale device add/remove, but if some device storms `msgSetupChanged`, the polyfill will get spammed.
+- **Coordinator → JS marshalling.** `deliverMIDIInputToJS` always hops to main via `DispatchQueue.main.async` per byte-group. For high-rate input that's a lot of mainqueue ping-pong. If it becomes a perf problem, batch + coalesce on a serial queue before evaluating JS.
+
+### Commits at end of this session
+
+- `midi-dj-ios`: new commit on top of `81a1356` — the polyfill expansion described above, plus rsynced `Resources/WebApp/` reflecting `midi-dj` commit `7a7b24e`.
+- `midi-dj`: this `SESSION_LOG.md` appendix only.
+- Nothing pushed.
