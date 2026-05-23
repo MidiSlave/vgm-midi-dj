@@ -1,13 +1,21 @@
 // ──────────────────────────────────────────────────────────────
-// Hardware outputs — channel index → name
+// Hardware outputs — channel index → display label
+// Labels are role-first ("Drums", "Bass", "Lead", "Poly 1/2") so the
+// routing pills line up column-for-column with the LCXL3 controller:
+//   col 1 = Drums, col 2 = Bass, col 3 = Lead, col 4 = Poly 1, col 5 = Poly 2.
+// The synth in parens is for disambiguation between the two polys.
 // ──────────────────────────────────────────────────────────────
 const SYNTHS = {
-  0: 'Juno 106',
-  1: 'SH-01A',
-  2: 'Bass Stn 2',
-  3: 'Keytar',
-  9: 'TR-08',
+  0: 'Poly 1',
+  1: 'Lead',
+  2: 'Bass',
+  3: 'Poly 2',
+  9: 'Drums',
 };
+
+// Routing pill column order. Object.keys(SYNTHS) sorts numerically (0,1,2,3,9)
+// so we need an explicit order to match the controller's left-to-right layout.
+const OUTPUT_ORDER = [9, 2, 1, 0, 3];
 
 // Representative GM patches used in preview mode for each hardware output.
 // Channel 9 = GM drum kit (auto). Picks roughly match each synth's role.
@@ -20,7 +28,7 @@ const GM_PREVIEW_PATCH = {
 
 // Hardware outputs that are physically monophonic — the dispatcher must
 // note-off any active note on these before sending a new note-on.
-const MONO_OUTPUTS = new Set([1, 2]); // SH-01A (lead), Bass Station 2
+const MONO_OUTPUTS = new Set([1, 2]); // Lead (SH-01A), Bass (Bass Stn 2)
 
 const GM_TO_TR08 = {
   35: 36, 36: 36, 37: 37, 38: 38, 39: 39, 40: 38,
@@ -307,7 +315,11 @@ function makeDeckState(id) {
     volume: 100, pitch: 1.0,
     transpose: 0, // semitones; drums (ch9) are skipped
     timeFold: 1, // 0.5 | 1 | 2 — half/normal/double-time relative to master
-    outputsFlipped: false, // swap SH-01A (1) ↔ Bass Stn 2 (2) outputs
+    // Independent flip state per swappable pair:
+    //   leadBassFlipped — Lead (ch 1) ↔ Bass (ch 2)   (both monosynths)
+    //   polyFlipped     — Poly 1 (ch 0) ↔ Poly 2 (ch 3) (Juno/Keytar)
+    leadBassFlipped: false,
+    polyFlipped: false,
     routing: {}, meta: null,
     activeNotes: new Map(), // key "outCh:note" → natural endTick (or null)
     tailTimers: new Map(),  // key → setTimeout id for deferred noteOff after loop wrap
@@ -540,6 +552,10 @@ async function unlockTestSynth() {
   const ctx = synth._ctx;
   if (ctx?.state === 'suspended') {
     try { await ctx.resume(); } catch (e) { console.error(e); }
+  }
+  // Apply persisted CUE channel routing now that the context exists.
+  if (typeof applyCueChannelsRouting === 'function') {
+    try { applyCueChannelsRouting(); } catch (e) { console.warn('CUE routing apply failed:', e); }
   }
   // Program the representative patches now
   for (const [ch, prog] of Object.entries(GM_PREVIEW_PATCH)) {
@@ -834,19 +850,22 @@ function buildRoutingUI(deckId, midi) {
     deck.routing[ch] = ch === 9 ? 9 : (ch < 4 ? ch : ch % 4);
   }
   // Fresh track → fresh routing, so clear any flip carried from the prior track.
-  deck.outputsFlipped = false;
+  deck.leadBassFlipped = false;
+  deck.polyFlipped = false;
   renderRoutingPills(deckId);
 }
 
-// Swap outputs 1 (SH-01A) ↔ 2 (Bass Stn 2) on this deck. Silences any active
+// Swap the two channels of a flippable pair on this deck. Silences any active
 // notes on those outputs first so a mid-flight noteOff doesn't go to the wrong
 // box and leave a hung note on the other.
-function flipOutputs(deckId) {
+//   pair === 'leadBass' → ch 1 (Lead/SH-01A) ↔ ch 2 (Bass/Bass Stn 2)
+//   pair === 'poly'     → ch 0 (Poly 1/Juno) ↔ ch 3 (Poly 2/Keytar)
+function flipOutputs(deckId, pair = 'poly') {
   const deck = decks[deckId];
-  // All-notes-off on outputs 1 and 2, then drop tracked state for those keys
+  const [a, b] = pair === 'leadBass' ? [1, 2] : [0, 3];
   for (const [key] of [...deck.activeNotes]) {
     const oc = Number(key.split(':')[0]);
-    if (oc === 1 || oc === 2) {
+    if (oc === a || oc === b) {
       const note = Number(key.split(':')[1]);
       dispatchNoteOff(deck, oc, note);
       deck.activeNotes.delete(key);
@@ -854,13 +873,14 @@ function flipOutputs(deckId) {
       if (tail) { clearTimeout(tail); deck.tailTimers.delete(key); }
     }
   }
-  sendRaw(0xb0 | 1, 123, 0);
-  sendRaw(0xb0 | 2, 123, 0);
+  sendRaw(0xb0 | a, 123, 0);
+  sendRaw(0xb0 | b, 123, 0);
   for (const src in deck.routing) {
-    if (deck.routing[src] === 1) deck.routing[src] = 2;
-    else if (deck.routing[src] === 2) deck.routing[src] = 1;
+    if (deck.routing[src] === a) deck.routing[src] = b;
+    else if (deck.routing[src] === b) deck.routing[src] = a;
   }
-  deck.outputsFlipped = !deck.outputsFlipped;
+  const flag = pair === 'leadBass' ? 'leadBassFlipped' : 'polyFlipped';
+  deck[flag] = !deck[flag];
   renderRoutingPills(deckId);
 }
 
@@ -878,10 +898,11 @@ function renderRoutingPills(deckId) {
     (groups[o] ||= []).push(parseInt(src));
   }
 
-  // Render every hardware output, every time, in a stable order — so the
-  // user's muscle memory survives a track change. Outputs the loaded track
-  // doesn't use are rendered dimmed and inert.
-  for (const outCh of Object.keys(SYNTHS).map(Number)) {
+  // Render every hardware output, every time, in column order — Drums, Bass,
+  // Lead, Poly 1, Poly 2 — so the pills line up with the LCXL3 controller and
+  // muscle memory survives a track change. Outputs the loaded track doesn't
+  // use are rendered dimmed and inert.
+  for (const outCh of OUTPUT_ORDER) {
     const sources = groups[outCh];
     const hasSources = !!(sources && sources.length);
     const isMuted = hasSources && deck.outputMute.has(outCh);
@@ -902,19 +923,29 @@ function renderRoutingPills(deckId) {
       pill.disabled = true;
     }
     container.appendChild(pill);
-    // Flip toggle lives between the SH-01A and Bass Stn 2 pills — visually
-    // shows the swap happens between exactly those two outputs.
-    if (outCh === 1) {
-      const flip = document.createElement('button');
-      flip.className = `flip-pill${deck.outputsFlipped ? ' active' : ''}`;
-      flip.type = 'button';
-      flip.dataset.deck = deckId;
-      flip.title = 'swap SH-01A ↔ Bass Stn 2 outputs';
-      flip.innerHTML = '⇄';
-      flip.addEventListener('click', () => flipOutputs(deckId));
-      container.appendChild(flip);
+    // Two flip toggles, each rendered between the pair it swaps:
+    //   Bass(col 2) ↔ Lead(col 3)   — after the Bass pill (outCh === 2)
+    //   Poly 1(col 4) ↔ Poly 2(col 5) — after the Poly 1 pill (outCh === 0)
+    if (outCh === 2) {
+      container.appendChild(makeFlipPill(deckId, 'leadBass', deck.leadBassFlipped,
+        'swap Lead ↔ Bass'));
+    } else if (outCh === 0) {
+      container.appendChild(makeFlipPill(deckId, 'poly', deck.polyFlipped,
+        'swap Poly 1 ↔ Poly 2'));
     }
   }
+}
+
+function makeFlipPill(deckId, pair, active, title) {
+  const flip = document.createElement('button');
+  flip.className = `flip-pill${active ? ' active' : ''}`;
+  flip.type = 'button';
+  flip.dataset.deck = deckId;
+  flip.dataset.pair = pair;
+  flip.title = title;
+  flip.innerHTML = '⇄';
+  flip.addEventListener('click', () => flipOutputs(deckId, pair));
+  return flip;
 }
 
 function toggleOutputMute(deckId, outCh) {
@@ -1281,6 +1312,87 @@ function flipDeckChannel(deckId) {
 // the loader is silent on misses (no console errors).
 let manifestVersion = '';
 const _skinCache = new Map(); // game → resolved url, or null when not found
+// Per-franchise display fonts applied to the .game-name child of
+// .track-name. The .track-title child always renders in the default UI
+// font.  Add a key here only when a font file ships in docs/fonts/.
+const GAME_FONT_CLASS = {
+  'castlevania':     'font-castlevania',
+  'mario':           'font-mario',
+  'zelda':           'font-zelda',
+  'mega-man':        'font-mega-man',
+  'tetris':          'font-tetris',
+  'doom':            'font-doom',
+  'contra':          'font-contra',
+  'metroid':         'font-metroid',
+  'final-fantasy':   'font-final-fantasy',
+  'earthbound':      'font-earthbound',
+};
+
+// Franchises that don't have a bespoke font yet — render in a generic
+// pixel font so they still feel 8-bit rather than Helvetica.
+const PIXEL_DEFAULT_GAMES = new Set(['chrono-trigger', 'golden-axe']);
+
+// Franchises whose "logo" comes from one or more SVG assets rather than a
+// text font. Value may be a single path string OR an array of paths
+// (rendered side-by-side on a single line).
+const GAME_LOGO_SVG = {
+  'donkey-kong':    ['img/SVG/Donkey.svg', 'img/SVG/Kong.svg'],
+  'sonic':          ['img/SVG/Sonic.svg'],
+  'street-fighter': ['img/SVG/StreetFighter.svg'],
+};
+
+// Display overrides. Keys whose franchise reads more naturally with the
+// hyphen preserved (rather than the default hyphen→space substitution)
+// land here. Multi-line lockups would go here too.
+const GAME_NAME_OVERRIDE = {
+  'golden-axe':     'golden-axe',
+  'mega-man':       'mega-man',
+  'chrono-trigger': 'chrono-trigger',
+};
+
+function applyGameFontToTrackName(nameEl, track) {
+  nameEl.innerHTML = '';
+  if (!track) return;
+
+  const game = track.game || '';
+  const title = track.title || '';
+
+  // Game-name / logo element
+  if (game && GAME_LOGO_SVG[game]) {
+    const paths = [].concat(GAME_LOGO_SVG[game]);
+    const wrap = document.createElement('span');
+    wrap.className = 'game-logo-row';
+    for (const p of paths) {
+      const logo = document.createElement('img');
+      logo.className = 'game-logo-img';
+      logo.src = p;
+      logo.alt = game;
+      wrap.appendChild(logo);
+    }
+    nameEl.appendChild(wrap);
+  } else if (game) {
+    const g = document.createElement('span');
+    g.className = 'game-name';
+    if (GAME_FONT_CLASS[game]) {
+      g.classList.add(GAME_FONT_CLASS[game]);
+    } else if (PIXEL_DEFAULT_GAMES.has(game)) {
+      g.classList.add('font-pixel-default');
+    }
+    // Either an explicit override (e.g. two-line title) or the manifest's
+    // hyphenated game key with hyphens stripped.
+    g.textContent = GAME_NAME_OVERRIDE[game] || game.replace(/-/g, ' ');
+    nameEl.appendChild(g);
+  }
+
+  // Track-title element always in the default UI font.
+  if (title) {
+    const t = document.createElement('span');
+    t.className = 'track-title';
+    t.textContent = title;
+    nameEl.appendChild(t);
+  }
+}
+
 function updateDeckSkin(deckId, game) {
   const skin = document.querySelector(`.deck-skin[data-deck="${deckId}"]`);
   if (!skin) return;
@@ -1440,6 +1552,37 @@ function parseMeterNum(meter) {
   return isFinite(n) && n > 0 ? n : null;
 }
 
+// Returns [{ tick, bar }, …] for the whole track, walking deck.meta.meter_changes
+// when the file has signature changes (Castlevania IV intro etc). bar is 1-indexed
+// from the start of the track. Cached on the deck until the next track loads.
+function computeBarMarks(deck) {
+  if (deck._barMarks) return deck._barMarks;
+  const tpb = getDeckTicksPerBeat(deck);
+  const maxTick = (deck.rollData?.maxTick) || 0;
+  const marks = [];
+  const changes = deck.meta?.meter_changes;
+  if (!changes || !changes.length) {
+    const meterNum = parseMeterNum(deck.meta?.meter) || 4;
+    const ticksPerBar = tpb * meterNum;
+    let bar = 1;
+    for (let t = 0; t <= maxTick + ticksPerBar; t += ticksPerBar) {
+      marks.push({ tick: t, bar: bar++ });
+    }
+  } else {
+    let bar = 1;
+    for (let i = 0; i < changes.length; i++) {
+      const segStart = changes[i].tick;
+      const ticksPerBar = tpb * (parseMeterNum(changes[i].sig) || 4);
+      const segEnd = (i + 1 < changes.length) ? changes[i + 1].tick : maxTick + ticksPerBar;
+      for (let t = segStart; t < segEnd; t += ticksPerBar) {
+        marks.push({ tick: t, bar: bar++ });
+      }
+    }
+  }
+  deck._barMarks = marks;
+  return marks;
+}
+
 function zoomedEnough(deck) {
   // Show "1" labels when bars are at least ~40px apart
   if (!deck.rollData) return false;
@@ -1503,12 +1646,13 @@ function renderRollOffscreen(deckId) {
   ctx.strokeStyle = 'rgba(255,255,255,0.08)';
   ctx.beginPath(); ctx.moveTo(0, pitchedH); ctx.lineTo(w, pitchedH); ctx.stroke();
 
-  // Beat + downbeat grid. Use the track's meter numerator for bar length.
+  // Beat + downbeat grid. Walks meter_changes when present so bars line up
+  // through signature changes, and numbers each bar 1, 2, 3, … from the
+  // start of the track.
   const tpb = getDeckTicksPerBeat(deck);
-  const meterNum = parseMeterNum(deck.meta?.meter) || 4;
-  const ticksPerBar = tpb * meterNum;
+  const barMarks = computeBarMarks(deck);
 
-  // Faint per-beat ticks
+  // Faint per-beat ticks (uniform — tpb doesn't change with meter)
   const firstBeat = Math.ceil(startTick / tpb);
   const lastBeat = Math.floor(endTick / tpb);
   ctx.strokeStyle = 'rgba(255,255,255,0.06)';
@@ -1516,19 +1660,16 @@ function renderRollOffscreen(deckId) {
     const x = tickToX(b * tpb);
     ctx.beginPath(); ctx.moveTo(x, pitchedH); ctx.lineTo(x, h); ctx.stroke();
   }
-  // Brighter downbeat (beat-1) lines through the full height
-  const firstBar = Math.ceil(startTick / ticksPerBar);
-  const lastBar = Math.floor(endTick / ticksPerBar);
+  // Brighter downbeat lines + bar number
   ctx.strokeStyle = 'rgba(255,255,255,0.16)';
-  for (let b = firstBar; b <= lastBar; b++) {
-    const x = tickToX(b * ticksPerBar);
+  const labelBars = zoomedEnough(deck);
+  ctx.font = '9px -apple-system, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.45)';
+  for (const m of barMarks) {
+    if (m.tick < startTick || m.tick > endTick) continue;
+    const x = tickToX(m.tick);
     ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-    // Tiny "1" marker above the lane
-    if (zoomedEnough(deck)) {
-      ctx.fillStyle = 'rgba(255,255,255,0.4)';
-      ctx.font = '9px -apple-system, sans-serif';
-      ctx.fillText('1', x + 2, 9);
-    }
+    if (labelBars) ctx.fillText(String(m.bar), x + 2, 9);
   }
 
   // Notes — only those intersecting visible window
@@ -1679,6 +1820,8 @@ function startRollAnimation() {
   if (rollAnimating) return;
   rollAnimating = true;
   const frame = () => {
+    maybeFollowPlayhead('1');
+    maybeFollowPlayhead('2');
     paintRoll('1');
     paintRoll('2');
     if (decks['1'].playing || decks['2'].playing) {
@@ -1688,6 +1831,48 @@ function startRollAnimation() {
     }
   };
   requestAnimationFrame(frame);
+}
+
+// If follow is on and the deck is playing, scroll the view so the playhead
+// stays at FOLLOW_ANCHOR_FRAC of the visible window. Re-render the offscreen
+// only when offset has shifted ≥ 1 canvas pixel — keeps cost negligible.
+const FOLLOW_ANCHOR_FRAC = 0.25;
+function toggleFollow(deckId) {
+  const deck = decks[deckId];
+  if (!deck.rollView) deck.rollView = { zoom: 1, offset: 0, follow: false };
+  deck.rollView.follow = !deck.rollView.follow;
+  updateFollowUI(deckId);
+  if (deck.rollView.follow && !rollAnimating) startRollAnimation();
+}
+function setFollow(deckId, on) {
+  const deck = decks[deckId];
+  if (!deck.rollView) return;
+  if (deck.rollView.follow === on) return;
+  deck.rollView.follow = on;
+  updateFollowUI(deckId);
+}
+function updateFollowUI(deckId) {
+  const btn = document.querySelector(`.btn-follow[data-deck="${deckId}"]`);
+  if (!btn) return;
+  btn.classList.toggle('active', !!decks[deckId].rollView?.follow);
+}
+function maybeFollowPlayhead(deckId) {
+  const deck = decks[deckId];
+  if (!deck.rollView?.follow || !deck.playing || !deck.rollData) return;
+  const z = deck.rollView.zoom;
+  if (z <= 1) return; // whole track is on-screen — nothing to follow
+  const max = deck.rollData.maxTick || 1;
+  const visibleTicks = max / z;
+  const targetOffset = Math.max(0, Math.min(1 - 1 / z,
+    (deck.currentTick - visibleTicks * FOLLOW_ANCHOR_FRAC) / max
+  ));
+  const canvas = document.querySelector(`.piano-roll[data-deck="${deckId}"]`);
+  const cssW = canvas?.clientWidth || 600;
+  const pxShift = Math.abs(targetOffset - deck.rollView.offset) * z * cssW;
+  if (pxShift >= 1) {
+    deck.rollView.offset = targetOffset;
+    renderRollOffscreen(deckId);
+  }
 }
 
 function bindPianoRoll(deckId) {
@@ -1707,6 +1892,21 @@ function bindPianoRoll(deckId) {
   let loopRegionStartTick = 0;  // tick under cursor when loop-region drag began
   let loopRegionStartIn = 0;
   let loopRegionStartOut = 0;
+  // First-finger seek is deferred for SCRUB_GRACE_MS so an incoming
+  // second finger can promote the gesture to a pinch without triggering
+  // an accidental cue point. Tap-to-seek still works: pointerup before
+  // the grace fires the pending seek.
+  const SCRUB_GRACE_MS = 90;
+  let scrubPendingTimer = null;
+  let scrubPendingX = null;
+  const cancelPendingScrub = () => {
+    if (scrubPendingTimer) { clearTimeout(scrubPendingTimer); scrubPendingTimer = null; }
+    scrubPendingX = null;
+  };
+  const commitPendingScrub = () => {
+    if (scrubPendingX != null) seekDeck(deckId, xToTick(scrubPendingX));
+    cancelPendingScrub();
+  };
 
   const xToTick = (x, snap = true) => {
     const deck = decks[deckId];
@@ -1764,6 +1964,8 @@ function bindPianoRoll(deckId) {
 
     if (pointers.size === 2) {
       // Two-finger gesture: combined pinch-zoom + pan
+      cancelPendingScrub();  // first finger's seek never fires
+      setFollow(deckId, false);  // user is taking the view manually
       const [p1, p2] = [...pointers.values()];
       pinchStartDist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
       pinchStartZoom = decks[deckId].rollView.zoom;
@@ -1794,9 +1996,15 @@ function bindPianoRoll(deckId) {
     panStartOffset = decks[deckId].rollView.offset;
     if (e.shiftKey) {
       dragMode = 'pan';
+      setFollow(deckId, false);
     } else {
       dragMode = 'scrub';
-      seekDeck(deckId, xToTick(e.clientX));
+      // Defer the seek so a pinch starting milliseconds later can cancel it.
+      scrubPendingX = e.clientX;
+      scrubPendingTimer = setTimeout(() => {
+        scrubPendingTimer = null;
+        if (dragMode === 'scrub') commitPendingScrub();
+      }, SCRUB_GRACE_MS);
     }
   });
 
@@ -1831,6 +2039,8 @@ function bindPianoRoll(deckId) {
     }
 
     if (dragMode === 'scrub') {
+      // First move commits the pending tap-seek and switches to live scrub.
+      cancelPendingScrub();
       seekDeck(deckId, xToTick(e.clientX, !e.shiftKey));
       return;
     }
@@ -1875,8 +2085,14 @@ function bindPianoRoll(deckId) {
 
   const endPointer = (e) => {
     pointers.delete(e.pointerId);
-    if (pointers.size === 0) dragMode = null;
-    else if (pointers.size === 1) dragMode = 'scrub';
+    if (pointers.size === 0) {
+      // Tap (no move, finger lifted before grace expires) → commit seek.
+      if (dragMode === 'scrub') commitPendingScrub();
+      cancelPendingScrub();
+      dragMode = null;
+    } else if (pointers.size === 1) {
+      dragMode = 'scrub';
+    }
   };
   canvas.addEventListener('pointerup', endPointer);
   canvas.addEventListener('pointercancel', endPointer);
@@ -1888,6 +2104,7 @@ function bindPianoRoll(deckId) {
     e.preventDefault();
     const deck = decks[deckId];
     if (!deck.rollData) return;
+    setFollow(deckId, false);  // wheel = manual view control
     const rect = canvas.getBoundingClientRect();
     const anchorFrac = (e.clientX - rect.left) / rect.width;
     const isHorizontalSwipe = !e.ctrlKey && !e.metaKey && Math.abs(e.deltaX) > Math.abs(e.deltaY);
@@ -2187,12 +2404,13 @@ async function loadTrackIntoDeck(deckId, track) {
     decks[deckId].transpose = 0;
     decks[deckId].timeFold = 1;
     decks[deckId].outputMute = new Set();
-    decks[deckId].rollView = { zoom: 1, offset: 0 };
+    decks[deckId].rollView = { zoom: 1, offset: 0, follow: decks[deckId].rollView?.follow || false };
     decks[deckId].rollData = rollData; // pre-computed in the worker
+    decks[deckId]._barMarks = null;    // invalidate cached bar marks
     cancelDrop(deckId);
     cancelPendingSeek(deckId);
     const nameEl = document.querySelector(`#deck-${deckId} .track-name`);
-    nameEl.textContent = `${track.title} · ${track.game}`;
+    applyGameFontToTrackName(nameEl, track);
     updateDeckSkin(deckId, track.game);
     nameEl.classList.remove('muted');
     updateDeckStats(deckId, track);
@@ -2458,6 +2676,8 @@ function init() {
     document.querySelector(`.btn-cue[data-deck="${deckId}"]`).addEventListener('click', () => {
       setCue(deckId, cuedDeck !== deckId);
     });
+    document.querySelector(`.btn-follow[data-deck="${deckId}"]`).addEventListener('click', () => toggleFollow(deckId));
+    updateFollowUI(deckId);
     document.querySelector(`.btn-drop[data-deck="${deckId}"]`).addEventListener('click', () => {
       if (decks[deckId].dropPending) cancelDrop(deckId);
       else dropDeck(deckId);
@@ -2533,9 +2753,120 @@ function applySkinSetting(on) {
   localStorage.setItem(SETTINGS_SKIN_KEY, on ? '1' : '0');
 }
 
+// CUE output channel pair — which device output channels the cue-preview
+// audio routes to. Stored as a comma-separated pair like "2,3" (zero-indexed
+// to match Web Audio channel numbering; 0,1 = main stereo; 2,3 = ch 3/4).
+const SETTINGS_CUE_CHANNELS_KEY = 'vgmdj-cue-channels';
+let cueChannelsSelected = null;     // [leftIdx, rightIdx]
+let cueChannelsDropdown = null;
+
+function readCueChannelsSetting() {
+  const raw = localStorage.getItem(SETTINGS_CUE_CHANNELS_KEY);
+  if (raw) {
+    const parts = raw.split(',').map(n => parseInt(n, 10)).filter(n => Number.isFinite(n));
+    if (parts.length === 2) return parts;
+  }
+  return null;
+}
+function writeCueChannelsSetting(pair) {
+  localStorage.setItem(SETTINGS_CUE_CHANNELS_KEY, pair.join(','));
+}
+
+function maxOutputChannels() {
+  const synth = getTestSynth?.();
+  const ctx = synth?._ctx;
+  if (ctx && ctx.destination) {
+    return Math.max(2, ctx.destination.maxChannelCount || 2);
+  }
+  return 2;
+}
+
+function buildCuePairOptions(maxCh) {
+  // Generate stereo pairs: (1/2), (3/4), (5/6), ... up to the device max.
+  const opts = [];
+  for (let i = 0; i < maxCh; i += 2) {
+    if (i + 1 >= maxCh) break;
+    const label = `${i + 1} / ${i + 2}` + (i === 0 ? '  (main)' : '');
+    opts.push({ id: `${i},${i + 1}`, label });
+  }
+  return opts;
+}
+
+function applyCueChannelsRouting() {
+  // Reroute the preview synth's audio output through a ChannelMergerNode
+  // targeting the chosen output channels. Best-effort: if multi-channel
+  // isn't supported on this device, silently stays on the main pair.
+  const synth = getTestSynth?.();
+  const ctx = synth?._ctx;
+  if (!ctx || !synth || typeof synth.setAudioContext !== 'function') return;
+  const [L, R] = cueChannelsSelected || [0, 1];
+  const maxCh = maxOutputChannels();
+  if (L < 0 || R < 0 || L >= maxCh || R >= maxCh) {
+    synth.setAudioContext(ctx, ctx.destination);
+    return;
+  }
+  try {
+    ctx.destination.channelCount = Math.max(ctx.destination.channelCount || 2, R + 1, L + 1);
+    ctx.destination.channelInterpretation = 'discrete';
+  } catch (e) { /* device may not allow it */ }
+  // Route synth → splitter (stereo) → merger → destination, sending L/R to chosen channels.
+  const splitter = ctx.createChannelSplitter(2);
+  const merger = ctx.createChannelMerger(Math.max(2, R + 1, L + 1));
+  splitter.connect(merger, 0, L);
+  splitter.connect(merger, 1, R);
+  merger.connect(ctx.destination);
+  // Re-target the synth's destination node to our splitter.
+  try { synth.setAudioContext(ctx, splitter); } catch (e) { /* swallow */ }
+}
+
+function refreshCueChannelsDropdown() {
+  const mount = document.getElementById('settings-cue-channels-mount');
+  if (!mount) return;
+  const maxCh = maxOutputChannels();
+  const opts = buildCuePairOptions(maxCh);
+  // Default: 3/4 if available, else 1/2.
+  if (!cueChannelsSelected) {
+    cueChannelsSelected = readCueChannelsSetting()
+      || (maxCh >= 4 ? [2, 3] : [0, 1]);
+  }
+  // Clamp if user previously chose a pair that's no longer available.
+  const [L, R] = cueChannelsSelected;
+  if (L >= maxCh || R >= maxCh) cueChannelsSelected = (maxCh >= 4 ? [2, 3] : [0, 1]);
+  const currentId = cueChannelsSelected.join(',');
+
+  const hint = document.getElementById('settings-cue-hint');
+  if (hint) {
+    hint.textContent = maxCh >= 4
+      ? `This device exposes ${maxCh} output channels. Pick the pair your headphones (or AUM headphone bus) live on.`
+      : 'Only stereo output detected. Connect a multi-channel audio interface (or route via AUM with extra outs) to enable headphone cueing on a separate pair.';
+  }
+
+  if (cueChannelsDropdown) {
+    cueChannelsDropdown.setOptions(opts);
+    cueChannelsDropdown.setValue(currentId);
+    return;
+  }
+  cueChannelsDropdown = mountDropdown(mount, {
+    options: opts,
+    value: currentId,
+    placeholder: 'channel pair',
+    onChange: (id) => {
+      const pair = id.split(',').map(n => parseInt(n, 10));
+      if (pair.length !== 2) return;
+      cueChannelsSelected = pair;
+      writeCueChannelsSetting(pair);
+      applyCueChannelsRouting();
+    }
+  });
+}
+
 function initSettingsModal() {
   const modal = document.getElementById('settings-modal');
-  const open = () => { modal.hidden = false; refreshSettingsMidiPortDropdown(); };
+  const open = () => {
+    modal.hidden = false;
+    refreshSettingsMidiPortDropdown();
+    refreshCueChannelsDropdown();
+  };
   const close = () => { modal.hidden = true; };
   document.getElementById('settings-btn').addEventListener('click', open);
   modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
@@ -2549,6 +2880,24 @@ function initSettingsModal() {
     initial: readSkinSetting(),
     onChange: (on) => applySkinSetting(on),
   });
+
+  // CUE channels: read persisted choice; routing applies once the test
+  // synth's AudioContext exists (lazy — on first preview-mode unlock).
+  cueChannelsSelected = readCueChannelsSetting();
 }
 
 init();
+
+// Surface a narrow handle for the LCXL3 integration module (lcxl3-integration.js).
+// app.js itself is non-module; the LCXL3 driver is. This namespace is the only
+// agreed contract between the two.
+window.vgmdj = {
+  decks,
+  master,
+  SYNTHS,
+  OUTPUT_ORDER,
+  setMasterBpm,
+  toggleOutputMute,
+  flipOutputs,
+  silenceAll,
+};

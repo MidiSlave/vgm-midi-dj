@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCXL3 Simulator — VGM·DJ</title>
+  <link rel="stylesheet" href="lcxl3/virtual-lcxl3.css">
+  <style>
+    body {
+      background: #0a0a0e;
+      color: #d8d8de;
+      font: 13px -apple-system, "SF Pro Text", system-ui, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 16px 24px 64px;
+    }
+    h1 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+    p.note { color: #7a7a82; font-size: 12px; margin: 0 0 12px; max-width: 80ch; }
+    #status {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+    #status.connected { background: #1f3a26; color: #88ff9b; }
+    #status.disconnected { background: #3a201f; color: #ff8888; }
+
+    #layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 24px;
+      max-width: 1500px;
+    }
+    #lcxl3-mount { background: #0a0a0e; }
+    /* Override the merged-app body styling — we host inside our own page. */
+    .lcxl3-panel { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+    #panel {
+      background: #15151b;
+      border: 1px solid #2a2a32;
+      border-radius: 6px;
+      padding: 14px;
+      font-size: 12px;
+      align-self: start;
+    }
+    #panel h2 { font-size: 11px; font-weight: 600; margin: 12px 0 4px; color: #7a7a82; text-transform: uppercase; letter-spacing: 0.1em; }
+    #panel label { display: block; margin: 6px 0 2px; color: #7a7a82; font-size: 11px; }
+    #panel input[type=text], #panel input[type=number] {
+      width: 100%;
+      background: #0a0a0e;
+      color: #d8d8de;
+      border: 1px solid #26262c;
+      border-radius: 3px;
+      padding: 5px 8px;
+      font: inherit;
+    }
+    #panel input[type=range] { width: 100%; }
+    #panel button {
+      background: #1d1d24;
+      border: 1px solid #2e2e36;
+      color: #d8d8de;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+      margin: 2px 2px 2px 0;
+    }
+    #panel button:hover { background: #28282f; }
+    #panel button.active { background: #5ce0d0; color: #0a0a0e; border-color: #5ce0d0; }
+    .row-buttons { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    #log {
+      margin-top: 12px;
+      background: #0a0a0e;
+      border: 1px solid #26262c;
+      border-radius: 3px;
+      padding: 8px;
+      max-height: 140px;
+      overflow-y: auto;
+      font: 11px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+      color: #888;
+    }
+    #log .ts { color: #555; margin-right: 6px; }
+    #log .cc { color: #6cf; }
+    #log .btn { color: #fc6; }
+    #log .err { color: #f88; }
+  </style>
+</head>
+<body>
+  <h1>LCXL3 Simulator</h1>
+  <p class="note">
+    Real LCXL3 driver mounted (lifted from <code>baeng-and-raembl/merged-app</code>) — virtual interaction
+    and live hardware go through the same code path. If a Launch Control XL 3 is plugged in and Web MIDI
+    is granted, the OLED + LEDs paint to both the canvas and the device.
+  </p>
+  <div id="status" class="disconnected">scanning for hardware…</div>
+
+  <div id="layout">
+    <div id="lcxl3-mount"></div>
+
+    <div id="panel">
+      <h2>Demo</h2>
+      <div class="row-buttons" id="demo-buttons">
+        <button data-demo="idle" class="active">idle</button>
+        <button data-demo="touch">touch popup</button>
+        <button data-demo="bipolar">bipolar sends</button>
+        <button data-demo="beatclock">beat clock</button>
+        <button data-demo="library">library list</button>
+        <button data-demo="trackload">track load</button>
+        <button data-demo="vu">VU bars</button>
+      </div>
+
+      <h2>Master</h2>
+      <label>bpm</label>
+      <input type="number" id="m-bpm" value="124" step="1">
+      <label>meter</label>
+      <input type="text" id="m-meter" value="4/4">
+
+      <h2>Deck A</h2>
+      <label>title</label>
+      <input type="text" id="a-title" value="Castlevania II Bloodlines">
+      <label>bpm</label>
+      <input type="number" id="a-bpm" value="124" step="1">
+      <label>state (play/cued/stop)</label>
+      <input type="text" id="a-state" value="play">
+
+      <h2>Deck B</h2>
+      <label>title</label>
+      <input type="text" id="b-title" value="Mega Man II Wily Stage 1">
+      <label>bpm</label>
+      <input type="number" id="b-bpm" value="124" step="1">
+      <label>state</label>
+      <input type="text" id="b-state" value="stop">
+
+      <h2>Touch popup</h2>
+      <label>label</label>
+      <input type="text" id="t-label" value="BS2 CUTOFF">
+      <label>value (0–127)</label>
+      <input type="range" id="t-value" min="0" max="127" value="87">
+      <button id="t-trigger">trigger 1.5s popup</button>
+
+      <h2>Log</h2>
+      <div id="log"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { VirtualLCXL3, BUTTON_CCS, ENCODER_CCS, FADER_CCS } from './lcxl3/virtual-lcxl3.js';
+    import {
+      createBitmapBuffer,
+      setPixel,
+      drawHLine, drawVLine, drawRect, fillRect, clearRect,
+      drawText, drawTextInverted, measureText,
+      renderTitleBar, renderStatusBar, renderListView,
+      renderStepBargraph, renderWaveformLine, renderDepthBar,
+    } from './lcxl3/oled-list-renderer.js';
+
+    /* ─── Boot ─── */
+    const lcxl3 = new VirtualLCXL3('lcxl3-mount', {
+      logoPath: 'lcxl3/LCXL3_logo.png',
+    });
+
+    const statusEl = document.getElementById('status');
+    const setStatus = () => {
+      if (lcxl3.connected) {
+        statusEl.textContent = 'hardware connected — painting to device + canvas';
+        statusEl.className = 'connected';
+      } else {
+        statusEl.textContent = 'virtual only — plug in LCXL3 + allow Web MIDI to drive hardware';
+        statusEl.className = 'disconnected';
+      }
+    };
+    setInterval(setStatus, 500);
+
+    /* ─── Demo state ─── */
+    let mode = 'idle';
+    let touchUntil = 0;
+    let touchLabel = '', touchValue = 0;
+
+    const getState = () => ({
+      master: {
+        bpm: +document.getElementById('m-bpm').value,
+        meter: document.getElementById('m-meter').value,
+      },
+      a: {
+        title: document.getElementById('a-title').value,
+        bpm: +document.getElementById('a-bpm').value,
+        state: document.getElementById('a-state').value,
+      },
+      b: {
+        title: document.getElementById('b-title').value,
+        bpm: +document.getElementById('b-bpm').value,
+        state: document.getElementById('b-state').value,
+      },
+    });
+
+    /* ─── Renderers ─── */
+    function fmtBpm(b) { return String(Math.round(b)); }
+    function stateGlyph(s) {
+      if (s === 'play') return '>';
+      if (s === 'cued') return '.';
+      return '|';
+    }
+
+    // Marquee-scroll long text within the column window [x, x+maxW). Font is
+    // 5x7 with 1px spacing → CHAR_W = 6 advance per char. If text fits the
+    // window, draws statically; otherwise scrolls a `text + pad` loop and clips
+    // each glyph to the window so it doesn't bleed into adjacent columns.
+    const CHAR_W = 6;
+    const SCROLL_PX_PER_SEC = 18;
+    const SCROLL_PAUSE_MS = 1200; // dwell at the head of the loop so it's readable
+    const scratchBuf = createBitmapBuffer();
+    function drawTextScrolling(buf, text, x, y, maxW, tMs) {
+      const full = measureText(text);
+      if (full <= maxW) { drawText(buf, text, x, y); return; }
+      const loop = text + '   ';
+      const loopW = measureText(loop);
+      const periodMs = (loopW / SCROLL_PX_PER_SEC) * 1000 + SCROLL_PAUSE_MS;
+      const phase = ((tMs % periodMs) + periodMs) % periodMs;
+      const moving = Math.max(0, phase - SCROLL_PAUSE_MS);
+      const offset = Math.floor((moving / 1000) * SCROLL_PX_PER_SEC) % loopW;
+      // Two back-to-back copies so the wrap is seamless
+      for (let copy = 0; copy < 2; copy++) {
+        const baseX = x - offset + copy * loopW;
+        for (let i = 0; i < loop.length; i++) {
+          const cx = baseX + i * CHAR_W;
+          if (cx + 5 < x || cx >= x + maxW) continue;
+          drawCharClipped(buf, loop[i], cx, y, x, x + maxW);
+        }
+      }
+    }
+    // Render one glyph at (x, y), only setting pixels whose column is in [xMin, xMax).
+    function drawCharClipped(buf, char, x, y, xMin, xMax) {
+      if (x >= xMax || x + 5 < xMin) return;
+      // Zero the 5x7 cell at scratch origin (cols 0-4 live in byte 0 of each row).
+      for (let r = 0; r < 7; r++) scratchBuf[r * 19] = 0;
+      drawText(scratchBuf, char, 0, 0);
+      for (let r = 0; r < 7; r++) {
+        const rowByte = scratchBuf[r * 19];
+        for (let c = 0; c < 5; c++) {
+          const dx = x + c;
+          if (dx < xMin || dx >= xMax) continue;
+          if (rowByte & (1 << (6 - c))) setPixel(buf, dx, y + r, true);
+        }
+      }
+    }
+
+    function drawIdle(buf) {
+      const { master, a, b } = getState();
+      // Title bar: MASTER + meter (BPM lives here, not repeated below)
+      renderTitleBar(buf, 'MASTER ' + fmtBpm(master.bpm), master.meter);
+      // Two side-by-side deck columns separated by a vertical divider.
+      const splitX = 64;
+      drawVLine(buf, splitX, 11, 63);
+      drawDeckColumn(buf, 1, 12, splitX - 2, 52, 'A', a, demoSlotStates('a'));
+      drawDeckColumn(buf, splitX + 2, 12, 128 - splitX - 3, 52, 'B', b, demoSlotStates('b'));
+    }
+
+    // Slot states per deck: 'active' (playing now), 'idle' (available, no notes at
+    // this instant), 'muted', 'unavailable' (loaded track has no source routed here).
+    // In the real app these come from deck.outputActive / deck.outputMute / deck.routing.
+    function drawDeckColumn(buf, x, y, w, h, label, deck, slotStates) {
+      // Row 1: header "A >"  — fixed at the column's left edge.
+      const head = label + ' ' + stateGlyph(deck.state);
+      drawText(buf, head, x, y);
+      const headW = measureText(head);
+      // Row 2: scrolling track title on its own line (full column width).
+      drawTextScrolling(buf, (deck.title || '').toUpperCase(), x, y + 10, w, Date.now());
+      // Row 3: bare-digit slot row 1..5, evenly spaced across the column.
+      // 5 digits × 5px ink + 4 inter-digit gaps. Pick a gap that centres the strip.
+      const digitW = 5;
+      const inkW = digitW * 5;
+      const gap = Math.max(2, Math.floor((w - inkW) / 4));
+      const stripW = inkW + gap * 4;
+      const startX = x + Math.floor((w - stripW) / 2);
+      const slotY = y + 22;
+      for (let i = 0; i < 5; i++) {
+        const sx = startX + i * (digitW + gap);
+        drawSlotDigit(buf, sx, slotY, i + 1, slotStates[i]);
+      }
+      // Row 4: thin position bar at the bottom (placeholder 34% when playing).
+      const barY = y + 36;
+      drawRect(buf, x, barY, w, 4);
+      const fill = deck.state === 'play' ? Math.round((w - 2) * 0.34) : 0;
+      if (fill > 0) fillRect(buf, x + 1, barY + 1, fill, 2);
+    }
+
+    // Single-digit slot indicator (5x7 glyph) — state lives in the glyph itself,
+    // no surrounding box.
+    function drawSlotDigit(buf, x, y, n, state) {
+      const digit = String(n);
+      if (state === 'unavailable') {
+        // Midline dot — clearly "this slot has no source on the loaded track".
+        setPixel(buf, x + 2, y + 3);
+        return;
+      }
+      if (state === 'active') {
+        // Inverted on a 7×9 filled cell — the only state that pops at a glance.
+        drawTextInverted(buf, digit, x, y);
+        return;
+      }
+      drawText(buf, digit, x, y);
+      if (state === 'muted') {
+        // Horizontal strike through the digit's midline.
+        drawHLine(buf, x - 1, x + 5, y + 3);
+      }
+    }
+
+    // Demo-only slot-state generator. Deck A simulates a full 5-track arrangement
+    // with live activity; Deck B shows a partial load with one muted + one unavailable.
+    function demoSlotStates(deckId) {
+      const t = Date.now() * 0.001;
+      if (deckId === 'a') {
+        return [0, 1, 2, 3, 4].map(i => {
+          const phase = Math.sin(t * (2.1 + i * 0.5) + i * 1.7);
+          return phase > 0.2 ? 'active' : 'idle';
+        });
+      }
+      // Deck B: slots 1-3 live, slot 4 muted, slot 5 unavailable
+      return [0, 1, 2].map(i => {
+        const phase = Math.sin(t * (1.6 + i * 0.4) + i * 2.1 + 1.0);
+        return phase > 0.3 ? 'active' : 'idle';
+      }).concat(['muted', 'unavailable']);
+    }
+
+    function drawTouchPopup(buf) {
+      renderTitleBar(buf, 'TOUCH', '');
+      // Big label (inverted block)
+      const labW = measureText(touchLabel);
+      const labX = Math.max(2, Math.floor((128 - labW) / 2));
+      drawText(buf, touchLabel, labX, 14);
+      // Value (large numeric)
+      const v = String(touchValue);
+      // 3x scaled: copy each char manually by drawing scaled? Simplest: just draw twice for emphasis
+      drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2), 26);
+      // Repaint same text shifted by 1 pixel to fake "bold"
+      drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2) + 1, 26);
+      // Bar
+      const barW = 110;
+      const barX = (128 - barW) / 2;
+      drawRect(buf, barX, 40, barW, 8);
+      const fill = Math.round((barW - 2) * (touchValue / 127));
+      if (fill > 0) fillRect(buf, barX + 1, 41, fill, 6);
+      // Mini scale ticks at 0/64/127
+      drawHLine(buf, barX, barX + 2, 50);
+      drawHLine(buf, barX + barW/2 - 1, barX + barW/2 + 1, 50);
+      drawHLine(buf, barX + barW - 3, barX + barW - 1, 50);
+    }
+
+    // Per-track sends rendered as TWO independent unipolar faders — one for
+    // REVERB, one for DELAY — so they can sit at independent levels simultaneously.
+    // Row C encoders (CC 29-33) drive REVERB; Row B encoders (CC 21-25) drive DELAY.
+    // When no encoder has moved recently, an auto-sweep keeps the demo lively.
+    let lastEncoderInputAt = 0;
+    function drawBipolar(buf) {
+      // Title spells out which fader is which (column headers above the strips).
+      renderTitleBar(buf, 'SENDS', 'REV  DLY');
+      const labels = ['DRMS', 'BASS', 'LEAD', 'PLY1', 'PLY2'];
+      const revCCs = [29, 30, 31, 32, 33];
+      const dlyCCs = [21, 22, 23, 24, 25];
+      const tSec = Date.now() * 0.001;
+      const autoDemo = (Date.now() - lastEncoderInputAt) > 1500;
+      // Layout: [label 26px] [REV bar ~46px] [gap 4px] [DLY bar ~46px]
+      const labelX = 2;
+      const revX = 28, revW = 46;
+      const dlyX = revX + revW + 4, dlyW = 46;
+      const bh = 7;
+      for (let i = 0; i < 5; i++) {
+        const y = 11 + i * 9;
+        drawText(buf, labels[i], labelX, y);
+        // Source values 0..1 per send
+        let rev, dly;
+        if (autoDemo) {
+          rev = (Math.sin(tSec * (0.6 + i * 0.18) + i * 1.3) + 1) / 2;
+          dly = (Math.sin(tSec * (0.5 + i * 0.21) + i * 2.4 + 1.1) + 1) / 2;
+        } else {
+          rev = ((encValue[revCCs[i]] ?? 0)) / 127;
+          dly = ((encValue[dlyCCs[i]] ?? 0)) / 127;
+        }
+        rev = Math.max(0, Math.min(1, rev));
+        dly = Math.max(0, Math.min(1, dly));
+        drawUnipolarBar(buf, revX, y, revW, bh, rev);
+        drawUnipolarBar(buf, dlyX, y, dlyW, bh, dly);
+      }
+    }
+    function drawUnipolarBar(buf, x, y, w, h, level) {
+      drawRect(buf, x, y, w, h);
+      const fw = Math.round((w - 2) * level);
+      if (fw > 0) fillRect(buf, x + 1, y + 1, fw, h - 2);
+    }
+
+    function drawBeatClock(buf) {
+      const { master } = getState();
+      const meterN = parseInt(master.meter.split('/')[0], 10) || 4;
+      renderTitleBar(buf, fmtBpm(master.bpm) + ' BPM', master.meter);
+      // Dots row — current beat is the filled square; previous beats outlined.
+      const beat = (Math.floor(Date.now() / (60000 / master.bpm)) % meterN) + 1;
+      const phase = ((Date.now() % (60000 / master.bpm)) / (60000 / master.bpm));
+      const dotPitch = Math.min(20, Math.floor((128 - 16) / meterN));
+      const startX = Math.floor((128 - dotPitch * meterN) / 2) + Math.floor(dotPitch / 2);
+      const dotY = 28;
+      for (let i = 0; i < meterN; i++) {
+        const cx = startX + i * dotPitch;
+        const cy = dotY;
+        const size = 8;
+        if (i + 1 === beat) {
+          fillRect(buf, cx - size/2, cy - size/2, size, size);
+          // Halo shrinking with phase
+          const halo = Math.floor(2 + 6 * (1 - phase));
+          drawRect(buf, cx - size/2 - halo, cy - size/2 - halo, size + halo*2, size + halo*2);
+        } else {
+          drawRect(buf, cx - size/2, cy - size/2, size, size);
+        }
+      }
+      renderStatusBar(buf, `BEAT ${beat} / ${meterN}`, '');
+    }
+
+    function drawLibrary(buf) {
+      const items = [
+        { name: 'CASTLEVANIA II - BLOODY' },
+        { name: 'MEGA MAN 2 - WILY 1' },
+        { name: 'ZELDA - OVERWORLD' },
+        { name: 'CHRONO TRIGGER - 600AD' },
+        { name: 'METROID - BRINSTAR' },
+        { name: 'CONTRA - JUNGLE' },
+        { name: 'F-ZERO - MUTE CITY' },
+        { name: 'TETRIS - KOROBE' },
+      ];
+      // Cycle the selection through the visible items so the inversion shows
+      const sel = Math.floor(Date.now() / 1200) % 6;
+      renderListView(buf, {
+        title: 'LIBRARY',
+        titleRight: `${sel + 1}/${items.length}`,
+        items,
+        selectedIndex: sel,
+        scrollOffset: 0,
+        total: items.length,
+        statusLeft: 'DECK A',
+        statusRight: '4/4 124',
+      });
+    }
+
+    function drawTrackLoad(buf) {
+      const { a, master } = getState();
+      renderTitleBar(buf, 'LOADED -> A', master.meter);
+      // Two-line title, wrap by words
+      const words = (a.title || '').toUpperCase().split(' ');
+      const maxChars = 20;
+      let line1 = '', line2 = '';
+      for (const w of words) {
+        if ((line1 + (line1 ? ' ' : '') + w).length <= maxChars) {
+          line1 += (line1 ? ' ' : '') + w;
+        } else if ((line2 + (line2 ? ' ' : '') + w).length <= maxChars) {
+          line2 += (line2 ? ' ' : '') + w;
+        }
+      }
+      drawText(buf, line1, 2, 12);
+      if (line2) drawText(buf, line2, 2, 22);
+      drawHLine(buf, 0, 127, 34);
+      drawText(buf, `BPM ${fmtBpm(a.bpm)}`, 2, 38);
+      drawText(buf, `KEY DM`, 60, 38);
+      // Position bar at 0%
+      drawRect(buf, 2, 50, 124, 6);
+    }
+
+    function drawVU(buf) {
+      renderTitleBar(buf, 'OUT', 'L  R');
+      // Eight pseudo-VU bars based on time-driven oscillators
+      const t = Date.now() * 0.001;
+      for (let i = 0; i < 8; i++) {
+        const level = 0.35 + 0.4 * Math.abs(Math.sin(t * 2 + i * 0.6))
+                          + 0.2 * Math.abs(Math.sin(t * 4.5 + i * 1.1));
+        const h = Math.round(level * 38);
+        const x = 4 + i * 15;
+        const y = 56 - h;
+        fillRect(buf, x, y, 12, h);
+      }
+      renderStatusBar(buf, 'peaks @ -3 dBFS', '');
+    }
+
+    /* ─── Main paint loop ─── */
+    function paint() {
+      const buf = createBitmapBuffer();
+      if (Date.now() < touchUntil) drawTouchPopup(buf);
+      else if (mode === 'idle') drawIdle(buf);
+      else if (mode === 'touch') drawTouchPopup(buf);
+      else if (mode === 'bipolar') drawBipolar(buf);
+      else if (mode === 'beatclock') drawBeatClock(buf);
+      else if (mode === 'library') drawLibrary(buf);
+      else if (mode === 'trackload') drawTrackLoad(buf);
+      else if (mode === 'vu') drawVU(buf);
+      lcxl3.renderBitmap(buf);
+      requestAnimationFrame(paint);
+    }
+    requestAnimationFrame(paint);
+
+    /* ─── Demo / state controls ─── */
+    document.querySelectorAll('#demo-buttons button').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#demo-buttons button').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        mode = b.dataset.demo;
+      });
+    });
+    document.getElementById('t-trigger').addEventListener('click', () => {
+      touchLabel = document.getElementById('t-label').value.toUpperCase();
+      touchValue = +document.getElementById('t-value').value;
+      touchUntil = Date.now() + 1500;
+    });
+    document.getElementById('t-value').addEventListener('input', e => {
+      touchValue = +e.target.value;
+      if (Date.now() < touchUntil) touchUntil = Date.now() + 1500;
+    });
+
+    /* ─── Wire LCXL3 events into the log ─── */
+    const logEl = document.getElementById('log');
+    function log(cls, msg) {
+      const t = new Date();
+      const ts = `${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}.${String(t.getMilliseconds()).padStart(3, '0')}`;
+      const row = document.createElement('div');
+      row.innerHTML = `<span class="ts">${ts}</span><span class="${cls}">${msg}</span>`;
+      logEl.appendChild(row);
+      while (logEl.children.length > 60) logEl.removeChild(logEl.firstChild);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    // Relative encoders emit *tick* deltas rather than absolute values.
+    // Convention reconciliation (handles both virtual + hardware emissions):
+    //   1..63   → CW  +N
+    //   64..95  → CCW −(val−64)   (virtual knobs encode this way)
+    //   96..127 → CCW  (val−128)  (hardware two's-complement after the driver translates)
+    // Faders are absolute on CCs 5–12.
+    const FADER_SET = new Set([5,6,7,8,9,10,11,12]);
+    const encValue = {};                       // cc → 0..127 absolute
+    const getOrInit = (cc, dflt = 64) => {
+      if (encValue[cc] === undefined) encValue[cc] = dflt;
+      return encValue[cc];
+    };
+    function applyRelative(cc, raw) {
+      let delta;
+      if (raw >= 1 && raw <= 63) delta = raw;
+      else if (raw >= 64 && raw <= 95) delta = -(raw - 64);
+      else if (raw >= 96 && raw <= 127) delta = raw - 128;
+      else delta = 0;
+      getOrInit(cc);
+      encValue[cc] = Math.max(0, Math.min(127, encValue[cc] + delta));
+      return encValue[cc];
+    }
+
+    lcxl3.onCC((cc, value, shift) => {
+      let absolute;
+      if (FADER_SET.has(cc)) {
+        absolute = value;
+        encValue[cc] = value;
+      } else {
+        absolute = applyRelative(cc, value);
+      }
+      lastEncoderInputAt = Date.now();
+      log('cc', `cc ${cc} = ${absolute}${shift ? ' (shift)' : ''}`);
+      touchLabel = labelForCC(cc, absolute);
+      touchValue = absolute;
+      touchUntil = Date.now() + 900;
+    });
+    lcxl3.onButtonDown((cc, shift) => {
+      log('btn', `btn ↓ cc ${cc}${shift ? ' (shift)' : ''}`);
+      const label = labelForButton(cc);
+      if (label) {
+        touchLabel = label;
+        // Buttons don't carry a value — show 127 (full bar) to mean "pressed".
+        touchValue = 127;
+        touchUntil = Date.now() + 900;
+      }
+    });
+    lcxl3.onButtonUp((cc, shift) => log('btn', `btn ↑ cc ${cc}`));
+
+    // 8-column track model:
+    //   1 DRUMS  2 BASS  3 LEAD  4 POLY 1  5 POLY 2  6 FX 1  7 FX 2  8 FX 3
+    // Tracks 1-5 are hardware-routed (LP/HP, pan, rev|dly send).
+    // Tracks 6-8 are effects tracks (3 params each).
+    const TRACK_NAMES = ['DRUMS', 'BASS', 'LEAD', 'POLY 1', 'POLY 2', 'FX 1', 'FX 2', 'FX 3'];
+    function labelForCC(cc, value) {
+      // Faders 5-12 → per-column volume
+      if (cc >= 5 && cc <= 12) return `${TRACK_NAMES[cc - 5]} VOL`;
+      // Row A encoders 13-20 → knob 1 (filter / fx1)
+      if (cc >= 13 && cc <= 20) {
+        const i = cc - 13;
+        return i < 5 ? `${TRACK_NAMES[i]} CUTOFF` : `${TRACK_NAMES[i]} P1`;
+      }
+      // Row B encoders 21-28 → knob 2 (pan / fx2)
+      if (cc >= 21 && cc <= 28) {
+        const i = cc - 21;
+        return i < 5 ? `${TRACK_NAMES[i]} PAN` : `${TRACK_NAMES[i]} P2`;
+      }
+      // Row C encoders 29-36 → knob 3 (rev|dly bipolar / fx3)
+      if (cc >= 29 && cc <= 36) {
+        const i = cc - 29;
+        if (i < 5) {
+          // Bipolar: <60 = REV, >68 = DLY, in-between = centre
+          if (value < 60) return `${TRACK_NAMES[i]} REV`;
+          if (value > 68) return `${TRACK_NAMES[i]} DLY`;
+          return `${TRACK_NAMES[i]} SEND ·`;
+        }
+        return `${TRACK_NAMES[i]} P3`;
+      }
+      return `CC ${cc}`;
+    }
+    function labelForButton(cc) {
+      // Solo/Arm 37-44 (per column)
+      if (cc >= 37 && cc <= 44) return `${TRACK_NAMES[cc - 37]} SOLO`;
+      // Mute/Select 45-52 (per column)
+      if (cc >= 45 && cc <= 52) return `${TRACK_NAMES[cc - 45]} MUTE`;
+      if (cc === 116) return 'PLAY';
+      if (cc === 118) return 'REC';
+      if (cc === 102) return '← TRACK';
+      if (cc === 103) return 'TRACK →';
+      if (cc === 106) return 'PAGE ↑';
+      if (cc === 107) return 'PAGE ↓';
+      return null;
+    }
+
+    // Surface some colour onto the encoder rings so the demo doesn't look dead
+    const palette = [
+      [80, 110, 120], [80, 110, 120], [80, 110, 120], [80, 110, 120],
+      [80, 110, 120], [80, 110, 120], [80, 110, 120], [80, 110, 120],
+    ];
+    setTimeout(() => {
+      for (let i = 0; i < 8; i++) {
+        lcxl3.setEncoderLED(0, i, ...palette[i]);
+      }
+      const send = [[40, 90, 90], [40, 90, 90], [40, 90, 90], [40, 90, 90], [40, 90, 90]];
+      for (let i = 0; i < 5; i++) lcxl3.setEncoderLED(2, i, ...send[i]);
+    }, 600);
+  </script>
+</body>
+</html>

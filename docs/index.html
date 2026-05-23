@@ -9,6 +9,7 @@
   <link rel="icon" href="data:,">
   <title>VGM MIDI DJ</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fonts/fonts.css">
 </head>
 <body>
   <div id="app">
@@ -50,11 +51,12 @@
         </section>
         <section class="settings-section" id="settings-cue-section">
           <h3>CUE (headphones)</h3>
-          <p class="settings-hint">When implemented, CUE will route the deck's notes through the in-browser GM synth to a chosen audio output instead of the hardware MIDI. Routing/mute pills will still apply, so you preview exactly what would play.</p>
-          <label class="settings-row muted">
-            <span>Audio output device</span>
-            <span class="settings-todo">— not yet wired —</span>
+          <p class="settings-hint">CUE solos the chosen deck and routes its preview audio to the selected output channel pair. Defaults to channels 3/4 when the device supports them — typical layout for an audio interface with separate headphone outs.</p>
+          <label class="settings-row">
+            <span>Output channel pair</span>
+            <div id="settings-cue-channels-mount"></div>
           </label>
+          <p class="settings-hint" id="settings-cue-hint"></p>
         </section>
       </div>
     </div>
@@ -103,6 +105,7 @@
           <button class="btn btn-trans" data-deck="1" title="transition: drop the other deck with inverse mute at next bar">trans</button>
           <button class="btn btn-cut" data-deck="1" title="stop this deck at the next master bar">cut</button>
           <button class="btn btn-cue" data-deck="1">cue</button>
+          <button class="btn btn-follow" data-deck="1" title="keep the piano roll scrolled to the playhead">follow</button>
           <div class="loop-group" data-deck="1">
             <button class="btn btn-loop-toggle" data-deck="1" title="engage loop / arm exit">loop</button>
             <div class="loop-length-mount" data-deck="1"></div>
@@ -153,6 +156,7 @@
           <button class="btn btn-trans" data-deck="2" title="transition: drop the other deck with inverse mute at next bar">trans</button>
           <button class="btn btn-cut" data-deck="2" title="stop this deck at the next master bar">cut</button>
           <button class="btn btn-cue" data-deck="2">cue</button>
+          <button class="btn btn-follow" data-deck="2" title="keep the piano roll scrolled to the playhead">follow</button>
           <div class="loop-group" data-deck="2">
             <button class="btn btn-loop-toggle" data-deck="2" title="engage loop / arm exit">loop</button>
             <div class="loop-length-mount" data-deck="2"></div>
@@ -182,9 +186,19 @@
         <div class="cslider" data-target="bpm" data-min="20" data-max="220" data-value="120"></div>
       </div>
     </footer>
+
+    <!-- LCXL3 controller surface — collapsible drawer at the bottom of the app.
+         Acts as: (1) the WebMIDI client driving real hardware when an LCXL3 is
+         plugged in, (2) an on-screen virtual surface users can click without
+         hardware, (3) the OLED canvas that mirrors deck/master state. -->
+    <details id="lcxl3-drawer">
+      <summary>LCXL3 controller</summary>
+      <div id="lcxl3-mount"></div>
+    </details>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/webaudio-tinysynth@1.1.3/webaudio-tinysynth.js"></script>
   <script src="app.js"></script>
+  <script type="module" src="lcxl3-integration.js"></script>
 </body>
 </html>

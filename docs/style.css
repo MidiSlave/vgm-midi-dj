@@ -813,6 +813,11 @@ body.skin-off .deck-skin { display: none; }
   color: var(--bg);
   border-color: var(--ok);
 }
+.btn-follow.active {
+  background: var(--ok);
+  color: var(--bg);
+  border-color: var(--ok);
+}
 .btn-loop-toggle.exiting {
   background: var(--ok);
   color: var(--bg);
@@ -928,8 +933,8 @@ body.skin-off .deck-skin { display: none; }
 .routing-pill.unused .pill-name { color: var(--muted); }
 .routing-pill.unused .pill-count { background: transparent; }
 
-/* Flip toggle — small round button that sits between SH-01A and Bass Stn 2
-   pills, showing that the swap happens between exactly those two outputs. */
+/* Flip toggle — small round button that sits between the Poly 1 (Juno) and
+   Poly 2 (Keytar) pills, showing the swap happens between exactly those two. */
 .flip-pill {
   display: inline-flex;
   align-items: center;
@@ -1068,3 +1073,38 @@ body.test-mode #browser { box-shadow: inset 0 0 0 1px rgba(92, 224, 208, 0.2); }
   .routing-slots { grid-template-columns: 1fr; }
 }
 
+
+/* ──────────────────────────────────────────────────────────────
+ * LCXL3 controller drawer
+ *
+ * Collapsible <details> at the bottom of the app. Default-collapsed so the
+ * surface doesn't compete with the decks for vertical space. The mount itself
+ * is sized by virtual-lcxl3.css; we just contain it.
+ * ────────────────────────────────────────────────────────────── */
+#lcxl3-drawer {
+  margin: 12px 0 0;
+  border-top: 1px solid var(--line);
+  padding: 6px 12px 12px;
+  background: var(--bg);
+}
+#lcxl3-drawer > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  list-style: none;
+}
+#lcxl3-drawer > summary::-webkit-details-marker { display: none; }
+#lcxl3-drawer > summary::before {
+  content: '▸ ';
+  display: inline-block;
+  transition: transform 120ms;
+}
+#lcxl3-drawer[open] > summary::before { content: '▾ '; }
+#lcxl3-drawer > summary:hover { color: var(--text); }
+#lcxl3-mount {
+  max-width: 900px;
+  margin: 8px auto 0;
+}
