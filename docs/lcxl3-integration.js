@@ -26,6 +26,7 @@ import {
   drawText, drawTextInverted, measureText,
   renderTitleBar,
 } from './lcxl3/oled-list-renderer.js';
+import * as Viz from './lcxl3/oled-visualizers.js';
 
 // Wait for app.js to expose its handle. init() runs at end of app.js, so by the
 // time this module's microtasks run, window.vgmdj may or may not be ready yet
@@ -62,13 +63,19 @@ if (!mountEl) {
   /* ─── Relative-encoder state tracking ─── */
   const FADER_SET = new Set([5, 6, 7, 8, 9, 10, 11, 12]);
   const encValue = {}; // cc → 0..127 absolute
+  function initialEncoderValue(cc) {
+    // Bipolar knobs rest at centre (64). Linear ones (sizes, times, decays)
+    // rest at 0 so the first CW tick takes them off "minimum" instead of
+    // off centre — that's what AUM Learn expects for one-sided params.
+    return isBipolarCC(cc) ? 64 : 0;
+  }
   function applyRelative(cc, raw) {
     let delta;
     if (raw >= 1 && raw <= 63) delta = raw;
     else if (raw >= 64 && raw <= 95) delta = -(raw - 64);
     else if (raw >= 96 && raw <= 127) delta = raw - 128;
     else delta = 0;
-    if (encValue[cc] === undefined) encValue[cc] = 64;
+    if (encValue[cc] === undefined) encValue[cc] = initialEncoderValue(cc);
     encValue[cc] = Math.max(0, Math.min(127, encValue[cc] + delta));
     return encValue[cc];
   }
@@ -82,15 +89,19 @@ if (!mountEl) {
   // dual-function sends, the label flips between "{TRACK} REV" and "{TRACK} DLY"
   // depending on which side of centre the encoder sits.
   let touchUntil = 0;
-  let touchKind = 'single';
+  let touchKind = 'single';   // 'viz' | 'single' | 'button' | 'fader'
   let touchLabel = '', touchValue = 0;
-  let touchSendAmount = null; // 0..100 numeric for REV/DLY popups (overrides touchValue text)
-  let touchCol = 0;           // column index 0-7 for filter / pan popups
-  let touchFilterPos = 64;    // 0..127 absolute encoder position for filter popup
-  let touchPanPos = 64;       // 0..127 absolute encoder position for pan popup
-  // dualSend tracks which side (REV or DLY) was last engaged so the popup
-  // stays stable through a centre-detent crossing instead of swapping at zero.
+  let touchSendAmount = null; // 0..100 numeric for legacy fallback popups
+  let touchViz = null;        // visualizer function from oled-visualizers.js
+  let touchVizVal = 0;        // 0..100 normalised value passed to the visualizer
+  // sendSide tracks which side (REV or DLY) was last engaged for each Row C
+  // HW knob so the popup stays stable through a centre-detent crossing.
   const sendSide = {}; // trackIdx → 'REV' | 'DLY'
+
+  // Offscreen 128×64 canvas — every animated visualiser draws here, then
+  // the pixels are thresholded into the LCXL3 OLED bitmap buffer.
+  const vizCanvas = Viz.makeOLEDCanvas();
+  const vizCtx = vizCanvas.getContext('2d');
 
   /* ─── 8-column track model ─── */
   // Columns 0-4 are HW synth tracks, 5 is FX 1 (reverb), 6 is FX 2 (delay),
@@ -99,6 +110,19 @@ if (!mountEl) {
   const HW_COLS = new Set([0, 1, 2, 3, 4]);
   const MASTER_COL = 7;
   function isFilterCol(col) { return HW_COLS.has(col) || col === MASTER_COL; }
+
+  // Bipolar knobs centre-detent at 64 and split into two scaled CCs (one for
+  // each side of centre). Every other knob is a plain linear 0..127 control
+  // that should rest at 0, not at centre — e.g. Reverb Size / Delay Time
+  // are size/amount controls, not bidirectional.
+  function isBipolarCC(cc) {
+    if (cc >= 13 && cc <= 17) return true;    // Row A LP/HP for HW tracks 1-5
+    if (cc === 20) return true;               // Row A LP/HP for master
+    if (cc >= 21 && cc <= 25) return true;    // Row B pan for HW tracks 1-5
+    if (cc >= 29 && cc <= 33) return true;    // Row C REV/DLY for HW tracks 1-5
+    if (cc === 35) return true;               // Row C FX 2 P3 = Delay LP/HP filter
+    return false;
+  }
 
   function labelForCC(cc, value) {
     if (cc >= 5 && cc <= 12) return `${TRACK_NAMES[cc - 5]} VOL`;
@@ -123,7 +147,8 @@ if (!mountEl) {
       return `${TRACK_NAMES[col]} B`;
     }
     if (cc >= 29 && cc <= 36) {
-      // Row C: bipolar REV/DLY for HW tracks, FX P3 for cols 5/6, unassigned on master.
+      // Row C: bipolar REV/DLY for HW tracks, FX 1 P3 (damp) linear,
+      // FX 2 P3 (DLY filter) bipolar LP/HP, unassigned on master.
       const col = cc - 29;
       if (HW_COLS.has(col)) {
         if (value < DETENT_LO) return `${TRACK_NAMES[col]} REV`;
@@ -131,7 +156,11 @@ if (!mountEl) {
         return `${TRACK_NAMES[col]} SEND ·`;
       }
       if (col === 5) return 'REV DAMP';
-      if (col === 6) return 'DLY FLT';
+      if (col === 6) {
+        if (value < DETENT_LO) return 'DLY LP';
+        if (value > DETENT_HI) return 'DLY HP';
+        return 'DLY FLT ·';
+      }
       return `${TRACK_NAMES[col]} C`;
     }
     return `CC ${cc}`;
@@ -157,9 +186,12 @@ if (!mountEl) {
   // Note traffic for the hardware synths stays on its own channels (0,1,2,3,9)
   // so channel 16 is reserved entirely for control.
   const REBROADCAST_CHANNEL = 15;            // MIDI ch 16
-  const DLY_CC_BASE = 53;                    // Row C DLY CCs 53-57 for HW tracks 1-5 (CCW = REV native CC, CW = DLY here)
-  const HP_HW_CC_BASE = 85;                  // Row A HP CCs 85-89 for HW tracks 1-5 (CCW = LP native CC, CW = HP here)
-  const HP_MASTER_CC = 90;                   // Row A HP CC for master column
+  // Row C HW track sends are the ONLY controls split into two CCs — REV (CCW,
+  // native CC) + DLY (CW, native CC + 24). Everything else, including the
+  // LP/HP filter knobs, is a single bidirectional 0..127 CC where 64 = centre
+  // (the plugin in AUM, e.g. Reel Tape Delay's filter / a dual LP-HP plugin,
+  // handles the morph internally).
+  const DLY_CC_BASE = 53;                    // Row C DLY CCs 53-57 for HW tracks 1-5
   function rebroadcast(cc, value) {
     vgmdj.sendCC(REBROADCAST_CHANNEL, cc, value);
   }
@@ -170,6 +202,54 @@ if (!mountEl) {
     const lo = absolute < DETENT_LO ? Math.round((64 - absolute) / 64 * 127) : 0;
     const hi = absolute > DETENT_HI ? Math.round((absolute - 64) / 63 * 127) : 0;
     return [lo, hi];
+  }
+
+  /* ─── Visualiser dispatch ───
+   * Maps an LCXL3 CC + absolute position to one of the canvas-based
+   * visualisers in `lcxl3/oled-visualizers.js`. Returns null if the CC has
+   * no dedicated animation (faders, master placeholders, etc.). The bipolar
+   * filter / DLY-filter pass `absolute / 127 * 100` so 50 = centre detent
+   * = neutral. Row C sends pick REV or DLY visualiser based on which side
+   * of centre the knob is on, with the last-touched side persisted so the
+   * popup doesn't flip every time the user pushes through the detent. */
+  function pickVisualizer(cc, absolute) {
+    const val127 = (v) => (v / 127) * 100;
+    // Row A — filter (HW tracks 1-5 + master)
+    if ((cc >= 13 && cc <= 17) || cc === 20) {
+      return { fn: Viz.drawFilter, val: val127(absolute) };
+    }
+    // Row A — FX 1 P1 = Reverb Size, FX 2 P1 = Delay Time
+    if (cc === 18) return { fn: Viz.drawReverbSize, val: val127(absolute) };
+    if (cc === 19) return { fn: Viz.drawDelayTime, val: val127(absolute) };
+    // Row B — Pan (HW tracks 1-5)
+    if (cc >= 21 && cc <= 25) {
+      return { fn: Viz.drawPan, val: val127(absolute) };
+    }
+    // Row B — FX 1 P2 = Reverb Decay, FX 2 P2 = Delay Feedback
+    if (cc === 26) return { fn: Viz.drawReverbDecay, val: val127(absolute) };
+    if (cc === 27) return { fn: Viz.drawDelayFeedback, val: val127(absolute) };
+    // Row C — HW tracks 1-5: bipolar REV (CCW) / DLY (CW) sends.
+    if (cc >= 29 && cc <= 33) {
+      const trackIdx = cc - 29;
+      let side = sendSide[trackIdx];
+      let amount = 0;
+      if (absolute < DETENT_LO) {
+        side = 'REV';
+        amount = ((64 - absolute) / 64) * 100;
+      } else if (absolute > DETENT_HI) {
+        side = 'DLY';
+        amount = ((absolute - 64) / 63) * 100;
+      } else {
+        if (!side) side = 'REV';
+        amount = 0;
+      }
+      sendSide[trackIdx] = side;
+      return { fn: side === 'REV' ? Viz.drawReverbSend : Viz.drawDelaySend, val: amount };
+    }
+    // Row C — FX 1 P3 = Reverb Damp, FX 2 P3 = Delay Filter (bipolar LP/HP)
+    if (cc === 34) return { fn: Viz.drawReverbDamp, val: val127(absolute) };
+    if (cc === 35) return { fn: Viz.drawDelayFilter, val: val127(absolute) };
+    return null;
   }
 
   /* ─── CC handler ─── */
@@ -183,81 +263,46 @@ if (!mountEl) {
     }
 
     // Rebroadcast as absolute on channel 16 so AUM sees clean 0-127 values
-    // instead of the LCXL3's relative-encoder ticks. Two knobs need bipolar
-    // splits because the CCW and CW sides drive different plugin parameters:
-    //   - Row A on HW tracks 1-5 + master → LP cutoff (native CC) / HP cutoff (85-89, 90)
-    //   - Row C on HW tracks 1-5         → REV send (native CC) / DLY send (53-57)
-    // We always emit both sides so the released side returns to 0 when the
-    // user crosses the centre detent.
+    // instead of the LCXL3's relative-encoder ticks. Only Row C HW sends are
+    // split into two CCs (REV CCW, DLY CW) — see below. Everything else is a
+    // single bidirectional 0..127 CC and the plugin handles the morph.
     if (cc >= 5 && cc <= 12) {
-      // Faders — single absolute (per-track volume).
+      // Faders — per-track volume.
       rebroadcast(cc, absolute);
-    } else if (cc >= 13 && cc <= 20) {
-      // Row A — filter (bipolar LP/HP) for HW tracks + master; absolute for FX.
-      const col = cc - 13;
-      if (isFilterCol(col)) {
-        const [lp, hp] = bipolarSides(absolute);
-        rebroadcast(cc, lp);
-        rebroadcast(col === MASTER_COL ? HP_MASTER_CC : (HP_HW_CC_BASE + col), hp);
-      } else {
-        rebroadcast(cc, absolute);
-      }
-    } else if (cc >= 21 && cc <= 28) {
-      // Row B — pan (HW tracks) / FX P2 (cols 5/6) / unassigned (master). Single CC.
+    } else if (cc >= 13 && cc <= 28) {
+      // Row A (filter / FX P1) + Row B (pan / FX P2) — single bidirectional CC.
       rebroadcast(cc, absolute);
     } else if (cc >= 29 && cc <= 36) {
-      // Row C — REV/DLY split (HW tracks) / FX P3 / unassigned (master).
       const col = cc - 29;
       if (HW_COLS.has(col)) {
+        // Row C HW tracks 1-5 — REV (native CC) + DLY (native + 24) split.
         const [rev, dly] = bipolarSides(absolute);
         rebroadcast(cc, rev);
         rebroadcast(DLY_CC_BASE + col, dly);
       } else {
+        // Row C FX P3 / master placeholder — single bidirectional CC.
         rebroadcast(cc, absolute);
       }
     }
-    // Pick the right popup kind: filter (Row A HW + master), pan (Row B HW),
-    // send (Row C HW), or plain single bar (everything else).
-    const rowAIdx = cc - 13;
-    const rowBIdx = cc - 21;
-    const rowCIdx = cc - 29;
-    if (cc >= 13 && cc <= 20 && isFilterCol(rowAIdx)) {
-      // Row A filter — bipolar LP / HP, with a passband animation.
-      touchKind = 'filter';
-      touchCol = rowAIdx;
-      touchFilterPos = absolute;
+    // Dispatch popup → animated visualiser when one exists for this CC.
+    // The visualiser library uses 0..100 throughout; we convert from the
+    // encoder's 0..127 (or compute side amounts for bipolar splits).
+    const viz = pickVisualizer(cc, absolute);
+    if (viz) {
+      touchKind = 'viz';
+      touchViz = viz.fn;
+      touchVizVal = viz.val;
+      touchLabel = '';
+      touchValue = absolute;
+      touchSendAmount = null;
+    } else if (cc >= 5 && cc <= 12) {
+      // Fader — rounded-bar popup without TOUCH banner.
+      touchKind = 'fader';
       touchLabel = labelForCC(cc, absolute);
       touchValue = absolute;
       touchSendAmount = null;
-    } else if (cc >= 21 && cc <= 25) {
-      // Row B HW tracks 1-5 — pan animation.
-      touchKind = 'pan';
-      touchCol = rowBIdx;
-      touchPanPos = absolute;
-      touchLabel = labelForCC(cc, absolute);
-      touchValue = absolute;
-      touchSendAmount = null;
-    } else if (cc >= 29 && cc <= 33) {
-      // Row C HW — bipolar REV/DLY (existing single bar with side label).
-      const trackIdx = rowCIdx;
-      let side = sendSide[trackIdx];
-      let amount = 0;
-      if (absolute < DETENT_LO) {
-        side = 'REV';
-        amount = Math.round(((64 - absolute) / 64) * 100);
-      } else if (absolute > DETENT_HI) {
-        side = 'DLY';
-        amount = Math.round(((absolute - 64) / 63) * 100);
-      } else {
-        if (!side) side = 'REV';
-        amount = 0;
-      }
-      sendSide[trackIdx] = side;
-      touchKind = 'single';
-      touchLabel = `${TRACK_NAMES[trackIdx]} ${side}`;
-      touchValue = Math.round(amount * 1.27);
-      touchSendAmount = amount;
     } else {
+      // Unassigned / placeholder — plain bar, no TOUCH banner.
       touchKind = 'single';
       touchLabel = labelForCC(cc, absolute);
       touchValue = absolute;
@@ -294,12 +339,31 @@ if (!mountEl) {
       paintButtonLED(cc);
       rebroadcast(cc, next ? 127 : 0);
     }
-    const label = labelForButton(cc);
-    if (label) {
-      touchKind = 'single';
-      touchLabel = label + (isToggleButton(cc) ? (buttonToggle.get(cc) ? ' ON' : ' OFF') : '');
-      touchValue = 127;
+    if (isToggleButton(cc)) {
+      // Streamlined toggle popup: just the state, no numeric value or bar.
+      //   Mute press  → "DRUMS MUTED" / "DRUMS UNMUTED"
+      //   Solo press  → "DRUMS SOLO"  / "DRUMS SOLO OFF"
+      const trackIdx = (cc >= 37 && cc <= 44) ? cc - 37 : cc - 45;
+      const on = buttonToggle.get(cc) === true;
+      const track = TRACK_NAMES[trackIdx];
+      let stateText;
+      if (cc >= 37 && cc <= 44) {
+        stateText = on ? `${track} SOLO` : `${track} SOLO OFF`;
+      } else {
+        stateText = on ? `${track} MUTED` : `${track} UNMUTED`;
+      }
+      touchKind = 'button';
+      touchLabel = stateText;
+      touchValue = on ? 127 : 0;
       touchUntil = Date.now() + 900;
+    } else {
+      const label = labelForButton(cc);
+      if (label) {
+        touchKind = 'button';
+        touchLabel = label;
+        touchValue = 127;
+        touchUntil = Date.now() + 900;
+      }
     }
   });
 
@@ -414,145 +478,87 @@ if (!mountEl) {
   }
 
   function drawTouchPopup(buf) {
-    if (touchKind === 'filter') drawFilterPopup(buf);
-    else if (touchKind === 'pan') drawPanPopup(buf);
+    if (touchKind === 'viz') drawVizPopup(buf);
+    else if (touchKind === 'button') drawButtonPopup(buf);
+    else if (touchKind === 'fader') drawFaderPopup(buf);
     else drawSinglePopup(buf);
   }
 
-  function drawSinglePopup(buf) {
-    renderTitleBar(buf, 'TOUCH', '');
+  // Canvas-based visualiser → bitmap. Each frame we wipe the canvas black,
+  // call the chosen visualiser (which animates from `time`), then threshold
+  // the canvas pixels into the OLED bitmap buffer.
+  function drawVizPopup(buf) {
+    if (!touchViz) return;
+    vizCtx.fillStyle = '#000000';
+    vizCtx.fillRect(0, 0, 128, 64);
+    try {
+      touchViz(vizCtx, performance.now() / 1000, touchVizVal);
+    } catch (e) {
+      console.warn('[lcxl3] visualiser threw', e);
+    }
+    Viz.rasterCanvasToOLEDBuffer(vizCanvas, buf);
+  }
+
+  // Mute/Solo press — single centred label, no value, no bar. Adds a thin
+  // top + bottom rule for framing.
+  function drawButtonPopup(buf) {
+    drawHLine(buf, 0, 127, 0);
+    drawHLine(buf, 0, 127, 63);
     const labW = measureText(touchLabel);
     const labX = Math.max(2, Math.floor((128 - labW) / 2));
-    drawText(buf, touchLabel, labX, 14);
-    // Numeric readout — 0..100 for REV/DLY sends, raw 0..127 for everything else.
+    drawText(buf, touchLabel, labX, 28);
+  }
+
+  // Fader move — track name top, big value, rounded-corner horizontal bar.
+  function drawFaderPopup(buf) {
+    const labW = measureText(touchLabel);
+    drawText(buf, touchLabel, Math.max(2, Math.floor((128 - labW) / 2)), 8);
+    const num = String(touchValue);
+    drawText(buf, num, Math.floor((128 - measureText(num) * 2) / 2), 24);
+    drawText(buf, num, Math.floor((128 - measureText(num) * 2) / 2) + 1, 24);
+    const barW = 110, barX = (128 - barW) / 2, barY = 44, barH = 12;
+    drawRoundedRect(buf, barX, barY, barW, barH, 2);
+    const fill = Math.round((barW - 4) * (touchValue / 127));
+    if (fill > 0) fillRoundedRect(buf, barX + 2, barY + 2, fill, barH - 4, 1);
+  }
+
+  // Generic fallback — label centred, value below, rounded bar. No TOUCH banner.
+  function drawSinglePopup(buf) {
+    const labW = measureText(touchLabel);
+    drawText(buf, touchLabel, Math.max(2, Math.floor((128 - labW) / 2)), 8);
     const numeric = touchSendAmount !== null ? touchSendAmount : touchValue;
     const v = String(numeric);
-    drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2), 26);
-    drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2) + 1, 26);
-    const barW = 110;
-    const barX = (128 - barW) / 2;
-    drawRect(buf, barX, 40, barW, 8);
-    const fill = Math.round((barW - 2) * (touchValue / 127));
-    if (fill > 0) fillRect(buf, barX + 1, 41, fill, 6);
+    drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2), 24);
+    drawText(buf, v, Math.floor((128 - measureText(v) * 2) / 2) + 1, 24);
+    const barW = 110, barX = (128 - barW) / 2, barY = 44, barH = 12;
+    drawRoundedRect(buf, barX, barY, barW, barH, 2);
+    const fill = Math.round((barW - 4) * (touchValue / 127));
+    if (fill > 0) fillRoundedRect(buf, barX + 2, barY + 2, fill, barH - 4, 1);
   }
 
-  /* ─── Filter popup ───
-   * Bipolar LP / HP visualisation. The OLED shows a passband rectangle that
-   * shrinks from the right (LP, cuts highs) or from the left (HP, cuts lows).
-   * Centre detent = full passband (flat). Label flips LP ↔ HP across centre. */
-  function drawFilterPopup(buf) {
-    renderTitleBar(buf, 'FILTER', '');
-    const labW = measureText(touchLabel);
-    drawText(buf, touchLabel, Math.max(2, Math.floor((128 - labW) / 2)), 13);
-
-    // Frequency axis spans 12..115. Centre line at y=33; passband rect from
-    // y=23 (top of band) to y=33 (axis). Below that is a thin frequency axis.
-    const fxL = 12, fxR = 115;
-    const fxTop = 23, fxAxis = 33;
-    drawHLine(buf, fxL, fxR, fxAxis);
-    // Faint tick marks at L / mid / R to anchor the eye.
-    setPixel(buf, fxL, fxAxis - 1); setPixel(buf, fxL, fxAxis + 1);
-    setPixel(buf, fxR, fxAxis - 1); setPixel(buf, fxR, fxAxis + 1);
-    setPixel(buf, Math.floor((fxL + fxR) / 2), fxAxis - 1);
-    setPixel(buf, Math.floor((fxL + fxR) / 2), fxAxis + 1);
-
-    const v = touchFilterPos;
-    const width = fxR - fxL;
-    let bandL = fxL, bandR = fxR;
-    if (v < DETENT_LO) {
-      // LP: passband retreats from the right edge.
-      const k = Math.min(1, (64 - v) / 64);
-      bandR = fxR - Math.round(width * k);
-    } else if (v > DETENT_HI) {
-      // HP: passband retreats from the left edge.
-      const k = Math.min(1, (v - 64) / 63);
-      bandL = fxL + Math.round(width * k);
-    }
-    if (bandR > bandL) fillRect(buf, bandL, fxTop, bandR - bandL + 1, fxAxis - fxTop);
-
-    // Cutoff marker — a small downward triangle just above the axis on the
-    // edge the passband is being eaten from.
-    if (v < DETENT_LO) drawCutoffMarker(buf, bandR, fxAxis - 1, 'left');
-    else if (v > DETENT_HI) drawCutoffMarker(buf, bandL, fxAxis - 1, 'right');
-
-    // Side + 0..100 amount as the numeric. Reuse drawSinglePopup's footer bar.
-    const sideAmount = v < DETENT_LO
-      ? Math.round((64 - v) / 64 * 100)
-      : v > DETENT_HI
-        ? Math.round((v - 64) / 63 * 100)
-        : 0;
-    const numStr = String(sideAmount);
-    const numX = Math.floor((128 - measureText(numStr)) / 2);
-    drawText(buf, numStr, numX, 42);
-
-    // Bipolar bar at the bottom showing distance from centre.
-    const barW = 110;
-    const barX = (128 - barW) / 2;
-    const barY = 53;
-    drawRect(buf, barX, barY, barW, 8);
-    const mid = barX + Math.floor(barW / 2);
-    if (v < DETENT_LO) {
-      const fill = Math.round((barW / 2 - 1) * (64 - v) / 64);
-      if (fill > 0) fillRect(buf, mid - fill, barY + 1, fill, 6);
-    } else if (v > DETENT_HI) {
-      const fill = Math.round((barW / 2 - 1) * (v - 64) / 63);
-      if (fill > 0) fillRect(buf, mid + 1, barY + 1, fill, 6);
-    }
-    // Centre tick on the bar.
-    drawVLine(buf, mid, barY - 1, barY + 9);
-  }
-
-  function drawCutoffMarker(buf, x, y, side) {
-    // Tiny 3-pixel triangle. `side` is which side of x the body sits on.
-    setPixel(buf, x, y);
-    if (side === 'left') {
-      setPixel(buf, x - 1, y - 1);
-      setPixel(buf, x - 2, y - 2);
-    } else {
-      setPixel(buf, x + 1, y - 1);
-      setPixel(buf, x + 2, y - 2);
+  // Tiny rounded-rect helpers on the bitmap buffer. `r` is the corner inset
+  // (0 = square, 1 = soft, 2 = noticeably rounded). Suitable for r ≤ 3.
+  function drawRoundedRect(buf, x, y, w, h, r) {
+    drawHLine(buf, x + r, x + w - 1 - r, y);
+    drawHLine(buf, x + r, x + w - 1 - r, y + h - 1);
+    drawVLine(buf, x, y + r, y + h - 1 - r);
+    drawVLine(buf, x + w - 1, y + r, y + h - 1 - r);
+    // Diagonal nibble at each corner.
+    for (let i = 0; i < r; i++) {
+      setPixel(buf, x + r - i - 1, y + i);
+      setPixel(buf, x + w - r + i, y + i);
+      setPixel(buf, x + r - i - 1, y + h - 1 - i);
+      setPixel(buf, x + w - r + i, y + h - 1 - i);
     }
   }
-
-  /* ─── Pan popup ───
-   * Horizontal stereo field with an L/R marker. Centre = dead-centre dot;
-   * off-centre = marker slides + a filled bar grows from centre outward. */
-  function drawPanPopup(buf) {
-    renderTitleBar(buf, 'PAN', '');
-    const labW = measureText(touchLabel);
-    drawText(buf, touchLabel, Math.max(2, Math.floor((128 - labW) / 2)), 13);
-
-    // Field spans 14..113 with end-cap labels L / R sitting outside.
-    const fL = 14, fR = 113;
-    const axisY = 30;
-    drawText(buf, 'L', 4, axisY - 3);
-    drawText(buf, 'R', 119, axisY - 3);
-    drawHLine(buf, fL, fR, axisY);
-    // Tick marks at L / mid / R.
-    const mid = Math.floor((fL + fR) / 2);
-    setPixel(buf, fL, axisY - 2); setPixel(buf, fL, axisY + 2);
-    setPixel(buf, fR, axisY - 2); setPixel(buf, fR, axisY + 2);
-    setPixel(buf, mid, axisY - 2); setPixel(buf, mid, axisY + 2);
-
-    // Position marker — solid 5×5 block centred on the pan position.
-    const v = touchPanPos;
-    const t = Math.max(0, Math.min(127, v)) / 127;
-    const markerX = Math.round(fL + (fR - fL) * t);
-    fillRect(buf, markerX - 2, axisY - 2, 5, 5);
-
-    // Bias bar from centre outward — visual of how far off-centre.
-    const barW = 110;
-    const barX = (128 - barW) / 2;
-    const barY = 53;
-    drawRect(buf, barX, barY, barW, 8);
-    const barMid = barX + Math.floor(barW / 2);
-    drawVLine(buf, barMid, barY - 1, barY + 9);
-    if (v < 64) {
-      const fill = Math.round((barW / 2 - 1) * (64 - v) / 64);
-      if (fill > 0) fillRect(buf, barMid - fill, barY + 1, fill, 6);
-    } else if (v > 64) {
-      const fill = Math.round((barW / 2 - 1) * (v - 64) / 63);
-      if (fill > 0) fillRect(buf, barMid + 1, barY + 1, fill, 6);
+  function fillRoundedRect(buf, x, y, w, h, r) {
+    for (let row = 0; row < h; row++) {
+      let inset = 0;
+      if (row < r) inset = r - row - 1;
+      else if (row >= h - r) inset = r - (h - row);
+      const startX = x + Math.max(0, inset);
+      const endX = x + w - 1 - Math.max(0, inset);
+      if (endX >= startX) drawHLine(buf, startX, endX, y + row);
     }
   }
 
@@ -597,26 +603,37 @@ if (!mountEl) {
   function paintEncoderLED(row, col) {
     const ccBase = [13, 21, 29][row]; // ROW_A=13, ROW_B=21, ROW_C=29
     const cc = ccBase + col;
-    const v = encValue[cc] ?? 64; // rest at centre — all knobs are bipolar
+    const v = encValue[cc] ?? initialEncoderValue(cc);
+
+    if (!isBipolarCC(cc)) {
+      // Linear knob (FX sizes / times / decays / damps / feedback). Brightness
+      // ramps 0 → full as the encoder moves CW from zero. Track colour.
+      const k = Math.min(1, Math.max(0, v / 127));
+      const [lr, lg, lb] = scaleColor(TRACK_COLOR[col], k);
+      lcxl3.setEncoderLED(row, col, lr, lg, lb);
+      return;
+    }
+
     // Centre detent → LED off, no floor.
     if (v >= DETENT_LO && v <= DETENT_HI) {
       lcxl3.setEncoderLED(row, col, 0, 0, 0);
       return;
     }
-    let r, g, b;
     const sideK = v < DETENT_LO
       ? Math.min(1, (64 - v) / 64)
       : Math.min(1, (v - 64) / 63);
+    let palette;
     if (row === 2 && col < 5) {
-      // Row C HW tracks 1–5 — direction-coloured REV/DLY.
-      [r, g, b] = scaleColor(v < DETENT_LO ? REV_COLOR : DLY_COLOR, sideK);
-    } else if (row === 0 && isFilterCol(col)) {
-      // Row A HW tracks 1–5 + master — direction-coloured LP/HP.
-      [r, g, b] = scaleColor(v < DETENT_LO ? LP_COLOR : HP_COLOR, sideK);
+      // Row C HW tracks 1–5 — REV teal / DLY orange.
+      palette = v < DETENT_LO ? REV_COLOR : DLY_COLOR;
+    } else if ((row === 0 && isFilterCol(col)) || (row === 2 && col === 6)) {
+      // Row A HW + master, or Row C FX 2 P3 (Delay Filter) — LP amber / HP blue.
+      palette = v < DETENT_LO ? LP_COLOR : HP_COLOR;
     } else {
-      // Track colour, brightness = distance from centre.
-      [r, g, b] = scaleColor(TRACK_COLOR[col], sideK);
+      // Row B pan and the master placeholders — column hue, bipolar brightness.
+      palette = TRACK_COLOR[col];
     }
+    const [r, g, b] = scaleColor(palette, sideK);
     lcxl3.setEncoderLED(row, col, r, g, b);
   }
   function paintAllEncoderLEDs() {
