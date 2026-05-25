@@ -26,9 +26,19 @@ const GM_PREVIEW_PATCH = {
   3: 80, // Square Lead   — Roland Keytar
 };
 
-// Hardware outputs that are physically monophonic — the dispatcher must
-// note-off any active note on these before sending a new note-on.
+// Hardware outputs that are physically monophonic. The dispatcher does two
+// things for these:
+//   (a) when same-tick noteOns target a mono output, only the policy-winner
+//       is forwarded (e.g. chord through Lead → top note only). Without
+//       this, the SH-01A re-triggers its envelope on every chord note and
+//       you hear a stutter instead of a clean melodic line.
+//   (b) for sequential noteOns, any prior sounding note on the mono outCh
+//       is released before the new one fires (handled inside dispatchEvent).
 const MONO_OUTPUTS = new Set([1, 2]); // Lead (SH-01A), Bass (Bass Stn 2)
+const MONO_OUTPUT_POLICY = {
+  1: 'highest',  // Lead — keep the top voice when a chord lands on SH-01A
+  2: 'lowest',   // Bass — keep the root when a chord lands on Bass Station 2
+};
 
 const GM_TO_TR08 = {
   35: 36, 36: 36, 37: 37, 38: 38, 39: 39, 40: 38,
@@ -724,6 +734,38 @@ function setCue(deckId, on) {
 // ──────────────────────────────────────────────────────────────
 // Note dispatch — applies routing + mix state + drum remap
 // ──────────────────────────────────────────────────────────────
+// Pre-filter a batch of same-tick events: when multiple noteOns land on a
+// mono output in the same tick (a chord on Lead/Bass), keep the policy-
+// winner and drop the rest. NoteOffs and all other event types pass
+// through untouched, so the activeNotes bookkeeping in dispatchEvent stays
+// consistent (the loser's noteOff at endTick will simply find no matching
+// activeNote and no-op).
+function filterMonoPolyphony(events, deck) {
+  // First pass — pick the winner per mono outCh.
+  const winners = new Map(); // outCh → event
+  for (const e of events) {
+    if (e.type !== 'noteOn' || e.channel === undefined) continue;
+    const outCh = deck.routing[e.channel];
+    const policy = MONO_OUTPUT_POLICY[outCh];
+    if (!policy) continue;
+    const cur = winners.get(outCh);
+    if (!cur) {
+      winners.set(outCh, e);
+    } else if ((policy === 'highest' && e.note > cur.note) ||
+               (policy === 'lowest'  && e.note < cur.note)) {
+      winners.set(outCh, e);
+    }
+  }
+  if (winners.size === 0) return events;
+  // Second pass — keep everything except mono noteOns that aren't the winner.
+  return events.filter(e => {
+    if (e.type !== 'noteOn' || e.channel === undefined) return true;
+    const outCh = deck.routing[e.channel];
+    if (!MONO_OUTPUT_POLICY[outCh]) return true;
+    return winners.get(outCh) === e;
+  });
+}
+
 function dispatchEvent(ev, deck) {
   if (ev.channel === undefined) return;
   const outCh = deck.routing[ev.channel];
@@ -780,9 +822,18 @@ function silenceDeck(deckId) {
   // Cancel any pending tail noteOffs from a prior loop wrap
   for (const t of deck.tailTimers.values()) clearTimeout(t);
   deck.tailTimers.clear();
-  // All-notes-off CC on every output channel this deck uses
+  // All-notes-off CC on every output channel this deck uses — but skip any
+  // channel the OTHER deck is currently sounding on, otherwise loading a
+  // new track on this deck would cut sustaining notes on the other deck.
+  const otherId = deckId === '1' ? '2' : '1';
+  const otherChannels = new Set();
+  for (const [key] of decks[otherId].activeNotes) {
+    otherChannels.add(Number(key.slice(0, key.indexOf(':'))));
+  }
   const outs = new Set(Object.values(deck.routing).filter(v => v >= 0));
-  for (const ch of outs) sendRaw(0xb0 | ch, 123, 0);
+  for (const ch of outs) {
+    if (!otherChannels.has(ch)) sendRaw(0xb0 | ch, 123, 0);
+  }
   clearOutputActive(deck);
 }
 
@@ -1089,16 +1140,21 @@ function playDeck(deckId, startTick = 0) {
         step();
         return;
       }
-      do {
-        const e = events[eventIndex];
+      // Gather every event at this tick, filter chords routed to mono
+      // outputs, then dispatch in original order.
+      const tickEvents = [];
+      while (eventIndex < events.length && events[eventIndex].tick === currentTick) {
+        tickEvents.push(events[eventIndex]);
+        eventIndex++;
+      }
+      for (const e of filterMonoPolyphony(tickEvents, deck)) {
         if (e.type === 'tempo') {
           currentBPM = e.bpm;
           deck.currentBPM = currentBPM;
         } else {
           dispatchEvent(e, deck);
         }
-        eventIndex++;
-      } while (eventIndex < events.length && events[eventIndex].tick === currentTick);
+      }
       updatePosition(deckId, currentTick, ticksPerBeat, currentBPM);
       step();
     }, Math.max(0, targetWallTime - performance.now()));

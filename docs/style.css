@@ -1081,11 +1081,12 @@ body.test-mode #browser { box-shadow: inset 0 0 0 1px rgba(92, 224, 208, 0.2); }
  * surface doesn't compete with the decks for vertical space. The mount itself
  * is sized by virtual-lcxl3.css; we just contain it.
  * ────────────────────────────────────────────────────────────── */
+/* The on-screen LCXL3 mirror was useful before hardware worked on iPad.
+ * Hidden now — JS still mounts inside #lcxl3-mount so MIDI/LED/OLED plumbing
+ * keeps running, but the surface itself is off-screen. lcxl3-sim.html covers
+ * the no-hardware case. */
 #lcxl3-drawer {
-  margin: 12px 0 0;
-  border-top: 1px solid var(--line);
-  padding: 6px 12px 12px;
-  background: var(--bg);
+  display: none;
 }
 #lcxl3-drawer > summary {
   cursor: pointer;
