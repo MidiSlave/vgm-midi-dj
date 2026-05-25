@@ -2900,4 +2900,11 @@ window.vgmdj = {
   toggleOutputMute,
   flipOutputs,
   silenceAll,
+  // Push a single CC to whatever output is currently selected. Used by the
+  // LCXL3 integration to rebroadcast its controls as mapping-friendly
+  // absolute values on the VGM DJ virtual source. Channel is 0-indexed
+  // (i.e. MIDI channel 16 is `15`).
+  sendCC(channel, cc, value) {
+    sendRaw(0xB0 | (channel & 0x0F), cc & 0x7F, value & 0x7F);
+  },
 };
