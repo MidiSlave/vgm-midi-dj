@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-26T08:40:50.783Z",
+  "generated": "2026-05-26T09:01:06.390Z",
   "count": 873,
   "tracks": [
     {
@@ -13627,14 +13627,14 @@
       "path": "midi-files/doom/level7.mid",
       "file": "level7.mid",
       "title": "Level7",
-      "embedded_name": null,
+      "embedded_name": "1993, id Software",
       "game": "doom",
       "release": "",
-      "bpm": 60,
-      "bpm_initial": 60,
-      "perceived_bpm": 60,
-      "perceived_bpm_auto": 60,
-      "perceived_ticks_per_beat": 560,
+      "bpm": 140,
+      "bpm_initial": 140,
+      "perceived_bpm": 140,
+      "perceived_bpm_auto": 140,
+      "perceived_ticks_per_beat": 480,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -13643,7 +13643,7 @@
         "4/4"
       ],
       "key": "G# major",
-      "duration_sec": 154.4,
+      "duration_sec": 152.1,
       "channels": [
         0,
         1,
@@ -13667,7 +13667,7 @@
         "chords",
         "lead"
       ],
-      "size": 11544
+      "size": 18884
     },
     {
       "path": "midi-files/doom/level8.mid",
