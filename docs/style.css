@@ -902,7 +902,10 @@ body.skin-off .deck-skin { display: none; }
 .deck-head {
   display: flex;
   align-items: center;
-  gap: clamp(0.55rem, 1.1vw, 1.3rem);
+  /* Tighter gap so the cluster of right-side buttons (channel, auto, unmute,
+     snap, time-fold) doesn't feel scattered. Track-name still expands to
+     fill the leftover space because it's the only flex-grow element. */
+  gap: clamp(0.3rem, 0.55vw, 0.6rem);
 }
 /* Fluid touch target — min-height keeps ≥36px on iPad-class viewports. */
 .deck-head .btn {
