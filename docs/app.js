@@ -347,6 +347,12 @@ function makeDeckState(id) {
     seekPending: null, // tick the playhead will jump to at the next bar of this deck
     // playback transport (live state for visualisation)
     currentTick: 0,
+    // The user-set start point — sticky across play/stop cycles. Only changes
+    // when the user explicitly arms Start and taps the roll, or a playlist
+    // entry override sets it on load. stopDeck restores currentTick to this
+    // so the next drop/play resumes from where the user last said "start
+    // here" rather than zero.
+    cueTick: 0,
     currentBPM: 120,
     currentMsPerTick: 4,
     lastEventWallTime: 0,
@@ -563,7 +569,9 @@ function captureDeckIntoEntry(deckId, entryId) {
   const deck = decks[deckId];
   if (!deck.midi) return false;
   const patch = {
-    cueTick: deck.currentTick || 0,
+    // Capture the sticky cue, not the live playhead — a snapshot grabbed
+    // mid-playback should still encode the user's intended start position.
+    cueTick: deck.cueTick || 0,
     transpose: deck.transpose || 0,
     timeFold: deck.timeFold || 1,
     volume: typeof deck.volume === 'number' ? deck.volume : 100,
@@ -1911,9 +1919,17 @@ function stopDeck(deckId) {
   silenceDeck(deckId);
   const btn = document.querySelector(`.btn-play[data-deck="${deckId}"]`);
   if (btn) { btn.classList.remove('playing'); btn.textContent = '▶'; }
-  deck.currentTick = 0;
-  const posEl = document.querySelector(`#deck-${deckId} .stat-position`);
-  if (posEl) posEl.textContent = '0:00';
+  // Restore the playhead to the user's sticky start point (set by arming
+  // Start + tapping the roll, or by a playlist entry's cueTick override).
+  // Previously this was hard-reset to 0, which was the "start points are
+  // being reset after they've been triggered" bug.
+  deck.currentTick = deck.cueTick || 0;
+  if (deck.midi && deck.midi.ticksPerBeat) {
+    updatePosition(deckId, deck.currentTick, deck.midi.ticksPerBeat, deck.currentBPM);
+  } else {
+    const posEl = document.querySelector(`#deck-${deckId} .stat-position`);
+    if (posEl) posEl.textContent = '0:00';
+  }
   paintRoll(deckId);
 }
 
@@ -1938,6 +1954,10 @@ function cancelPendingSeek(deckId) {
 function seekDeck(deckId, tick) {
   const deck = decks[deckId];
   if (!deck.midi) return;
+  // The deliberate user act of moving the playhead also moves the sticky
+  // cue point — so a subsequent stop returns to where they last said
+  // "start here", not zero.
+  deck.cueTick = tick;
   if (!deck.playing) {
     cancelPendingSeek(deckId);
     deck.currentTick = tick;
@@ -2878,6 +2898,7 @@ async function loadTrackIntoDeck(deckId, track, entry) {
     decks[deckId].midi = midi;
     decks[deckId].meta = track;
     decks[deckId].currentTick = 0;
+    decks[deckId].cueTick = 0;
     // Preserve the loop length the user has dialled on the spinner; only
     // clear the active loop's anchors / state on track load.
     const keptBeats = decks[deckId].loop?.beats ?? DEFAULT_LOOP_BEATS;
@@ -2938,7 +2959,9 @@ async function loadTrackIntoDeck(deckId, track, entry) {
 function applyEntryOverridesToDeck(deckId, entry) {
   const deck = decks[deckId];
   if (Number.isFinite(entry.cueTick)) {
-    deck.currentTick = Math.max(0, Math.floor(entry.cueTick));
+    const t = Math.max(0, Math.floor(entry.cueTick));
+    deck.currentTick = t;
+    deck.cueTick = t;
   }
   if (Number.isFinite(entry.transpose)) deck.transpose = entry.transpose;
   if (Number.isFinite(entry.timeFold)) deck.timeFold = entry.timeFold;
