@@ -191,6 +191,11 @@ function mountDropdown(mountEl, { options, value, onChange, placeholder, classNa
       current = v;
       const f = options.find(o => String(o.value) === String(v));
       valueEl.textContent = f?.label ?? placeholder ?? '';
+      // Refresh the .selected highlight on the menu items too, so an open
+      // menu reflects the new value rather than the previous selection.
+      menu.querySelectorAll('li').forEach(n => {
+        n.classList.toggle('selected', n.dataset.value === String(current));
+      });
     },
     getValue() { return current; },
     el: root,
@@ -3641,11 +3646,14 @@ function maxOutputChannels() {
 
 function buildCuePairOptions(maxCh) {
   // Generate stereo pairs: (1/2), (3/4), (5/6), ... up to the device max.
+  // Field name is `value` (not `id`) so mountDropdown's render/select paths
+  // pick it up — without that the dropdown showed the placeholder and
+  // clicking an option dispatched onChange(undefined), throwing in split().
   const opts = [];
   for (let i = 0; i < maxCh; i += 2) {
     if (i + 1 >= maxCh) break;
     const label = `${i + 1} / ${i + 2}` + (i === 0 ? '  (main)' : '');
-    opts.push({ id: `${i},${i + 1}`, label });
+    opts.push({ value: `${i},${i + 1}`, label });
   }
   return opts;
 }
