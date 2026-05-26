@@ -2546,7 +2546,13 @@ function bindPianoRoll(deckId) {
       cancelPendingScrub();
       dragMode = null;
     } else if (pointers.size === 1) {
-      dragMode = 'scrub';
+      // 2→1 fingers (typical end of a pinch). Don't promote the remaining
+      // finger to scrub — if Start wasn't armed, that would silently seek
+      // the moment the user shifted their remaining finger. Always neutralise
+      // it; if the user actually wants to scrub, they tap Start first and
+      // start a fresh single-finger gesture.
+      dragMode = null;
+      cancelPendingScrub();
     }
   };
   canvas.addEventListener('pointerup', endPointer);
