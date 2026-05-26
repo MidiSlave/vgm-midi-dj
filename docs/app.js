@@ -953,12 +953,30 @@ function refreshSettingsMidiPortDropdown() {
 // events off ahead of time so CoreMIDI (via the iOS polyfill) can dispatch
 // with µs precision — main-thread setTimeout jitter under LOOKAHEAD_MS then
 // becomes inaudible. Panic / silence / flip / mute paths omit it (= "now").
-// testMode (WebAudioTinySynth) doesn't accept timestamps; we drop it there.
-function sendRaw(status, data1, data2, timestamp) {
+//
+// Optional 5th arg deckId: when supplied, this send is associated with a
+// specific deck. If that deck is currently CUEd, the message routes to the
+// in-page GM preview synth (audible via the cue channel pair) instead of
+// hardware — that's the DJ headphone-monitor model. Without a deckId
+// (panic broadcasts, all-channels CC sweeps) we stay on the hardware path.
+function sendRaw(status, data1, data2, timestamp, deckId) {
   const msg = data2 !== undefined ? [status, data1, data2] : [status, data1];
-  if (testMode) {
+  const useSynth = testMode || (deckId != null && cuedDeck === deckId);
+  if (useSynth) {
     const synth = getTestSynth();
-    if (synth) synth.send(msg);
+    if (!synth) return;
+    // WebAudioTinySynth.send is synchronous, no timestamp arg. Defer the
+    // actual send via setTimeout when the caller passed a future stamp, so
+    // cue-preview audio aligns with the LOOKAHEAD_MS-anchored hardware
+    // schedule (otherwise preview fires LOOKAHEAD_MS too early vs FOH).
+    if (timestamp != null) {
+      const delay = timestamp - performance.now();
+      if (delay > 0.5) {
+        setTimeout(() => synth.send(msg), delay);
+        return;
+      }
+    }
+    synth.send(msg);
   } else if (midiOutput) {
     if (timestamp != null) midiOutput.send(msg, timestamp);
     else midiOutput.send(msg);
@@ -975,13 +993,13 @@ function setPillActive(deckId, outCh, on) {
 // output and dims when the last one ends. Every MIDI noteOn/noteOff to a
 // hardware output must go through these wrappers so the gate stays accurate.
 function dispatchNoteOn(deck, outCh, note, vel, timestamp) {
-  sendRaw(0x90 | outCh, note, vel, timestamp);
+  sendRaw(0x90 | outCh, note, vel, timestamp, deck.id);
   const count = (deck.outputActive.get(outCh) ?? 0) + 1;
   deck.outputActive.set(outCh, count);
   if (count === 1) setPillActive(deck.id, outCh, true);
 }
 function dispatchNoteOff(deck, outCh, note, timestamp) {
-  sendRaw(0x80 | outCh, note, 0, timestamp);
+  sendRaw(0x80 | outCh, note, 0, timestamp, deck.id);
   const count = (deck.outputActive.get(outCh) ?? 0) - 1;
   if (count <= 0) {
     deck.outputActive.delete(outCh);
@@ -999,7 +1017,9 @@ function clearOutputActive(deck) {
 // Mix state — which decks are audible
 // ──────────────────────────────────────────────────────────────
 function deckAudible(deckId) {
-  if (cuedDeck) return cuedDeck === deckId; // CUE solos
+  // A cued deck is always audible — it routes to the GM preview synth (the
+  // DJ's headphone monitor), independent of the FOH mix-switch state.
+  if (cuedDeck === deckId) return true;
   if (mixState === 'both') return true;
   return mixState === decks[deckId].channel;
 }
@@ -1018,18 +1038,36 @@ function setMixState(state) {
   });
 }
 
+// CUE in DJ terms: route this deck's MIDI to the GM preview synth (the
+// headphone monitor) so the DJ can audition it without sending to the FOH
+// hardware bus. The OTHER deck keeps playing through hardware normally —
+// audience hears the live mix, DJ hears the cued deck in headphones.
+//
+// Transition discipline: before flipping `cuedDeck`, drain any currently
+// held notes on the destination we're leaving so they don't keep ringing.
+// On cue-engage: drain hardware first, then route to synth.
+// On cue-release: drain synth first, then route back to hardware.
 function setCue(deckId, on) {
   if (on) {
-    if (cuedDeck && cuedDeck !== deckId) silenceDeck(cuedDeck);
+    // If a different deck was already cued, un-cue it first (drains its
+    // synth notes via the still-active cuedDeck routing in sendRaw).
+    if (cuedDeck && cuedDeck !== deckId) {
+      silenceDeck(cuedDeck);
+      cuedDeck = null;
+    }
+    // Drain this deck's currently-held notes from hardware before routing
+    // future events to the preview synth — otherwise AUM keeps ringing.
+    silenceDeck(deckId);
     cuedDeck = deckId;
-    // Silence the OTHER deck while cued
-    const other = deckId === '1' ? '2' : '1';
-    silenceDeck(other);
+    // Make sure the AudioContext is running and the cue-channel routing is
+    // applied (sets the synth's output to the headphone pair).
+    unlockTestSynth();
   } else {
     if (cuedDeck === deckId) {
+      // Drain synth-held notes (cuedDeck still set → silenceDeck routes to
+      // synth) then release the cue so future events go back to hardware.
+      silenceDeck(deckId);
       cuedDeck = null;
-      // Re-evaluate: silence anything no longer audible
-      for (const d of ['1', '2']) if (!deckAudible(d)) silenceDeck(d);
     }
   }
   document.querySelectorAll('.btn-cue').forEach(b => {
@@ -1136,7 +1174,7 @@ function silenceDeck(deckId) {
   const ts = panicStamp();
   for (const [key] of deck.activeNotes) {
     const [outCh, note] = key.split(':').map(Number);
-    sendRaw(0x80 | outCh, note, 0, ts);
+    sendRaw(0x80 | outCh, note, 0, ts, deckId);
   }
   deck.activeNotes.clear();
   // Cancel any pending tail noteOffs from a prior loop wrap
@@ -1152,7 +1190,7 @@ function silenceDeck(deckId) {
   }
   const outs = new Set(Object.values(deck.routing).filter(v => v >= 0));
   for (const ch of outs) {
-    if (!otherChannels.has(ch)) sendRaw(0xb0 | ch, 123, 0, ts);
+    if (!otherChannels.has(ch)) sendRaw(0xb0 | ch, 123, 0, ts, deckId);
   }
   clearOutputActive(deck);
 }
@@ -1290,8 +1328,8 @@ function flipOutputs(deckId, pair = 'poly') {
       if (tail) { clearTimeout(tail); deck.tailTimers.delete(key); }
     }
   }
-  sendRaw(0xb0 | a, 123, 0, ts);
-  sendRaw(0xb0 | b, 123, 0, ts);
+  sendRaw(0xb0 | a, 123, 0, ts, deckId);
+  sendRaw(0xb0 | b, 123, 0, ts, deckId);
   for (const src in deck.routing) {
     if (deck.routing[src] === a) deck.routing[src] = b;
     else if (deck.routing[src] === b) deck.routing[src] = a;
@@ -1389,7 +1427,7 @@ function toggleOutputMute(deckId, outCh) {
         deck.activeNotes.delete(key);
       }
     }
-    sendRaw(0xb0 | outCh, 123, 0, ts); // belt + braces: all-notes-off CC
+    sendRaw(0xb0 | outCh, 123, 0, ts, deckId); // belt + braces: all-notes-off CC
   }
   renderRoutingPills(deckId);
 }
