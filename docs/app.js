@@ -1272,10 +1272,19 @@ function renderRoutingPills(deckId) {
     pill.type = 'button';
     pill.dataset.deck = deckId;
     pill.dataset.out = outCh;
+    // pill-count: number of source MIDI channels mapped to this hardware out.
+    // Hidden when 1 (the common case — no info to convey); shown when 2+ so
+    // the user notices when many source parts are being funnelled into one
+    // output. On the mono outputs (Lead / Bass Stn 2) >1 means multiple parts
+    // fighting for a single voice — typically the user wants to remap.
+    const showCount = hasSources && sources.length > 1;
+    const countTitle = showCount
+      ? `${sources.length} source channels routed to ${SYNTHS[outCh]}`
+      : '';
     pill.innerHTML = `
       <span class="pill-dot"></span>
       <span class="pill-name">${SYNTHS[outCh]}</span>
-      <span class="pill-count">${hasSources ? sources.length : ''}</span>
+      <span class="pill-count" title="${countTitle}">${showCount ? sources.length : ''}</span>
     `;
     if (hasSources) {
       pill.addEventListener('click', () => toggleOutputMute(deckId, outCh));

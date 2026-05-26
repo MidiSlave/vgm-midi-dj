@@ -976,10 +976,19 @@ body.skin-off .deck-skin { display: none; }
 .deck-controls {
   display: flex;
   align-items: center;
-  gap: clamp(0.45rem, 0.85vw, 0.95rem);
-  /* Distribute items uniformly across the full deck width — first item
-     anchors left, last item anchors right, even gaps in between. */
-  justify-content: space-between;
+  /* Pack buttons tight together at a uniform gap. Previous space-between
+     distribution spread everything across the deck's width and left huge
+     gaps between adjacent buttons when there were only a few of them;
+     after adding start and snap it just looked broken. Now buttons cluster
+     to the left in logical order, and a single .dc-spacer pushes the "save"
+     action (snap) to the far right. */
+  gap: clamp(0.25rem, 0.4vw, 0.4rem);
+  flex-wrap: wrap;
+  row-gap: 0.35rem;
+}
+.deck-controls .dc-spacer {
+  flex: 1 1 auto;
+  min-width: 0.25rem;
 }
 /* Same fluid sizing as deck-head btns — keeps touch target ≥36px on iPad. */
 .deck-controls .btn {
