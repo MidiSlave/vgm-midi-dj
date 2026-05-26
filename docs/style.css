@@ -283,7 +283,10 @@ header h1 {
 }
 .playlist-controls button:hover { border-color: var(--accent); color: var(--accent); }
 #playlist-count { margin-left: auto; font-size: 0.75rem; }
-/* Playlist entries list */
+/* Playlist entries list — same scannable columns as the library row so the
+   tempo / key / meter / length / parts are visible at a glance, plus an
+   on-deck indicator on the left and grouped touch-friendly actions on the
+   right. */
 #playlist-entries {
   overflow-y: auto;
   flex: 1 1 0;
@@ -292,73 +295,197 @@ header h1 {
 }
 .pl-row {
   display: grid;
-  grid-template-columns: 1.6rem 1fr auto auto auto auto;
-  gap: 0.4rem;
+  grid-template-columns:
+    1.6rem        /* index */
+    0.9rem        /* now-loaded dot */
+    minmax(0, 1fr) /* title + game */
+    50px          /* bpm */
+    60px          /* key */
+    50px          /* meter */
+    50px          /* len */
+    160px         /* tags */
+    auto          /* captured badges */
+    auto          /* reorder ▴▾ */
+    auto          /* load 1/2 */
+    auto          /* capture 1/2 */
+    auto;         /* remove × */
+  gap: 0.5rem;
   align-items: center;
-  padding: 0.35rem 0.4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--line);
 }
-.pl-row:hover { background: rgba(255,255,255,0.025); }
-.pl-row.empty { color: var(--muted); justify-content: center; padding: 1rem; text-align: center; grid-template-columns: 1fr; }
-.pl-idx { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
-.pl-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pl-game { color: var(--muted); font-size: 0.72rem; }
-.pl-badges {
+.pl-row:hover { background: var(--surface-2, rgba(255,255,255,0.025)); }
+.pl-row.empty { color: var(--muted); justify-content: center; padding: 1.2rem; text-align: center; grid-template-columns: 1fr; }
+.pl-row.unstable .pl-title { color: var(--muted); font-style: italic; }
+.pl-row.missing { opacity: 0.4; }
+
+.pl-idx {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-size: 0.78rem;
+}
+/* On-deck indicator: filled coloured dot when this entry is the track
+   currently loaded on deck 1 (teal) or 2 (pink), or both (split fill). */
+.pl-on-deck {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--line);
+  justify-self: center;
+}
+.pl-on-deck.on-1 { background: var(--a, #5ce0d0); border-color: var(--a, #5ce0d0); }
+.pl-on-deck.on-2 { background: var(--b, #ff7a8a); border-color: var(--b, #ff7a8a); }
+.pl-on-deck.on-both {
+  background: linear-gradient(90deg, var(--a, #5ce0d0) 50%, var(--b, #ff7a8a) 50%);
+  border-color: transparent;
+}
+
+.pl-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pl-title .pl-game {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: capitalize;
+  margin-left: 0.35rem;
+}
+.pl-bpm, .pl-key, .pl-meter, .pl-len {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+.pl-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3px;
+  font-size: 0.62rem;
+  line-height: 1;
+  overflow: hidden;
+}
+
+/* Captured-state badges — only show what's actually been set on this entry.
+   Greyed when nothing captured; coloured pills when captured. */
+.pl-caps {
   display: inline-flex;
   gap: 3px;
-  margin-left: 0.4rem;
+  align-items: center;
+  min-width: 2.6rem;
+  justify-content: flex-start;
 }
-.pl-badge {
-  display: inline-block;
+.pl-cap-badge {
   font-size: 0.6rem;
-  padding: 1px 4px;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.08);
-  color: var(--muted);
+  padding: 2px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--ok);
+  color: var(--ok);
+  background: rgba(102, 214, 138, 0.08);
   letter-spacing: 0.04em;
   text-transform: lowercase;
 }
-.pl-badge.set { background: var(--ok); color: var(--bg); }
-.pl-row button {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 0.2rem 0.45rem;
-  border-radius: 3px;
-  font-size: 0.72rem;
-  cursor: pointer;
-}
-.pl-row button:hover { border-color: var(--accent); color: var(--accent); }
-.pl-row .pl-load-a { color: var(--a, #5ce0d0); }
-.pl-row .pl-load-b { color: var(--b, #ff7a8a); }
-.pl-row .pl-remove { color: var(--muted); }
-.pl-row .pl-move {
-  background: transparent;
-  border: 0;
+.pl-fresh {
+  font-size: 0.62rem;
   color: var(--muted);
-  padding: 0 0.2rem;
-  cursor: pointer;
-  font-size: 0.9rem;
+  font-style: italic;
 }
-.pl-row .pl-move:hover { color: var(--accent); }
+
+/* Reorder column — small but touch-sized stacked arrows */
 .pl-move-stack {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  line-height: 0.9;
+  gap: 2px;
 }
-/* + add button on library rows when in playlist mode would be cluttering;
-   instead we put a single "+pl" button in the library load-btns group. */
-.track-row .to-pl {
+.pl-move {
   background: transparent;
   border: 1px solid var(--line);
   color: var(--muted);
+  padding: 0 0.4rem;
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1.05;
   border-radius: 3px;
-  padding: 0.1rem 0.4rem;
-  font-size: 0.72rem;
+  min-width: 22px;
+}
+.pl-move:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Load and capture action groups — load is primary (deck-coloured, bigger);
+   capture is secondary (smaller, neutral, with a left-arrow to suggest
+   "pull state INTO this entry"). */
+.pl-loads, .pl-caps-btns {
+  display: flex;
+  gap: 0.3rem;
+  align-items: stretch;
+}
+.pl-loads button {
+  width: 36px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: transparent;
   cursor: pointer;
 }
-.track-row .to-pl:hover { color: var(--ok); border-color: var(--ok); }
+.pl-loads .pl-load-a { color: var(--a); border-color: rgba(92, 224, 208, 0.4); }
+.pl-loads .pl-load-b { color: var(--b); border-color: rgba(255, 122, 138, 0.4); }
+.pl-loads .pl-load-a:hover { background: var(--a); color: var(--bg); border-color: var(--a); }
+.pl-loads .pl-load-b:hover { background: var(--b); color: var(--bg); border-color: var(--b); }
+.pl-caps-btns button {
+  width: 36px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+.pl-caps-btns button:hover { color: var(--ok); border-color: var(--ok); }
+.pl-remove {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.pl-remove:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Column-header strip so users know what each column means without hover */
+.pl-header {
+  display: grid;
+  grid-template-columns:
+    1.6rem 0.9rem minmax(0, 1fr) 50px 60px 50px 50px 160px auto auto auto auto auto;
+  gap: 0.5rem;
+  padding: 0.3rem 0.55rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pl-header > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* + add button on library rows: routes a library track into the current
+   playlist. Same dimensions as the deck-load buttons so it doesn't squash
+   the 1 / 2 buttons; ok-tinted to signal "playlist add". */
+.track-row .load-btns .to-pl {
+  width: 30px;
+  height: 26px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: transparent;
+}
+.track-row .load-btns .to-pl:hover { color: var(--ok); border-color: var(--ok); }
 
 .browser-controls {
   display: flex;
@@ -484,7 +611,9 @@ header h1 {
 
 .track-row {
   display: grid;
-  grid-template-columns: minmax(0,1fr) 90px 140px 50px 70px 60px 220px 50px 70px;
+  /* Last column hosts 3 same-sized buttons (1, 2, +pl) with two gaps —
+     so it needs roughly 3 × 32px + 2 × 4px = 104px. Bumped from 70px. */
+  grid-template-columns: minmax(0,1fr) 90px 140px 50px 70px 60px 220px 50px 110px;
   gap: 0.5rem;
   padding: clamp(0.17rem, 0.3vw, 0.32rem) clamp(0.4rem, 0.55vw, 0.65rem);
   align-items: center;

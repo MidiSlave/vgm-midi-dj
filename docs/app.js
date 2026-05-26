@@ -3138,41 +3138,98 @@ function renderPlaylistPane() {
     list.appendChild(empty);
     return;
   }
+
+  // Column-header strip so users can read what each column is without
+  // hovering for tooltips on mobile.
+  const header = document.createElement('div');
+  header.className = 'pl-header';
+  header.innerHTML = `
+    <span>#</span>
+    <span></span>
+    <span>title — game</span>
+    <span>bpm</span>
+    <span>key</span>
+    <span>meter</span>
+    <span>len</span>
+    <span>parts</span>
+    <span>saved</span>
+    <span></span>
+    <span>load</span>
+    <span>save from</span>
+    <span></span>
+  `;
+  list.appendChild(header);
+
+  const deck1Path = decks['1']?.meta?.path ?? null;
+  const deck2Path = decks['2']?.meta?.path ?? null;
+
   const frag = document.createDocumentFragment();
   p.entries.forEach((entry, i) => {
     const track = trackLibrary.find(t => t.path === entry.path);
     const row = document.createElement('div');
     row.className = 'pl-row';
     row.dataset.entryId = entry.id;
-    const badges = [];
-    if (Number.isFinite(entry.cueTick) && entry.cueTick > 0) badges.push('<span class="pl-badge set">cue</span>');
-    if (entry.loop && Number.isFinite(entry.loop.in)) {
-      badges.push(`<span class="pl-badge set">${entry.loop.armed ? 'loop★' : 'loop'}</span>`);
-    }
-    if (Array.isArray(entry.outputMutes) && entry.outputMutes.length) badges.push('<span class="pl-badge set">mute</span>');
-    if (Number.isFinite(entry.transpose) && entry.transpose !== 0) badges.push(`<span class="pl-badge set">${entry.transpose > 0 ? '+' : ''}${entry.transpose}</span>`);
-    if (Number.isFinite(entry.timeFold) && entry.timeFold !== 1) badges.push(`<span class="pl-badge set">${entry.timeFold}×</span>`);
+    if (!track) row.classList.add('missing');
+    const unstable = track && (track.tempo_changes ?? 0) > 3;
+    if (unstable) row.classList.add('unstable');
 
-    const title = track ? track.title : '(missing track)';
+    // On-deck indicator: this entry's track currently loaded on deck 1 / 2
+    const on1 = track && deck1Path === track.path;
+    const on2 = track && deck2Path === track.path;
+    const dotClass = on1 && on2 ? 'on-both' : on1 ? 'on-1' : on2 ? 'on-2' : '';
+
+    // Captured-state badges — show exactly which overrides this entry stores
+    const caps = [];
+    if (Number.isFinite(entry.cueTick) && entry.cueTick > 0) caps.push('cue');
+    if (entry.loop && Number.isFinite(entry.loop.in) && Number.isFinite(entry.loop.out)) {
+      caps.push(entry.loop.armed ? 'loop★' : 'loop');
+    }
+    if (Array.isArray(entry.outputMutes) && entry.outputMutes.length) caps.push('mute');
+    if (Number.isFinite(entry.transpose) && entry.transpose !== 0) {
+      caps.push(`${entry.transpose > 0 ? '+' : ''}${entry.transpose}`);
+    }
+    if (Number.isFinite(entry.timeFold) && entry.timeFold !== 1) caps.push(`${entry.timeFold}×`);
+
+    const tagsHtml = track ? (track.tags ?? []).map(tag =>
+      `<span class="t-tag t-tag-${tag}">${tag}</span>`
+    ).join('') : '';
+
+    const title = track ? track.title : '(missing — track removed from library)';
     const game = track ? track.game : entry.path;
+    const bpm = track ? (track.perceived_bpm ?? track.bpm ?? '—') : '—';
+    const keyDisp = track ? (formatKey(track.key) ?? '—') : '—';
+    const meterDisp = track
+      ? `${track.meter ?? '—'}${track.meter_changes ? '*' : ''}`
+      : '—';
+    const lenDisp = track ? formatDuration(track.duration_sec) : '—';
+
     row.innerHTML = `
       <span class="pl-idx">${i + 1}</span>
-      <span class="pl-title" title="${title}">
-        ${title}
-        <span class="pl-game">— ${game}</span>
-        <span class="pl-badges">${badges.join('')}</span>
+      <span class="pl-on-deck ${dotClass}" title="${on1 && on2 ? 'on both decks' : on1 ? 'on deck 1' : on2 ? 'on deck 2' : 'not loaded'}"></span>
+      <span class="pl-title" title="${title} — ${game}">
+        ${title}<span class="pl-game">— ${game}</span>
       </span>
+      <span class="pl-bpm">${bpm}</span>
+      <span class="pl-key">${keyDisp}</span>
+      <span class="pl-meter">${meterDisp}</span>
+      <span class="pl-len">${lenDisp}</span>
+      <span class="pl-tags">${tagsHtml}</span>
+      <span class="pl-caps">${
+        caps.length
+          ? caps.map(c => `<span class="pl-cap-badge">${c}</span>`).join('')
+          : '<span class="pl-fresh">fresh</span>'
+      }</span>
       <span class="pl-move-stack">
         <button class="pl-move pl-up" title="move up">▴</button>
         <button class="pl-move pl-down" title="move down">▾</button>
       </span>
-      <span class="pl-actions">
-        <button class="pl-load-a" title="load on deck 1">→1</button>
-        <button class="pl-load-b" title="load on deck 2">→2</button>
+      <span class="pl-loads">
+        <button class="pl-load-a" title="load on deck 1 with this entry's saved settings">1</button>
+        <button class="pl-load-b" title="load on deck 2 with this entry's saved settings">2</button>
       </span>
-      <span class="pl-actions">
-        <button class="pl-cap-a" title="capture deck 1 state into this entry">cap 1</button>
-        <button class="pl-cap-b" title="capture deck 2 state into this entry">cap 2</button>
+      <span class="pl-caps-btns">
+        <button class="pl-cap-a" title="snapshot deck 1's current cue/loop/mutes/transpose into this entry">←1</button>
+        <button class="pl-cap-b" title="snapshot deck 2's current cue/loop/mutes/transpose into this entry">←2</button>
       </span>
       <button class="pl-remove" title="remove from playlist">×</button>
     `;
@@ -3180,10 +3237,10 @@ function renderPlaylistPane() {
     row.querySelector('.pl-up').addEventListener('click', () => { moveEntryInCurrent(entry.id, -1); refreshAfterMutate(); });
     row.querySelector('.pl-down').addEventListener('click', () => { moveEntryInCurrent(entry.id, +1); refreshAfterMutate(); });
     row.querySelector('.pl-load-a').addEventListener('click', () => {
-      if (track) loadTrackIntoDeck('1', track, entry);
+      if (track) loadTrackIntoDeck('1', track, entry).then(refreshAfterMutate);
     });
     row.querySelector('.pl-load-b').addEventListener('click', () => {
-      if (track) loadTrackIntoDeck('2', track, entry);
+      if (track) loadTrackIntoDeck('2', track, entry).then(refreshAfterMutate);
     });
     row.querySelector('.pl-cap-a').addEventListener('click', () => {
       if (captureDeckIntoEntry('1', entry.id)) refreshAfterMutate();
