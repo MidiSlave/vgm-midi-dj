@@ -214,7 +214,7 @@ header h1 {
 #midi-status.ok #midi-port { color: var(--text); }
 
 /* ─────────── Browser ─────────── */
-#browser {
+#catalog {
   background: var(--surface);
   border-radius: 6px;
   padding: clamp(0.35rem, 0.5vw, 0.55rem);
@@ -224,6 +224,141 @@ header h1 {
   flex: 1 1 0;
   min-height: 0;
 }
+/* Mode tabs: switch between library (search/browse) and playlist (curated sets) */
+.catalog-modes {
+  display: flex;
+  gap: 0.3rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+}
+.cat-mode {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.cat-mode.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.catalog-pane {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.25rem, 0.4vw, 0.45rem);
+  flex: 1 1 0;
+  min-height: 0;
+}
+.catalog-pane[hidden] { display: none; }
+/* Playlist controls bar — picker + actions */
+.playlist-controls {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#playlist-select {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  flex: 1;
+  min-width: 8rem;
+}
+#playlist-select:focus { border-color: var(--accent); outline: none; }
+.playlist-controls button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 0.3rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.playlist-controls button:hover { border-color: var(--accent); color: var(--accent); }
+#playlist-count { margin-left: auto; font-size: 0.75rem; }
+/* Playlist entries list */
+#playlist-entries {
+  overflow-y: auto;
+  flex: 1 1 0;
+  min-height: 0;
+  font-size: 0.8rem;
+}
+.pl-row {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto auto auto auto;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.35rem 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.pl-row:hover { background: rgba(255,255,255,0.025); }
+.pl-row.empty { color: var(--muted); justify-content: center; padding: 1rem; text-align: center; grid-template-columns: 1fr; }
+.pl-idx { color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; }
+.pl-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pl-game { color: var(--muted); font-size: 0.72rem; }
+.pl-badges {
+  display: inline-flex;
+  gap: 3px;
+  margin-left: 0.4rem;
+}
+.pl-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.08);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+.pl-badge.set { background: var(--ok); color: var(--bg); }
+.pl-row button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+.pl-row button:hover { border-color: var(--accent); color: var(--accent); }
+.pl-row .pl-load-a { color: var(--a, #5ce0d0); }
+.pl-row .pl-load-b { color: var(--b, #ff7a8a); }
+.pl-row .pl-remove { color: var(--muted); }
+.pl-row .pl-move {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  padding: 0 0.2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.pl-row .pl-move:hover { color: var(--accent); }
+.pl-move-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.9;
+}
+/* + add button on library rows when in playlist mode would be cluttering;
+   instead we put a single "+pl" button in the library load-btns group. */
+.track-row .to-pl {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+.track-row .to-pl:hover { color: var(--ok); border-color: var(--ok); }
 
 .browser-controls {
   display: flex;

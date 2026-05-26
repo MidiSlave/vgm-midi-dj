@@ -61,16 +61,35 @@
       </div>
     </div>
 
-    <section id="browser">
-      <div class="browser-controls">
-        <div class="input-wrap">
-          <input type="text" id="browser-search" placeholder="search…" autocomplete="off">
-          <button class="input-clear" id="browser-clear" hidden aria-label="clear">×</button>
-        </div>
-        <span id="browser-count" class="muted">…</span>
+    <section id="catalog">
+      <div class="catalog-modes">
+        <button class="cat-mode active" data-mode="library" type="button">library</button>
+        <button class="cat-mode" data-mode="playlist" type="button">playlist</button>
       </div>
-      <div class="browser-games" id="browser-games"></div>
-      <div id="browser-list"></div>
+
+      <div class="catalog-pane" id="library-pane">
+        <div class="browser-controls">
+          <div class="input-wrap">
+            <input type="text" id="browser-search" placeholder="search…" autocomplete="off">
+            <button class="input-clear" id="browser-clear" hidden aria-label="clear">×</button>
+          </div>
+          <span id="browser-count" class="muted">…</span>
+        </div>
+        <div class="browser-games" id="browser-games"></div>
+        <div id="browser-list"></div>
+      </div>
+
+      <div class="catalog-pane" id="playlist-pane" hidden>
+        <div class="playlist-controls">
+          <select id="playlist-select" title="select playlist"></select>
+          <button id="playlist-new" type="button" title="new playlist">+ new</button>
+          <button id="playlist-rename" type="button" title="rename current">rename</button>
+          <button id="playlist-duplicate" type="button" title="duplicate current">duplicate</button>
+          <button id="playlist-delete" type="button" title="delete current">delete</button>
+          <span id="playlist-count" class="muted">…</span>
+        </div>
+        <div id="playlist-entries"></div>
+      </div>
     </section>
 
     <section id="decks">

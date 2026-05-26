@@ -375,6 +375,243 @@ const CHANNEL_COLORS = [
 let trackLibrary = [];
 
 // ──────────────────────────────────────────────────────────────
+// Playlist store — curated, ordered sets of tracks with per-entry overrides
+// (cue tick, loop in/out + armed-on-load, output mutes, transpose, time-fold,
+// volume, note). Backed by localStorage so sets survive reloads. The catalog
+// section has two modes: "library" (search/browse the full corpus) and
+// "playlist" (ordered set, drag/reorder, capture-from-deck, drop with loop).
+// ──────────────────────────────────────────────────────────────
+const PLAYLIST_STORAGE_KEY = 'vgmDj.playlists.v1';
+const PLAYLIST_CURRENT_KEY = 'vgmDj.currentPlaylistId.v1';
+const PLAYLIST_MODE_KEY = 'vgmDj.catalogMode.v1';
+
+const playlistStore = {
+  playlists: [],
+  currentId: null,
+  mode: 'library',
+};
+
+function _uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+function loadPlaylistStore() {
+  try {
+    const raw = localStorage.getItem(PLAYLIST_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) playlistStore.playlists = parsed;
+    }
+  } catch (e) { /* ignore corrupt storage */ }
+  try { playlistStore.currentId = localStorage.getItem(PLAYLIST_CURRENT_KEY) || null; } catch (e) {}
+  try { playlistStore.mode = localStorage.getItem(PLAYLIST_MODE_KEY) || 'library'; } catch (e) {}
+  if (!playlistStore.playlists.find(p => p.id === playlistStore.currentId)) {
+    playlistStore.currentId = playlistStore.playlists[0]?.id ?? null;
+  }
+}
+
+let _playlistSaveTimer = null;
+function savePlaylistStore() {
+  if (_playlistSaveTimer) clearTimeout(_playlistSaveTimer);
+  _playlistSaveTimer = setTimeout(() => {
+    _playlistSaveTimer = null;
+    try {
+      localStorage.setItem(PLAYLIST_STORAGE_KEY, JSON.stringify(playlistStore.playlists));
+      if (playlistStore.currentId) localStorage.setItem(PLAYLIST_CURRENT_KEY, playlistStore.currentId);
+      else localStorage.removeItem(PLAYLIST_CURRENT_KEY);
+      localStorage.setItem(PLAYLIST_MODE_KEY, playlistStore.mode);
+    } catch (e) { console.warn('playlist save failed', e); }
+  }, 200);
+}
+
+function getCurrentPlaylist() {
+  return playlistStore.playlists.find(p => p.id === playlistStore.currentId) || null;
+}
+
+function createPlaylist(name) {
+  const p = {
+    id: _uid(),
+    name: name || `Set ${playlistStore.playlists.length + 1}`,
+    created: Date.now(),
+    updated: Date.now(),
+    entries: [],
+  };
+  playlistStore.playlists.push(p);
+  playlistStore.currentId = p.id;
+  savePlaylistStore();
+  return p;
+}
+
+function deleteCurrentPlaylist() {
+  const idx = playlistStore.playlists.findIndex(p => p.id === playlistStore.currentId);
+  if (idx < 0) return;
+  playlistStore.playlists.splice(idx, 1);
+  playlistStore.currentId = playlistStore.playlists[Math.max(0, idx - 1)]?.id
+                          ?? playlistStore.playlists[0]?.id
+                          ?? null;
+  savePlaylistStore();
+}
+
+function renameCurrentPlaylist(name) {
+  const p = getCurrentPlaylist();
+  if (!p || !name) return;
+  p.name = name;
+  p.updated = Date.now();
+  savePlaylistStore();
+}
+
+function duplicateCurrentPlaylist() {
+  const p = getCurrentPlaylist();
+  if (!p) return;
+  const copy = {
+    id: _uid(),
+    name: p.name + ' copy',
+    created: Date.now(),
+    updated: Date.now(),
+    entries: p.entries.map(e => ({ ...e, id: _uid() })),
+  };
+  playlistStore.playlists.push(copy);
+  playlistStore.currentId = copy.id;
+  savePlaylistStore();
+}
+
+function setCurrentPlaylist(id) {
+  if (!playlistStore.playlists.find(p => p.id === id)) return;
+  playlistStore.currentId = id;
+  savePlaylistStore();
+}
+
+// Append a library track to the current playlist (creating one if absent).
+// Returns the freshly-created entry, or null if the track isn't found.
+function addEntryToCurrentPlaylist(trackPath) {
+  if (!trackPath) return null;
+  let p = getCurrentPlaylist();
+  if (!p) p = createPlaylist('Set 1');
+  const entry = { id: _uid(), path: trackPath };
+  p.entries.push(entry);
+  p.updated = Date.now();
+  savePlaylistStore();
+  return entry;
+}
+
+function removeEntryFromCurrent(entryId) {
+  const p = getCurrentPlaylist();
+  if (!p) return;
+  const idx = p.entries.findIndex(e => e.id === entryId);
+  if (idx >= 0) {
+    p.entries.splice(idx, 1);
+    p.updated = Date.now();
+    savePlaylistStore();
+  }
+}
+
+function moveEntryInCurrent(entryId, delta) {
+  const p = getCurrentPlaylist();
+  if (!p) return;
+  const idx = p.entries.findIndex(e => e.id === entryId);
+  if (idx < 0) return;
+  const newIdx = Math.max(0, Math.min(p.entries.length - 1, idx + delta));
+  if (newIdx === idx) return;
+  const [item] = p.entries.splice(idx, 1);
+  p.entries.splice(newIdx, 0, item);
+  p.updated = Date.now();
+  savePlaylistStore();
+}
+
+function updateEntryInCurrent(entryId, patch) {
+  const p = getCurrentPlaylist();
+  if (!p) return;
+  const entry = p.entries.find(e => e.id === entryId);
+  if (!entry) return;
+  Object.assign(entry, patch);
+  p.updated = Date.now();
+  savePlaylistStore();
+}
+
+// Snapshot a deck's current loop / mutes / transpose / time-fold / volume /
+// cue tick into the given entry. The intended workflow: rehearse the move on
+// the deck, then tap "capture A" or "capture B" to write that state into the
+// playlist row so re-loading it later reproduces the move.
+function captureDeckIntoEntry(deckId, entryId) {
+  const deck = decks[deckId];
+  if (!deck.midi) return false;
+  const patch = {
+    cueTick: deck.currentTick || 0,
+    transpose: deck.transpose || 0,
+    timeFold: deck.timeFold || 1,
+    volume: typeof deck.volume === 'number' ? deck.volume : 100,
+    outputMutes: [...deck.outputMute],
+  };
+  if (deck.loop.in != null && deck.loop.out != null) {
+    patch.loop = {
+      in: deck.loop.in,
+      out: deck.loop.out,
+      beats: deck.loop.beats || null,
+      armed: !!deck.loop.active,
+    };
+  } else {
+    patch.loop = null;
+  }
+  updateEntryInCurrent(entryId, patch);
+  return true;
+}
+
+// Look up the next entry after a given one (for prefetch / auto-advance).
+function getNextEntryAfter(entryId) {
+  const p = getCurrentPlaylist();
+  if (!p) return null;
+  const idx = p.entries.findIndex(e => e.id === entryId);
+  if (idx < 0 || idx >= p.entries.length - 1) return null;
+  return p.entries[idx + 1];
+}
+
+// ──────────────────────────────────────────────────────────────
+// Prefetch — eagerly fetch + worker-parse the next playlist entry so that
+// loading it onto a deck is a state-assignment rather than a fetch+parse
+// round-trip. Cache size = 1 (most recent prefetch wins). Stale entries
+// (path changed before consumption) are dropped.
+// ──────────────────────────────────────────────────────────────
+const _prefetched = { path: null, midi: null, rollData: null, dropChannels: null };
+
+function prefetchTrack(track) {
+  if (!track || !track.path) return;
+  if (_prefetched.path === track.path && _prefetched.midi) return;
+  _prefetched.path = track.path;
+  _prefetched.midi = null;
+  _prefetched.rollData = null;
+  _prefetched.dropChannels = track.drop_channels || [];
+  (async () => {
+    const requestedPath = track.path;
+    try {
+      const res = await fetch(requestedPath);
+      if (!res.ok) throw new Error(`prefetch HTTP ${res.status}`);
+      const buffer = await res.arrayBuffer();
+      const { midi, rollData } = await parseInWorker(buffer, { dropChannels: track.drop_channels });
+      // Drop if a newer prefetch superseded ours mid-flight
+      if (_prefetched.path !== requestedPath) return;
+      _prefetched.midi = midi;
+      _prefetched.rollData = rollData;
+    } catch (e) {
+      if (_prefetched.path === requestedPath) {
+        _prefetched.path = null;
+        _prefetched.midi = null;
+        _prefetched.rollData = null;
+      }
+    }
+  })();
+}
+
+function consumePrefetch(trackPath) {
+  if (_prefetched.path !== trackPath || !_prefetched.midi) return null;
+  const out = { midi: _prefetched.midi, rollData: _prefetched.rollData };
+  _prefetched.path = null;
+  _prefetched.midi = null;
+  _prefetched.rollData = null;
+  _prefetched.dropChannels = null;
+  return out;
+}
+
+// ──────────────────────────────────────────────────────────────
 // Master transport — independent clock used as reference for quantised drops
 // ──────────────────────────────────────────────────────────────
 const master = {
@@ -1257,10 +1494,17 @@ function dropDeck(deckId) {
   deck.dropPending = true;
   updateDropUI(deckId);
   if (deck.dropTimer) clearTimeout(deck.dropTimer);
-  // Respect any cue position the user has scrubbed to. If the playhead sits at
-  // raw tick 0 (i.e. never moved), launch from the music's audible beat-1
-  // instead — that's the only point that lands B in phase with A's downbeat.
-  const startTick = deck.currentTick || getDeckBeatOneTick(deck);
+  // Respect any cue position the user has scrubbed to. If a playlist entry
+  // armed a loop on load, the drop should land at the loop's in-point so the
+  // first wrap fires at loop.out — that's "drop into a loop". Otherwise:
+  // honour the cue tick the user has scrubbed/captured to; failing that, fall
+  // back to the music's audible beat-1 (raw tick 0 may include count-in).
+  let startTick;
+  if (deck.loop.active && Number.isFinite(deck.loop.in)) {
+    startTick = deck.loop.in;
+  } else {
+    startTick = deck.currentTick || getDeckBeatOneTick(deck);
+  }
   deck.dropTimer = setTimeout(() => {
     deck.dropPending = false;
     deck.dropTimer = null;
@@ -2569,14 +2813,24 @@ function updateDeckStats(deckId, meta) {
   }
 }
 
-async function loadTrackIntoDeck(deckId, track) {
+// `entry`, when provided, is a playlist entry whose overrides (cue tick, loop
+// in/out + armed-on-load, output mutes, transpose, time-fold, volume) are
+// applied to the deck after the track parses. Plain library loads pass no
+// entry. Pre-fetched MIDI is consumed transparently when available.
+async function loadTrackIntoDeck(deckId, track, entry) {
   try {
-    const res = await fetch(track.path);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const buffer = await res.arrayBuffer();
-
-    // Parsing happens off-thread; the playing deck's scheduler keeps ticking
-    const { midi, rollData } = await parseInWorker(buffer, { dropChannels: track.drop_channels });
+    let midi, rollData;
+    const cached = consumePrefetch(track.path);
+    if (cached) {
+      midi = cached.midi;
+      rollData = cached.rollData;
+    } else {
+      const res = await fetch(track.path);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buffer = await res.arrayBuffer();
+      // Parsing happens off-thread; the playing deck's scheduler keeps ticking
+      ({ midi, rollData } = await parseInWorker(buffer, { dropChannels: track.drop_channels }));
+    }
 
     stopDeck(deckId);
     decks[deckId].midi = midi;
@@ -2609,6 +2863,10 @@ async function loadTrackIntoDeck(deckId, track) {
     updateTransposeUI(deckId);
     updateTimeFoldUI(deckId);
     buildRoutingUI(deckId, midi);
+
+    // Apply playlist entry overrides last, so they win over the resets above.
+    if (entry) applyEntryOverridesToDeck(deckId, entry);
+
     updateLoopUI(deckId);
     // Paint a placeholder (background + playhead) immediately so the deck looks responsive
     paintRoll(deckId);
@@ -2616,10 +2874,44 @@ async function loadTrackIntoDeck(deckId, track) {
     // on the other deck gets priority. Falls back to a deferred setTimeout on browsers
     // without requestIdleCallback.
     deferRollRender(deckId);
+
+    // Eagerly prefetch the next entry from the playlist so the next swap is
+    // a state-assignment instead of a fetch+parse round-trip.
+    if (entry) {
+      const next = getNextEntryAfter(entry.id);
+      if (next) {
+        const nextTrack = trackLibrary.find(t => t.path === next.path);
+        if (nextTrack) prefetchTrack(nextTrack);
+      }
+    }
   } catch (err) {
     console.error('Load failed', track.path, err);
     alert(`Failed to load: ${track.path}\n${err.message}`);
   }
+}
+
+// Apply playlist-entry overrides to a freshly-loaded deck. Anything missing
+// from the entry is left at its post-load default, so a sparse entry only
+// touches what it explicitly sets.
+function applyEntryOverridesToDeck(deckId, entry) {
+  const deck = decks[deckId];
+  if (Number.isFinite(entry.cueTick)) {
+    deck.currentTick = Math.max(0, Math.floor(entry.cueTick));
+  }
+  if (Number.isFinite(entry.transpose)) deck.transpose = entry.transpose;
+  if (Number.isFinite(entry.timeFold)) deck.timeFold = entry.timeFold;
+  if (Number.isFinite(entry.volume)) deck.volume = entry.volume;
+  if (Array.isArray(entry.outputMutes)) deck.outputMute = new Set(entry.outputMutes);
+  if (entry.loop && Number.isFinite(entry.loop.in) && Number.isFinite(entry.loop.out)) {
+    deck.loop.in = entry.loop.in;
+    deck.loop.out = entry.loop.out;
+    if (Number.isFinite(entry.loop.beats)) deck.loop.beats = entry.loop.beats;
+    deck.loop.active = !!entry.loop.armed;
+  }
+  syncDeckToMaster(deckId);
+  updateTransposeUI(deckId);
+  updateTimeFoldUI(deckId);
+  renderRoutingPills(deckId);
 }
 
 let browserState = { search: '', games: new Set(), sort: 'game', dir: 1 };
@@ -2735,10 +3027,18 @@ function renderBrowser() {
       <span class="load-btns">
         <button class="to-a">1</button>
         <button class="to-b">2</button>
+        <button class="to-pl" title="add to current playlist">+pl</button>
       </span>
     `;
     row.querySelector('.to-a').addEventListener('click', () => loadTrackIntoDeck('1', t));
     row.querySelector('.to-b').addEventListener('click', () => loadTrackIntoDeck('2', t));
+    row.querySelector('.to-pl').addEventListener('click', () => {
+      addEntryToCurrentPlaylist(t.path);
+      // Re-render the playlist pane in case it's visible alongside (and to
+      // refresh the playlist-select dropdown contents).
+      renderPlaylistPane();
+      flashButton(row.querySelector('.to-pl'), 'flash', 200);
+    });
     frag.appendChild(row);
   }
   list.appendChild(frag);
@@ -2777,6 +3077,164 @@ function renderGameChips() {
   }
 }
 
+// ──────────────────────────────────────────────────────────────
+// Playlist pane — render + interactions
+// ──────────────────────────────────────────────────────────────
+function setCatalogMode(mode) {
+  if (mode !== 'library' && mode !== 'playlist') return;
+  playlistStore.mode = mode;
+  savePlaylistStore();
+  document.querySelectorAll('.cat-mode').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  const lib = document.getElementById('library-pane');
+  const pl  = document.getElementById('playlist-pane');
+  if (lib) lib.hidden = mode !== 'library';
+  if (pl)  pl.hidden  = mode !== 'playlist';
+  if (mode === 'playlist') renderPlaylistPane();
+}
+
+function renderPlaylistSelect() {
+  const sel = document.getElementById('playlist-select');
+  if (!sel) return;
+  sel.innerHTML = '';
+  if (!playlistStore.playlists.length) {
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = '— no playlists —';
+    sel.appendChild(opt);
+    sel.disabled = true;
+    return;
+  }
+  sel.disabled = false;
+  for (const p of playlistStore.playlists) {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = `${p.name} (${p.entries.length})`;
+    if (p.id === playlistStore.currentId) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function renderPlaylistPane() {
+  renderPlaylistSelect();
+  const list = document.getElementById('playlist-entries');
+  const count = document.getElementById('playlist-count');
+  if (!list) return;
+  list.innerHTML = '';
+  const p = getCurrentPlaylist();
+  if (count) count.textContent = p ? `${p.entries.length} entries` : '';
+  if (!p) {
+    const empty = document.createElement('div');
+    empty.className = 'pl-row empty';
+    empty.textContent = 'No playlist selected. Tap "+ new" to create one, then switch to library and use "+pl" on any row to add tracks.';
+    list.appendChild(empty);
+    return;
+  }
+  if (!p.entries.length) {
+    const empty = document.createElement('div');
+    empty.className = 'pl-row empty';
+    empty.textContent = 'Empty playlist. Switch to library and tap "+pl" on a track row to add it.';
+    list.appendChild(empty);
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  p.entries.forEach((entry, i) => {
+    const track = trackLibrary.find(t => t.path === entry.path);
+    const row = document.createElement('div');
+    row.className = 'pl-row';
+    row.dataset.entryId = entry.id;
+    const badges = [];
+    if (Number.isFinite(entry.cueTick) && entry.cueTick > 0) badges.push('<span class="pl-badge set">cue</span>');
+    if (entry.loop && Number.isFinite(entry.loop.in)) {
+      badges.push(`<span class="pl-badge set">${entry.loop.armed ? 'loop★' : 'loop'}</span>`);
+    }
+    if (Array.isArray(entry.outputMutes) && entry.outputMutes.length) badges.push('<span class="pl-badge set">mute</span>');
+    if (Number.isFinite(entry.transpose) && entry.transpose !== 0) badges.push(`<span class="pl-badge set">${entry.transpose > 0 ? '+' : ''}${entry.transpose}</span>`);
+    if (Number.isFinite(entry.timeFold) && entry.timeFold !== 1) badges.push(`<span class="pl-badge set">${entry.timeFold}×</span>`);
+
+    const title = track ? track.title : '(missing track)';
+    const game = track ? track.game : entry.path;
+    row.innerHTML = `
+      <span class="pl-idx">${i + 1}</span>
+      <span class="pl-title" title="${title}">
+        ${title}
+        <span class="pl-game">— ${game}</span>
+        <span class="pl-badges">${badges.join('')}</span>
+      </span>
+      <span class="pl-move-stack">
+        <button class="pl-move pl-up" title="move up">▴</button>
+        <button class="pl-move pl-down" title="move down">▾</button>
+      </span>
+      <span class="pl-actions">
+        <button class="pl-load-a" title="load on deck 1">→1</button>
+        <button class="pl-load-b" title="load on deck 2">→2</button>
+      </span>
+      <span class="pl-actions">
+        <button class="pl-cap-a" title="capture deck 1 state into this entry">cap 1</button>
+        <button class="pl-cap-b" title="capture deck 2 state into this entry">cap 2</button>
+      </span>
+      <button class="pl-remove" title="remove from playlist">×</button>
+    `;
+    const refreshAfterMutate = () => { renderPlaylistPane(); };
+    row.querySelector('.pl-up').addEventListener('click', () => { moveEntryInCurrent(entry.id, -1); refreshAfterMutate(); });
+    row.querySelector('.pl-down').addEventListener('click', () => { moveEntryInCurrent(entry.id, +1); refreshAfterMutate(); });
+    row.querySelector('.pl-load-a').addEventListener('click', () => {
+      if (track) loadTrackIntoDeck('1', track, entry);
+    });
+    row.querySelector('.pl-load-b').addEventListener('click', () => {
+      if (track) loadTrackIntoDeck('2', track, entry);
+    });
+    row.querySelector('.pl-cap-a').addEventListener('click', () => {
+      if (captureDeckIntoEntry('1', entry.id)) refreshAfterMutate();
+    });
+    row.querySelector('.pl-cap-b').addEventListener('click', () => {
+      if (captureDeckIntoEntry('2', entry.id)) refreshAfterMutate();
+    });
+    row.querySelector('.pl-remove').addEventListener('click', () => {
+      removeEntryFromCurrent(entry.id);
+      refreshAfterMutate();
+    });
+    frag.appendChild(row);
+  });
+  list.appendChild(frag);
+}
+
+function wirePlaylistPaneControls() {
+  document.querySelectorAll('.cat-mode').forEach(btn => {
+    btn.addEventListener('click', () => setCatalogMode(btn.dataset.mode));
+  });
+  const sel = document.getElementById('playlist-select');
+  if (sel) sel.addEventListener('change', () => {
+    if (sel.value) { setCurrentPlaylist(sel.value); renderPlaylistPane(); }
+  });
+  document.getElementById('playlist-new')?.addEventListener('click', () => {
+    const name = (prompt('Playlist name', `Set ${playlistStore.playlists.length + 1}`) || '').trim();
+    if (!name) return;
+    createPlaylist(name);
+    renderPlaylistPane();
+  });
+  document.getElementById('playlist-rename')?.addEventListener('click', () => {
+    const p = getCurrentPlaylist();
+    if (!p) return;
+    const name = (prompt('Rename playlist', p.name) || '').trim();
+    if (!name) return;
+    renameCurrentPlaylist(name);
+    renderPlaylistPane();
+  });
+  document.getElementById('playlist-duplicate')?.addEventListener('click', () => {
+    duplicateCurrentPlaylist();
+    renderPlaylistPane();
+  });
+  document.getElementById('playlist-delete')?.addEventListener('click', () => {
+    const p = getCurrentPlaylist();
+    if (!p) return;
+    if (!confirm(`Delete playlist "${p.name}"? This can't be undone.`)) return;
+    deleteCurrentPlaylist();
+    renderPlaylistPane();
+  });
+}
+
 async function initBrowser() {
   try {
     const res = await fetch('tracks.json');
@@ -2805,6 +3263,9 @@ async function initBrowser() {
     });
 
     renderBrowser();
+    // Playlist pane is rendered lazily when its mode is selected, but the
+    // current mode might already be 'playlist' from a prior session.
+    renderPlaylistPane();
   } catch (err) {
     document.getElementById('browser-list').textContent = `Library load failed: ${err.message}`;
   }
@@ -2815,6 +3276,10 @@ async function initBrowser() {
 // ──────────────────────────────────────────────────────────────
 function init() {
   initMIDI();
+  loadPlaylistStore();
+  wirePlaylistPaneControls();
+  // Restore the catalog mode the user left in (library or playlist).
+  setCatalogMode(playlistStore.mode);
   initBrowser();
 
   // Master BPM slider — the single source of truth; both decks warp to this
