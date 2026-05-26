@@ -840,11 +840,22 @@ function dispatchEvent(ev, deck, timestamp) {
   // programChange from the source is ignored — output patches are fixed per hardware target
 }
 
+// Stamp used by panic / silence / flip / mute paths. With a lookahead window
+// active, the scheduler has already handed up to LOOKAHEAD_MS of future
+// noteOns to CoreMIDI; a "now" noteOff would land BEFORE those scheduled
+// noteOns and leave the note stuck. Stamping our kill just past that window
+// guarantees CoreMIDI orders it after every in-flight scheduled event.
+// Returns undefined when no lookahead is in effect (then sendRaw uses "now").
+function panicStamp() {
+  return LOOKAHEAD_MS ? performance.now() + LOOKAHEAD_MS + 1 : undefined;
+}
+
 function silenceDeck(deckId) {
   const deck = decks[deckId];
+  const ts = panicStamp();
   for (const [key] of deck.activeNotes) {
     const [outCh, note] = key.split(':').map(Number);
-    sendRaw(0x80 | outCh, note, 0);
+    sendRaw(0x80 | outCh, note, 0, ts);
   }
   deck.activeNotes.clear();
   // Cancel any pending tail noteOffs from a prior loop wrap
@@ -860,7 +871,7 @@ function silenceDeck(deckId) {
   }
   const outs = new Set(Object.values(deck.routing).filter(v => v >= 0));
   for (const ch of outs) {
-    if (!otherChannels.has(ch)) sendRaw(0xb0 | ch, 123, 0);
+    if (!otherChannels.has(ch)) sendRaw(0xb0 | ch, 123, 0, ts);
   }
   clearOutputActive(deck);
 }
@@ -868,8 +879,9 @@ function silenceDeck(deckId) {
 function silenceAll() {
   silenceDeck('1');
   silenceDeck('2');
+  const ts = panicStamp();
   const all = testMode ? [0, 1, 2, 3, 9] : [0, 1, 2, 3, 9];
-  for (const ch of all) sendRaw(0xb0 | ch, 123, 0);
+  for (const ch of all) sendRaw(0xb0 | ch, 123, 0, ts);
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -942,18 +954,19 @@ function buildRoutingUI(deckId, midi) {
 function flipOutputs(deckId, pair = 'poly') {
   const deck = decks[deckId];
   const [a, b] = pair === 'leadBass' ? [1, 2] : [0, 3];
+  const ts = panicStamp();
   for (const [key] of [...deck.activeNotes]) {
     const oc = Number(key.split(':')[0]);
     if (oc === a || oc === b) {
       const note = Number(key.split(':')[1]);
-      dispatchNoteOff(deck, oc, note);
+      dispatchNoteOff(deck, oc, note, ts);
       deck.activeNotes.delete(key);
       const tail = deck.tailTimers.get(key);
       if (tail) { clearTimeout(tail); deck.tailTimers.delete(key); }
     }
   }
-  sendRaw(0xb0 | a, 123, 0);
-  sendRaw(0xb0 | b, 123, 0);
+  sendRaw(0xb0 | a, 123, 0, ts);
+  sendRaw(0xb0 | b, 123, 0, ts);
   for (const src in deck.routing) {
     if (deck.routing[src] === a) deck.routing[src] = b;
     else if (deck.routing[src] === b) deck.routing[src] = a;
@@ -1034,14 +1047,15 @@ function toggleOutputMute(deckId, outCh) {
   } else {
     deck.outputMute.add(outCh);
     // Silence any active notes on this output
+    const ts = panicStamp();
     for (const [key] of [...deck.activeNotes]) {
       const [oc, note] = key.split(':').map(Number);
       if (oc === outCh) {
-        dispatchNoteOff(deck, oc, note);
+        dispatchNoteOff(deck, oc, note, ts);
         deck.activeNotes.delete(key);
       }
     }
-    sendRaw(0xb0 | outCh, 123, 0); // belt + braces: all-notes-off CC
+    sendRaw(0xb0 | outCh, 123, 0, ts); // belt + braces: all-notes-off CC
   }
   renderRoutingPills(deckId);
 }
@@ -1069,7 +1083,12 @@ const LOOKAHEAD_MS = (typeof window !== 'undefined' && window.__vgmDjNativeShell
 // flat-to-master is the wanted behaviour. Flip to false in console to A/B.
 const LOCK_DECK_RATE_TO_MASTER = true;
 
-function playDeck(deckId, startTick = 0) {
+// `startWallTime`, when supplied, anchors the scheduler's `startWallTime` to a
+// caller-provided wallclock moment instead of `performance.now()`. Used by
+// `handleLoopWrap` so the new iteration's first events align exactly with the
+// audible loop.out tick, not LOOKAHEAD_MS earlier — otherwise the lookahead
+// window flams the wrap on percussive material.
+function playDeck(deckId, startTick = 0, startWallTime) {
   const deck = decks[deckId];
   if (!deck.midi) return;
 
@@ -1114,7 +1133,7 @@ function playDeck(deckId, startTick = 0) {
   // through naturally — but the lateness of any individual setTimeout fire
   // can't propagate forward, because the *next* event's setTimeout duration
   // is computed against an absolute target, not relative to the prior fire.
-  deck.startWallTime = performance.now();
+  deck.startWallTime = (startWallTime != null) ? startWallTime : performance.now();
   let cumulativeMs = 0;
 
   const msPerTick = () => (60000 / (currentBPM * deck.pitch)) / ticksPerBeat;
@@ -1181,7 +1200,12 @@ function playDeck(deckId, startTick = 0) {
       deck.lastEventWallTime = targetWallTime;
       deck.lastEventTick = currentTick;
       if (isLoopJump) {
-        handleLoopWrap(deckId);
+        // Pass the audible loop.out wallclock through so handleLoopWrap can
+        // stamp tail noteOffs and anchor the new iteration's startWallTime
+        // exactly to the loop boundary — otherwise the lookahead window pulls
+        // the new iter LOOKAHEAD_MS earlier than the old iter's tail-end
+        // events, flamming percussive material at the wrap.
+        handleLoopWrap(deckId, targetWallTime);
         return;
       }
       if (isPendingExitBar) {
@@ -1293,10 +1317,11 @@ function transitionDeck(sourceId) {
     if (!source.outputMute.has(out)) target.outputMute.add(out);
   }
   // Silence any currently sounding notes on outputs that just became muted
+  const ts = panicStamp();
   for (const [key] of [...target.activeNotes]) {
     const [oc, note] = key.split(':').map(Number);
     if (target.outputMute.has(oc)) {
-      dispatchNoteOff(target, oc, note);
+      dispatchNoteOff(target, oc, note, ts);
       target.activeNotes.delete(key);
     }
   }
@@ -1545,20 +1570,36 @@ function updateDropUI(deckId) {
 
 // Loop wrap — defer noteOff for any active note whose natural end falls past loop.out,
 // so the tail rings out into the next loop iteration instead of being cut.
-function handleLoopWrap(deckId) {
+// `audibleLoopOutTime` is the wallclock moment at which the loop.out tick
+// should sound — passed by the scheduler so we can align tail noteOffs and
+// the next iteration's first events to the audible boundary regardless of
+// the LOOKAHEAD_MS window. Falls back to "now" for legacy callers (the
+// re-entry guard at the top of step()).
+function handleLoopWrap(deckId, audibleLoopOutTime) {
   const deck = decks[deckId];
   const msPerTickNow = deck.currentMsPerTick || 4;
+  const audibleOut = (audibleLoopOutTime != null && LOOKAHEAD_MS)
+    ? audibleLoopOutTime
+    : null;
   for (const [key, endTick] of deck.activeNotes) {
     const [outCh, note] = key.split(':').map(Number);
     if (endTick != null && endTick > deck.loop.out) {
       const tailMs = (endTick - deck.loop.out) * msPerTickNow;
-      const t = setTimeout(() => {
-        dispatchNoteOff(deck, outCh, note);
-        deck.tailTimers.delete(key);
-      }, Math.max(0, tailMs));
-      deck.tailTimers.set(key, t);
+      if (audibleOut != null) {
+        // CoreMIDI can schedule the tail noteOff with µs precision — hand it
+        // off immediately with the audible end stamp, no setTimeout needed.
+        dispatchNoteOff(deck, outCh, note, audibleOut + tailMs);
+      } else {
+        const t = setTimeout(() => {
+          dispatchNoteOff(deck, outCh, note);
+          deck.tailTimers.delete(key);
+        }, Math.max(0, tailMs));
+        deck.tailTimers.set(key, t);
+      }
     } else {
-      dispatchNoteOff(deck, outCh, note);
+      // Notes that don't carry past loop.out: stamp at the audible boundary
+      // so they land flush with the wrap, not LOOKAHEAD_MS early.
+      dispatchNoteOff(deck, outCh, note, audibleOut != null ? audibleOut : undefined);
     }
   }
   deck.activeNotes.clear();
@@ -1572,7 +1613,10 @@ function handleLoopWrap(deckId) {
   if (!decks[otherId].playing) {
     anchorMasterToDeck(deckId, deck.loop.in);
   }
-  playDeck(deckId, deck.loop.in);
+  // Anchor the new iteration's startWallTime to the audible loop.out so the
+  // first event(s) of the wrap land at the boundary itself, not LOOKAHEAD_MS
+  // earlier. That's what kills the loop-wrap flam on drums.
+  playDeck(deckId, deck.loop.in, audibleOut != null ? audibleOut : undefined);
 }
 
 function stopDeck(deckId) {
@@ -2372,10 +2416,11 @@ function setTranspose(deckId, semitones) {
   semitones = Math.max(-12, Math.min(12, semitones));
   if (semitones === deck.transpose) return;
   // Silence active pitched notes so noteOffs at the new transpose don't mismatch
+  const ts = panicStamp();
   for (const [key] of [...deck.activeNotes]) {
     const [oc, note] = key.split(':').map(Number);
     if (oc !== 9) {
-      dispatchNoteOff(deck, oc, note);
+      dispatchNoteOff(deck, oc, note, ts);
       deck.activeNotes.delete(key);
     }
   }
