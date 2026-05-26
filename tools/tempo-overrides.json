@@ -2,11 +2,6 @@
   "_comment": "Per-track verified corrections. Path keys are relative to docs/midi-files/. Recognised fields per entry: perceived_bpm (overrides IOI heuristic), beat_one_tick (raw-tick offset where the music's audible beat-1 sits; defaults to 0), meter (e.g. \"4/4\", \"6/8\", \"3/4\"; overrides the file's first time-signature event). Empty / missing fields fall back to auto-detected values.",
   "tracks": {
     "doom/level2.mid":               { "perceived_bpm": 136 },
-    "doom/level3.mid":               { "perceived_bpm": 125 },
-    "doom/level4.mid":               { "perceived_bpm": 91 },
-    "doom/level5.mid":               { "perceived_bpm": 120 },
-    "doom/level6.mid":               { "perceived_bpm": 81 },
-    "doom/level7.mid":               { "perceived_bpm": 150 },
     "doom/level9.mid":               { "perceived_bpm": 77 },
     "donkey-kong/reptilerumble.mid": { "perceived_bpm": 103 }
   }
