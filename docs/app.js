@@ -3225,7 +3225,30 @@ function renderPlaylistSelect() {
   }
 }
 
+// Defer the (potentially heavy) playlist DOM rebuild via requestIdleCallback
+// whenever a deck is playing — otherwise the rebuild blocks the scheduler's
+// setTimeout chain through the LOOKAHEAD_MS window and leaks audible jitter
+// into the playing deck. When nothing is playing, render immediately so
+// taps feel instant. Coalesces multiple requests (rapid +pl taps, deck
+// loads) into one render.
+let _playlistRenderPending = null;
 function renderPlaylistPane() {
+  const anyPlaying = decks['1']?.playing || decks['2']?.playing;
+  if (!anyPlaying) {
+    _renderPlaylistPaneNow();
+    return;
+  }
+  if (_playlistRenderPending != null) return;
+  const cb = () => {
+    _playlistRenderPending = null;
+    _renderPlaylistPaneNow();
+  };
+  _playlistRenderPending = window.requestIdleCallback
+    ? requestIdleCallback(cb, { timeout: 200 })
+    : setTimeout(cb, 50);
+}
+
+function _renderPlaylistPaneNow() {
   renderPlaylistSelect();
   const list = document.getElementById('playlist-entries');
   const count = document.getElementById('playlist-count');
