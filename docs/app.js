@@ -1210,12 +1210,56 @@ const ROUTING_OPTIONS = [
   { value: -1, label: 'mute' },
 ];
 
+// Pitch-driven default routing.
+//   - Source ch 9 → output ch 9 (drums passthrough).
+//   - Of the melodic source channels (anything not 9), the one with the
+//     LOWEST average note pitch goes to output ch 2 (Bass / Bass Stn 2) and
+//     the one with the HIGHEST average pitch goes to output ch 1 (Lead /
+//     SH-01A). Both of those outputs are monophonic, so we put exactly one
+//     source on each — multiple sources fighting one mono voice is what
+//     produced the "many sources → bass" complaint.
+//   - Every remaining melodic source alternates between output ch 0
+//     (Poly 1 / Juno) and ch 3 (Poly 2 / Keytar), in pitch-sorted order, so
+//     adjacent registers spread across the two poly synths.
+//   - Edge cases: 0 melodic channels → drums-only routing. 1 melodic → that
+//     one goes to Poly 1 (Lead would mono-pre-empt any chords it carries).
+function defaultRoutingFor(midi) {
+  const routing = {};
+  const channels = getChannelsUsed(midi);
+  for (const ch of channels) {
+    if (ch === 9) routing[ch] = 9;
+  }
+  const melodic = channels.filter(c => c !== 9);
+  if (melodic.length === 0) return routing;
+
+  const pitchSum = {};
+  const noteCount = {};
+  for (const ev of midi.events) {
+    if (ev.type !== 'noteOn' || ev.channel === undefined) continue;
+    if (ev.channel === 9) continue;
+    pitchSum[ev.channel] = (pitchSum[ev.channel] || 0) + ev.note;
+    noteCount[ev.channel] = (noteCount[ev.channel] || 0) + 1;
+  }
+  const avgPitch = (ch) => noteCount[ch] ? pitchSum[ch] / noteCount[ch] : 60;
+  const sorted = [...melodic].sort((a, b) => avgPitch(a) - avgPitch(b));
+
+  if (sorted.length === 1) {
+    routing[sorted[0]] = 0; // Poly 1 — preserves any chords this channel carries
+    return routing;
+  }
+  routing[sorted[0]] = 2;                     // lowest pitch → Bass
+  routing[sorted[sorted.length - 1]] = 1;     // highest pitch → Lead
+  let toPoly1 = true;
+  for (let i = 1; i < sorted.length - 1; i++) {
+    routing[sorted[i]] = toPoly1 ? 0 : 3;
+    toPoly1 = !toPoly1;
+  }
+  return routing;
+}
+
 function buildRoutingUI(deckId, midi) {
   const deck = decks[deckId];
-  deck.routing = {};
-  for (const ch of getChannelsUsed(midi)) {
-    deck.routing[ch] = ch === 9 ? 9 : (ch < 4 ? ch : ch % 4);
-  }
+  deck.routing = defaultRoutingFor(midi);
   // Fresh track → fresh routing, so clear any flip carried from the prior track.
   deck.leadBassFlipped = false;
   deck.polyFlipped = false;

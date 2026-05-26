@@ -91,23 +91,49 @@ function parseMidiFile(arrayBuffer, dropSet = new Set()) {
 
   events.sort((a, b) => a.tick - b.tick);
 
+  // Dedup identical events at the same (tick, channel, note, type). VGM-style
+  // MIDI Type 1 files often layer multiple *tracks* onto the *same channel*
+  // (one track per game voice, all writing to ch 0 or ch 1 — common for NES
+  // rips). Without dedup these emit duplicate noteOn/noteOff bytes per tick
+  // and the receiving synth retriggers each one, producing an audible
+  // "flam" / stutter even though the piano roll overlays the duplicates as
+  // a single note. Keep the loudest velocity when noteOn dupes collide;
+  // noteOff dupes just collapse.
+  const seenKey = new Map(); // key → event we kept
+  const deduped = [];
+  for (const ev of events) {
+    if (ev.channel === undefined || ev.note === undefined) {
+      deduped.push(ev);
+      continue;
+    }
+    const key = `${ev.tick}:${ev.channel}:${ev.note}:${ev.type}`;
+    const prior = seenKey.get(key);
+    if (!prior) {
+      seenKey.set(key, ev);
+      deduped.push(ev);
+    } else if (ev.type === 'noteOn' && (ev.velocity ?? 0) > (prior.velocity ?? 0)) {
+      prior.velocity = ev.velocity;
+    }
+  }
+  const cleaned = deduped;
+
   // Pair noteOns with noteOffs so each noteOn carries its natural endTick.
   // Used to let notes ring out across loop wraps.
   const open = new Map();
-  for (let i = 0; i < events.length; i++) {
-    const ev = events[i];
+  for (let i = 0; i < cleaned.length; i++) {
+    const ev = cleaned[i];
     if (ev.type === 'noteOn') {
       open.set(`${ev.channel}:${ev.note}`, i);
     } else if (ev.type === 'noteOff') {
       const onIdx = open.get(`${ev.channel}:${ev.note}`);
       if (onIdx != null) {
-        events[onIdx].endTick = ev.tick;
+        cleaned[onIdx].endTick = ev.tick;
         open.delete(`${ev.channel}:${ev.note}`);
       }
     }
   }
 
-  return { events, ticksPerBeat, format };
+  return { events: cleaned, ticksPerBeat, format };
 }
 
 function compileNotes(midi) {
