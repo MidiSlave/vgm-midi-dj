@@ -818,6 +818,19 @@ body.skin-off .deck-skin { display: none; }
   color: var(--bg);
   border-color: var(--ok);
 }
+/* Start button: when armed, next piano-roll tap sets the cue position.
+   Distinctive accent so it doesn't blur with loop / follow when several are
+   on at once. Pulses to remind the user that the next tap is "live". */
+.btn-start.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  animation: btn-start-pulse 0.9s ease-in-out infinite;
+}
+@keyframes btn-start-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
 .btn-loop-toggle.exiting {
   background: var(--ok);
   color: var(--bg);

@@ -357,6 +357,10 @@ function makeDeckState(id) {
     rollView: { zoom: 1, offset: 0 }, // zoom ∈ [1, 50]; offset ∈ [0, 1 - 1/zoom]
     // loop
     loop: { in: null, out: null, active: false, beats: 4, pendingExit: false },
+    // When true, the next single-tap on the piano roll sets the cue/start
+    // position; otherwise taps are absorbed so pinch/pan/zoom can't trip an
+    // accidental scrub. Auto-disarms on commit and on track load.
+    startArmed: false,
   };
 }
 
@@ -2005,6 +2009,24 @@ function setFollow(deckId, on) {
   deck.rollView.follow = on;
   updateFollowUI(deckId);
 }
+
+// "Start" arming — only when this is on does a single tap on the piano roll
+// set the deck's cue/start position. Off by default so pinch/pan/zoom can't
+// trip a scrub. Auto-disarms when a seek commits, and on track load.
+function toggleStartArmed(deckId) {
+  setStartArmed(deckId, !decks[deckId].startArmed);
+}
+function setStartArmed(deckId, on) {
+  const deck = decks[deckId];
+  if (deck.startArmed === on) return;
+  deck.startArmed = on;
+  updateStartArmedUI(deckId);
+}
+function updateStartArmedUI(deckId) {
+  const btn = document.querySelector(`.btn-start[data-deck="${deckId}"]`);
+  if (!btn) return;
+  btn.classList.toggle('active', !!decks[deckId].startArmed);
+}
 function updateFollowUI(deckId) {
   const btn = document.querySelector(`.btn-follow[data-deck="${deckId}"]`);
   if (!btn) return;
@@ -2060,6 +2082,9 @@ function bindPianoRoll(deckId) {
   const commitPendingScrub = () => {
     if (scrubPendingX != null) seekDeck(deckId, xToTick(scrubPendingX));
     cancelPendingScrub();
+    // Single-shot: arming the Start button only buys you ONE seek, then it
+    // disarms so the next free-form pinch/pan can't accidentally re-seek.
+    setStartArmed(deckId, false);
   };
 
   const xToTick = (x, snap = true) => {
@@ -2151,7 +2176,7 @@ function bindPianoRoll(deckId) {
     if (e.shiftKey) {
       dragMode = 'pan';
       setFollow(deckId, false);
-    } else {
+    } else if (decks[deckId].startArmed) {
       dragMode = 'scrub';
       // Defer the seek so a pinch starting milliseconds later can cancel it.
       scrubPendingX = e.clientX;
@@ -2159,6 +2184,11 @@ function bindPianoRoll(deckId) {
         scrubPendingTimer = null;
         if (dragMode === 'scrub') commitPendingScrub();
       }, SCRUB_GRACE_MS);
+    } else {
+      // Roll is view-only unless Start is armed. Absorb the touch so it
+      // doesn't fall through; pinch/loop-handle/loop-region drags above
+      // remain reachable on multi-finger or specific-target gestures.
+      dragMode = null;
     }
   });
 
@@ -2564,6 +2594,7 @@ async function loadTrackIntoDeck(deckId, track) {
     decks[deckId]._barMarks = null;    // invalidate cached bar marks
     cancelDrop(deckId);
     cancelPendingSeek(deckId);
+    setStartArmed(deckId, false);
     const nameEl = document.querySelector(`#deck-${deckId} .track-name`);
     applyGameFontToTrackName(nameEl, track);
     updateDeckSkin(deckId, track.game);
@@ -2833,6 +2864,8 @@ function init() {
     });
     document.querySelector(`.btn-follow[data-deck="${deckId}"]`).addEventListener('click', () => toggleFollow(deckId));
     updateFollowUI(deckId);
+    document.querySelector(`.btn-start[data-deck="${deckId}"]`).addEventListener('click', () => toggleStartArmed(deckId));
+    updateStartArmedUI(deckId);
     document.querySelector(`.btn-drop[data-deck="${deckId}"]`).addEventListener('click', () => {
       if (decks[deckId].dropPending) cancelDrop(deckId);
       else dropDeck(deckId);
