@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-26T08:36:38.037Z",
+  "generated": "2026-05-26T08:38:59.416Z",
   "count": 873,
   "tracks": [
     {
@@ -13501,14 +13501,14 @@
       "path": "midi-files/doom/level4.mid",
       "file": "level4.mid",
       "title": "Level4",
-      "embedded_name": null,
+      "embedded_name": "1993, id Software",
       "game": "doom",
       "release": "",
-      "bpm": 60,
-      "bpm_initial": 60,
-      "perceived_bpm": 60,
-      "perceived_bpm_auto": 60,
-      "perceived_ticks_per_beat": 560,
+      "bpm": 90.03,
+      "bpm_initial": 90.02,
+      "perceived_bpm": 90.03,
+      "perceived_bpm_auto": 90.03,
+      "perceived_ticks_per_beat": 480,
       "beat_one_tick": 0,
       "meter": "4/4",
       "meter_auto": "4/4",
@@ -13517,7 +13517,7 @@
         "4/4"
       ],
       "key": "B major",
-      "duration_sec": 174.3,
+      "duration_sec": 173,
       "channels": [
         0,
         1,
@@ -13529,14 +13529,14 @@
       ],
       "note_count": 3105,
       "has_drums": true,
-      "tempo_changes": 1,
+      "tempo_changes": 2,
       "drop_channels": [],
       "tags": [
         "drums",
         "bass",
         "lead"
       ],
-      "size": 25183
+      "size": 26275
     },
     {
       "path": "midi-files/doom/level5.mid",
