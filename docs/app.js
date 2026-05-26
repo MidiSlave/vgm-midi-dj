@@ -252,7 +252,10 @@ function mountSpinner(mountEl, { options, value, onChange, className = '' }) {
     step(d > 0 ? 1 : -1);
   }, { passive: false });
 
-  // Touch drag: horizontal swipe steps once per ~28px
+  // Touch drag: horizontal swipe steps once per ~28px. Direction matches the
+  // arrow keys — swipe RIGHT (toward the › button) advances to the next value,
+  // swipe LEFT (toward ‹) goes to the previous. Same direction-sense as the
+  // wheel handler above.
   let touchStartX = null;
   let touchAccum = 0;
   root.addEventListener('touchstart', (e) => {
@@ -263,8 +266,8 @@ function mountSpinner(mountEl, { options, value, onChange, className = '' }) {
     if (touchStartX == null) return;
     const dx = e.touches[0].clientX - touchStartX;
     const stepPx = 28;
-    while (dx - touchAccum > stepPx) { touchAccum += stepPx; step(-1); }
-    while (dx - touchAccum < -stepPx) { touchAccum -= stepPx; step(+1); }
+    while (dx - touchAccum > stepPx) { touchAccum += stepPx; step(+1); }
+    while (dx - touchAccum < -stepPx) { touchAccum -= stepPx; step(-1); }
   }, { passive: true });
   root.addEventListener('touchend', () => { touchStartX = null; touchAccum = 0; });
 
@@ -527,10 +530,25 @@ function updateMasterBeatDots(force = false) {
 
 function startMasterClock() {
   const tick = () => {
+    reanchorMasterToAnchorDeck();
     updateMasterBeatDots();
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
+}
+
+// Continuously slave master.beatOneAt to the audible position of the sole
+// playing deck, so the beat-dots / quantised-drop maths / loop maths can't
+// drift away from what's actually playing — even when the file has tempo
+// events that shift the deck's rate away from master.bpm. When two decks are
+// playing the user owns the relationship (set on the most recent drop / CUT)
+// and we mustn't yank it; idle frames also early-return.
+function reanchorMasterToAnchorDeck() {
+  const playingIds = ['1', '2'].filter(id => decks[id].playing);
+  if (playingIds.length !== 1) return;
+  const deck = decks[playingIds[0]];
+  if (!deck.midi) return;
+  anchorMasterToDeck(deck.id, getLivePlaybackTick(deck));
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -649,13 +667,20 @@ function refreshSettingsMidiPortDropdown() {
   }
 }
 
-function sendRaw(status, data1, data2) {
+// Optional 4th arg: a DOMHighResTimeStamp (performance.now() domain) at which
+// the receiving end should fire the message. Used by the scheduler to hand
+// events off ahead of time so CoreMIDI (via the iOS polyfill) can dispatch
+// with µs precision — main-thread setTimeout jitter under LOOKAHEAD_MS then
+// becomes inaudible. Panic / silence / flip / mute paths omit it (= "now").
+// testMode (WebAudioTinySynth) doesn't accept timestamps; we drop it there.
+function sendRaw(status, data1, data2, timestamp) {
   const msg = data2 !== undefined ? [status, data1, data2] : [status, data1];
   if (testMode) {
     const synth = getTestSynth();
     if (synth) synth.send(msg);
   } else if (midiOutput) {
-    midiOutput.send(msg);
+    if (timestamp != null) midiOutput.send(msg, timestamp);
+    else midiOutput.send(msg);
   }
 }
 
@@ -668,14 +693,14 @@ function setPillActive(deckId, outCh, on) {
 // output so the routing pill lights while ANY note is still sounding on that
 // output and dims when the last one ends. Every MIDI noteOn/noteOff to a
 // hardware output must go through these wrappers so the gate stays accurate.
-function dispatchNoteOn(deck, outCh, note, vel) {
-  sendRaw(0x90 | outCh, note, vel);
+function dispatchNoteOn(deck, outCh, note, vel, timestamp) {
+  sendRaw(0x90 | outCh, note, vel, timestamp);
   const count = (deck.outputActive.get(outCh) ?? 0) + 1;
   deck.outputActive.set(outCh, count);
   if (count === 1) setPillActive(deck.id, outCh, true);
 }
-function dispatchNoteOff(deck, outCh, note) {
-  sendRaw(0x80 | outCh, note, 0);
+function dispatchNoteOff(deck, outCh, note, timestamp) {
+  sendRaw(0x80 | outCh, note, 0, timestamp);
   const count = (deck.outputActive.get(outCh) ?? 0) - 1;
   if (count <= 0) {
     deck.outputActive.delete(outCh);
@@ -766,7 +791,7 @@ function filterMonoPolyphony(events, deck) {
   });
 }
 
-function dispatchEvent(ev, deck) {
+function dispatchEvent(ev, deck, timestamp) {
   if (ev.channel === undefined) return;
   const outCh = deck.routing[ev.channel];
   if (outCh === undefined || outCh < 0) return; // unmapped or muted
@@ -788,24 +813,27 @@ function dispatchEvent(ev, deck) {
     if (pending) { clearTimeout(pending); deck.tailTimers.delete(key); }
     // Mono outputs (e.g. Bass Station 2): silence any other note already sounding
     // on this output before triggering the new one, so the synth doesn't choke.
+    // The pre-empt noteOff must land BEFORE the new noteOn — clamp its
+    // timestamp to (newNote - 1ms) so CoreMIDI orders them correctly.
     if (MONO_OUTPUTS.has(outCh)) {
+      const preTs = timestamp != null ? Math.max(0, timestamp - 1) : undefined;
       const prefix = `${outCh}:`;
       for (const activeKey of [...deck.activeNotes.keys()]) {
         if (activeKey.startsWith(prefix) && activeKey !== key) {
           const prevNote = Number(activeKey.slice(prefix.length));
-          dispatchNoteOff(deck, outCh, prevNote);
+          dispatchNoteOff(deck, outCh, prevNote, preTs);
           deck.activeNotes.delete(activeKey);
           const tail = deck.tailTimers.get(activeKey);
           if (tail) { clearTimeout(tail); deck.tailTimers.delete(activeKey); }
         }
       }
     }
-    dispatchNoteOn(deck, outCh, note, vel);
+    dispatchNoteOn(deck, outCh, note, vel, timestamp);
     deck.activeNotes.set(key, ev.endTick ?? null);
   } else if (ev.type === 'noteOff') {
     if (!testMode && outCh === 9) note = GM_TO_TR08[note] || note;
     if (deck.activeNotes.has(`${outCh}:${note}`)) {
-      dispatchNoteOff(deck, outCh, note);
+      dispatchNoteOff(deck, outCh, note, timestamp);
       deck.activeNotes.delete(`${outCh}:${note}`);
     }
   }
@@ -1021,6 +1049,26 @@ function toggleOutputMute(deckId, outCh) {
 // ──────────────────────────────────────────────────────────────
 // Playback
 // ──────────────────────────────────────────────────────────────
+// Lookahead window. The scheduler fires each event's setTimeout this many ms
+// before the audible target, then hands the event to the output with the
+// future timestamp. Web MIDI / CoreMIDI dispatches at the exact stamp, so
+// main-thread jitter under LOOKAHEAD_MS becomes inaudible. Only enabled in
+// the native iOS shell (where the polyfill forwards stamps to CoreMIDI) —
+// elsewhere we keep zero-lookahead "fire now" so testMode (WebAudioTinySynth,
+// no timestamp arg) and unverified desktop Web MIDI implementations stay on
+// the existing path.
+const LOOKAHEAD_MS = (typeof window !== 'undefined' && window.__vgmDjNativeShell) ? 40 : 0;
+
+// When true, the scheduler ignores file-internal tempo events and pins each
+// deck's rate entirely to master.bpm * deck.pitch. This is the primary defence
+// against drift between decks and between deck and master clock — without it,
+// a file with tempo events (Castlevania's "lying tempo" etc.) walks its own
+// rate while master and the other deck don't follow, and they fan out over
+// time. Tradeoff: rubato curves authored into the file get flattened. The
+// "unstable" library badge already marks tempo-heavy tracks; for DJ-mixing,
+// flat-to-master is the wanted behaviour. Flip to false in console to A/B.
+const LOCK_DECK_RATE_TO_MASTER = true;
+
 function playDeck(deckId, startTick = 0) {
   const deck = decks[deckId];
   if (!deck.midi) return;
@@ -1047,9 +1095,13 @@ function playDeck(deckId, startTick = 0) {
   // is significantly != 1.
   let currentBPM = deck.meta?.bpm_initial ?? master.bpm;
   let eventIndex = 0;
-  // Fast-forward to startTick, picking up the active tempo
+  // Fast-forward to startTick, picking up the active tempo (only when honouring
+  // file tempo events; otherwise currentBPM stays at bpm_initial forever and
+  // the deck plays at strict master.bpm * deck.pitch).
   while (eventIndex < events.length && events[eventIndex].tick < startTick) {
-    if (events[eventIndex].type === 'tempo') currentBPM = events[eventIndex].bpm;
+    if (!LOCK_DECK_RATE_TO_MASTER && events[eventIndex].type === 'tempo') {
+      currentBPM = events[eventIndex].bpm;
+    }
     eventIndex++;
   }
   let currentTick = startTick;
@@ -1149,15 +1201,17 @@ function playDeck(deckId, startTick = 0) {
       }
       for (const e of filterMonoPolyphony(tickEvents, deck)) {
         if (e.type === 'tempo') {
-          currentBPM = e.bpm;
-          deck.currentBPM = currentBPM;
+          if (!LOCK_DECK_RATE_TO_MASTER) {
+            currentBPM = e.bpm;
+            deck.currentBPM = currentBPM;
+          }
         } else {
-          dispatchEvent(e, deck);
+          dispatchEvent(e, deck, LOOKAHEAD_MS ? targetWallTime : undefined);
         }
       }
       updatePosition(deckId, currentTick, ticksPerBeat, currentBPM);
       step();
-    }, Math.max(0, targetWallTime - performance.now()));
+    }, Math.max(0, targetWallTime - performance.now() - LOOKAHEAD_MS));
   }
   startRollAnimation();
   step();
