@@ -528,6 +528,33 @@ function updateEntryInCurrent(entryId, patch) {
   savePlaylistStore();
 }
 
+// Take the entire deck state (cue, loop, mutes, transpose, time-fold, volume)
+// and create a brand-new playlist row holding it. This is the primary
+// "scene" creation flow: dial in the move on a deck, tap `snap`, the row
+// lands in the current playlist with everything captured. Creates a fresh
+// playlist if there isn't one yet, and flips to playlist mode so the user
+// sees their snapshot land. Returns the new entry, or null if the deck is
+// empty.
+function snapshotDeckIntoNewEntry(deckId) {
+  const deck = decks[deckId];
+  if (!deck.midi || !deck.meta?.path) return null;
+  let p = getCurrentPlaylist();
+  if (!p) p = createPlaylist('Set 1');
+  // Default name: track title, suffixed with "take N" when the same track
+  // already appears in this playlist so the row's identity is unique.
+  const baseName = deck.meta.title || 'Snapshot';
+  const sameTrackCount = p.entries.filter(e => e.path === deck.meta.path).length;
+  const name = sameTrackCount > 0 ? `${baseName} · take ${sameTrackCount + 1}` : baseName;
+  const entry = { id: _uid(), path: deck.meta.path, name };
+  p.entries.push(entry);
+  p.updated = Date.now();
+  // Capture all the deck state into the freshly-pushed entry.
+  captureDeckIntoEntry(deckId, entry.id);
+  setCatalogMode('playlist');
+  renderPlaylistPane();
+  return entry;
+}
+
 // Snapshot a deck's current loop / mutes / transpose / time-fold / volume /
 // cue tick into the given entry. The intended workflow: rehearse the move on
 // the deck, then tap "capture A" or "capture B" to write that state into the
@@ -3194,8 +3221,14 @@ function renderPlaylistPane() {
       `<span class="t-tag t-tag-${tag}">${tag}</span>`
     ).join('') : '';
 
-    const title = track ? track.title : '(missing — track removed from library)';
+    const trackTitle = track ? track.title : '(missing — track removed from library)';
+    // Snapshots can carry a user-given name (defaults to track title at
+    // snap-time). Falls back to track title for entries created via "+pl".
+    const displayName = entry.name || trackTitle;
     const game = track ? track.game : entry.path;
+    // If the entry has a custom name, show the underlying track title as a
+    // subtitle so it's clear which file is being recalled.
+    const showTrackSubtitle = entry.name && entry.name !== trackTitle;
     const bpm = track ? (track.perceived_bpm ?? track.bpm ?? '—') : '—';
     const keyDisp = track ? (formatKey(track.key) ?? '—') : '—';
     const meterDisp = track
@@ -3206,8 +3239,8 @@ function renderPlaylistPane() {
     row.innerHTML = `
       <span class="pl-idx">${i + 1}</span>
       <span class="pl-on-deck ${dotClass}" title="${on1 && on2 ? 'on both decks' : on1 ? 'on deck 1' : on2 ? 'on deck 2' : 'not loaded'}"></span>
-      <span class="pl-title" title="${title} — ${game}">
-        ${title}<span class="pl-game">— ${game}</span>
+      <span class="pl-title" title="tap to rename · ${displayName}${showTrackSubtitle ? ' (' + trackTitle + ')' : ''} — ${game}">
+        ${displayName}${showTrackSubtitle ? ` <span class="pl-tracktitle">(${trackTitle})</span>` : ''}<span class="pl-game">— ${game}</span>
       </span>
       <span class="pl-bpm">${bpm}</span>
       <span class="pl-key">${keyDisp}</span>
@@ -3234,6 +3267,12 @@ function renderPlaylistPane() {
       <button class="pl-remove" title="remove from playlist">×</button>
     `;
     const refreshAfterMutate = () => { renderPlaylistPane(); };
+    row.querySelector('.pl-title').addEventListener('click', () => {
+      const next = (prompt('Snapshot name', displayName) || '').trim();
+      if (!next) return;
+      updateEntryInCurrent(entry.id, { name: next });
+      refreshAfterMutate();
+    });
     row.querySelector('.pl-up').addEventListener('click', () => { moveEntryInCurrent(entry.id, -1); refreshAfterMutate(); });
     row.querySelector('.pl-down').addEventListener('click', () => { moveEntryInCurrent(entry.id, +1); refreshAfterMutate(); });
     row.querySelector('.pl-load-a').addEventListener('click', () => {
@@ -3388,6 +3427,10 @@ function init() {
     updateFollowUI(deckId);
     document.querySelector(`.btn-start[data-deck="${deckId}"]`).addEventListener('click', () => toggleStartArmed(deckId));
     updateStartArmedUI(deckId);
+    document.querySelector(`.btn-snap[data-deck="${deckId}"]`).addEventListener('click', (e) => {
+      const entry = snapshotDeckIntoNewEntry(deckId);
+      if (entry) flashButton(e.currentTarget, 'flash', 250);
+    });
     document.querySelector(`.btn-drop[data-deck="${deckId}"]`).addEventListener('click', () => {
       if (decks[deckId].dropPending) cancelDrop(deckId);
       else dropDeck(deckId);

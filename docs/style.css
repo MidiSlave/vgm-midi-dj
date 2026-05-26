@@ -347,11 +347,21 @@ header h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.pl-title { cursor: text; }
+.pl-title:hover { color: var(--accent); }
 .pl-title .pl-game {
   color: var(--muted);
   font-size: 0.72rem;
   text-transform: capitalize;
   margin-left: 0.35rem;
+}
+/* Underlying track title shown as subtitle when the snapshot has been
+   renamed away from its track's title. */
+.pl-title .pl-tracktitle {
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin-left: 0.25rem;
+  font-style: italic;
 }
 .pl-bpm, .pl-key, .pl-meter, .pl-len {
   color: var(--muted);
@@ -1090,6 +1100,12 @@ body.skin-off .deck-skin { display: none; }
   color: var(--bg);
   border-color: var(--accent);
   animation: btn-start-pulse 0.9s ease-in-out infinite;
+}
+/* Snap: brief flash on tap to confirm the snapshot was captured. */
+.btn-snap.flash {
+  background: var(--ok);
+  color: var(--bg);
+  border-color: var(--ok);
 }
 @keyframes btn-start-pulse {
   0%, 100% { opacity: 1; }
