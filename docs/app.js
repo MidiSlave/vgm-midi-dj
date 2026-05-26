@@ -1960,6 +1960,13 @@ function handleLoopWrap(deckId, audibleLoopOutTime) {
   const audibleOut = (audibleLoopOutTime != null && LOOKAHEAD_MS)
     ? audibleLoopOutTime
     : null;
+  // Wrap noteOffs land 1ms before the audible boundary so CoreMIDI delivers
+  // them strictly BEFORE any new-iteration noteOns at audibleOut. Without the
+  // offset, the noteOff and the new iter's noteOn share a timestamp and the
+  // synth's processing order for same-stamp packets becomes ambiguous —
+  // audible as a flam on percussive material (kick especially, where the
+  // noteOff's release tail collides with the new hit's attack).
+  const wrapTs = audibleOut != null ? Math.max(0, audibleOut - 1) : undefined;
   for (const [key, endTick] of deck.activeNotes) {
     const [outCh, note] = key.split(':').map(Number);
     if (endTick != null && endTick > deck.loop.out) {
@@ -1976,9 +1983,11 @@ function handleLoopWrap(deckId, audibleLoopOutTime) {
         deck.tailTimers.set(key, t);
       }
     } else {
-      // Notes that don't carry past loop.out: stamp at the audible boundary
-      // so they land flush with the wrap, not LOOKAHEAD_MS early.
-      dispatchNoteOff(deck, outCh, note, audibleOut != null ? audibleOut : undefined);
+      // Notes that don't carry past loop.out: stamp at audibleOut - 1ms so
+      // they land just BEFORE the new iter's noteOns (which stamp at
+      // audibleOut). 1ms is below the threshold of musical perception and
+      // resolves the same-stamp ordering ambiguity that causes drum flams.
+      dispatchNoteOff(deck, outCh, note, wrapTs);
     }
   }
   deck.activeNotes.clear();
