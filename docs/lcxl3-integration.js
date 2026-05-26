@@ -50,6 +50,47 @@ if (!mountEl) {
 } else {
   const lcxl3 = new VirtualLCXL3('lcxl3-mount', { logoPath: 'lcxl3/LCXL3_logo.png' });
 
+  // ─── LED/OLED bypass ────────────────────────────────────────────────────
+  // Wrap the LCXL3 instance's output methods so the user can disable all the
+  // LED painting and OLED bitmap pushes if the resulting SysEx traffic is
+  // interfering with MIDI timing on their hardware chain. Input handlers
+  // (encoders, buttons) keep working — bypass only nukes outbound writes.
+  // State persists in localStorage; the Settings panel toggle wires here.
+  const LCXL3_BYPASS_KEY = 'vgmdj.lcxl3.bypass.v1';
+  let lcxl3Bypass = false;
+  try { lcxl3Bypass = localStorage.getItem(LCXL3_BYPASS_KEY) === '1'; } catch (e) {}
+  const _setEncoderLED = lcxl3.setEncoderLED?.bind(lcxl3);
+  const _setButtonLED  = lcxl3.setButtonLED?.bind(lcxl3);
+  const _setLED        = lcxl3._setLED?.bind(lcxl3);
+  const _renderBitmap  = lcxl3.renderBitmap?.bind(lcxl3);
+  if (_setEncoderLED) lcxl3.setEncoderLED = (...a) => { if (!lcxl3Bypass) _setEncoderLED(...a); };
+  if (_setButtonLED)  lcxl3.setButtonLED  = (...a) => { if (!lcxl3Bypass) _setButtonLED(...a); };
+  if (_setLED)        lcxl3._setLED       = (...a) => { if (!lcxl3Bypass) _setLED(...a); };
+  if (_renderBitmap)  lcxl3.renderBitmap  = (...a) => { if (!lcxl3Bypass) _renderBitmap(...a); };
+  // Public toggle — Settings UI calls this, or the user can run it from devtools.
+  // When turning OFF (re-enabling writes), repaint everything so the controller
+  // state catches up with the app's idea of LED / OLED state.
+  window.vgmdjLcxl3Bypass = (on) => {
+    lcxl3Bypass = !!on;
+    try { localStorage.setItem(LCXL3_BYPASS_KEY, lcxl3Bypass ? '1' : '0'); } catch (e) {}
+    if (!lcxl3Bypass) {
+      // Force a fresh LED repaint now that writes are allowed again.
+      // The OLED catches up on the next rAF paint() tick on its own.
+      try { paintLEDs(); } catch (e) {}
+    } else {
+      // Going INTO bypass — blank LEDs / clear OLED so the controller doesn't
+      // sit on stale state while the app stops talking to it. Use the raw
+      // (un-gated) bindings so the kill commands actually get through.
+      try {
+        if (_setEncoderLED) for (let r = 0; r < 3; r++) for (let c = 0; c < 8; c++) _setEncoderLED(r, c, 0, 0, 0);
+        if (_setLED) for (let i = 0x25; i <= 0x34; i++) _setLED(i, 0, 0, 0);
+        if (_renderBitmap) _renderBitmap(createBitmapBuffer());
+      } catch (e) {}
+    }
+    return lcxl3Bypass;
+  };
+  window.vgmdjLcxl3BypassGet = () => lcxl3Bypass;
+
   // Surface connection state next to the existing MIDI status pill.
   const midiPortEl = document.getElementById('midi-port');
   setInterval(() => {

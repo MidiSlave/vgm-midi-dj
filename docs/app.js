@@ -928,12 +928,27 @@ function setMidiOutputById(id) {
   localStorage.setItem(SETTINGS_MIDI_PORT_KEY, pick.id);
 }
 
+// CoreMIDI labels output ports from the *device's* perspective: a port the
+// device considers an "input" is what we (the host) send to. So an LCXL3's
+// "Launch Control XL3 Mini in" and "Launch Control XL3 DAW in" are what you
+// pick to send MIDI to the controller. In a dropdown already filtered to
+// outputs, the trailing " in" / " input" is redundant noise that reads as
+// "this is the wrong port". Strip it for display only — port ids and
+// routing decisions stay on the raw CoreMIDI names.
+function prettyOutputLabel(raw) {
+  if (!raw) return raw;
+  return String(raw).replace(/\s+(?:input|in)\s*$/i, '').trim();
+}
+
 let settingsMidiDropdown = null;
 function refreshSettingsMidiPortDropdown() {
   if (!midiAccess) return;
   const mount = document.getElementById('settings-midi-port-mount');
   if (!mount) return;
-  const outs = [...midiAccess.outputs.values()].map(o => ({ value: o.id, label: o.name || o.id }));
+  const outs = [...midiAccess.outputs.values()].map(o => ({
+    value: o.id,
+    label: prettyOutputLabel(o.name) || o.id,
+  }));
   if (!outs.length) outs.push({ value: '', label: '(none available)' });
   const current = midiOutput?.id ?? outs[0].value;
   if (settingsMidiDropdown) {
@@ -3784,6 +3799,23 @@ function initSettingsModal() {
     initial: readSkinSetting(),
     onChange: (on) => applySkinSetting(on),
   });
+
+  // LCXL3 LED / OLED bypass — flips the integration module's gate so all
+  // outbound writes to the controller (encoder LEDs, button LEDs, OLED
+  // bitmap pushes) stop. Reads the persisted state to seed the toggle's
+  // initial visual state; the integration module manages localStorage.
+  const lcxl3BypassEl = document.getElementById('settings-lcxl3-bypass-toggle');
+  if (lcxl3BypassEl) {
+    let initial = false;
+    try { initial = localStorage.getItem('vgmdj.lcxl3.bypass.v1') === '1'; } catch (e) {}
+    mountToggle(lcxl3BypassEl, {
+      initial,
+      onChange: (on) => {
+        if (typeof window.vgmdjLcxl3Bypass === 'function') window.vgmdjLcxl3Bypass(on);
+        else { try { localStorage.setItem('vgmdj.lcxl3.bypass.v1', on ? '1' : '0'); } catch (e) {} }
+      },
+    });
+  }
 
   // CUE channels: read persisted choice; routing applies once the test
   // synth's AudioContext exists (lazy — on first preview-mode unlock).
